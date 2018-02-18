@@ -7,7 +7,7 @@ one:
   phone_num: MyString
   references: 
   password_digest: MyString
-  is_active: false
+  role: MyString
 
 two:
   email: MyString
@@ -16,4 +16,4 @@ two:
   phone_num: MyString
   references: 
   password_digest: MyString
-  is_active: false
+  role: MyString

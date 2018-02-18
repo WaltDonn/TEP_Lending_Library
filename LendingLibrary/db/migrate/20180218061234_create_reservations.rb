@@ -7,7 +7,7 @@ class CreateReservations < ActiveRecord::Migration[5.1]
       t.date :return_date
       t.int :release_form_id
       t.kit :references
-      t.teacher :references
+      t.user :references
 
       t.timestamps
     end
