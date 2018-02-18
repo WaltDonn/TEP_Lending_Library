@@ -1,0 +1,52 @@
+<%= form_with(model: reservation, local: true) do |form| %>
+  <% if reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+      <% reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date, id: :reservation_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date, id: :reservation_end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pick_up_date %>
+    <%= form.date_select :pick_up_date, id: :reservation_pick_up_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :return_date %>
+    <%= form.date_select :return_date, id: :reservation_return_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :release_form_id %>
+    <%= form.text_field :release_form_id, id: :reservation_release_form_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :references %>
+    <%= form.text_field :references, id: :reservation_references %>
+  </div>
+
+  <div class="field">
+    <%= form.label :references %>
+    <%= form.text_field :references, id: :reservation_references %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

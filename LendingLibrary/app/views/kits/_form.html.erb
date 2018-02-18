@@ -1,0 +1,22 @@
+<%= form_with(model: kit, local: true) do |form| %>
+  <% if kit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(kit.errors.count, "error") %> prohibited this kit from being saved:</h2>
+
+      <ul>
+      <% kit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, id: :kit_location %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

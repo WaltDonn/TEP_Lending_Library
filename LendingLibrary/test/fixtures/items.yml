@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  readable_id: MyString
+  condition: MyString
+  references: 
+  references: 
+
+two:
+  readable_id: MyString
+  condition: MyString
+  references: 
+  references: 

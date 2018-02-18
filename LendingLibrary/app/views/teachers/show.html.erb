@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @teacher.email %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @teacher.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @teacher.last_name %>
+</p>
+
+<p>
+  <strong>Phone num:</strong>
+  <%= @teacher.phone_num %>
+</p>
+
+<p>
+  <strong>References:</strong>
+  <%= @teacher.references %>
+</p>
+
+<p>
+  <strong>Password digest:</strong>
+  <%= @teacher.password_digest %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @teacher.is_active %>
+</p>
+
+<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
+<%= link_to 'Back', teachers_path %>
