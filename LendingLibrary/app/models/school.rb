@@ -6,6 +6,8 @@ class School < ApplicationRecord
     validates_prescence_of :zip
     validates_format_of :zip, :with => /\A\d{5}\Z/, :message => 'Zip code should be a 5 digit zip'
     
+    #Relationships
+    has_many :user
     
     # Callbacks
     before_destroy false

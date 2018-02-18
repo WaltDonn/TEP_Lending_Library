@@ -5,6 +5,12 @@ class User < ApplicationRecord
     validates :phone_num, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" }, :allow_blank => true
     validates :role, inclusion: { in: %w[admin manager volunteer teacher], message: "is not a recognized role in system" }
     
+    #Relationships
+    belongs_to :school
+    has_many :reservations
+    has_many :kits, through: :reservations
+    has_many :items, through: :kits
+    
     # Callbacks
     before_destroy false
     before_save :reformat_phone
@@ -32,6 +38,13 @@ class User < ApplicationRecord
   
   def self.authenticate(email,password)
     find_by_email(email).try(:authenticate, password)
+  end
+  
+  def has_outstanding_kit
+    #Map to boolean returned values
+    #If one of them is false, then a kit has not been returned
+    #Check corner case of only 1 kit
+    self.reservations.map{|res| res.returned}.inject{|res1, res2| rest1 AND res2}
   end
     
   private
