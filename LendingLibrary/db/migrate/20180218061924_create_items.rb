@@ -3,8 +3,8 @@ class CreateItems < ActiveRecord::Migration[5.1]
     create_table :items do |t|
       t.string :readable_id
       t.string :condition
-      t.kit :references
-      t.item_category :references
+      t.references :kit
+      t.references :item_category
 
       t.timestamps
     end

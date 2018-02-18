@@ -1,12 +1,12 @@
 class CreateComponents < ActiveRecord::Migration[5.1]
   def change
     create_table :components do |t|
-      t.int :max_quantity
-      t.int :damaged
-      t.int :missing
+      t.integer :max_quantity
+      t.integer :damaged
+      t.integer :missing
       t.boolean :consumable
-      t.item :references
-      t.component_category :references
+      t.references :item
+      t.references :component_category
 
       t.timestamps
     end
