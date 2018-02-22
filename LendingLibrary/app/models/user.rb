@@ -6,7 +6,7 @@ class User < ApplicationRecord
     validates :role, inclusion: { in: %w[admin manager volunteer teacher], message: "is not a recognized role in system" }
 
     #Relationships
-    belongs_to :school
+    belongs_to :school, optional: true
     has_many :reservations
     has_many :kits, through: :reservations
     has_many :items, through: :kits

@@ -90,4 +90,14 @@ namespace :import_incidents_csv do
     end
   end
 
+  desc "Import kits"
+  task :create_kits => :environment do
+    csvs = Dir[File.join(Rails.root, 'app', 'csvs', 'kits.csv')]
+    csvs.each do |csv|
+      CSV.foreach(csv, :headers => true, :col_sep => ',') do |row|
+        Kit.create!(row.to_h)
+      end
+    end
+  end
+
 end
