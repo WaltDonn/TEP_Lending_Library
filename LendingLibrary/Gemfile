@@ -32,7 +32,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'validates_timeliness'
 gem 'will_paginate'
 gem 'carrierwave'
- 
+
+# Allow fast import of csv files to sqlite3
+gem 'activerecord-import', '~> 0.15.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

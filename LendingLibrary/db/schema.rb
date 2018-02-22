@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180218062336) do
   create_table "item_categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.string "item_photo"
     t.integer "inventory_level"
     t.integer "amount_available"
     t.datetime "created_at", null: false
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20180218062336) do
     t.date "end_date"
     t.date "pick_up_date"
     t.date "return_date"
+    t.boolean "returned", default: false
     t.integer "release_form_id"
     t.integer "kit_id"
     t.integer "user_id"
