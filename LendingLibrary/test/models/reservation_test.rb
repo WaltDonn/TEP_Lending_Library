@@ -5,6 +5,7 @@ class ReservationTest < ActiveSupport::TestCase
 # test validations
 	def setup
 		@res = reservations(:one)
+		@res3 = reservations(:three)
 	end
 
 	test 'valid reservation' do
@@ -115,6 +116,13 @@ class ReservationTest < ActiveSupport::TestCase
 		@res.start_date = Date.parse('2018-01-02')
 		@res.pick_up_date = Date.parse('2018-01-01')
 		refute @res.valid?
+	end
+
+# test methods
+	test 'past_due method' do
+		refute @res3.past_due?
+		@res3.returned = false
+		assert @res3.past_due?
 	end
 
 	#IMPORTANT: A new reservation should not be able to be made on a kit for a time where

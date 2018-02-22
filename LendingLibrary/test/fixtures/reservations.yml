@@ -23,7 +23,7 @@ three:
   end_date: 2018-01-10
   pick_up_date: 
   return_date: 
-  returned: false
+  returned: true
   release_form_id: 125
   kit_id: 3
   user_id: 3
