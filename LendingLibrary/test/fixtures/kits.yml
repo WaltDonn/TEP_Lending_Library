@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  location: A1
+
+two:
+  id: 2
+  location: A2
+
+three:
+  id: 3
+  location: A3
