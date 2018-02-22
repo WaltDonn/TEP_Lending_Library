@@ -19,4 +19,9 @@ class ComponentCategoryTest < ActiveSupport::TestCase
 		@comp_cat.description = nil
 		refute @comp_cat.valid?
 	end
+
+# test relationships
+	test 'compCat 1 should have 1 component' do
+		assert_equal 1, @comp_cat.components.size
+	end
 end
