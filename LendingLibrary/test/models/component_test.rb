@@ -106,4 +106,16 @@ class ComponentTest < ActiveSupport::TestCase
 		@comp.max_quantity = 2
 		refute @comp.valid?
 	end
+
+# test methods
+	test 'good_condition method' do
+		@comp.damaged = 0
+		@comp.missing = 0
+		assert @comp.good_condition
+		@comp.damaged = 1
+		refute @comp.good_condition
+		@comp.damaged = 0
+		@comp.missing = 1
+		refute @comp.good_condition
+	end
 end
