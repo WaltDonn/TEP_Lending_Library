@@ -65,4 +65,23 @@ class ItemCategoryTest < ActiveSupport::TestCase
 		refute @item_cat.valid?
 	end
 
+# test relationships
+	test 'itemCat 1 should have 1 item' do
+		assert_equal 1, @item_cat.items.size
+	end
+
+# test methods
+	test 'more_available method' do
+		assert @item_cat.more_available
+		@item_cat.amount_available = 0
+		refute @item_cat.more_available
+	end
+
+
+# test mount_uploader?
+
+
+
+
+
 end
