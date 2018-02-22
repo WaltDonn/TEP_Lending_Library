@@ -7,3 +7,11 @@ one:
   consumable: false
   component_category_id: 1
   item_id: 1
+
+two:
+  max_quantity: 20
+  damaged: 2
+  missing: 1
+  consumable: false
+  component_category_id: 2
+  item_id: 1

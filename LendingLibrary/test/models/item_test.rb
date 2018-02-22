@@ -35,4 +35,9 @@ class ItemTest < ActiveSupport::TestCase
 		@item.condition = 123
 		refute @item.valid?
 	end
+
+# test relationships
+	test 'item 1 should have 2 different types of components' do
+		assert_equal 2, @item.components.size
+	end
 end
