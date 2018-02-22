@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
-    validates_prescence_of :first_name
-    validates_prescence_of :last_name
+    validates_presence_of :first_name
+    validates_presence_of :last_name
     validates :phone_num, format: { with: /\d{3}-\d{3}-\d{4}/, message: "bad format" }, :allow_blank => true
     validates :role, inclusion: { in: %w[admin manager volunteer teacher], message: "is not a recognized role in system" }
     

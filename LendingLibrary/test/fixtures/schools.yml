@@ -1,13 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  street_1: MyString
-  street_2: MyString
-  city: MyString
-  state: MyString
-  zip: MyString
-  is_active: false
+  id: 1
+  name: Generic Elementary
+  street_1: 100 Learn Street
+  street_2: SMC 100
+  city: Pittsburgh
+  state: PA
+  zip: 15213
+  is_active: true
 
 two:
   name: MyString

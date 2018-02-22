@@ -1,17 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  max_quantity: 
-  damaged: 
-  missing: 
+  max_quantity: 20
+  damaged: 2
+  missing: 1
   consumable: false
-  references: 
-  references: 
-
-two:
-  max_quantity: 
-  damaged: 
-  missing: 
-  consumable: false
-  references: 
-  references: 
+  component_category_id: 1
+  item_id: 1

@@ -1,19 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email: MyString
-  first_name: MyString
-  last_name: MyString
-  phone_num: MyString
-  references: 
-  password_digest: MyString
-  role: MyString
+  id: 1
+  email: example@gmail.com
+  first_name: John
+  last_name: Smith
+  phone_num: 412-000-9999
+  school_id: 1
+  password_digest: fillerdigest
+  role: admin
 
 two:
   email: MyString
   first_name: MyString
   last_name: MyString
   phone_num: MyString
-  references: 
+  # references: 
   password_digest: MyString
   role: MyString

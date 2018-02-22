@@ -1,7 +1,18 @@
 require 'test_helper'
 
 class KitTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+# test validations
+	def setup
+		@kit = kits(:one)
+	end
+
+	test 'valid kit' do
+		assert @kit.valid?
+	end
+
+	test 'invalid without location' do
+		@kit.location = nil
+		refute @kit.valid?
+	end
+	
 end

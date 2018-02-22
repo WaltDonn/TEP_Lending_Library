@@ -1,19 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  start_date: 2018-02-18
-  end_date: 2018-02-18
-  pick_up_date: 2018-02-18
-  return_date: 2018-02-18
-  release_form_id: 
-  references: 
-  references: 
+  start_date: 2018-01-01
+  end_date: 2018-01-10
+  pick_up_date: 
+  return_date: 
+  returned: false
+  release_form_id: 123
+  kit_id: 1
+  user_id: 1
 
-two:
-  start_date: 2018-02-18
-  end_date: 2018-02-18
-  pick_up_date: 2018-02-18
-  return_date: 2018-02-18
-  release_form_id: 
-  references: 
-  references: 

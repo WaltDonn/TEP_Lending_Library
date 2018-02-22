@@ -1,9 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyString
+  id: 1
+  name: SomeName
+  description: Lorem Ipsum
 
-two:
-  name: MyString
-  description: MyString
+
