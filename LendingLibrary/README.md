@@ -8,10 +8,10 @@
 #### commands to run rails/rake tasks
 `bundle install`
 
-setup drops existing database, import does not
+setup drops existing database, import does not\\
 `rails lendinglibrary:setup`
 `rails lendinglibrary:import`
 
-to check if the tables are correctly populated
-`rails c'
-`> School.limit(5).order('id desc')`
+to check if the tables are correctly populated\\
+`rails c
+School.limit(5).order('id desc')`
