@@ -34,8 +34,18 @@ four:
   id: 4
   email: example4@gmail.com
   first_name: Sue
-  last_name: Smith
+  last_name: Tanner
   phone_num: 
   school_id: 1
   password_digest: fillerdigest
   role: teacher
+
+five:
+  id: 5
+  email: example5@gmail.com
+  first_name: Bill
+  last_name: Benson
+  phone_num: 
+  school_id: 
+  password_digest: fillerdigest
+  role: manager

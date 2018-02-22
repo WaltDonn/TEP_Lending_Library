@@ -14,5 +14,15 @@ class KitTest < ActiveSupport::TestCase
 		@kit.location = nil
 		refute @kit.valid?
 	end
+
+# test relationships
+
+	test 'kit 1 should have 1 reservation' do
+		assert_equal 1, @kit.reservations.size
+	end
+
+	test 'kit 1 should have 1 item' do
+		assert_equal 1, @kit.items.size
+	end
 	
 end

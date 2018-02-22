@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
   # test validations
 	def setup
 		@user = users(:one)
+		@user3 = users(:three)
 	end
 
 	test 'valid user' do
@@ -112,4 +113,40 @@ class UserTest < ActiveSupport::TestCase
 
 
 # test relationships
+	test 'user 3 should have 2 reservations' do
+		assert_equal 2, @user3.reservations.size
+	end
+
+# test scopes
+	test 'alphabetical should order users by last name then first name' do
+		assert_equal User.alphabetical.map{|c| c.id}, [5, 3, 1, 2, 4]
+	end
+
+	#test active/inactive scopes?
+
+	test 'there should be 2 employees' do
+		assert_equal 2, User.employees.size
+	end
+
+	test 'there should be 2 teachers' do
+		assert_equal 2, User.teachers.size
+	end
+
+	test 'there should be 1 volunteer' do
+		assert_equal 1, User.volunteers.size
+	end
+
+# test callback? reformat phone?
+	test 'should not be destroyed when delete is attempted' do
+		@user.destroy
+		assert @user.valid?
+	end
+
+
+# test secure password? 
+
+
+
+
+
 end

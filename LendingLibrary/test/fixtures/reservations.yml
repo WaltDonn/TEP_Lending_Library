@@ -8,5 +8,23 @@ one:
   returned: false
   release_form_id: 123
   kit_id: 1
-  user_id: 1
+  user_id: 
+two:
+  start_date: 2018-01-01
+  end_date: 2018-01-10
+  pick_up_date: 
+  return_date: 
+  returned: false
+  release_form_id: 124
+  kit_id: 2
+  user_id: 3
+three:
+  start_date: 2018-01-01
+  end_date: 2018-01-10
+  pick_up_date: 
+  return_date: 
+  returned: false
+  release_form_id: 125
+  kit_id: 3
+  user_id: 3
 

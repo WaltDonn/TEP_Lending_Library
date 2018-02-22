@@ -117,18 +117,7 @@ class ReservationTest < ActiveSupport::TestCase
 		refute @res.valid?
 	end
 
-	# test 'return date <= end_date' do
-	# 	@res.return_date = Date.parse('2018-01-02')
-	# 	@res.end_date = Date.parse('2018-01-02')
-	# 	assert @res.valid?
-
-	# 	@res.return_date = Date.parse('2018-01-02')
-	# 	@res.end_date = Date.parse('2018-01-03')
-	# 	assert @res.valid?
-
-	# 	@res.return_date = Date.parse('2018-01-02')
-	# 	@res.end_date = Date.parse('2018-01-01')
-	# 	refute @res.valid?
-	# end
+	#IMPORTANT: A new reservation should not be able to be made on a kit for a time where
+	#that kit is already reserverd.
 
 end
