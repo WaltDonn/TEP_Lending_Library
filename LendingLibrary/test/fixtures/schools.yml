@@ -11,10 +11,21 @@ one:
   is_active: true
 
 two:
-  name: MyString
-  street_1: MyString
-  street_2: MyString
-  city: MyString
-  state: MyString
-  zip: MyString
+  id: 2
+  name: Another Elementary
+  street_1: 300 Education Way
+  street_2: 
+  city: Pittsburgh
+  state: PA
+  zip: 15210
+  is_active: true
+
+three:
+  id: 3
+  name: One More School
+  street_1: 500 Learn Drive
+  street_2: 
+  city: Pittsburgh
+  state: PA
+  zip: 15212
   is_active: false

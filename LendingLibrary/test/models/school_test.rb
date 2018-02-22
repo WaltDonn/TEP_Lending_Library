@@ -106,7 +106,32 @@ class SchoolTest < ActiveSupport::TestCase
 	end
 
 
-
 # test relationships
+
+	test 'school 1 should have 2 teachers' do
+		assert_equal 2, @school.users.size
+	end
+
+# test scopes
+
+	test 'alphabetical scope should put schools in proper order' do
+		assert_equal School.alphabetical.map{|c| c.id}, [2, 1, 3]
+	end
+
+	test 'should be 2 active schools' do
+		assert_equal School.active.size, 2
+	end
+
+	test 'should be 1 inactive school' do
+		assert_equal School.inactive.size, 1
+	end
+
+
+# test callback?
+
+	test 'should not be destroyed when delete is attempted' do
+		@school.destroy
+		assert @school.valid?
+	end
 
 end

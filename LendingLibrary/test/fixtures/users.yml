@@ -6,15 +6,36 @@ one:
   first_name: John
   last_name: Smith
   phone_num: 412-000-9999
-  school_id: 1
+  school_id: 
   password_digest: fillerdigest
   role: admin
 
 two:
-  email: MyString
-  first_name: MyString
-  last_name: MyString
-  phone_num: MyString
-  # references: 
-  password_digest: MyString
-  role: MyString
+  id: 2
+  email: example2@gmail.com
+  first_name: Sally
+  last_name: Smith
+  phone_num: 
+  school_id: 
+  password_digest: fillerdigest
+  role: volunteer
+
+three:
+  id: 3
+  email: example3@gmail.com
+  first_name: Henry
+  last_name: Smith
+  phone_num: 
+  school_id: 1
+  password_digest: fillerdigest
+  role: teacher
+
+four:
+  id: 4
+  email: example4@gmail.com
+  first_name: Sue
+  last_name: Smith
+  phone_num: 
+  school_id: 1
+  password_digest: fillerdigest
+  role: teacher
