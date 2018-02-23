@@ -1,0 +1,47 @@
+LendingLibrary/*.rbc
+LendingLibrary/capybara-*.html
+LendingLibrary/.rspec
+LendingLibrary/log
+LendingLibrary/tmp
+LendingLibrary/db/*.sqlite3
+LendingLibrary/db/*.sqlite3-journal
+LendingLibrary/public/system
+LendingLibrary/coverage/
+LendingLibrary/spec/tmp
+*.orig
+LendingLibrary/rerun.txt
+LendingLibrary/pickle-email-*.html
+
+# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
+LendingLibrary/config/initializers/secret_token.rb
+
+# Only include if you have production secrets in this file, which is no longer a Rails default
+LendingLibrary/config/secrets.yml
+
+# dotenv
+# TODO Comment out this rule if environment variables can be committed
+LendingLibrary/.env
+
+## Environment normalization:
+LendingLibrary/.bundle
+LendingLibrary/vendor/bundle
+
+# these should all be checked in to normalize the environment:
+# Gemfile.lock, .ruby-version, .ruby-gemset
+
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+LendingLibrary/.rvmrc
+
+# if using bower-rails ignore default bower_components path bower.json files
+/vendor/assets/bower_components
+*.bowerrc
+LendingLibrary/bower.json
+
+# Ignore pow environment settings
+LendingLibrary/.powenv
+
+# Ignore Byebug command history file.
+LendingLibrary/.byebug_history
+
+# Ignore node_modules
+LendingLibrary/node_modules/
