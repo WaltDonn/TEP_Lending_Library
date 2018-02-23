@@ -9,10 +9,9 @@ class School < ApplicationRecord
     validates_format_of :street_1, :with=> /\A\d+\s[A-z]+\s[A-z]+\Z/
     validates_inclusion_of :state, in: STATES_LIST.to_h.values, message: "is not an option"
     
-    
     #Relationships
     has_many :users
-    
+
     # Callbacks
     before_destroy :destroyable
     before_save :ensure_inactive
@@ -25,13 +24,6 @@ class School < ApplicationRecord
     
     private
     def ensure_inactive
-        if(self.is_active == false)
-            self.users.each{|u| u.is_active = false
-                            u.save!}
-        end
-    end
-    private
-    def ensure_inactive
         if(self.is_active == fals)
             self.users.each{|u| u.is_active = false
                             u.save!}
@@ -41,4 +33,6 @@ class School < ApplicationRecord
     def destroyable
         false
     end
+
+
 end
