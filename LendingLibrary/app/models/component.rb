@@ -7,6 +7,10 @@ class Component < ApplicationRecord
     validates_presence_of :component_category_id
     validate :total_number_parts
     
+    
+    #Callback
+    before_save :check_condition_item
+    
     belongs_to :component_category
     belongs_to :item
     
@@ -20,6 +24,13 @@ class Component < ApplicationRecord
     
     
     private
+    def check_condition_item
+        if(self.good_condition == false)
+            self.item.condition = "Broken"
+            self.item.save!
+        end
+    end
+    
     def total_number_parts
         if(self.max_quantity == nil || self.missing == nil || self.damaged == nil)
              errors.add(:max_quantity, message: "max_quantity, missing, damaged cannot be nil")

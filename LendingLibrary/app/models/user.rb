@@ -4,6 +4,7 @@ class User < ApplicationRecord
     validates_presence_of :last_name
     validates_presence_of :role
     validates_presence_of :email
+    validates :email, uniqueness: true
     validates :first_name, format: {with: /\A[A-Za-z\-]+\z/, message: "Should be a valid name"}
     validates :email, format: {with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/, message: "Should be a valid email"}
     validates_presence_of :school_id, :allow_blank => true

@@ -9,7 +9,7 @@ class Reservation < ApplicationRecord
     validates_presence_of :kit_id
     validates_presence_of :user_id
     validates :returned, inclusion: { in: [ true, false ] , message: "Must be true or false" }
-
+    validate :only_one_open
 
     belongs_to :kit
     belongs_to :user
@@ -17,6 +17,16 @@ class Reservation < ApplicationRecord
 
     def past_due?
         Date.current > self.end_date && self.returned == false
+    end
+    
+    private
+    def only_one_open
+        check = self.user.reservations.map{|r| r.returned}.inject{|r1, r2| r1 && r2}
+        if(check == false)
+            errors.add(:start_date, "User already has outstanding reservations")
+            return false
+        end
+        return true
     end
 
 end
