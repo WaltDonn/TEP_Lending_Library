@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Populate the sqlite3 database with csv files
 
-Things you may want to cover:
+### csv files path
+```
+/app/csvs/<table name>.csv
+```
 
-* Ruby version
+i.e. users, schools
 
-* System dependencies
+### commands to run rails/rake tasks
+```
+bundle install
+```
 
-* Configuration
+setup drops existing database, import does not
 
-* Database creation
+```
+rails lendinglibrary:setup
+```
 
-* Database initialization
+```
+rails lendinglibrary:import
+```
 
-* How to run the test suite
+to check if the tables are correctly populated
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+rails c
+> School.limit(5).order('id desc')
+```
