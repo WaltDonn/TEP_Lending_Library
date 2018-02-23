@@ -92,7 +92,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test 'valid with many forms of phone num' do
-		@user.phone_num = "(412)-(000)-9999"
+		@user.phone_num = "(412)-000-9999"
 		assert @user.valid?
 		@user.phone_num = "4120009999"
 		assert @user.valid?

@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     
     def item_component_condition
         if(self.condition == "Good")
-            self.components.map{|comp| comp.good_condition}.inject{|comp1, comp2| comp1 AND comp2} == true
+            self.components.map{|comp| comp.good_condition}.inject{|comp1, comp2| comp1 && comp2} == true
         end
     end
 
