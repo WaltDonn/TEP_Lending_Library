@@ -7,14 +7,14 @@ class Reservation < ApplicationRecord
     validates_presence_of :kit_id
     validates_presence_of :user_id
     validates :returned, inclusion: { in: [ true, false ] }
-    
-    
+
+
     belongs_to :kit
-    belongs_to :teacher
-    
-    
+    belongs_to :user
+
+
     def past_due?
         date.current > :end_date && :returned == false
     end
-    
+
 end
