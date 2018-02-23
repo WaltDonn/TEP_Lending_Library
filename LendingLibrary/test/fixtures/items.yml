@@ -3,7 +3,7 @@
 one:
   id: 1
   readable_id: A3
-  condition: Good
+  condition: Broken
   kit_id: 1
   item_category_id: 1
 

@@ -7,6 +7,7 @@ class ComponentTest < ActiveSupport::TestCase
 	end
 
 	test 'valid component' do
+	
 		assert @comp.valid?
 	end
 
@@ -37,17 +38,6 @@ class ComponentTest < ActiveSupport::TestCase
 
 	test 'invalid without component_category_id' do
 		@comp.component_category_id = nil
-		refute @comp.valid?
-	end
-
-	test 'consumable must be true or false' do
-		@comp.consumable = false
-		assert @comp.valid?
-		@comp.consumable = true
-		assert @comp.valid?
-		@comp.consumable = "a"
-		refute @comp.valid?
-		@comp.consumable = 2
 		refute @comp.valid?
 	end
 
@@ -98,11 +88,12 @@ class ComponentTest < ActiveSupport::TestCase
 		@comp.max_quantity = 10
 		@comp.damaged = 2
 		@comp.missing = 1
+		
 		assert @comp.valid?
 
 		@comp.max_quantity = 3
 		assert @comp.valid?
-
+		
 		@comp.max_quantity = 2
 		refute @comp.valid?
 	end

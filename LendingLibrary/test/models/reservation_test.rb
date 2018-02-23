@@ -44,27 +44,16 @@ class ReservationTest < ActiveSupport::TestCase
 
 	test 'valid without return_date' do
 		@res.return_date = nil
-		assert @res.valid?
+		refute @res.valid?
 	end
 
 	test 'valid without pick_up_date (as long as no return date either)' do
 		@res.return_date = nil
 		@res.pick_up_date = nil
-		assert @res.valid?
+		refute @res.valid?
 
 		@res.return_date = Date.parse('2018-01-09')
 		refute @res.valid?
-	end
-
-	test 'returned must be true or false' do
-		@res.returned = 'a'
-		refute @res.valid?
-		@res.returned = '1'
-		refute @res.valid?
-		@res.returned = true
-		assert @res.valid?
-		@res.returned = false
-		assert @res.valid?
 	end
 
 	test 'release form id must be a number > 0' do

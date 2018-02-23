@@ -15,8 +15,13 @@ class Item < ApplicationRecord
     
     def item_component_condition
         if(self.condition == "Good")
-            self.components.map{|comp| comp.good_condition}.inject{|comp1, comp2| comp1 && comp2} == true
+            check = self.components.map{|comp| comp.good_condition}.inject{|comp1, comp2| comp1 && comp2} 
+            if(check == false)
+                  errors.add(:condition, message: "max_quantity, must be greater than missing and damaged")
+                return false
+            end
         end
+        return true
     end
 
 end
