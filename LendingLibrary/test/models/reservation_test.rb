@@ -9,6 +9,7 @@ class ReservationTest < ActiveSupport::TestCase
 	end
 
 	test 'valid reservation' do
+	
 		assert @res.valid?
 	end
 

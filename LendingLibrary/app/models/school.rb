@@ -10,6 +10,7 @@ class School < ApplicationRecord
     validates_inclusion_of :state, in: STATES_LIST.to_h.values, message: "is not an option"
     validate :no_outstanding_reservations
     validate :school_is_not_a_duplicate, on: :create
+    validates :is_active, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     
     
     #Relationships

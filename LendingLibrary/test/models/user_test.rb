@@ -114,7 +114,7 @@ class UserTest < ActiveSupport::TestCase
 
 # test relationships
 	test 'user 3 should have 2 reservations' do
-		assert_equal 2, @user3.reservations.size
+		assert_equal 2, @user3.owned_reservations.size
 	end
 
 # test scopes
@@ -144,9 +144,6 @@ class UserTest < ActiveSupport::TestCase
 
 
 # test secure password? 
-
-
-
 
 
 end

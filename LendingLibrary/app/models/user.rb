@@ -10,13 +10,17 @@ class User < ApplicationRecord
     validates_presence_of :school_id, :allow_blank => true
     validates :phone_num, format: { with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "should be 10 digits (area code needed) and delimited with dashes only" }, :allow_blank => true
     validates :role, inclusion: { in: %w[admin manager volunteer teacher], message: "is not a recognized role in system" }
+    validates :is_active, inclusion: { in: [ true, false ] , message: "Must be true or false" }
+  
 
     validate :valid_school
     
 
     #Relationships
     belongs_to :school, optional: true
-    has_many :reservations
+    
+    has_many :owned_reservations, :class_name => 'Reservation', :foreign_key => 'teacher_id'
+    has_many :checkin_reservations, :class_name => 'Reservation', :foreign_key => 'volunteer_id'
     has_many :kits, through: :reservations
     has_many :items, through: :kits
 
@@ -40,6 +44,14 @@ class User < ApplicationRecord
     scope :teachers,     -> { where(role: 'teacher') }
     scope :volunteers,     -> { where(role: 'volunteer') }
 
+
+  def can_checkin
+    self.role != "Teacher" && self.is_active == true
+  end
+  
+  def can_rent
+    self.role != "Volunteer" && self.is_active == true
+  end
 
   def name
     "#{last_name}, #{first_name}"
@@ -67,12 +79,12 @@ class User < ApplicationRecord
     end
     checkid = self.school_id
 		unless (School.where(id: checkid).present?) 
-			errors.add(:active, 'School is not present')
+			errors.add(:is_active, 'School is not present')
 			return false
 		end
 		checkSchool = School.find(checkid)
 		unless checkSchool.is_active == true
-			errors.add(:active,'Needs to be an active School')
+			errors.add(:is_active,'Needs to be an active School')
 			return false
 		end
 		return true

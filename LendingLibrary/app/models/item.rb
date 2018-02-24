@@ -8,6 +8,8 @@ class Item < ApplicationRecord
     
     CONDITIONS = [['Broken', :broken],['Good', :good]]
     
+    scope :broken, -> { where(condition: "Broken") }
+    scope :good, -> { where(condition: "Good") }
     
     #Relationships
     belongs_to :kit

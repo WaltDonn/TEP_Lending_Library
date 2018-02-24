@@ -2,17 +2,24 @@ class Reservation < ApplicationRecord
     validates_date :start_date
     validates_date :end_date
     validates_date :end_date, on_or_after: :start_date
-    validates_date :pick_up_date, on_or_after: :start_date
+    validates_date :pick_up_date, on_or_after: :start_date, before_or_after: Date.current
     validates_date :return_date, on_or_after: :pick_up_date
     
     validates_presence_of :release_form_id
     validates_presence_of :kit_id
-    validates_presence_of :user_id
+    validates_presence_of :teacher_id
     validates :returned, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     validate :only_one_open
+    validate :is_volunteer
+    validate :valid_renter
 
     belongs_to :kit
-    belongs_to :user
+    belongs_to :teacher,   :class_name => 'User'
+    belongs_to :volunteer, :class_name => 'User', optional: true
+    
+    
+    scope :open_reservations,     -> { where(returned: false) }
+    scope :returning_today,       -> { where(return_date: Date.current)}
 
 
     def past_due?
@@ -20,10 +27,45 @@ class Reservation < ApplicationRecord
     end
     
     private
+    def valid_renter
+        if(self.teacher_id == nil)
+            return false
+        end
+        checkid = self.teacher_id
+		unless (User.where(id: checkid).present?) 
+			errors.add(:is_active, 'Teacher is not present')
+			return false
+		end
+		checkTeacher = User.find(checkid)
+		unless checkTeacher.can_rent
+			errors.add(:is_active,'Needs to be an active Teacher')
+			return false
+		end
+		return true
+    end
+    
+    
+    def is_volunteer
+        if(self.volunteer_id == nil)
+            return true
+        end
+        checkid = self.volunteer_id
+		unless (User.where(id: checkid).present?) 
+			errors.add(:is_active, 'Volunteer is not present')
+			return false
+		end
+		checkVolunteer = User.find(checkid)
+		unless checkVolunteer.can_checkin
+			errors.add(:is_active,'Needs to be an active Volunteer or Employee')
+			return false
+		end
+		return true
+    end
+    
     def only_one_open
-        check = self.user.reservations.map{|r| r.returned}.inject{|r1, r2| r1 && r2}
-        if(check == false)
-            errors.add(:start_date, "User already has outstanding reservations")
+        check = self.teacher.owned_reservations.select{|r| r.returned == false}
+        if(check.size > 1)
+            errors.add(:start_date, "Teacher already has outstanding reservations")
             return false
         end
         return true
