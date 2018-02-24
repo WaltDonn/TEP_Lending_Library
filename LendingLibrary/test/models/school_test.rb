@@ -36,11 +36,6 @@ class SchoolTest < ActiveSupport::TestCase
 		refute @school.valid?
 	end
 
-	test 'invalid without is_active' do
-		@school.is_active = nil
-		refute @school.valid?
-	end
-
 	test 'invalid with invalid zip format' do
 		@school.zip = "123456"
 		refute @school.valid?
@@ -50,12 +45,6 @@ class SchoolTest < ActiveSupport::TestCase
 		refute @school.valid?
 	end
 
-	test 'invalid with invalid name' do
-		@school.name = "123"
-		refute @school.valid?
-		@school.name = "@$<>"
-		refute @school.valid?
-	end
 
 	test 'invalid with invalid state' do
 		@school.state = "PA"
@@ -70,35 +59,6 @@ class SchoolTest < ActiveSupport::TestCase
 		refute @school.valid?
 	end
 
-	test 'invalid with invalid street 1' do
-		@school.street_1 = "100 Generic Driver"
-		refute @school.valid?
-		@school.street_1 = "Generic Drive"
-		refute @school.valid?
-		@school.street_1 = "100 Drive"
-		refute @school.valid?
-		@school.street_1 = "1023"
-		refute @school.valid?
-		@school.street_1 = "place"
-		refute @school.valid?
-	end
-
-	# do we need street 2 for our purposes?
-	test 'invalid with invalid street 2' do
-		@school.street_2 = "123"
-		refute @school.valid?
-		@school.street_2 = "place"
-		refute @school.valid?
-		@school.street_2 = "100 Generic Drive"
-		refute @school.valid?
-	end
-
-	test 'invalid with invalid city' do
-		@school.city = "123"
-		refute @school.valid?
-		@school.city = "Abxasflkajsfi"
-		refute @school.valid?
-	end
 
 	test 'valid without street_2' do
 		@school.street_2 = nil

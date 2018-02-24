@@ -8,7 +8,8 @@ class CreateReservations < ActiveRecord::Migration[5.1]
       t.boolean :returned, :default => false
       t.integer :release_form_id
       t.references :kit
-      t.references :user
+      t.references :teacher
+      t.references :volunteer
 
       t.timestamps
     end

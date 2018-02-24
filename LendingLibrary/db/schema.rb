@@ -67,11 +67,13 @@ ActiveRecord::Schema.define(version: 20180218062336) do
     t.boolean "returned", default: false
     t.integer "release_form_id"
     t.integer "kit_id"
-    t.integer "user_id"
+    t.integer "teacher_id"
+    t.integer "volunteer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["kit_id"], name: "index_reservations_on_kit_id"
-    t.index ["user_id"], name: "index_reservations_on_user_id"
+    t.index ["teacher_id"], name: "index_reservations_on_teacher_id"
+    t.index ["volunteer_id"], name: "index_reservations_on_volunteer_id"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -92,6 +94,7 @@ ActiveRecord::Schema.define(version: 20180218062336) do
     t.string "last_name"
     t.string "phone_num"
     t.integer "school_id"
+    t.boolean "is_active"
     t.string "password_digest"
     t.string "role"
     t.datetime "created_at", null: false
