@@ -26,7 +26,9 @@ class ItemTest < ActiveSupport::TestCase
 	end
 
 	test 'condition must be Good or Broken' do
-		@item.condition = "Good"
+		@item.condition = "
+		
+		"
 		assert @item.valid?
 		@item.condition = "Broken"
 		assert @item.valid?

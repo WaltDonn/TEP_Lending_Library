@@ -21,11 +21,6 @@ class ItemCategoryTest < ActiveSupport::TestCase
 		refute @item_cat.valid?
 	end
 
-	test 'invalid without inventory_level' do
-		@item_cat.inventory_level = nil
-		refute @item_cat.valid?
-	end
-
 	test 'invalid without amount_available' do
 		@item_cat.amount_available = nil
 		refute @item_cat.valid?
