@@ -62,6 +62,7 @@ class User < ApplicationRecord
   end
 
   def has_outstanding_kit
+    #Walter -- remove this when done
     #Map to boolean returned values
     #If one of them is false, then a kit has not been returned
     #Check corner case of only 1 kit
