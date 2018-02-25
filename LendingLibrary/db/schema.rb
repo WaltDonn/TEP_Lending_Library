@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20180218062336) do
     t.string "condition"
     t.integer "kit_id"
     t.integer "item_category_id"
+    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_category_id"], name: "index_items_on_item_category_id"
@@ -55,6 +56,8 @@ ActiveRecord::Schema.define(version: 20180218062336) do
 
   create_table "kits", force: :cascade do |t|
     t.string "location"
+    t.boolean "is_active"
+    t.boolean "blackout"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

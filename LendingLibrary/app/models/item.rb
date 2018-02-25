@@ -8,6 +8,8 @@ class Item < ApplicationRecord
     
     CONDITIONS = [['Broken', :broken],['Good', :good]]
     
+    
+    scope :available_for_kits, -> { where(condition: "Good", is_active: true) }
     scope :broken, -> { where(condition: "Broken") }
     scope :good, -> { where(condition: "Good") }
     

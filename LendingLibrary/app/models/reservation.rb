@@ -1,8 +1,7 @@
 class Reservation < ApplicationRecord
-    validates_date :start_date
-    validates_date :end_date
+    validates_date :start_date, on_or_after: Date.current, :on => :create
     validates_date :end_date, on_or_after: :start_date
-    validates_date :pick_up_date, on_or_after: :start_date, before_or_after: Date.current
+    validates_date :pick_up_date, on_or_after: :start_date
     validates_date :return_date, on_or_after: :pick_up_date
     
     validates_presence_of :release_form_id
