@@ -12,7 +12,7 @@ class User < ApplicationRecord
     validates :role, inclusion: { in: %w[admin manager volunteer teacher], message: "is not a recognized role in system" }
     validates :is_active, inclusion: { in: [ true, false ] , message: "Must be true or false" }
   
-
+    validate :class_size_present
     validate :valid_school
     
 
@@ -72,6 +72,20 @@ class User < ApplicationRecord
   private
   def destroyable
     false
+  end
+  
+  def class_size_present
+    if(self.role == "Teacher")
+        if(self.class_size == nil)
+          	errors.add(:class_size, 'Teachers need a class size')
+            return false
+        end
+        if(self.class_size <= 0)
+          errors.add(:class_size, 'Teachers need a class size greater than 0')
+          return false
+        end
+    end
+    return true
   end
   
   def valid_school
