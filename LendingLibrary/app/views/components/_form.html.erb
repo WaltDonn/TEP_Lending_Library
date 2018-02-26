@@ -1,0 +1,47 @@
+<%= form_with(model: component, local: true) do |form| %>
+  <% if component.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(component.errors.count, "error") %> prohibited this component from being saved:</h2>
+
+      <ul>
+      <% component.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :max_quantity %>
+    <%= form.text_field :max_quantity, id: :component_max_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :damaged %>
+    <%= form.text_field :damaged, id: :component_damaged %>
+  </div>
+
+  <div class="field">
+    <%= form.label :missing %>
+    <%= form.text_field :missing, id: :component_missing %>
+  </div>
+
+  <div class="field">
+    <%= form.label :consumable %>
+    <%= form.check_box :consumable, id: :component_consumable %>
+  </div>
+
+  <div class="field">
+    <%= form.label :references %>
+    <%= form.text_field :references, id: :component_references %>
+  </div>
+
+  <div class="field">
+    <%= form.label :references %>
+    <%= form.text_field :references, id: :component_references %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item_category.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item_category.description %>
+</p>
+
+<p>
+  <strong>Inventory level:</strong>
+  <%= @item_category.inventory_level %>
+</p>
+
+<p>
+  <strong>Amount available:</strong>
+  <%= @item_category.amount_available %>
+</p>
+
+<%= link_to 'Edit', edit_item_category_path(@item_category) %> |
+<%= link_to 'Back', item_categories_path %>

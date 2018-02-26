@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Max quantity:</strong>
+  <%= @component.max_quantity %>
+</p>
+
+<p>
+  <strong>Damaged:</strong>
+  <%= @component.damaged %>
+</p>
+
+<p>
+  <strong>Missing:</strong>
+  <%= @component.missing %>
+</p>
+
+<p>
+  <strong>Consumable:</strong>
+  <%= @component.consumable %>
+</p>
+
+<p>
+  <strong>References:</strong>
+  <%= @component.references %>
+</p>
+
+<p>
+  <strong>References:</strong>
+  <%= @component.references %>
+</p>
+
+<%= link_to 'Edit', edit_component_path(@component) %> |
+<%= link_to 'Back', components_path %>
