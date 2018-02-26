@@ -33,6 +33,9 @@ class School < ApplicationRecord
     
     
     private
+    #Walter --- remove this when done
+    #Make sure this works with 1 reservation
+    #Make sure this works with 0 reservations
     def no_outstanding_reservations
         if(self.is_active == false)
             check = self.reservations.map{|r| r.returned}.inject{|r1, r2| r1 && r2}
@@ -49,7 +52,7 @@ class School < ApplicationRecord
         if self.already_exists?
           errors.add(:name, "already exists for this school at this location")
         end
-      end
+    end
     
     def ensure_inactive
         if(self.is_active == false)
