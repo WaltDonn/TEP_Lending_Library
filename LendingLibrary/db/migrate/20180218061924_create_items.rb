@@ -5,6 +5,7 @@ class CreateItems < ActiveRecord::Migration[5.1]
       t.string :condition
       t.references :kit
       t.references :item_category
+      t.boolean :is_active
 
       t.timestamps
     end
