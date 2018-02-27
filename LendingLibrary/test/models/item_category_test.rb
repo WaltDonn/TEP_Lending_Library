@@ -61,8 +61,8 @@ class ItemCategoryTest < ActiveSupport::TestCase
 	end
 
 # test relationships
-	test 'itemCat 1 should have 1 item' do
-		assert_equal 1, @item_cat.items.size
+	test 'itemCat 1 should have 2 items' do
+		assert_equal 2, @item_cat.items.size
 	end
 
 # test methods
@@ -70,10 +70,12 @@ class ItemCategoryTest < ActiveSupport::TestCase
 		assert @item_cat.more_available
 		@item_cat.amount_available = 0
 		refute @item_cat.more_available
+		@item_cat.amount_available = nil
+		refute @item_cat.more_available
 	end
 
 
-# test mount_uploader?
+
 
 
 
