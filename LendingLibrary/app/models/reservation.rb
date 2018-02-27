@@ -55,6 +55,10 @@ class Reservation < ApplicationRecord
             errors.add(:volunteer_id, 'Volunteer should be present if kit returned')
             return false
         end
+        if(self.volunteer.can_checkin == false)
+            errors.add(:volunteer_id, 'Volunteer should be able to checkin items')
+            return false
+        end
         return true
     end
     
