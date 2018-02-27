@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20180218062336) do
     t.string "first_name"
     t.string "last_name"
     t.string "phone_num"
+    t.integer "class_size"
     t.integer "school_id"
     t.boolean "is_active"
     t.string "password_digest"
