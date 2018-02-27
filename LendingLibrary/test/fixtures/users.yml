@@ -28,6 +28,7 @@ three:
   first_name: Henry
   last_name: Smith
   phone_num: 
+  class_size: 20
   school_id: 1
   is_active: true
   password_digest: fillerdigest
@@ -39,6 +40,7 @@ four:
   first_name: Sue
   last_name: Tanner
   phone_num: 
+  class_size: 20
   school_id: 1
   is_active: true
   password_digest: fillerdigest
@@ -54,3 +56,27 @@ five:
   is_active: true
   password_digest: fillerdigest
   role: manager
+
+six: 
+  id: 6
+  email: example6@gmail.com
+  first_name: Suzy
+  last_name: Tanner
+  phone_num: 
+  class_size: 20
+  school_id: 2
+  is_active: true
+  password_digest: fillerdigest
+  role: teacher
+
+seven: 
+  id: 7
+  email: example7@gmail.com
+  first_name: Teacher
+  last_name: Seven
+  phone_num: 
+  class_size: 20
+  school_id: 4
+  is_active: true
+  password_digest: fillerdigest
+  role: teacher

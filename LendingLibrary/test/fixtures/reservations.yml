@@ -5,11 +5,11 @@ one:
   end_date: 2018-01-10
   pick_up_date: 2018-01-02
   return_date: 2018-01-09
-  returned: false
+  returned: true
   release_form_id: 123
   kit_id: 1
   teacher_id: 1
-  volunteer_id:
+  volunteer_id: 2
 two:
   start_date: 2018-01-01
   end_date: 2018-01-10
@@ -19,7 +19,7 @@ two:
   release_form_id: 124
   kit_id: 2
   teacher_id: 3
-  volunteer_id:
+  volunteer_id: 
 three:
   start_date: 2018-01-01
   end_date: 2018-01-10
@@ -29,5 +29,15 @@ three:
   release_form_id: 125
   kit_id: 3
   teacher_id: 3
-  volunteer_id:
+  volunteer_id: 2
+four: 
+  start_date: 2018-01-11
+  end_date: 2018-01-20
+  pick_up_date: 2018-01-12
+  return_date: 2018-01-19
+  returned: true
+  release_form_id: 126
+  kit_id: 3
+  teacher_id: 7
+  volunteer_id: 2
 
