@@ -21,8 +21,8 @@ class KitTest < ActiveSupport::TestCase
 		assert_equal 1, @kit.reservations.size
 	end
 
-	test 'kit 1 should have 1 item' do
-		assert_equal 1, @kit.items.size
+	test 'kit 1 should have 2 items' do
+		assert_equal 2, @kit.items.size
 	end
 	
 end
