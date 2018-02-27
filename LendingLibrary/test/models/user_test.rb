@@ -143,10 +143,10 @@ class UserTest < ActiveSupport::TestCase
 		assert @user.valid?
 	end
 
-# test methods 
+# test methods
 	test 'test can_checkin method, only non-teacher active roles should be able to check in' do
 		assert @user.can_checkin
-		
+
 		@user.is_active = false
 		refute @user.can_checkin
 

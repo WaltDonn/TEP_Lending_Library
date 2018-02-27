@@ -1,2 +1,2 @@
-start_date,end_date,pick_up_date,return_date,returned,release_form_id,kit_id,user_id
-02/23/2018,03/23/2018,02/24/2018,03/25/2018,false,1,1,4
+start_date,end_date,pick_up_date,return_date,returned,release_form_id,kit_id,teacher_id,volunteer_id
+02/23/2018,03/23/2018,02/24/2018,03/25/2018,false,1,1,3,4
