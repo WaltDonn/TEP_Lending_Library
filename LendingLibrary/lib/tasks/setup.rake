@@ -5,6 +5,7 @@ namespace :lendinglibrary do
     Rake::Task["db:create"].invoke
     Rake::Task["db:setup"].invoke
     Rake::Task["db:migrate"].invoke
+    Rake::Task['db:test:prepare'].invoke
     Rake::Task["import_incidents_csv:create_incidents"].invoke
   end
 

@@ -6,13 +6,13 @@ class School < ApplicationRecord
     validates_presence_of :state
     validates_presence_of :zip
     validates_format_of :zip, :with => /\A\d{5}\Z/, :message => 'Zip code should be a 5 digit zip'
-    validates_format_of :street_1, :with=> /\A\d+\s[A-z]+\s[A-z]+\Z/
+    validates_format_of :street_1, :with => /\A\d+\s[A-z]+\s[A-z]+\Z/, :message => 'Invalid address'
     validates_inclusion_of :state, in: STATES_LIST.to_h.values, message: "is not an option"
     validate :no_outstanding_reservations
     validate :school_is_not_a_duplicate, on: :create
     validates :is_active, inclusion: { in: [ true, false ] , message: "Must be true or false" }
-    
-    
+
+
     #Relationships
     has_many :users
     has_many :reservations, through: :users
@@ -21,18 +21,21 @@ class School < ApplicationRecord
     before_destroy :destroyable
     before_save :ensure_inactive
 
-    
+
     scope :alphabetical, -> { order('name') }
     scope :active, -> { where(is_active: true) }
     scope :inactive, -> { where.not(is_active: true) }
-    
-    
+
+
     def already_exists?
         School.where(name: self.name, zip: self.zip).size == 1
     end
-    
-    
+
+
     private
+    #Walter --- remove this when done
+    #Make sure this works with 1 reservation
+    #Make sure this works with 0 reservations
     def no_outstanding_reservations
         if(self.is_active == false)
             check = self.reservations.map{|r| r.returned}.inject{|r1, r2| r1 && r2}
@@ -43,21 +46,21 @@ class School < ApplicationRecord
         end
         return true
     end
-    
+
     def school_is_not_a_duplicate
         return true if self.name.nil? || self.street_1.nil? || self.zip.nil?
         if self.already_exists?
           errors.add(:name, "already exists for this school at this location")
         end
-      end
-    
+    end
+
     def ensure_inactive
         if(self.is_active == false)
             self.users.each{|u| u.is_active = false
                             u.save!}
         end
     end
-    
+
     def destroyable
         false
     end

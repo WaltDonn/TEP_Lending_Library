@@ -34,7 +34,7 @@ namespace :import_incidents_csv do
   task :create_users => :environment do
     csvs = Dir[File.join(Rails.root, 'app', 'csvs', 'users.csv')]
     csvs.each do |csv|
-      CSV.foreach(csv, :headers => true, :col_sep => ',') do |row|
+      CSV.foreach(csv, :headers => true, :col_sep => ',', :force_quotes => true) do |row|
         User.create!(row.to_h)
       end
     end

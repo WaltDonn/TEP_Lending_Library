@@ -9,6 +9,7 @@ class UserTest < ActiveSupport::TestCase
 
 	test 'valid user' do
 		assert @user.valid?
+		assert @user3.valid?
 	end
 
 	test 'invalid without email' do
@@ -119,7 +120,7 @@ class UserTest < ActiveSupport::TestCase
 
 # test scopes
 	test 'alphabetical should order users by last name then first name' do
-		assert_equal User.alphabetical.map{|c| c.id}, [5, 3, 1, 2, 4]
+		assert_equal User.alphabetical.map{|c| c.id}, [5, 7, 3, 1, 2, 4, 6]
 	end
 
 	#test active/inactive scopes?
@@ -128,8 +129,8 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal 2, User.employees.size
 	end
 
-	test 'there should be 2 teachers' do
-		assert_equal 2, User.teachers.size
+	test 'there should be 4 teachers' do
+		assert_equal 4, User.teachers.size
 	end
 
 	test 'there should be 1 volunteer' do
@@ -142,8 +143,55 @@ class UserTest < ActiveSupport::TestCase
 		assert @user.valid?
 	end
 
+# test methods
+	test 'test can_checkin method, only non-teacher active roles should be able to check in' do
+		assert @user.can_checkin
 
-# test secure password? 
+		@user.is_active = false
+		refute @user.can_checkin
+
+		@user.is_active = true
+		@user.role = "Teacher"
+		refute @user.can_checkin
+	end
+
+	test 'name method' do
+		assert_equal @user.name, "Smith, John"
+	end
+
+	test 'self authenticate method' do
+		# unsure how to test this
+		assert false
+	end
+
+	test 'has outstanding kits method' do
+		#method throws errors right now
+		assert @user3.has_outstanding_kit
+	end
+
+	test 'class size present method' do
+		#failing because not being case insensitive throughout model i.e. Teacher != teacher
+		assert @user3.valid?
+		@user3.class_size = nil
+		refute @user3.valid?
+		assert @user3.class_size = 0
+		refute @user3.valid?
+		assert @user3.class_size = -1
+		refute @user3.valid?
+	end
+
+	test 'teachers should not be connected to inactive schools' do
+		assert @user3.valid?
+		@user3.school_id = 3
+		refute @user3.valid?
+	end
+
+	test 'reformat phone before save' do
+		assert_equal "412-000-9999", @user.phone_num
+		@user.save
+		assert_equal "4120009999", @user.phone_num
+	end
+
 
 
 end

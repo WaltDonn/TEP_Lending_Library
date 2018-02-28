@@ -1,10 +1,8 @@
 class Reservation < ApplicationRecord
-    validates_date :start_date
-    validates_date :end_date
+    validates_date :start_date, on_or_after: Date.current, :on => :create
     validates_date :end_date, on_or_after: :start_date
-    validates_date :pick_up_date, on_or_after: :start_date, before_or_after: Date.current
+    validates_date :pick_up_date, on_or_after: :start_date
     validates_date :return_date, on_or_after: :pick_up_date
-    
     validates_presence_of :release_form_id
     validates_presence_of :kit_id
     validates_presence_of :teacher_id
@@ -12,6 +10,9 @@ class Reservation < ApplicationRecord
     validate :only_one_open
     validate :is_volunteer
     validate :valid_renter
+    validate :volunteer_present_and_returned
+    validate :available_kit
+    
 
     belongs_to :kit
     belongs_to :teacher,   :class_name => 'User'
@@ -27,6 +28,41 @@ class Reservation < ApplicationRecord
     end
     
     private
+    def available_kit
+        if(self.kit == nil)
+             errors.add(:kit_id, 'Kit should be present')
+             return false
+        end
+        if(self.kit.is_active == false)
+            errors.add(:kit_id, 'Kit should be active')
+            return false
+        end
+        if(self.kit.blackout == true)
+            errors.add(:kit_id, 'Kit is currently not available')
+            return false
+        end
+        
+        
+        return true
+    end
+    
+    
+    def volunteer_present_and_returned
+        if(self.returned == false)
+            return true
+        end
+        if(self.volunteer_id == nil)
+            errors.add(:volunteer_id, 'Volunteer should be present if kit returned')
+            return false
+        end
+        if(self.volunteer.can_checkin == false)
+            errors.add(:volunteer_id, 'Volunteer should be able to checkin items')
+            return false
+        end
+        return true
+    end
+    
+    
     def valid_renter
         if(self.teacher_id == nil)
             return false

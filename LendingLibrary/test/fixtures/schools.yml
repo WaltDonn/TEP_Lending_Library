@@ -29,3 +29,13 @@ three:
   state: PA
   zip: 15212
   is_active: false
+
+four:
+  id: 4
+  name: School 4
+  street_1: 500 Learn Way
+  street_2: 
+  city: Pittsburgh
+  state: PA
+  zip: 15212
+  is_active: true

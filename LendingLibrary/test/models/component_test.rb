@@ -4,6 +4,7 @@ class ComponentTest < ActiveSupport::TestCase
 # test validations
 	def setup
 		@comp = components(:one)
+		@comp2 = components(:two)
 	end
 
 	test 'valid component' do
@@ -108,5 +109,21 @@ class ComponentTest < ActiveSupport::TestCase
 		@comp.damaged = 0
 		@comp.missing = 1
 		refute @comp.good_condition
+	end
+
+# test callbacks
+	test 'before save should call check condition item' do
+		@comp2.damaged = 1
+		assert @comp2.item.condition = "Good"
+		@comp2.save
+		assert @comp2.item.condition = "Broken"
+	end
+
+	test 'before save should have a method that does reverse of check condition item' do
+		@comp.damaged = 0
+		@comp.missing = 0
+		assert @comp.item.condition = "Broken"
+		@comp.save
+		assert @comp.item.condition = "Good"
 	end
 end
