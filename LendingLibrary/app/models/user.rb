@@ -11,14 +11,14 @@ class User < ApplicationRecord
     validates :phone_num, format: { with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "should be 10 digits (area code needed) and delimited with dashes only" }, :allow_blank => true
     validates :role, inclusion: { in: %w[admin manager volunteer teacher], message: "is not a recognized role in system" }
     validates :is_active, inclusion: { in: [ true, false ] , message: "Must be true or false" }
-  
+
     validate :class_size_present
     validate :valid_school
-    
+
 
     #Relationships
     belongs_to :school, optional: true
-    
+
     has_many :owned_reservations, :class_name => 'Reservation', :foreign_key => 'teacher_id'
     has_many :checkin_reservations, :class_name => 'Reservation', :foreign_key => 'volunteer_id'
     has_many :kits, through: :reservations
@@ -33,10 +33,10 @@ class User < ApplicationRecord
   # For use in authorizing with CanCan
   ROLES = [['Administrator', :admin],['Manager', :manager],['Volunteer', :volunteer],['Teacher',:teacher]]
 
-    
-    
-    
-    
+
+
+
+
     scope :alphabetical, -> { order('last_name, first_name') }
     scope :active, -> { where(is_active: true) }
     scope :inactive, -> { where.not(is_active: true) }
@@ -48,7 +48,7 @@ class User < ApplicationRecord
   def can_checkin
     self.role != "Teacher" && self.is_active == true
   end
-  
+
   def can_rent
     self.role != "Volunteer" && self.is_active == true
   end
@@ -73,7 +73,7 @@ class User < ApplicationRecord
   def destroyable
     false
   end
-  
+
   def class_size_present
     if(self.role == "Teacher")
         if(self.class_size == nil)
@@ -87,13 +87,13 @@ class User < ApplicationRecord
     end
     return true
   end
-  
+
   def valid_school
     if(self.school_id == nil)
       return true
     end
     checkid = self.school_id
-		unless (School.where(id: checkid).present?) 
+		unless (School.where(id: checkid).present?)
 			errors.add(:is_active, 'School is not present')
 			return false
 		end
@@ -103,9 +103,9 @@ class User < ApplicationRecord
 			return false
 		end
 		return true
-    
+
   end
-  
+
   def reformat_phone
     phone = self.phone_num.to_s  # change to string in case input as all numbers
     phone.gsub!(/[^0-9]/,"") # strip all non-digits
