@@ -6,7 +6,7 @@ class User < ApplicationRecord
     validates_presence_of :email
     validates :email, uniqueness: true
     validates :first_name, format: {with: /\A[A-Za-z\-]+\z/, message: "Should be a valid name"}
-    validates :email, format: {with: /[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))/, message: "Should be a valid email"}
+    validates :email, format: {with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/, message: "Should be a valid email"}
     validates_presence_of :school_id, :allow_blank => true
     validates :phone_num, format: { with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "should be 10 digits (area code needed) and delimited with dashes only" }, :allow_blank => true
     validates :role, inclusion: { in: %w[admin manager volunteer teacher], message: "is not a recognized role in system" }
