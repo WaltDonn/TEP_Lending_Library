@@ -9,9 +9,9 @@ class Reservation < ApplicationRecord
     validates :returned, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     validates :picked_up, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     validate :only_one_open
-    validate :is_volunteer
+    validate :checkout_present
+    validate :checkin_present_and_returned
     validate :valid_renter
-    validate :volunteer_present_and_returned
     validate :available_kit
     
 
@@ -96,24 +96,7 @@ class Reservation < ApplicationRecord
 		end
 		return true
     end
-    
-    
-    def is_volunteer
-        if(self.volunteer_id == nil)
-            return true
-        end
-        checkid = self.volunteer_id
-		unless (User.where(id: checkid).present?) 
-			errors.add(:is_active, 'Volunteer is not present')
-			return false
-		end
-		checkVolunteer = User.find(checkid)
-		unless checkVolunteer.can_checkin
-			errors.add(:is_active,'Needs to be an active Volunteer or Employee')
-			return false
-		end
-		return true
-    end
+
     
     def only_one_open
         check = self.teacher.owned_reservations.select{|r| r.returned == false}

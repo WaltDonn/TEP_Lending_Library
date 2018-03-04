@@ -32,8 +32,10 @@ class UserTest < ActiveSupport::TestCase
 		refute @user.valid?
 	end
 
-	test 'invalid without pw digest' do
-		@user.password_digest = nil
+	test 'invalid without pw' do
+		#I think devise will handle this for us?
+		#this should only happen on edit, and devise handles the edit /update logic
+		@user.encrypted_password = nil
 		refute @user.valid?
 	end
 

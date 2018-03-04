@@ -15,7 +15,7 @@ class School < ApplicationRecord
 
     #Relationships
     has_many :users
-    has_many :reservations, through: :users
+    has_many :owned_reservations, through: :users
 
     # Callbacks
     before_destroy :destroyable
@@ -34,11 +34,11 @@ class School < ApplicationRecord
     end
     
     def total_number_reservations
-        self.reservations.select { |res| res.returned == true}.size
+        self.owned_reservations.select { |res| res.returned == true}.size
     end
     
     def number_of_current_reservations
-         self.reservations.select { |res| res.returned == false}.size
+         self.owned_reservations.select { |res| res.returned == false}.size
     end
 
 
@@ -48,9 +48,9 @@ class School < ApplicationRecord
     #Make sure this works with 0 reservations
     def no_outstanding_reservations
         if(self.is_active == false)
-            check = self.reservations.map{|r| r.returned}.inject{|r1, r2| r1 && r2}
+            check = self.owned_reservations.select{|r| r.returned == false}.size == 0
             if(check == false)
-                errors.add(:is_active, "School has outstanding reservation")
+                errors.add(:is_active, "School has outstanding reservations")
                 return false
             end
         end
