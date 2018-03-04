@@ -9,7 +9,8 @@ one:
   release_form_id: 123
   kit_id: 1
   teacher_id: 1
-  volunteer_id: 2
+  user_check_in_id: 2
+  user_check_in_id: 2
 two:
   start_date: 2018-01-01
   end_date: 2018-01-10
@@ -19,7 +20,8 @@ two:
   release_form_id: 124
   kit_id: 2
   teacher_id: 3
-  volunteer_id: 
+  user_check_in_id: 2
+  user_check_in_id: 2 
 three:
   start_date: 2018-01-01
   end_date: 2018-01-10
@@ -29,7 +31,8 @@ three:
   release_form_id: 125
   kit_id: 3
   teacher_id: 3
-  volunteer_id: 2
+  user_check_in_id: 2
+  user_check_in_id: 2
 four: 
   start_date: 2018-01-11
   end_date: 2018-01-20
@@ -39,5 +42,6 @@ four:
   release_form_id: 126
   kit_id: 3
   teacher_id: 7
-  volunteer_id: 2
+  user_check_in_id: 2
+  user_check_in_id: 2
 
