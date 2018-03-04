@@ -133,27 +133,26 @@ class ReservationTest < ActiveSupport::TestCase
 
 	end
 
-	test 'volunteer present and returned method' do
+	test 'volunteer(s) present and returned method' do
 		
 		#ALEX -- I cannot figure out why extra_res below is not valid?????
-		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: nil, return_date: nil, returned: false, release_form_id: 001, kit_id: 4, teacher_id: 7, volunteer_id: nil)
-		assert @extra_res.valid?
-		@extra_res.delete
+		# @extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: nil, return_date: nil, returned: false, release_form_id: 001, kit_id: 4, teacher_id: 7, volunteer_id: nil)
+		# assert @extra_res.valid?
+		# @extra_res.delete
 
-		#volunteer_id nil but returned
-		@extra_res2 = Reservation.new(start_date: Date.yesterday, end_date: Date.tomorrow, pick_up_date: Date.yesterday, return_date: Date.today, returned: true, release_form_id: 001, kit_id: 4, teacher_id: 7, volunteer_id: nil )
-		refute @extra_res2.valid?
-		@extra_res2.delete
+		# #volunteer_id nil but returned
+		# @extra_res2 = Reservation.new(start_date: Date.yesterday, end_date: Date.tomorrow, pick_up_date: Date.yesterday, return_date: Date.today, returned: true, release_form_id: 001, kit_id: 4, teacher_id: 7, volunteer_id: nil )
+		# refute @extra_res2.valid?
+		# @extra_res2.delete
 
 
-		#volunteer id is not valid volunteer id
-		@extra_res3 = Reservation.new(start_date: Date.yesterday, end_date: Date.tomorrow, pick_up_date: Date.yesterday, return_date: Date.today, returned: true, release_form_id: 001, kit_id: 4, teacher_id: 7, volunteer_id: 3 )
-		refute @extra_res3.valid?
-		@extra_res3.delete
+		# #volunteer id is not valid volunteer id
+		# @extra_res3 = Reservation.new(start_date: Date.yesterday, end_date: Date.tomorrow, pick_up_date: Date.yesterday, return_date: Date.today, returned: true, release_form_id: 001, kit_id: 4, teacher_id: 7, volunteer_id: 3 )
+		# refute @extra_res3.valid?
+		# @extra_res3.delete
+		assert false
 	end
 
-
-	#are we tracking the volunteer that lends it out as well?
 
 	#IMPORTANT: A new reservation should not be able to be made on a kit for a time where
 	#that kit is already reserverd.
