@@ -6,6 +6,25 @@ class ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
   end
+  
+  
+  # GET /reservation_calendar/1
+  def rental_calendar
+    @reservations = Reservation.get_month(params[:month])
+    @today_pickup = Reservation.picking_up_today
+    @today_return = Reservation.returning_today 
+  end
+  
+  # GET /returns
+  def returns
+     @today_return = Reservation.returning_today 
+  end
+  
+  # GET /pickup
+  def pickup
+     @today_pickup = Reservation.picking_up_today
+  end
+  
 
   # GET /reservations/1
   # GET /reservations/1.json

@@ -21,8 +21,9 @@ class Reservation < ApplicationRecord
     belongs_to :user_check_out, :class_name => 'User'
     
     scope :open_reservations,     -> { where(returned: false) }
+    scope :get_month,             -> (month){where('extract(month from pick_up_date) = ?', month)}
     scope :returning_today,       -> { where(return_date: Date.current)}
-
+    scope :picking_up_today,      -> { where(pick_up_date: Date.current)}  
 
     def past_due?
         Date.current > self.end_date && self.returned == false
