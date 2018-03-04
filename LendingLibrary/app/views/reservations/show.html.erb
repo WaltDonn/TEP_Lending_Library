@@ -21,18 +21,38 @@
 </p>
 
 <p>
+  <strong>Returned:</strong>
+  <%= @reservation.returned %>
+</p>
+
+<p>
+  <strong>Picked up:</strong>
+  <%= @reservation.picked_up %>
+</p>
+
+<p>
   <strong>Release form:</strong>
   <%= @reservation.release_form_id %>
 </p>
 
 <p>
-  <strong>References:</strong>
-  <%= @reservation.references %>
+  <strong>Kit:</strong>
+  <%= @reservation.kit_id %>
 </p>
 
 <p>
-  <strong>References:</strong>
-  <%= @reservation.references %>
+  <strong>Teacher:</strong>
+  <%= @reservation.teacher_id %>
+</p>
+
+<p>
+  <strong>User check in:</strong>
+  <%= @reservation.user_check_in_id %>
+</p>
+
+<p>
+  <strong>User check out:</strong>
+  <%= @reservation.user_check_out_id %>
 </p>
 
 <%= link_to 'Edit', edit_reservation_path(@reservation) %> |

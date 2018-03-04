@@ -3,17 +3,24 @@ class User < ApplicationRecord
     validates_presence_of :first_name
     validates_presence_of :last_name
     validates_presence_of :role
-    validates_presence_of :email
-    validates :email, uniqueness: true
     validates :first_name, format: {with: /\A[A-Za-z\-]+\z/, message: "Should be a valid name"}
-    validates :email, format: {with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/, message: "Should be a valid email"}
     validates_presence_of :school_id, :allow_blank => true
     validates :phone_num, format: { with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "should be 10 digits (area code needed) and delimited with dashes only" }, :allow_blank => true
     validates :role, inclusion: { in: %w[admin manager volunteer teacher], message: "is not a recognized role in system" }
     validates :is_active, inclusion: { in: [ true, false ] , message: "Must be true or false" }
-
     validate :class_size_present
     validate :valid_school
+    
+
+    validates :email, presence: true, uniqueness: { case_sensitive: false}, format: { with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, message: "is not a valid format" }
+    validates_confirmation_of :password, on: :create, message: "does not match"
+    validates_presence_of :password, on: :create 
+    validates_presence_of :password_confirmation, on: :create 
+    
+    #Allow blank is true, as not every access of user will require a password.
+    #this would block edits, searchs, etc. Authentication is not handled by the below line.
+    validates_length_of :password, minimum: 6, message: "must be at least 6 characters long", allow_blank: true
+    
 
 
     #Relationships

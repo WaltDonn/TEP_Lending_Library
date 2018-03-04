@@ -32,18 +32,38 @@
   </div>
 
   <div class="field">
+    <%= form.label :returned %>
+    <%= form.check_box :returned, id: :reservation_returned %>
+  </div>
+
+  <div class="field">
+    <%= form.label :picked_up %>
+    <%= form.check_box :picked_up, id: :reservation_picked_up %>
+  </div>
+
+  <div class="field">
     <%= form.label :release_form_id %>
-    <%= form.text_field :release_form_id, id: :reservation_release_form_id %>
+    <%= form.number_field :release_form_id, id: :reservation_release_form_id %>
   </div>
 
   <div class="field">
-    <%= form.label :references %>
-    <%= form.text_field :references, id: :reservation_references %>
+    <%= form.label :kit_id %>
+    <%= form.number_field :kit_id, id: :reservation_kit_id %>
   </div>
 
   <div class="field">
-    <%= form.label :references %>
-    <%= form.text_field :references, id: :reservation_references %>
+    <%= form.label :teacher_id %>
+    <%= form.number_field :teacher_id, id: :reservation_teacher_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_check_in_id %>
+    <%= form.number_field :user_check_in_id, id: :reservation_user_check_in_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_check_out_id %>
+    <%= form.number_field :user_check_out_id, id: :reservation_user_check_out_id %>
   </div>
 
   <div class="actions">

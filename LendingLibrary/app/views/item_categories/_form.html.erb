@@ -22,13 +22,18 @@
   </div>
 
   <div class="field">
+    <%= form.label :item_photo %>
+    <%= form.text_field :item_photo, id: :item_category_item_photo %>
+  </div>
+
+  <div class="field">
     <%= form.label :inventory_level %>
-    <%= form.text_field :inventory_level, id: :item_category_inventory_level %>
+    <%= form.number_field :inventory_level, id: :item_category_inventory_level %>
   </div>
 
   <div class="field">
     <%= form.label :amount_available %>
-    <%= form.text_field :amount_available, id: :item_category_amount_available %>
+    <%= form.number_field :amount_available, id: :item_category_amount_available %>
   </div>
 
   <div class="actions">

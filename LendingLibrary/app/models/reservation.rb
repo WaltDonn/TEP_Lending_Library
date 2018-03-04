@@ -7,6 +7,7 @@ class Reservation < ApplicationRecord
     validates_presence_of :kit_id
     validates_presence_of :teacher_id
     validates :returned, inclusion: { in: [ true, false ] , message: "Must be true or false" }
+    validates :picked_up, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     validate :only_one_open
     validate :is_volunteer
     validate :valid_renter
@@ -16,12 +17,13 @@ class Reservation < ApplicationRecord
 
     belongs_to :kit
     belongs_to :teacher,   :class_name => 'User'
-    belongs_to :volunteer, :class_name => 'User', optional: true
-    
+    belongs_to :user_check_in, :class_name => 'User', optional: true
+    belongs_to :user_check_out, :class_name => 'User'
     
     scope :open_reservations,     -> { where(returned: false) }
+    scope :get_month,             -> (month){where('extract(month from pick_up_date) = ?', month)}
     scope :returning_today,       -> { where(return_date: Date.current)}
-
+    scope :picking_up_today,      -> { where(pick_up_date: Date.current)}  
 
     def past_due?
         Date.current > self.end_date && self.returned == false
@@ -46,17 +48,32 @@ class Reservation < ApplicationRecord
         return true
     end
     
+    def checkout_present
+        if(self.picked_up == false)
+            return true
+        end
+        if(self.user_check_out == nil)
+            errors.add(:user_check_out, 'Check-out user should be present if kit picked up')
+            return false
+        end
+        if(self.user_check_out.can_checkin == false)
+            errors.add(:user_check_out, 'User should be able to check out items')
+            return false
+        end
+        return true
+    end
     
-    def volunteer_present_and_returned
+    
+    def checkin_present_and_returned
         if(self.returned == false)
             return true
         end
-        if(self.volunteer_id == nil)
-            errors.add(:volunteer_id, 'Volunteer should be present if kit returned')
+        if(self.user_check_in == nil)
+            errors.add(:user_check_in, 'Check-in user should be present if kit returned')
             return false
         end
-        if(self.volunteer.can_checkin == false)
-            errors.add(:volunteer_id, 'Volunteer should be able to checkin items')
+        if(self.user_check_in.can_checkin == false)
+            errors.add(:user_check_in, 'User should be able to checkin items')
             return false
         end
         return true

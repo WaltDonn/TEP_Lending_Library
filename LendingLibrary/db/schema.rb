@@ -68,15 +68,18 @@ ActiveRecord::Schema.define(version: 20180218062336) do
     t.date "pick_up_date"
     t.date "return_date"
     t.boolean "returned", default: false
+    t.boolean "picked_up", default: false
     t.integer "release_form_id"
     t.integer "kit_id"
     t.integer "teacher_id"
-    t.integer "volunteer_id"
+    t.integer "user_check_in_id"
+    t.integer "user_check_out_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["kit_id"], name: "index_reservations_on_kit_id"
     t.index ["teacher_id"], name: "index_reservations_on_teacher_id"
-    t.index ["volunteer_id"], name: "index_reservations_on_volunteer_id"
+    t.index ["user_check_in_id"], name: "index_reservations_on_user_check_in_id"
+    t.index ["user_check_out_id"], name: "index_reservations_on_user_check_out_id"
   end
 
   create_table "schools", force: :cascade do |t|

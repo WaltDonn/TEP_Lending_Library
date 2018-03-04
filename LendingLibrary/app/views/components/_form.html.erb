@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label :max_quantity %>
-    <%= form.text_field :max_quantity, id: :component_max_quantity %>
+    <%= form.number_field :max_quantity, id: :component_max_quantity %>
   </div>
 
   <div class="field">
     <%= form.label :damaged %>
-    <%= form.text_field :damaged, id: :component_damaged %>
+    <%= form.number_field :damaged, id: :component_damaged %>
   </div>
 
   <div class="field">
     <%= form.label :missing %>
-    <%= form.text_field :missing, id: :component_missing %>
+    <%= form.number_field :missing, id: :component_missing %>
   </div>
 
   <div class="field">
@@ -32,13 +32,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :references %>
-    <%= form.text_field :references, id: :component_references %>
+    <%= form.label :item_id %>
+    <%= form.number_field :item_id, id: :component_item_id %>
   </div>
 
   <div class="field">
-    <%= form.label :references %>
-    <%= form.text_field :references, id: :component_references %>
+    <%= form.label :component_category_id %>
+    <%= form.number_field :component_category_id, id: :component_component_category_id %>
   </div>
 
   <div class="actions">
