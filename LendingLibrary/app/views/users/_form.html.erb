@@ -32,8 +32,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :references %>
-    <%= form.text_field :references, id: :user_references %>
+    <%= form.label :class_size %>
+    <%= form.number_field :class_size, id: :user_class_size %>
+  </div>
+
+  <div class="field">
+    <%= form.label :school_id %>
+    <%= form.number_field :school_id, id: :user_school_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :user_is_active %>
   </div>
 
   <div class="field">

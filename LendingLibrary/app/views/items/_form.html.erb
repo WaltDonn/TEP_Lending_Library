@@ -22,13 +22,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :references %>
-    <%= form.text_field :references, id: :item_references %>
+    <%= form.label :kit_id %>
+    <%= form.number_field :kit_id, id: :item_kit_id %>
   </div>
 
   <div class="field">
-    <%= form.label :references %>
-    <%= form.text_field :references, id: :item_references %>
+    <%= form.label :item_category_id %>
+    <%= form.number_field :item_category_id, id: :item_item_category_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :item_is_active %>
   </div>
 
   <div class="actions">

@@ -16,6 +16,16 @@
     <%= form.text_field :location, id: :kit_location %>
   </div>
 
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :kit_is_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :blackout %>
+    <%= form.check_box :blackout, id: :kit_blackout %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
