@@ -45,3 +45,6 @@ LendingLibrary/.byebug_history
 
 # Ignore node_modules
 LendingLibrary/node_modules/
+
+# Ignore application configuration
+LendingLibrary/config/application.yml

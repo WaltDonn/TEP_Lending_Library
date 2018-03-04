@@ -6,9 +6,26 @@
     <%= f.input :condition %>
 		<%= f.input :readable_id %>
 
+<<<<<<< HEAD
     <%= f.input :category, :collection => ItemCategory.all, input_html: {class: "avg"} %>
     <%= f.input :kit, :collection => Kit.all, allow_blank: true, input_html: {class: "avg"} %>
 
+=======
+  <div class="field">
+    <%= form.label :kit_id %>
+    <%= form.number_field :kit_id, id: :item_kit_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_category_id %>
+    <%= form.number_field :item_category_id, id: :item_item_category_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :item_is_active %>
+  </div>
+>>>>>>> 0ec4d2b718b6c588fffee167b7cd97575cb7eeb8
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>

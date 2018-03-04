@@ -14,5 +14,48 @@
       <%= f.submit nil, :class => 'button radius' %>
       <%= link_to 'Cancel', assignments_path, :class => 'button alert radius' %>
     </div>
+<<<<<<< HEAD
   </fieldset>
+=======
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :school_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street_1 %>
+    <%= form.text_field :street_1, id: :school_street_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street_2 %>
+    <%= form.text_field :street_2, id: :school_street_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :school_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state, id: :school_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip %>
+    <%= form.text_field :zip, id: :school_zip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.text_field :is_active, id: :school_is_active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+>>>>>>> 0ec4d2b718b6c588fffee167b7cd97575cb7eeb8
 <% end %>

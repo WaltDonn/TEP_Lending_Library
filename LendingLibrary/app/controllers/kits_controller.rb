@@ -5,6 +5,7 @@ class KitsController < ApplicationController
   # GET /kits.json
   def index
     @kits = Kit.all
+    @available_kits = Kit.available_kits
   end
 
   # GET /kits/1
@@ -69,6 +70,6 @@ class KitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def kit_params
-      params.require(:kit).permit(:location)
+      params.require(:kit).permit(:location, :is_active, :blackout)
     end
 end

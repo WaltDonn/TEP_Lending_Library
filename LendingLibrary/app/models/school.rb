@@ -23,12 +23,22 @@ class School < ApplicationRecord
 
 
     scope :alphabetical, -> { order('name') }
-    scope :active, -> { where(is_active: true) }
-    scope :inactive, -> { where.not(is_active: true) }
+    scope :active,       -> { where(is_active: true) }
+    scope :inactive,     -> { where.not(is_active: true) }
+    scope :by_name,      -> (name) { where('name LIKE ?', name)}
+    scope :by_teacher,   -> (teacher_name){ joins(:users).where("(users.first_name LIKE ? OR users.last_name LIKE ?) AND users.role = 'Teacher'", teacher_name, teacher_name)}
 
 
     def already_exists?
         School.where(name: self.name, zip: self.zip).size == 1
+    end
+    
+    def total_number_reservations
+        self.reservations.select { |res| res.returned == true}.size
+    end
+    
+    def number_of_current_reservations
+         self.reservations.select { |res| res.returned == false}.size
     end
 
 

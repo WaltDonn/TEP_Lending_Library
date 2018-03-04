@@ -7,10 +7,31 @@
 		<%= f.input :inventory_level %>
 		<%= f.input :amount_available %>
 
+<<<<<<< HEAD
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>
       <%= link_to 'Cancel', assignments_path, :class => 'button alert radius' %>
     </div>
   </fieldset>
+=======
+  <div class="field">
+    <%= form.label :item_photo %>
+    <%= form.text_field :item_photo, id: :item_category_item_photo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inventory_level %>
+    <%= form.number_field :inventory_level, id: :item_category_inventory_level %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount_available %>
+    <%= form.number_field :amount_available, id: :item_category_amount_available %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+>>>>>>> 0ec4d2b718b6c588fffee167b7cd97575cb7eeb8
 <% end %>

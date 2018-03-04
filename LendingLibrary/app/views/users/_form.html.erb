@@ -9,6 +9,7 @@
 		<%= f.input :phone_num %>
 
     <%= f.input :role, :collection => User::ROLES, :prompt => true %>
+    <%= f.input :class_size %>
 		<%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
 
     <%= f.input :password %>
