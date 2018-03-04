@@ -13,6 +13,7 @@ class Reservation < ApplicationRecord
     validate :checkin_present_and_returned
     validate :valid_renter
     validate :available_kit
+    validate :cant_return_before_pickup
     
 
     belongs_to :kit
@@ -46,6 +47,15 @@ class Reservation < ApplicationRecord
         
         
         return true
+    end
+    
+    def cant_return_before_pickup
+        if(self.returned == true)
+            if(self.picked_up == false)
+                 errors.add(:returned, 'Cant return before pickup')
+                 return false
+            end
+        end
     end
     
     def checkout_present

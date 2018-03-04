@@ -78,6 +78,7 @@ class UserTest < ActiveSupport::TestCase
 		@user.role = "manager"
 		assert @user.valid?
 		@user.role = "teacher"
+		@user.class_size = 4
 		assert @user.valid?
 		@user.role = "other"
 		refute @user.valid?
