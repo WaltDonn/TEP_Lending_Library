@@ -42,12 +42,12 @@ gem 'figaro'
 
 # Allow fast import of csv files to sqlite3
 gem 'activerecord-import', '~> 0.15.0'
-
+# Use jQuery UI assets
+gem 'jquery-ui-rails'
 # Use Simple Form for views
 gem 'simple_form'
-# Use Material
-gem 'bootstrap'
-gem 'material_design_lite-sass'
+# Use Foundation
+gem 'foundation-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
