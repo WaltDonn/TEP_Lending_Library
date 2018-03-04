@@ -6,6 +6,7 @@ one:
   pick_up_date: 2018-01-02
   return_date: 2018-01-09
   returned: true
+  picked_up: true
   release_form_id: 123
   kit_id: 1
   teacher_id: 1
@@ -17,6 +18,7 @@ two:
   pick_up_date: 2018-01-02
   return_date: 2018-01-08
   returned: false
+  picked_up: true
   release_form_id: 124
   kit_id: 2
   teacher_id: 3
@@ -28,6 +30,7 @@ three:
   pick_up_date: 2018-01-02
   return_date: 2018-01-04
   returned: true
+  picked_up: true
   release_form_id: 125
   kit_id: 3
   teacher_id: 3
@@ -39,6 +42,7 @@ four:
   pick_up_date: 2018-01-12
   return_date: 2018-01-19
   returned: true
+  picked_up: true
   release_form_id: 126
   kit_id: 3
   teacher_id: 7
