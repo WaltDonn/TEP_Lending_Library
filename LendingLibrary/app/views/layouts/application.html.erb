@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LendingLibrary</title>
+    <title>The Education Partnership Lending Library</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="title_area">
+      <%= link_to image_tag('logo.png'), home_path %>
+    </div>
+    <%= render :partial => "partials/nav" %>
+
+    <div class="row">
+      <div class="small-12 columns" id="main_content">
+        <%= render :partial => "partials/flash" %>
+        <%= yield %>
+      </div>
+    </div>
+    <footer>
+      <div class="small-12 columns" id="footer">
+        <%= render partial: 'partials/footer' %>
+      </div>
+    </footer>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>
