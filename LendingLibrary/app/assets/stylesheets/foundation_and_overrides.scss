@@ -1353,12 +1353,13 @@ $card-info-border-radius: $global-radius;
 }
 
 #footer {
-  margin-top: 15px;
-  padding-top: 0px;
-  padding-bottom: 15px;
   background-color: $dark-gray;
   color: $light-gray;
   text-align: center;
+  font-size: 0.55rem;
+  height: 200px;
+  line-height: 0.1rem;
+  display: block;
 }
 
 #footer a {
@@ -1407,11 +1408,29 @@ $card-info-border-radius: $global-radius;
   color: $table-row-font-color;
 }
 
+.avg{
+  max-width: 400px;
+}
+.avg h4{
+  text-align: center;
+  font-family: 'Open sans', sans-serif;
+  font-size: 0.95rem;
+}
+
+.avg p{
+  text-align: center;
+  font-family: 'Open sans', sans-serif;
+  font-size: 0.70rem;
+  line-height: 0.1rem;
+}
+
 fieldset{
   position: relative;
   left: auto;
   right: auto;
-  width: 500px;
+  width: 700px;
+  margin-bottom: 10px;
+  padding: 5px;
 }
 
 /* Cutting back the spacing on simple_form... */

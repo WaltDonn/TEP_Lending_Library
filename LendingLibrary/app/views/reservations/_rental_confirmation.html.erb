@@ -1,0 +1,25 @@
+<div class="grid-container">
+  <h1> Rental Confirmation </h1>
+  <div class="grid-x grid-padding-x small-up-2 medium-up-3">
+        <div class="product-card">
+          <div class="product-card-thumbnail center">
+            <%= link_to image_tag('osmo.png', width:180, height:180), item_path(@item=Item.find(1))%>
+          </div>
+            <h2 class="product-card-title center"><%= Item.find(1).item_category.name %></h2>
+        </div>
+
+        <div class="product-card">
+            <h2> Renter Info </h2>
+            <h2 class="product-card-title center"><%=  @reservation.teacher.name %></h2>
+            <h2 class="product-card-title center"><%=  @reservation.teacher.email %></h2>
+            <h2 class="product-card-title center"><%=  @reservation.teacher.school.name %></h2>
+        </div>
+
+        <div class="product-card">
+            <h2> Dates </h2>
+            <h2 class="product-card-title center">Pick up date: <%=  @reservation.pick_up_date %></h2>
+            <h2 class="product-card-title center">Return date: <%=  @reservation.return_date %></h2>
+        </div>
+
+  </div>
+</div>

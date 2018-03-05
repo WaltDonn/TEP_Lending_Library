@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'pickup' => 'reservation#pickup', as: :pickup
   get 'rental_calendar/:month' => 'reservation#rental_calendar', as: :rental_calendar
 
+  # get 'rental_form' => 'reservation#rental_form', as: :rental_form
 
   get 'home' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about

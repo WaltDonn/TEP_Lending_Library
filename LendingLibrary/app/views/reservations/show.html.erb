@@ -1,59 +1,12 @@
+<%= render :partial => 'rental_confirmation' %>
 
 
-<p>
-  <strong>Start date:</strong>
-  <%= @reservation.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @reservation.end_date %>
-</p>
-
-<p>
-  <strong>Pick up date:</strong>
-  <%= @reservation.pick_up_date %>
-</p>
-
-<p>
-  <strong>Return date:</strong>
-  <%= @reservation.return_date %>
-</p>
-
-<p>
-  <strong>Returned:</strong>
-  <%= @reservation.returned %>
-</p>
-
-<p>
-  <strong>Picked up:</strong>
-  <%= @reservation.picked_up %>
-</p>
-
-<p>
-  <strong>Release form:</strong>
-  <%= @reservation.release_form_id %>
-</p>
-
-<p>
-  <strong>Kit:</strong>
-  <%= @reservation.kit_id %>
-</p>
-
-<p>
-  <strong>Teacher:</strong>
-  <%= @reservation.teacher_id %>
-</p>
-
-<p>
-  <strong>User check in:</strong>
-  <%= @reservation.user_check_in_id %>
-</p>
-
-<p>
-  <strong>User check out:</strong>
-  <%= @reservation.user_check_out_id %>
-</p>
-
-<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>
+<div class="row">
+    <div class="small-5 columns">
+      <%= link_to 'Go back',  new_reservation_path, :class => 'button radius info'  %>
+      <%= link_to 'Cancel Rental', items_path, :class => 'button radius' %>
+    </div>
+    <div class="small-5 columns">
+    <%= link_to 'Confirm Rental', user_path(3), :class => 'button radius success'%>
+  </div>
+</div>

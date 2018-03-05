@@ -2,7 +2,7 @@
 
 <fieldset class='center'>
   <legend>Your Profile Information</legend>
-  <table id="profile">
+  <table id="user-profile">
     <thead>
       <tr>
         <th>Name</th>
@@ -33,13 +33,9 @@
 
 <div class="row">
     <div class="small-3 columns">
-      <%= link_to 'Go back', items_path, :class => 'button radius info'  %>
-      <%= link_to 'Cancel Rental', items_path, :class => 'button radius' %>
+      <%= link_to 'View Rental History', user_path(@user), :class => 'button radius info'  %>
+      <%= link_to 'Edit Information', edit_user_path(@user), :class => 'button radius'  %>
     </div>
-    <div class="small-5 columns">
-      Is this correct? <%= link_to 'Edit Information', edit_user_path(@user), :class => 'button radius'  %>
-    </div>
-    <div class="small-3 columns">
-    <%= link_to 'Confirm Information', user_path(@user), :class => 'button radius success'%>
-  </div>
 </div>
+
+<%= render :partial=>'rental_history', user: @user %>
