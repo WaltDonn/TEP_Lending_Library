@@ -120,6 +120,7 @@ class ReservationTest < ActiveSupport::TestCase
 
 	test 'reservations made to kits that are inactive or blacked out are not valid' do
 		# this should be a validation on_create, not a general validation because what if kits from old reservations get blacked out or become inactive?
+	
 		assert @res3.valid?
 		@res3.kit_id = 4
 		assert @res3.valid?
