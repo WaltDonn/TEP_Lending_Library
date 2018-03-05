@@ -1,0 +1,8 @@
+<h3>Kit Contents</h3>
+  <ul>
+  		<% @item.components.each do |component| %>
+  			<li><%= component.max_quantity %> <%= component.component_category.name %></li>
+  		<% end %>
+  	</ul>
+
+<br>

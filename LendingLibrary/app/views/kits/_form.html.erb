@@ -1,32 +1,13 @@
-<%= form_with(model: kit, local: true) do |form| %>
-  <% if kit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(kit.errors.count, "error") %> prohibited this kit from being saved:</h2>
+<%= simple_form_for @item_category, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Item Category</legend>
 
-      <ul>
-      <% kit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <%= f.input :location %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'button radius' %>
+      <%= link_to 'Cancel', assignments_path, :class => 'button alert radius' %>
     </div>
-  <% end %>
+  </fieldset>
 
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location, id: :kit_location %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_active %>
-    <%= form.check_box :is_active, id: :kit_is_active %>
-  </div>
-
-  <div class="field">
-    <%= form.label :blackout %>
-    <%= form.check_box :blackout, id: :kit_blackout %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

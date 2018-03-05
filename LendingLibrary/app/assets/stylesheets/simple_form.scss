@@ -1,0 +1,120 @@
+$body-bg: #fff;
+$body-font-color: #000;
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-weight: normal;
+$body-font-style: normal;
+
+// We use these as default colors throughout
+
+// LOGO orange
+$primary-color: #FA9C3F;
+
+// LOGO blue
+$secondary-color: #1077BD;
+
+// Footer colors
+$dark-gray:  #727272;
+$med-gray: #494949;
+$light-gray: #a0a0a0;
+
+$alert-color: #cc0000;
+$success-color: #b0e899;
+$warning-color: #f2dede;
+$info-color: $light-gray;
+
+
+$white: white;
+
+.simple_form {
+  div.input {
+    margin-bottom: 10px;
+    clear: both;
+    color: $primary-color;
+    /* Required for Webkit, but not for Gecko */
+  }
+  label {
+    float: left;
+    margin:0 0 3px 8px;
+    font-weight: bold;
+  }
+}
+
+.form-inline div { display: inline-block }
+
+div.boolean, .simple_form input[type='submit'] {
+  margin-left: 120px;
+}
+
+div.boolean label {
+  float: none;
+  margin: 0;
+}
+
+label.collection_radio_buttons {
+  float: none;
+  margin: 0;
+  vertical-align: -2px;
+  align-self: center;
+}
+
+.field_with_errors {
+  background-color: #ff3333;
+}
+
+.simple_form {
+   margin:10px auto;
+   max-width: 800px;
+   padding: 20px 12px 10px 20px;
+   border: 0px;
+
+  .error {
+    clear: left;
+    color: black;
+    display: block;
+    margin-left: 120px;
+  }
+  .hint {
+    clear: left;
+    margin-left: 120px;
+    color: #555;
+    display: block;
+    font-style: italic;
+  }
+}
+
+input {
+  &.radio {
+    vertical-align: -3px;
+  }
+  &.check_boxes {
+    margin-left: 3px;
+    vertical-align: -3px;
+  }
+}
+
+input.avg {
+  color: $primary-color;
+  width: 600px;
+  -moz-box-shadow: 0 0 2px $secondary-color;
+  -webkit-box-shadow: 0 0 2px $secondary-color;
+  box-shadow: 0 0 2px $secondary-color;
+  border: 1px solid $secondary-color;
+}
+select.avg {
+  width: 600px;
+}
+textarea.avg {
+  color: $primary-color;
+  width: 600px;
+  height: 100px;
+  -moz-box-shadow: 0 0 2px $secondary-color;
+  -webkit-box-shadow: 0 0 2px $secondary-color;
+  box-shadow: 0 0 2px $secondary-color;
+  border: 1px solid $secondary-color;
+}
+label.collection_check_boxes {
+  float: none;
+  margin: 0;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
