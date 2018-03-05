@@ -123,7 +123,7 @@ class UserTest < ActiveSupport::TestCase
 
 # test scopes
 	test 'alphabetical should order users by last name then first name' do
-		assert_equal User.alphabetical.map{|c| c.id}, [5, 7, 3, 1, 2, 4, 6]
+		assert_equal User.alphabetical.map{|c| c.id}, [5, 8, 7, 3, 1, 2, 4, 6]
 	end
 
 	#test active/inactive scopes?
@@ -132,8 +132,8 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal 2, User.employees.size
 	end
 
-	test 'there should be 4 teachers' do
-		assert_equal 4, User.teachers.size
+	test 'there should be 5 teachers' do
+		assert_equal 5, User.teachers.size
 	end
 
 	test 'there should be 1 volunteer' do
@@ -143,7 +143,7 @@ class UserTest < ActiveSupport::TestCase
 # test callback? reformat phone?
 	test 'should not be destroyed when delete is attempted' do
 		@user.destroy
-		assert @user.valid?
+		refute @user.destroyed?
 	end
 
 # test methods

@@ -1,4 +1,5 @@
 class Reservation < ApplicationRecord
+    validates_date :start_date 
     validates_date :start_date, on_or_after: Date.current, :on => :create
     validates_date :end_date, on_or_after: :start_date
     validates_date :pick_up_date, on_or_after: :start_date
@@ -55,19 +56,21 @@ class Reservation < ApplicationRecord
                  errors.add(:returned, 'Cant return before pickup')
                  return false
             end
+            return true
         end
+        return true
     end
     
     def checkout_present
         if(self.picked_up == false)
             return true
         end
-        if(self.user_check_out == nil)
-            errors.add(:user_check_out, 'Check-out user should be present if kit picked up')
+        if(self.user_check_out_id == nil)
+            errors.add(:user_check_out_id, 'Check-out user should be present if kit picked up')
             return false
         end
         if(self.user_check_out.can_checkin == false)
-            errors.add(:user_check_out, 'User should be able to check out items')
+            errors.add(:user_check_out_id, 'User should be able to check out items')
             return false
         end
         return true
@@ -78,7 +81,7 @@ class Reservation < ApplicationRecord
         if(self.returned == false)
             return true
         end
-        if(self.user_check_in == nil)
+        if(self.user_check_in_id == nil)
             errors.add(:user_check_in, 'Check-in user should be present if kit returned')
             return false
         end

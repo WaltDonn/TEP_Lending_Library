@@ -73,6 +73,11 @@ class User < ApplicationRecord
     self.owned_reservations.select{|res| res.returned == false}.size > 0
   end
 
+  def destroy
+    errors.add(:id, 'Do not delete users')
+    false
+  end
+
  private
   def destroyable
     false
