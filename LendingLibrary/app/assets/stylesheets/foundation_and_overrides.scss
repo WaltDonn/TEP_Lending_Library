@@ -1135,11 +1135,11 @@ $table-margin-bottom: rem-calc(25);
 
 // Background color for the top bar
 $topbar-bg-color: white;
-// $topbar-bg: $topbar-bg-color;
+// $topbar-bg: white;
 
 // Height and margin
-// $topbar-height: 45px;
-// $topbar-margin-bottom: 0;
+$topbar-height: 45px;
+$topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
 // $topbar-title-weight: normal;
@@ -1153,11 +1153,11 @@ $topbar-bg-color: white;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;
 // $topbar-dropdown-toggle-alpha: 0.4;
-$topbar-hover-lines-border-width: 3px;
+$topbar-hover-lines-border-width: 2px;
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $secondary-color;
-$topbar-link-color-hover: scale-color($secondary-color, $lightness: -14%);
+$topbar-link-color-hover: scale-color($secondary-color, $lightness: -30%);
 $topbar-link-color-active: text-decoration(underline);
 $topbar-link-color-active-hover: #fff;
 // $topbar-link-weight: normal;
@@ -1205,6 +1205,21 @@ $topbar-hover-lines-transition: 0.35s ease;
 
 // $include-html-visibility-classes: $include-html-classes;
 
+// title_area style
+#title_area{
+  position: relative;
+  padding: 50px;
+  top: -20px;
+}
+
+// nav bar
+.top-bar{
+  position: relative;
+  right: -100px;
+  top: -50px;
+}
+
+// Nav bar effects
 .topbar-hover-lines {
   text-align: center;
   text-transform: uppercase;
@@ -1213,14 +1228,15 @@ $topbar-hover-lines-transition: 0.35s ease;
   transition: $topbar-hover-lines-transition;
 
   li a {
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
     color: rgba($body-font-color, 0.5);
     position: relative;
-    margin-left: 1rem;
+    margin-right: 0.5rem;
   }
 
   li:first-child a {
-    margin-left: 0;
+    margin-left: 0rem;
+    margin-right: 1rem;
   }
 
   li.active > a {
@@ -1234,12 +1250,13 @@ $topbar-hover-lines-transition: 0.35s ease;
     content: '';
     transition: $topbar-hover-lines-transition;
     background-color: $primary-color;
-    border-bottom: $primary-color solid white;
+    bottom: 0;
+    // border-bottom: $primary-color solid white;
     width: 0;
   }
 
   a::before {
-    top: 0;
+    // top: 0;
     left: 0;
   }
 
