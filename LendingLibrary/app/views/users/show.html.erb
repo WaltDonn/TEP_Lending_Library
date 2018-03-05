@@ -1,49 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<fieldset class='center'>
+  <legend>Your Profile Information</legend>
+  <table id="profile">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <td><%=  @user.name  %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%=  @user.email %></td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td><%=  @user.phone_num %></td>
+      </tr>
+      <tr>
+        <th>School</th>
+        <td><%=  @user.school.name %></td>
+      </tr>
+      <tr>
+        <th>Class Size</th>
+        <td><%=  @user.class_size%></td>
+      </tr>
+    </thead>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+  </table>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
 
-<p>
-  <strong>Phone num:</strong>
-  <%= @user.phone_num %>
-</p>
+</fieldset>
 
-<p>
-  <strong>Class size:</strong>
-  <%= @user.class_size %>
-</p>
-
-<p>
-  <strong>School:</strong>
-  <%= @user.school_id %>
-</p>
-
-<p>
-  <strong>Is active:</strong>
-  <%= @user.is_active %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="row">
+    <div class="small-3 columns">
+      <%= link_to 'Go back', items_path, :class => 'button radius info'  %>
+      <%= link_to 'Cancel Rental', items_path, :class => 'button radius' %>
+    </div>
+    <div class="small-5 columns">
+      Is this correct? <%= link_to 'Edit Information', edit_user_path(@user), :class => 'button radius'  %>
+    </div>
+    <div class="small-3 columns">
+    <%= link_to 'Confirm Information', user_path(@user), :class => 'button radius success'%>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Reservation</legend>
+
+
+    <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", as: :string, :input_html => {:class => "avg datepicker"} %>
+    <%= f.input :return_date, label: "Please select when you would like to drop off your kit during check-in-week.", as: :string, :input_html => {:class => "avg datepicker"} %>
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'button radius' %>
+      <%= link_to 'Cancel', reservations_path, :class => 'button alert radius' %>
+    </div>
+  </fieldset>
+<% end %>

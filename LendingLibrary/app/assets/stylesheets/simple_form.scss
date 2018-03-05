@@ -20,7 +20,7 @@ $light-gray: #a0a0a0;
 $alert-color: #cc0000;
 $success-color: #b0e899;
 $warning-color: #f2dede;
-$info-color: #a0d3e8;
+$info-color: $light-gray;
 
 
 $white: white;
@@ -34,8 +34,7 @@ $white: white;
   }
   label {
     float: left;
-    width: 100px;
-    margin:0 0 3px 0;
+    margin:0 0 3px 8px;
     font-weight: bold;
   }
 }
@@ -64,7 +63,7 @@ label.collection_radio_buttons {
 
 .simple_form {
    margin:10px auto;
-   max-width: 400px;
+   max-width: 800px;
    padding: 20px 12px 10px 20px;
    border: 0px;
 
@@ -95,18 +94,18 @@ input {
 
 input.avg {
   color: $primary-color;
-  width: 380px;
+  width: 600px;
   -moz-box-shadow: 0 0 2px $secondary-color;
   -webkit-box-shadow: 0 0 2px $secondary-color;
   box-shadow: 0 0 2px $secondary-color;
   border: 1px solid $secondary-color;
 }
 select.avg {
-  width: 380px;
+  width: 600px;
 }
 textarea.avg {
   color: $primary-color;
-  width: 380px;
+  width: 600px;
   height: 100px;
   -moz-box-shadow: 0 0 2px $secondary-color;
   -webkit-box-shadow: 0 0 2px $secondary-color;

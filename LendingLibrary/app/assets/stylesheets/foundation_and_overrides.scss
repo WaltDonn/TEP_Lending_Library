@@ -66,7 +66,7 @@ $light-gray: #a0a0a0;
 $alert-color: #cc0000;
 $success-color: #b0e899;
 $warning-color: #f2dede;
-$info-color: #a0d3e8;
+$info-color: $light-gray;
 
 
 $white: white;
@@ -1041,7 +1041,7 @@ $side-nav-divider-color: scale-color(#fff, $lightness: -10%);
 
 // These control the background color for the table and even rows
 // $table-bg: #fff;
-$table-even-row-bg: #e8ffff  ;
+// $table-even-row-bg: #e8ffff;
 
 // These control the table cell border style
 $table-border-style: none;
@@ -1049,17 +1049,17 @@ $table-border-style: none;
 // $table-border-color: #ddd;
 
 // These control the table head styles
-// $table-head-bg: #f5f5f5;
-// $table-head-font-size: rem-calc(14);
-// $table-head-font-color: #222;
-// $table-head-font-weight: bold;
-// $table-head-padding: rem-calc(8 10 10);
+$table-head-bg: #f5f5f5;
+$table-head-font-size: rem-calc(14);
+$table-head-font-color: #222;
+$table-head-font-weight: bold;
+$table-head-padding: rem-calc(8 10 10);
 
 // These control the row padding and font styles
-// $table-row-padding: rem-calc(9 10);
-// $table-row-font-size: rem-calc(14);
-// $table-row-font-color: #222;
-// $table-line-height: rem-calc(18);
+$table-row-padding: rem-calc(9 10);
+$table-row-font-size: rem-calc(14);
+$table-row-font-color: $primary-color;
+$table-line-height: rem-calc(18);
 
 // These are for controlling the display and margin of tables
 // $table-display: table-cell;
@@ -1371,13 +1371,6 @@ $card-info-border-radius: $global-radius;
   text-decoration: underline;
 }
 
-table {
-  border-collapse:collapse;
-}
-
-table th.centered, table td.centered {
-    text-align: center;
-}
 
 .center {
     display: block;
@@ -1393,6 +1386,32 @@ table th.centered, table td.centered {
 .bt-right{
     position: relative;
     right: -50%;
+}
+
+
+#profile table, th, td{
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: $white;
+  text-align: center;
+  font-family: 'Open sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+#profile th{
+  color: $med-gray;
+}
+
+#profile td{
+  color: $table-row-font-color;
+}
+
+fieldset{
+  position: relative;
+  left: auto;
+  right: auto;
+  width: 500px;
 }
 
 /* Cutting back the spacing on simple_form... */
@@ -1434,10 +1453,5 @@ select.time { width: 90px; }
 .pagination ul > li > a, .pagination ul > li > span {
   border-left-width: 1px;
 }
-
-label {
-  padding-right: 4px;
-}
-
 
 @import 'foundation';
