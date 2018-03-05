@@ -29,7 +29,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'validates_timeliness'
+gem 'validates_timeliness', '~> 4.0'
+gem 'date_validator'
 gem 'will_paginate'
 gem 'carrierwave'
 
