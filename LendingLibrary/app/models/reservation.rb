@@ -5,6 +5,7 @@ class Reservation < ApplicationRecord
     validates_date :pick_up_date, on_or_after: :start_date
     validates_date :return_date, on_or_after: :pick_up_date
     validates_presence_of :release_form_id
+    validates_numericality_of :release_form_id, :only_integer => true, :greater_than_or_equal_to => 1
     validates_presence_of :kit_id
     validates_presence_of :teacher_id
     validates :returned, inclusion: { in: [ true, false ] , message: "Must be true or false" }
@@ -13,7 +14,7 @@ class Reservation < ApplicationRecord
     validate :checkout_present
     validate :checkin_present_and_returned
     validate :valid_renter
-    validate :available_kit
+    validate :available_kit, on: :create 
     validate :cant_return_before_pickup
     
 
@@ -112,6 +113,10 @@ class Reservation < ApplicationRecord
 
     
     def only_one_open
+        if(self.teacher == nil)
+            errors.add(:teacher_id, "Teacher not present")
+            return false
+        end
         check = self.teacher.owned_reservations.select{|r| r.returned == false}
         if(check.size > 1)
             errors.add(:start_date, "Teacher already has outstanding reservations")

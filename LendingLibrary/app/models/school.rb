@@ -43,9 +43,6 @@ class School < ApplicationRecord
 
 
     private
-    #Walter --- remove this when done
-    #Make sure this works with 1 reservation
-    #Make sure this works with 0 reservations
     def no_outstanding_reservations
         if(self.is_active == false)
             check = self.owned_reservations.select{|r| r.returned == false}.size == 0

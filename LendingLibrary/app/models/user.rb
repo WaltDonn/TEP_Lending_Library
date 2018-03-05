@@ -20,11 +20,6 @@ class User < ApplicationRecord
     validates_confirmation_of :password, on: :create, message: "does not match"
     validates_presence_of :encrypted_password, on: :create 
     
-    
-    #Allow blank is true, as not every access of user will require a password.
-    #this would block edits, searchs, etc. Authentication is not handled by the below line.
-    validates_length_of :password, minimum: 6, message: "must be at least 6 characters long", allow_blank: true
-    
 
 
     #Relationships
@@ -41,8 +36,8 @@ class User < ApplicationRecord
 
 
 
-  # For use in authorizing with CanCan
-  ROLES = [['Administrator', :admin],['Manager', :manager],['Volunteer', :volunteer],['Teacher',:teacher]]
+  
+  ROLES = [['admin', :admin],['manager', :manager],['volunteer', :volunteer],['teacher',:teacher]]
 
 
 
@@ -57,11 +52,11 @@ class User < ApplicationRecord
 
 
   def can_checkin
-    self.role != "Teacher" && self.is_active == true
+    (self.role.downcase  == "admin" || self.role.downcase  == "manager" || self.role.downcase  == "volunteer") && self.is_active == true
   end
 
   def can_rent
-    self.role != "Volunteer" && self.is_active == true
+   (self.role.downcase  == "admin" || self.role.downcase  == "manager" || self.role.downcase  == "teacher") && self.is_active == true
   end
 
   def name
@@ -76,9 +71,6 @@ class User < ApplicationRecord
     errors.add(:id, 'Do not delete users')
     false
   end
-
- private
-
 
 
  private
