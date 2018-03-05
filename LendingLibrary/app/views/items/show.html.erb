@@ -1,29 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Readable:</strong>
-  <%= @item.readable_id %>
-</p>
+<div class="row">
+  <div class="small-5 columns">
+    <%= render :partial => "item_picture" %>
+		<%= render :partial => "item_components" %>
+	</div>
+	<div class="small-7 columns">
+		<%= render :partial => "item_details" %>
+	</div>
 
-<p>
-  <strong>Condition:</strong>
-  <%= @item.condition %>
-</p>
-
-<p>
-  <strong>Kit:</strong>
-  <%= @item.kit_id %>
-</p>
-
-<p>
-  <strong>Item category:</strong>
-  <%= @item.item_category_id %>
-</p>
-
-<p>
-  <strong>Is active:</strong>
-  <%= @item.is_active %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+</div>
