@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :rental_calendar]
 
   # GET /users
   # GET /users.json
@@ -19,6 +19,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
+  
+  # GET /users/1/rental_calendar
+  def rental_calendar
+      @reservations = Reservation.get_month(params[:month]).select{|res| res.teacher_id == @user.id}
   end
 
   # POST /users
