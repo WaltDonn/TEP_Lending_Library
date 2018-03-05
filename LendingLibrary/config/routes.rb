@@ -27,15 +27,9 @@ Rails.application.routes.draw do
   get 'privacy' => 'home#privacy', as: :privacy
   get 'reports' => 'home#reports', as: :reports
 
-  # Authentication routes
-  # get 'user/edit' => 'users#edit', as: :edit_current_user
-  # get 'signup' => 'users#new', as: :signup
-  # get 'logout' => 'sessions#destroy', as: :logout
-  # get 'login' => 'sessions#new', as: :login
-
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
 
   # Set the root url
-  root :to => 'home#home'  
+  root :to => 'home#home'
 end

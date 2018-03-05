@@ -36,11 +36,11 @@
 // $total-columns: 12;
 
 // We use these to control various global styles
-// $body-bg: #fff;
-// $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-// $body-font-weight: normal;
-// $body-font-style: normal;
+$body-bg: #fff;
+$body-font-color: #000;
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-weight: normal;
+$body-font-style: normal;
 
 // We use this to control font-smoothing
 // $font-smoothing: antialiased;
@@ -58,11 +58,16 @@ $primary-color: #FA9C3F;
 // LOGO blue
 $secondary-color: #1077BD;
 
+// Footer colors
+$dark-gray:  #727272;
+$med-gray: #494949;
+$light-gray: #a0a0a0;
 
 $alert-color: #cc0000;
 $success-color: #dff0d8;
 $warning-color: #f2dede;
 $info-color: #a0d3e8;
+
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -895,31 +900,31 @@ $panel-bg: scale-color(#B5E7F5, $lightness: 50%);
 
 // Side Nav
 
-// $include-html-nav-classes: $include-html-classes;
+$include-html-nav-classes: true;
 
 // We use this to control padding.
-// $side-nav-padding: rem-calc(14 0);
+$side-nav-padding: rem-calc(14 0);
 
 // We use these to control list styles.
-// $side-nav-list-type: none;
-// $side-nav-list-position: inside;
-// $side-nav-list-margin: rem-calc(0 0 7 0);
+$side-nav-list-type: none;
+$side-nav-list-position: inside;
+$side-nav-list-margin: rem-calc(0 0 7 0);
 
 // We use these to control link styles.
-// $side-nav-link-color: $primary-color;
-// $side-nav-link-color-active: scale-color($side-nav-link-color, $lightness: 30%);
-// $side-nav-link-color-hover: scale-color($side-nav-link-color, $lightness: 30%);
-// $side-nav-font-size: rem-calc(14);
-// $side-nav-font-weight: normal;
+$side-nav-link-color: $primary-color;
+$side-nav-link-color-active: scale-color($side-nav-link-color, $lightness: 30%);
+$side-nav-link-color-hover: scale-color($side-nav-link-color, $lightness: 30%);
+$side-nav-font-size: rem-calc(14);
+$side-nav-font-weight: normal;
 // $side-nav-font-family: $body-font-family;
 // $side-nav-active-font-family: $side-nav-font-family;
 
 
 
 // We use these to control border styles
-// $side-nav-divider-size: 1px;
-// $side-nav-divider-style: solid;
-// $side-nav-divider-color: scale-color(#fff, $lightness: -10%);
+$side-nav-divider-size: 1px;
+$side-nav-divider-style: solid;
+$side-nav-divider-color: scale-color(#fff, $lightness: -10%);
 
 // Split Buttons
 
@@ -1129,7 +1134,7 @@ $table-margin-bottom: rem-calc(25);
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: #004080;
+$topbar-bg-color: white;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1141,24 +1146,25 @@ $topbar-bg-color: #004080;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-$topbar-dropdown-bg: #004080;
+// $topbar-dropdown-bg: #004080;
 // $topbar-dropdown-link-color: #fff;
 // $topbar-dropdown-link-bg: #333;
 // $topbar-dropdown-link-weight: normal;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;
 // $topbar-dropdown-toggle-alpha: 0.4;
+$topbar-hover-lines-border-width: 3px;
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: #fff;
-// $topbar-link-color-hover: #fff;
-// $topbar-link-color-active: #fff;
-// $topbar-link-color-active-hover: #fff;
+$topbar-link-color: $secondary-color;
+$topbar-link-color-hover: scale-color($secondary-color, $lightness: -14%);
+$topbar-link-color-active: text-decoration(underline);
+$topbar-link-color-active-hover: #fff;
 // $topbar-link-weight: normal;
-$topbar-link-font-size: rem-calc(15);
+// $topbar-link-font-size: rem-calc(15);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
-$topbar-link-bg-hover: #0F73D6;
-// $topbar-link-bg-active: $primary-color;
+$topbar-link-bg-hover: white;
+$topbar-link-bg-active: white;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;
 
@@ -1180,7 +1186,7 @@ $topbar-link-bg-hover: #0F73D6;
 // $topbar-menu-icon-color-toggled: #888;
 
 // Transitions and breakpoint styles
-// $topbar-transition-speed: 300ms;
+$topbar-hover-lines-transition: 0.35s ease;
 // Using rem-calc for the below breakpoint causes issues with top bar
 // $topbar-breakpoint: #{upper-bound($medium-range)}; // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width: #{upper-bound($medium-range)})";
@@ -1199,73 +1205,64 @@ $topbar-link-bg-hover: #0F73D6;
 
 // $include-html-visibility-classes: $include-html-classes;
 
-.completed_task {
-  background-color: #B1FBB8;
-  width: 400px;
-  padding-left: 10px;
-  border: 1px solid #008040;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  height: 60px;
-  color: #008040;
-}
-.completed_task a {
-  color: #008040;
-}
-.completed_task .smtext {
-  color: #008040;
+.topbar-hover-lines {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: $topbar-hover-lines-transition;
+
+  li a {
+    padding: 0.75rem 0;
+    color: rgba($body-font-color, 0.5);
+    position: relative;
+    margin-left: 1rem;
+  }
+
+  li:first-child a {
+    margin-left: 0;
+  }
+
+  li.active > a {
+    background-color: transparent;
+  }
+
+  a:before,
+  a::after {
+    height: $topbar-hover-lines-border-width;
+    position: absolute;
+    content: '';
+    transition: $topbar-hover-lines-transition;
+    background-color: $primary-color;
+    border-bottom: $primary-color solid white;
+    width: 0;
+  }
+
+  a::before {
+    top: 0;
+    left: 0;
+  }
+
+  a::after {
+    bottom: 0;
+    right: 0;
+  }
+
+  a:hover,
+  li.active > a {
+    color: $body-font-color;
+    transition: $topbar-hover-lines-transition;
+  }
+
+  a:hover::before,
+  .active a::before,
+  a:hover::after,
+  .active a::after {
+    width: 100%;
+  }
 }
 
-.high_priority {
-  background-color: #e7aaa0;
-  width: 400px;
-  padding-left: 10px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  border: 1px solid red;
-  height: 60px;
-}
 
-.low_priority {
-  background-color: #f9fda5;
-  width: 400px;
-  padding-left: 10px;
-  border: 2px solid yellow;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  height: 60px;
-}
-
-.med_priority {
-  background-color: #FAB38C;
-  width: 400px;
-  padding-left: 10px;
-  border: 2px solid orange;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  height: 60px;
-}
-
-.high_priority a {
-  color: #800000;
-}
-.high_priority .smtext {
-  color: #800000;
-}
-
-.low_priority a {
-  color: #C36100;
-}
-.low_priority .smtext {
-  color: #C36100;
-}
-
-.med_priority a {
-  color: #D56B00;
-}
-.med_priority .smtext {
-  color: #D56B00;
-}
 
 .tl_name {
   width: 225px;
@@ -1286,16 +1283,6 @@ $topbar-link-bg-hover: #0F73D6;
   margin-left: 330px;
 }
 
-.project_item {
-  background-color: #d1ecfb;
-  width: 400px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border: 1px solid blue;
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-
 .supertiny {
   font-size:5px;
   text-decoration:none;
@@ -1307,10 +1294,6 @@ $topbar-link-bg-hover: #0F73D6;
   font-weight: normal;
 }
 
-#title_area {
-  background-color: #004080;
-}
-
 #main_content {
   margin-top: 10px;
 }
@@ -1319,23 +1302,19 @@ $topbar-link-bg-hover: #0F73D6;
   margin-top: 15px;
   padding-top: 0px;
   padding-bottom: 15px;
-  background-color:#004080;
-  color: #ffffff;
+  background-color: $dark-gray;
+  color: $light-gray;
   text-align: center;
 }
 
 #footer a {
-  color: #ffffff;
+  color: $med-gray;
   text-decoration: none;
 }
 
 #footer a:hover {
-  color: #D0F7FF;
+  color: $light-gray;
   text-decoration: underline;
-}
-
-#copy {
-  font-size: 85%;
 }
 
 table {
@@ -1355,21 +1334,6 @@ li.well {
   margin-left: -10px;
 }
 
-/* Setting up min_task divs */
-.min_task {
-  background-color: #d1ecfb;
-  /*width: 400px;*/
-  padding: 2px 2px 2px 5px;
-  border: 1px solid blue;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  select { width: 185px; }
-  input { width: 180px; }
-}
-
 /* Cutting back the spacing on simple_form... */
 .form-horizontal .control-label {
     float: left;
@@ -1380,7 +1344,6 @@ li.well {
 }
 .form-horizontal .controls {
     margin-left: 90px;
-    /*width: 350px;*/
 }
 
 .form-horizontal .control-label .avg {
@@ -1389,18 +1352,6 @@ li.well {
     text-align: left;
     width: 10px;
     font-size: 90%;
-}
-
-.form-horizontal .min_task .control-label {
-    float: left;
-    padding-top: 3px;
-    text-align: right;
-    width: 60px;
-    font-size: 90%;
-}
-.form-horizontal .min_task .controls {
-    margin-left: 70px;
-    width: 200px;
 }
 
 select.date { width: 90px; }

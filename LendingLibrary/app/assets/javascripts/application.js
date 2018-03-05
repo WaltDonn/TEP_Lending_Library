@@ -48,3 +48,6 @@ $(function() {
     format: 'mm/dd/YYYY'
   });
 });
+
+
+$("[data-menu-underline-from-center] a").addClass("underline-from-center");
