@@ -2,58 +2,18 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Component</legend>
 
-<<<<<<< HEAD
 		<%= f.input :max_quantity %>
 		<%= f.input :damaged %>
     <%= f.input :missing %>
     <%= f.input :consumable %>
-=======
-      <ul>
-      <% component.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :max_quantity %>
-    <%= form.number_field :max_quantity, id: :component_max_quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :damaged %>
-    <%= form.number_field :damaged, id: :component_damaged %>
-  </div>
-
-  <div class="field">
-    <%= form.label :missing %>
-    <%= form.number_field :missing, id: :component_missing %>
-  </div>
->>>>>>> 0ec4d2b718b6c588fffee167b7cd97575cb7eeb8
 
     <%= f.input :component_category_id, :collection => ComponentCategory.all, input_html: {class: "avg"} %>
     <%= f.input :item_id, :collection => Item.all, input_html: {class: "avg"} %>
 
-<<<<<<< HEAD
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>
       <%= link_to 'Cancel', assignments_path, :class => 'button alert radius' %>
     </div>
   </fieldset>
-=======
-  <div class="field">
-    <%= form.label :item_id %>
-    <%= form.number_field :item_id, id: :component_item_id %>
-  </div>
 
-  <div class="field">
-    <%= form.label :component_category_id %>
-    <%= form.number_field :component_category_id, id: :component_component_category_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
->>>>>>> 0ec4d2b718b6c588fffee167b7cd97575cb7eeb8
 <% end %>
