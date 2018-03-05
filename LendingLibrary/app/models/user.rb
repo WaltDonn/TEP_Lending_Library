@@ -37,7 +37,6 @@ class User < ApplicationRecord
     has_many :items, through: :kits
 
     # Callbacks
-    before_destroy :destroyable
     before_save :reformat_phone
 
 
@@ -73,10 +72,15 @@ class User < ApplicationRecord
     self.owned_reservations.select{|res| res.returned == false}.size > 0
   end
 
- private
-  def destroyable
+  def destroy
+    errors.add(:id, 'Do not delete users')
     false
   end
+
+
+
+ private
+
 
   def class_size_present
     if(self.role == "teacher")
