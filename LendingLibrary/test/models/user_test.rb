@@ -143,7 +143,7 @@ class UserTest < ActiveSupport::TestCase
 # test callback? reformat phone?
 	test 'should not be destroyed when delete is attempted' do
 		@user.destroy
-		assert @user.valid?
+		refute @user.destroyed?
 	end
 
 # test methods
