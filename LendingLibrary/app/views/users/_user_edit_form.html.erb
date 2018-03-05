@@ -1,0 +1,17 @@
+<%= simple_form_for @user, :html => { :class => 'form-inline' } do |f| %>
+  <fieldset>
+    <legend>Your Profile Information</legend>
+
+    <%= f.input :first_name, :input_html => { :class => 'avg' }%>
+    <%= f.input :last_name,   :input_html => { :class => 'avg' }%>
+    <%= f.input :email,  :input_html => { :class => 'avg' }%>
+		<%= f.input :phone_num,  :input_html => { :class => 'avg' }%>
+    <%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
+    <%= f.input :class_size,  :input_html => { :class => 'avg' }%>
+  </fieldset>
+
+  <div class="form-actions">
+    <%= link_to 'Cancel', user_path(3), :class => 'button radius' %>
+    <%= f.submit 'Save', :class => 'button radius success bt-right' %>
+  </div>
+<% end %>

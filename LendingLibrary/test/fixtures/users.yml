@@ -80,3 +80,15 @@ seven:
   is_active: true
   encrypted_password: bleh
   role: teacher
+
+eight:
+  id: 8
+  email: example8@gmail.com
+  first_name: Teacher
+  last_name: Eight
+  phone_num: 
+  class_size: 20
+  school_id: 1
+  is_active: false
+  encrypted_password: bleh
+  role: teacher

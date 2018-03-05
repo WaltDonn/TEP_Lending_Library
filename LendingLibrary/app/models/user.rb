@@ -77,6 +77,8 @@ class User < ApplicationRecord
     false
   end
 
+ private
+
 
 
  private

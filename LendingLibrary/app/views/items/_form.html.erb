@@ -1,42 +1,16 @@
-<%= form_with(model: item, local: true) do |form| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+<%= simple_form_for @item, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Item</legend>
 
-      <ul>
-      <% item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+    <%= f.input :condition %>
+		<%= f.input :readable_id %>
+    <%= f.input :category, :collection => ItemCategory.all, input_html: {class: "avg"} %>
+    <%= f.input :kit, :collection => Kit.all, allow_blank: true, input_html: {class: "avg"} %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'button radius' %>
+      <%= link_to 'Cancel', assignments_path, :class => 'button alert radius' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :readable_id %>
-    <%= form.text_field :readable_id, id: :item_readable_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :condition %>
-    <%= form.text_field :condition, id: :item_condition %>
-  </div>
-
-  <div class="field">
-    <%= form.label :kit_id %>
-    <%= form.number_field :kit_id, id: :item_kit_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :item_category_id %>
-    <%= form.number_field :item_category_id, id: :item_item_category_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_active %>
-    <%= form.check_box :is_active, id: :item_is_active %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  </fieldset>
 <% end %>

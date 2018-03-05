@@ -1,18 +1,8 @@
 
-<p>
-  <strong>Location:</strong>
-  <%= @kit.location %>
-</p>
+<div class="row">
 
-<p>
-  <strong>Is active:</strong>
-  <%= @kit.is_active %>
-</p>
 
-<p>
-  <strong>Blackout:</strong>
-  <%= @kit.blackout %>
-</p>
-
-<%= link_to 'Edit', edit_kit_path(@kit) %> |
-<%= link_to 'Back', kits_path %>
+  <div class="form-actions">
+    <%= link_to 'RENT THIS KIT', kit_path(@kit), :class => 'button radius' %>
+  </div>
+</div>

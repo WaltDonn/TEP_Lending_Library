@@ -1,47 +1,19 @@
-<%= form_with(model: component, local: true) do |form| %>
-  <% if component.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(component.errors.count, "error") %> prohibited this component from being saved:</h2>
+<%= simple_form_for @component, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Component</legend>
 
-      <ul>
-      <% component.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+		<%= f.input :max_quantity %>
+		<%= f.input :damaged %>
+    <%= f.input :missing %>
+    <%= f.input :consumable %>
+
+    <%= f.input :component_category_id, :collection => ComponentCategory.all, input_html: {class: "avg"} %>
+    <%= f.input :item_id, :collection => Item.all, input_html: {class: "avg"} %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'button radius' %>
+      <%= link_to 'Cancel', assignments_path, :class => 'button alert radius' %>
     </div>
-  <% end %>
+  </fieldset>
 
-  <div class="field">
-    <%= form.label :max_quantity %>
-    <%= form.number_field :max_quantity, id: :component_max_quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :damaged %>
-    <%= form.number_field :damaged, id: :component_damaged %>
-  </div>
-
-  <div class="field">
-    <%= form.label :missing %>
-    <%= form.number_field :missing, id: :component_missing %>
-  </div>
-
-  <div class="field">
-    <%= form.label :consumable %>
-    <%= form.check_box :consumable, id: :component_consumable %>
-  </div>
-
-  <div class="field">
-    <%= form.label :item_id %>
-    <%= form.number_field :item_id, id: :component_item_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :component_category_id %>
-    <%= form.number_field :component_category_id, id: :component_component_category_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
