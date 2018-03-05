@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   # get 'rental_form' => 'reservation#rental_form', as: :rental_form
 
-  get 'home' => 'home#home', as: :home
+  get '/' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
