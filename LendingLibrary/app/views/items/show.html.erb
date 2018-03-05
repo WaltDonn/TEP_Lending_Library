@@ -1,24 +1,17 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Readable:</strong>
-  <%= @item.readable_id %>
-</p>
 
-<p>
-  <strong>Condition:</strong>
-  <%= @item.condition %>
-</p>
+<div class="row">
+  <div class="small-5 columns">
+    <%= render :partial => "item_picture" %>
+		<%= render :partial => "item_components" %>
+	</div>
+	<div class="small-7 columns">
+		<%= render :partial => "item_details" %>
+    <div class="form-actions">
+      <%= link_to 'RENT THIS KIT', new_reservation_path, :class => 'button radius' %>
+      <%= link_to 'SKIP INFO CONFIRMATION', edit_reservation_path(), :class => 'button radius' %>
 
-<p>
-  <strong>References:</strong>
-  <%= @item.references %>
-</p>
+    </div>
+	</div>
 
-<p>
-  <strong>References:</strong>
-  <%= @item.references %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+</div>

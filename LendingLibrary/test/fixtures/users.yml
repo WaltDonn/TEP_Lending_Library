@@ -7,7 +7,7 @@ one:
   last_name: Smith
   phone_num: 412-000-9999
   school_id: 
-  password_digest: fillerdigest
+  encrypted_password: bleh
   is_active: true
   role: admin
 
@@ -18,8 +18,8 @@ two:
   last_name: Smith
   phone_num: 
   school_id: 
+  encrypted_password: bleh
   is_active: true
-  password_digest: fillerdigest
   role: volunteer
 
 three:
@@ -31,7 +31,7 @@ three:
   class_size: 20
   school_id: 1
   is_active: true
-  password_digest: fillerdigest
+  encrypted_password: bleh
   role: teacher
 
 four:
@@ -43,7 +43,7 @@ four:
   class_size: 20
   school_id: 1
   is_active: true
-  password_digest: fillerdigest
+  encrypted_password: bleh
   role: teacher
 
 five:
@@ -54,7 +54,7 @@ five:
   phone_num: 
   school_id: 
   is_active: true
-  password_digest: fillerdigest
+  encrypted_password: bleh
   role: manager
 
 six: 
@@ -66,7 +66,7 @@ six:
   class_size: 20
   school_id: 2
   is_active: true
-  password_digest: fillerdigest
+  encrypted_password: bleh
   role: teacher
 
 seven: 
@@ -78,5 +78,17 @@ seven:
   class_size: 20
   school_id: 4
   is_active: true
-  password_digest: fillerdigest
+  encrypted_password: bleh
+  role: teacher
+
+eight:
+  id: 8
+  email: example8@gmail.com
+  first_name: Teacher
+  last_name: Eight
+  phone_num: 
+  class_size: 20
+  school_id: 1
+  is_active: false
+  encrypted_password: bleh
   role: teacher

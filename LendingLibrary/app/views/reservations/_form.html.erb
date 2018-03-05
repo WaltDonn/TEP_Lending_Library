@@ -1,52 +1,21 @@
-<%= form_with(model: reservation, local: true) do |form| %>
-  <% if reservation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+<%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Reservation</legend>
 
-      <ul>
-      <% reservation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <%= f.input :start_date, label: "Start Date", as: :string, :input_html => {:class => "avg datepicker"} %>
+    <%= f.input :end_date, label: "End Date", as: :string, :input_html => {:class => "avg datepicker"} %>
+    <%= f.input :pick_up_date, label: "Pick Up Date", as: :string, :input_html => {:class => "avg datepicker"} %>
+    <%= f.input :return_date, label: "Return Date", as: :string, :input_html => {:class => "avg datepicker"} %>
+
+		<%= f.input :release_form_id %>
+
+    <%= f.input :teacher_id, :collection => User.active.teachers.alphabetical.all, input_html: {class: "avg"} %>
+    <%= f.input :volunteer_id, :collection => User.active.volunteers.alphabetical.all, include_blank: true, input_html: {class: "avg"} %>
+    <%= f.input :kit_id, :collection => Kit.alphabetical.all, include_blank: true, input_html: {class: "avg"} %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'button radius' %>
+      <%= link_to 'Cancel', reservations_path, :class => 'button alert radius' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date, id: :reservation_start_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date, id: :reservation_end_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pick_up_date %>
-    <%= form.date_select :pick_up_date, id: :reservation_pick_up_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :return_date %>
-    <%= form.date_select :return_date, id: :reservation_return_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :release_form_id %>
-    <%= form.text_field :release_form_id, id: :reservation_release_form_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :references %>
-    <%= form.text_field :references, id: :reservation_references %>
-  </div>
-
-  <div class="field">
-    <%= form.label :references %>
-    <%= form.text_field :references, id: :reservation_references %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  </fieldset>
 <% end %>

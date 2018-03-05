@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180218062336) do
+ActiveRecord::Schema.define(version: 20180304215144) do
 
   create_table "component_categories", force: :cascade do |t|
     t.string "name"
@@ -68,15 +68,18 @@ ActiveRecord::Schema.define(version: 20180218062336) do
     t.date "pick_up_date"
     t.date "return_date"
     t.boolean "returned", default: false
+    t.boolean "picked_up", default: false
     t.integer "release_form_id"
     t.integer "kit_id"
     t.integer "teacher_id"
-    t.integer "volunteer_id"
+    t.integer "user_check_in_id"
+    t.integer "user_check_out_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["kit_id"], name: "index_reservations_on_kit_id"
     t.index ["teacher_id"], name: "index_reservations_on_teacher_id"
-    t.index ["volunteer_id"], name: "index_reservations_on_volunteer_id"
+    t.index ["user_check_in_id"], name: "index_reservations_on_user_check_in_id"
+    t.index ["user_check_out_id"], name: "index_reservations_on_user_check_out_id"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -92,17 +95,27 @@ ActiveRecord::Schema.define(version: 20180218062336) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
     t.string "first_name"
     t.string "last_name"
     t.string "phone_num"
     t.integer "class_size"
     t.integer "school_id"
     t.boolean "is_active"
-    t.string "password_digest"
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["school_id"], name: "index_users_on_school_id"
   end
 

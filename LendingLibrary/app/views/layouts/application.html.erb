@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LendingLibrary</title>
+    <title>The Education Partnership Lending Library</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
+  <!-- Devise code needed: https://guides.railsgirls.com/devise -->
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
 
   <body>
-    <%= yield %>
+    <div id="title_area" class="top-bar-section">
+      <%= link_to image_tag('logo.png', width:200, height:80), home_path%>
+      <%= render :partial => "partials/nav" %>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns" id="main_content">
+        <%= render :partial => "partials/flash" %>
+        <%= yield %>
+      </div>
+    </div>
+    <footer>
+      <div class="small-12 columns" id="footer">
+        <%= render partial: 'partials/footer' %>
+      </div>
+    </footer>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>

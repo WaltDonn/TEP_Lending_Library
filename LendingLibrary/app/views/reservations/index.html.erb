@@ -9,9 +9,13 @@
       <th>End date</th>
       <th>Pick up date</th>
       <th>Return date</th>
+      <th>Returned</th>
+      <th>Picked up</th>
       <th>Release form</th>
-      <th>References</th>
-      <th>References</th>
+      <th>Kit</th>
+      <th>Teacher</th>
+      <th>User check in</th>
+      <th>User check out</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,9 +27,13 @@
         <td><%= reservation.end_date %></td>
         <td><%= reservation.pick_up_date %></td>
         <td><%= reservation.return_date %></td>
+        <td><%= reservation.returned %></td>
+        <td><%= reservation.picked_up %></td>
         <td><%= reservation.release_form_id %></td>
-        <td><%= reservation.references %></td>
-        <td><%= reservation.references %></td>
+        <td><%= reservation.kit_id %></td>
+        <td><%= reservation.teacher_id %></td>
+        <td><%= reservation.user_check_in_id %></td>
+        <td><%= reservation.user_check_out_id %></td>
         <td><%= link_to 'Show', reservation %></td>
         <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
         <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

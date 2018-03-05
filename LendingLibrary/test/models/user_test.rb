@@ -32,8 +32,10 @@ class UserTest < ActiveSupport::TestCase
 		refute @user.valid?
 	end
 
-	test 'invalid without pw digest' do
-		@user.password_digest = nil
+	test 'invalid without pw' do
+		#I think devise will handle this for us?
+		#this should only happen on edit, and devise handles the edit /update logic
+		@user.encrypted_password = nil
 		refute @user.valid?
 	end
 
@@ -76,6 +78,7 @@ class UserTest < ActiveSupport::TestCase
 		@user.role = "manager"
 		assert @user.valid?
 		@user.role = "teacher"
+		@user.class_size = 4
 		assert @user.valid?
 		@user.role = "other"
 		refute @user.valid?
@@ -120,7 +123,7 @@ class UserTest < ActiveSupport::TestCase
 
 # test scopes
 	test 'alphabetical should order users by last name then first name' do
-		assert_equal User.alphabetical.map{|c| c.id}, [5, 7, 3, 1, 2, 4, 6]
+		assert_equal User.alphabetical.map{|c| c.id}, [5, 8, 7, 3, 1, 2, 4, 6]
 	end
 
 	#test active/inactive scopes?
@@ -129,8 +132,8 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal 2, User.employees.size
 	end
 
-	test 'there should be 4 teachers' do
-		assert_equal 4, User.teachers.size
+	test 'there should be 5 teachers' do
+		assert_equal 5, User.teachers.size
 	end
 
 	test 'there should be 1 volunteer' do
@@ -140,7 +143,7 @@ class UserTest < ActiveSupport::TestCase
 # test callback? reformat phone?
 	test 'should not be destroyed when delete is attempted' do
 		@user.destroy
-		assert @user.valid?
+		refute @user.destroyed?
 	end
 
 # test methods

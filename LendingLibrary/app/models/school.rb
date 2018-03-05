@@ -15,7 +15,7 @@ class School < ApplicationRecord
 
     #Relationships
     has_many :users
-    has_many :reservations, through: :users
+    has_many :owned_reservations, through: :users
 
     # Callbacks
     before_destroy :destroyable
@@ -23,12 +23,22 @@ class School < ApplicationRecord
 
 
     scope :alphabetical, -> { order('name') }
-    scope :active, -> { where(is_active: true) }
-    scope :inactive, -> { where.not(is_active: true) }
+    scope :active,       -> { where(is_active: true) }
+    scope :inactive,     -> { where.not(is_active: true) }
+    scope :by_name,      -> (name) { where('name LIKE ?', name)}
+    scope :by_teacher,   -> (teacher_name){ joins(:users).where("(users.first_name LIKE ? OR users.last_name LIKE ?) AND users.role = 'Teacher'", teacher_name, teacher_name)}
 
 
     def already_exists?
         School.where(name: self.name, zip: self.zip).size == 1
+    end
+    
+    def total_number_reservations
+        self.owned_reservations.select { |res| res.returned == true}.size
+    end
+    
+    def number_of_current_reservations
+         self.owned_reservations.select { |res| res.returned == false}.size
     end
 
 
@@ -38,9 +48,9 @@ class School < ApplicationRecord
     #Make sure this works with 0 reservations
     def no_outstanding_reservations
         if(self.is_active == false)
-            check = self.reservations.map{|r| r.returned}.inject{|r1, r2| r1 && r2}
+            check = self.owned_reservations.select{|r| r.returned == false}.size == 0
             if(check == false)
-                errors.add(:is_active, "School has outstanding reservation")
+                errors.add(:is_active, "School has outstanding reservations")
                 return false
             end
         end

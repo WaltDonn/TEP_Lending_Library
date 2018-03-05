@@ -132,6 +132,9 @@ class SchoolTest < ActiveSupport::TestCase
 		assert_equal @school4.users.map{|c| c.is_active}, [false]
 
 		# i think issues with no outstanding reservations is affecting this?
+			#Yes, teacher 3 has an oustandind reservation of id 2
+		#Walt run the below line - this should help with your testing
+		#byebug
 		@school.is_active = false
 		assert_equal @school.users.map{|c| c.is_active}, [true, true]
 		@school.save
