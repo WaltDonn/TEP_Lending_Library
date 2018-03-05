@@ -1,5 +1,9 @@
 class User < ApplicationRecord
-    has_secure_password
+    # Include default devise modules. Others available are:
+    # :confirmable, :lockable, :timeoutable and :omniauthable
+    devise :database_authenticatable, :registerable,
+           :recoverable, :rememberable, :trackable, :validatable
+    
     validates_presence_of :first_name
     validates_presence_of :last_name
     validates_presence_of :role
@@ -14,8 +18,8 @@ class User < ApplicationRecord
 
     validates :email, presence: true, uniqueness: { case_sensitive: false}, format: { with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, message: "is not a valid format" }
     validates_confirmation_of :password, on: :create, message: "does not match"
-    validates_presence_of :password, on: :create 
-    validates_presence_of :password_confirmation, on: :create 
+    validates_presence_of :encrypted_password, on: :create 
+    
     
     #Allow blank is true, as not every access of user will require a password.
     #this would block edits, searchs, etc. Authentication is not handled by the below line.
@@ -27,7 +31,8 @@ class User < ApplicationRecord
     belongs_to :school, optional: true
 
     has_many :owned_reservations, :class_name => 'Reservation', :foreign_key => 'teacher_id'
-    has_many :checkin_reservations, :class_name => 'Reservation', :foreign_key => 'volunteer_id'
+    has_many :checkin_reservations, :class_name => 'Reservation', :foreign_key => 'user_check_in_id'
+    has_many :checkout_reservations, :class_name => 'Reservation', :foreign_key => 'user_check_out_id'
     has_many :kits, through: :reservations
     has_many :items, through: :kits
 
@@ -64,25 +69,22 @@ class User < ApplicationRecord
     "#{last_name}, #{first_name}"
   end
 
-  def self.authenticate(email,password)
-    find_by_email(email).try(:authenticate, password)
-  end
-
   def has_outstanding_kit
-    #Walter -- remove this when done
-    #Map to boolean returned values
-    #If one of them is false, then a kit has not been returned
-    #Check corner case of only 1 kit
-    self.reservations.map{|res| res.returned}.inject{|res1, res2| rest1 AND res2}
+    self.owned_reservations.select{|res| res.returned == false}.size > 0
   end
 
-  private
+  def destroy
+    errors.add(:id, 'Do not delete users')
+    false
+  end
+
+ private
   def destroyable
     false
   end
 
   def class_size_present
-    if(self.role == "Teacher")
+    if(self.role == "teacher")
         if(self.class_size == nil)
           	errors.add(:class_size, 'Teachers need a class size')
             return false

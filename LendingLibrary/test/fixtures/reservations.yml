@@ -1,43 +1,52 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+
 one:
-  start_date: 2018-01-01
-  end_date: 2018-01-10
-  pick_up_date: 2018-01-02
-  return_date: 2018-01-09
+  start_date: <%= 10.day.ago %>
+  end_date: <%= 1.day.ago %>
+  pick_up_date: <%= 9.day.ago %>
+  return_date: <%= 2.day.ago %>
   returned: true
+  picked_up: true
   release_form_id: 123
   kit_id: 1
   teacher_id: 1
-  volunteer_id: 2
+  user_check_in_id: 2
+  user_check_out_id: 2
 two:
-  start_date: 2018-01-01
-  end_date: 2018-01-10
-  pick_up_date: 2018-01-02
-  return_date: 2018-01-08
+  start_date: <%= 10.day.ago %>
+  end_date: <%= 1.day.ago %>
+  pick_up_date: <%= 9.day.ago %>
+  return_date: nil
   returned: false
+  picked_up: true
   release_form_id: 124
   kit_id: 2
   teacher_id: 3
-  volunteer_id: 
+  user_check_in_id: 2
+  user_check_out_id: 2 
 three:
-  start_date: 2018-01-01
-  end_date: 2018-01-10
-  pick_up_date: 2018-01-02
-  return_date: 2018-01-04
+  start_date: <%= 20.day.ago %>
+  end_date: <%= 11.day.ago %>
+  pick_up_date: <%= 19.day.ago %>
+  return_date: <%= 12.day.ago %>
   returned: true
+  picked_up: true
   release_form_id: 125
   kit_id: 3
   teacher_id: 3
-  volunteer_id: 2
+  user_check_in_id: 2
+  user_check_out_id: 2
 four: 
-  start_date: 2018-01-11
-  end_date: 2018-01-20
-  pick_up_date: 2018-01-12
-  return_date: 2018-01-19
+  start_date: <%= 10.day.ago %>
+  end_date: <%= 1.day.ago %>
+  pick_up_date: <%= 9.day.ago %>
+  return_date: <%= 2.day.ago %>
   returned: true
+  picked_up: true
   release_form_id: 126
   kit_id: 3
   teacher_id: 7
-  volunteer_id: 2
+  user_check_in_id: 2
+  user_check_out_id: 2
 
