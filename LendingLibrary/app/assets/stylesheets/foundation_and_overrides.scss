@@ -64,11 +64,12 @@ $med-gray: #494949;
 $light-gray: #a0a0a0;
 
 $alert-color: #cc0000;
-$success-color: #dff0d8;
+$success-color: #b0e899;
 $warning-color: #f2dede;
 $info-color: #a0d3e8;
 
 
+$white: white;
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
 // $global-rounded: 1000px;
@@ -1163,8 +1164,8 @@ $topbar-link-color-active-hover: #fff;
 // $topbar-link-weight: normal;
 // $topbar-link-font-size: rem-calc(15);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
-$topbar-link-bg-hover: white;
-$topbar-link-bg-active: white;
+$topbar-link-bg-hover: $white;
+$topbar-link-bg-active: $white;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;
 
@@ -1205,6 +1206,19 @@ $topbar-hover-lines-transition: 0.35s ease;
 
 // $include-html-visibility-classes: $include-html-classes;
 
+// inner-title
+.inner-title{
+  position: relative;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 0.5rem 0;
+  background-color: transparent;
+  text-decoration-color: $primary-color;
+
+  color: $secondary-color;
+  // border-width: 3px;
+  text-decoration: underline;
+}
 // title_area style
 #title_area{
   position: relative;
@@ -1279,37 +1293,60 @@ $topbar-hover-lines-transition: 0.35s ease;
   }
 }
 
+// product-card
+$global-radius: 2rem;
 
+$card-info-bg: $white;
+$card-info-font-color: $secondary-color;
+$card-info-shadow: $secondary-color;
+$card-info-info-color: lighten($primary-color, 15%);
+$card-info-border-radius: $global-radius;
 
-.tl_name {
-  width: 225px;
+.product-card {
+
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+
+  width: 240px;
+  height: 300px;
+
+  background: $card-info-bg;
+  border: 1px solid $light-gray;
+  box-shadow: $card-info-shadow;
+  margin: 1rem 0;
+  overflow: hidden;
+  border-radius: $card-info-border-radius;
+
+}
+
+.product-card-thumbnail {
+  // display: block;
+  position: relative;
+}
+
+.product-card-title {
+  font-family: 'Open sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.product-card-desc {
+  color: $dark-gray;
   display: block;
-  position: absolute;
+  font-family: 'Open sans', sans-serif;
+  font-size: 0.85rem;
 }
 
-.tl_date {
-  width: 65px;
-  display: block;
-  position: absolute;
-  margin-left: 250px;
+.product-card-color-option {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
 }
 
-.tl_controls {
-  width:  68px;
-  display: block;
-  margin-left: 330px;
-}
 
-.supertiny {
-  font-size:5px;
-  text-decoration:none;
-}
-
-.add_link {
-  font-size:75%;
-  font-style: normal;
-  font-weight: normal;
-}
 
 #main_content {
   margin-top: 10px;
@@ -1342,13 +1379,20 @@ table th.centered, table td.centered {
     text-align: center;
 }
 
-.note {
-  font-style: italic;
-  font-size: 80%;
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
-li.well {
-  list-style-type: none;
-  margin-left: -10px;
+
+.bt-left{
+    position: relative;
+    left: -10%;
+}
+
+.bt-right{
+    position: relative;
+    right: -50%;
 }
 
 /* Cutting back the spacing on simple_form... */
@@ -1358,6 +1402,7 @@ li.well {
     text-align: right;
     width: 80px;
     font-size: 90%;
+    border: none;
 }
 .form-horizontal .controls {
     margin-left: 90px;
@@ -1369,6 +1414,7 @@ li.well {
     text-align: left;
     width: 10px;
     font-size: 90%;
+    border: none;
 }
 
 select.date { width: 90px; }

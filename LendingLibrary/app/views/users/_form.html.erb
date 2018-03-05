@@ -1,7 +1,7 @@
 
-<%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
-    <legend><%= controller.action_name.capitalize %> Reservation</legend>
+    <legend><%= controller.action_name.capitalize %> Your Profile</legend>
 
     <%= f.input :email %>
     <%= f.input :first_name %>
@@ -18,7 +18,7 @@
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', assignments_path, :class => 'button alert radius' %>
+      <%= link_to 'Cancel', users_path, :class => 'button alert radius' %>
     </div>
   </fieldset>
 <% end %>
