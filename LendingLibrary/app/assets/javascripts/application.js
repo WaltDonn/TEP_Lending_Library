@@ -13,8 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require foundation
 //= require_tree .
 
+$(function(){ $(document).foundation(); });
 
 // Sticky footer js
 // Thanks to Charles Smith for this -- http://foundation.zurb.com/forum/posts/629-sticky-footer
