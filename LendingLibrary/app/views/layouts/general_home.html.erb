@@ -27,22 +27,20 @@
   
   <!-- the title bar / navigation menu -->
   <%= render :partial => "partials/nav" %>
-
-  <!-- the page content -->
-  <div class="grid-container">
-    <div class="small-12 cell" id="main_content">
-      <%= render :partial => "partials/flash" %>
-        <%= yield %>
-    </div>
+  
+  <!-- the home page content -->
+  <%= render :partial => "partials/flash" %>
+  <div class="home-content">
+    <%= yield %>
   </div>
-
+  
   <!-- the footer of the page -->
   <footer id="footer">
     <div class="grid-container" id="footer-bar">
       <%= render partial: 'partials/footer' %>
     </div>
   </footer>
-
+  
   <%= javascript_include_tag "application" %>
 </body>
 

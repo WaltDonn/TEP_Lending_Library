@@ -1,17 +1,24 @@
-<div class="contain-to-grid">
-    <nav class="top-bar" data-topbar>
-      <section class="top-bar-section topbar-hover-lines">
-      <ul class="right">
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+  <div class="title-bar-title">Navigation Menu</div>
+</div>
 
-        <!-- <li><%= link_to "CHECK OUT", home_path %></li>
-        <li><%= link_to "CHECK IN", home_path %></li>
-        <li><%= link_to "RENTALS", reservations_path %></li> -->
-        <li><%= link_to "ABOUT", home_path %></li>
-        <li><%= link_to "KITS", items_path %></li>
-        <li><%= link_to "PROFILE", user_path(3)  %></li>
+<div class="top-bar" id="responsive-menu">
+  <div class="top-bar-left">
+      <%= link_to image_tag('logo.png', width:200, height:80), home_path%>
+  </div>
 
-        <li><%= link_to "LOGOUT", home_path  %></li>
-
-    </section>
-  </nav>
+  <div class="top-bar-right">
+        <ul class="menu">
+          <!-- <li><%= link_to "CHECK OUT", home_path %></li>
+          <li><%= link_to "CHECK IN", home_path %></li>
+          <li><%= link_to "RENTALS", reservations_path %></li> -->
+          <li><%= link_to "ABOUT", home_path %></li>
+          <li><%= link_to "KITS", items_path %></li>
+          <li><%= link_to "PROFILE", user_path(3)  %></li>
+          <li><%= link_to "LOGOUT", home_path  %></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
 </div>
