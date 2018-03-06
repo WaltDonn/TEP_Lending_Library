@@ -48,7 +48,9 @@ gem 'jquery-ui-rails'
 # Use Simple Form for views
 gem 'simple_form'
 # Use Foundation
-gem 'foundation-rails'
+gem 'foundation-rails', '~> 6.4'
+# Use font awesome icons
+gem 'font-awesome-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

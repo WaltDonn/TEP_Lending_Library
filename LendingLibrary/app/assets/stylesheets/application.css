@@ -13,3 +13,32 @@
  *= require simple_form
  *= require jquery-ui
  */
+
+:root {
+  --orange: #f99d31;
+  --blue: #0076c0;
+  --black: #333333;
+  --dark-grey: #707070;
+  --med-grey: #bab9b9;
+  --light-grey: #ebebeb;
+  --white: #f5f5f5;
+  --green: #51c31e;
+  --red: #de7f7f;
+
+  --footer-bg: #494949;
+  --primary: var(--orange);
+  --secondary: var(--blue);
+  --notice: var(--green);
+  --alert: var(--red);
+}
+
+footer {
+  background-color: var(--footer-bg);
+  color: var(--med-grey);
+  padding: 2rem 1rem;
+}
+
+.white.social {
+  color: var(--white);
+  padding: 0rem 0.4rem;
+}
