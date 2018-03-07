@@ -23,14 +23,16 @@
   </p>
 <% end %>
 
-<body>
+<body id="home-content" class="home-content overlay">
   
   <!-- the title bar / navigation menu -->
-  <%= render :partial => "partials/nav" %>
+  <div class="home-nav">
+    <%= render :partial => "partials/nav" %>
+  </div>
   
   <!-- the home page content -->
-  <%= render :partial => "partials/flash" %>
-  <div class="home-content">
+  <div>
+      <%= render :partial => "partials/flash" %>
     <%= yield %>
   </div>
   
@@ -42,6 +44,7 @@
   </footer>
   
   <%= javascript_include_tag "application" %>
+
 </body>
 
 </html>
