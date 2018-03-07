@@ -842,10 +842,21 @@ $tooltip-radius: $global-radius;
 $topbar-padding: 2rem;
 $topbar-background: $white;
 $topbar-submenu-background: $topbar-background;
-$topbar-title-spacing: 0.5rem 1rem 0.5rem 0;
+$topbar-title-spacing: 0.5rem 0.5rem 0.5rem 0;
 $topbar-input-width: 200px;
 $topbar-unstack-breakpoint: medium;
-
+// Style the top bar dropdown elements
+$topbar-dropdown-bg: $white;
+$topbar-dropdown-link-color: $white;
+// $topbar-dropdown-link-color-hover: $topbar-link-color-hover;
+// $topbar-dropdown-link-weight: $font-weight-normal;
+$topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-color: $white;
+$topbar-dropdown-toggle-alpha: .4;
+$topbar-link-color: $white;
+$topbar-link-color-active: $white;
+$topbar-link-color-active-hover: $white;
+// $topbar-link-weight: $font-weight-normal;
 // 56. Xy Grid
 // -----------
 
@@ -860,4 +871,3 @@ $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;
 $grid-container-max: $global-width;
 $block-grid-max: 8;
-

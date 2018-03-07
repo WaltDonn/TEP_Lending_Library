@@ -54,3 +54,234 @@
 //
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
+
+
+// $table-row-font-color: $primary-color;
+
+
+
+// $topbar-bg-color: white;
+// $topbar-bg: white;
+$topbar-hover-lines-border-width: 2px;
+$topbar-color: $secondary-color;
+// Height and margin
+// $topbar-height: 45px;
+$topbar-margin-bottom: 0;
+// Set the link colors and styles for top-level nav
+$topbar-link-color: $secondary-color;
+$topbar-link-color-hover: scale-color($secondary-color, $lightness: -30%);
+$topbar-link-color-active: text-decoration(underline);
+$topbar-link-color-active-hover: #fff;
+$topbar-hover-lines-transition: all 0.35s ease;
+
+
+$dropdown-menu-item-color-active: $secondary-color;
+// inner-title
+#responsive-menu ul{
+  color: $secondary-color;
+  // background: $secondary-color;
+}
+
+#responsive-menu li{
+
+  // color: $topbar-link-color;
+  // background: $secondary-color;
+}
+
+
+// Nav bar effects
+.topbar-hover-lines {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 50;
+  letter-spacing: 0px;
+  transition: $topbar-hover-lines-transition;
+
+  ul li{
+    position: relative;
+  }
+
+  li ul{
+    position: absolute;
+  }
+
+  li.active > a,
+  ul.active > a {
+    color: $primary-color;
+  }
+
+  a:before,
+  a::after {
+    height: $topbar-hover-lines-border-width;
+    position: absolute;
+    content: '';
+    transition: $topbar-hover-lines-transition;
+    background-color: $primary-color;
+    width: 0;
+    top: 40px;
+  }
+
+  a::before {
+    left: 0;
+  }
+
+  a::after {
+    top: 40px;
+    right: 0;
+  }
+
+  a:hover,
+  li.active > a,
+  ul.active > a {
+    transition: $topbar-hover-lines-transition;
+  }
+
+  a:hover::before,
+  .active a::before,
+  a:hover::after,
+  .active a::after {
+    width: 100%;
+  }
+}
+
+// product-card
+// $global-radius: 2rem;
+//
+// $card-info-bg: $white;
+// $card-info-font-color: $secondary-color;
+// $card-info-shadow: $secondary-color;
+// $card-info-info-color: lighten($primary-color, 15%);
+// $card-info-border-radius: $global-radius;
+//
+// .product-card {
+//
+//   padding: 1rem;
+//   margin-bottom: 1.5rem;
+//
+//   width: 240px;
+//   height: 300px;
+//
+//   background: $card-info-bg;
+//   border: 1px solid $light-gray;
+//   box-shadow: $card-info-shadow;
+//   margin: 1rem 0;
+//   overflow: hidden;
+//   border-radius: $card-info-border-radius;
+//
+// }
+//
+// .product-card-thumbnail {
+//   // display: block;
+//   position: relative;
+// }
+//
+// .product-card-title {
+//   font-family: 'Open sans', sans-serif;
+//   font-size: 0.9rem;
+//   font-weight: 600;
+//   line-height: 1.45rem;
+//   margin-top: 1rem;
+//   margin-bottom: 0;
+// }
+//
+// .product-card-desc {
+//   color: $dark-gray;
+//   display: block;
+//   font-family: 'Open sans', sans-serif;
+//   font-size: 0.85rem;
+// }
+//
+// .product-card-color-option {
+//   display: inline-block;
+//   height: 25px;
+//   width: 25px;
+// }
+//
+//
+//
+// .center {
+//     display: block;
+//     margin-left: auto;
+//     margin-right: auto;
+// }
+//
+//
+//
+// #profile table, th, td{
+//   margin-bottom: 10px;
+//   padding: 5px;
+//   background-color: $white;
+//   text-align: center;
+//   font-family: 'Open sans', sans-serif;
+//   font-size: 0.85rem;
+//   font-weight: 400;
+// }
+//
+// #profile th{
+//   color: $medium-gray;
+// }
+//
+// #profile td{
+//   color: $table-row-font-color;
+// }
+//
+// .avg{
+//   max-width: 400px;
+// }
+// .avg h4{
+//   text-align: center;
+//   font-family: 'Open sans', sans-serif;
+//   font-size: 0.95rem;
+// }
+//
+// .avg p{
+//   text-align: center;
+//   font-family: 'Open sans', sans-serif;
+//   font-size: 0.70rem;
+//   line-height: 0.1rem;
+// }
+//
+// fieldset{
+//   position: relative;
+//   left: auto;
+//   right: auto;
+//   width: 700px;
+//   margin-bottom: 10px;
+//   padding: 5px;
+// }
+//
+// /* Cutting back the spacing on simple_form... */
+// .form-horizontal .control-label {
+//     float: left;
+//     padding-top: 3px;
+//     text-align: right;
+//     width: 80px;
+//     font-size: 90%;
+//     border: none;
+// }
+// .form-horizontal .controls {
+//     margin-left: 90px;
+// }
+//
+// .form-horizontal .control-label .avg {
+//     float: left;
+//     padding-top: 3px;
+//     text-align: left;
+//     width: 10px;
+//     font-size: 90%;
+//     border: none;
+// }
+//
+// select.date { width: 90px; }
+// select.time { width: 90px; }
+//
+// .form-actions {
+//   background-color: #FFF;
+// }
+//
+// .form-actions-min {
+//   background-color: #FFF;
+//   border: none;
+//   padding: 10px 10px 10px 180px;
+//   /*padding-left: 180px;*/
+// }
