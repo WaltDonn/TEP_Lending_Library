@@ -35,6 +35,7 @@ class UserTest < ActiveSupport::TestCase
 
 	test 'invalid without pw' do
 		#I think devise will handle this for us?
+		# Walter -- kk im going to leave this as a fail to keep us reminded though
 		#this should only happen on edit, and devise handles the edit /update logic
 		@user.encrypted_password = nil
 		refute @user.valid?
