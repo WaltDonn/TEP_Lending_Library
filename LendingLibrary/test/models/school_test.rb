@@ -111,6 +111,7 @@ class SchoolTest < ActiveSupport::TestCase
 
 	test 'no outstanding reservations' do
 		#Alex -- why is this a validation? 
+		# private method, so cant access it
 
 		# school with no teachers should have NO outstanding
 		assert @school3.no_outstanding_reservations
