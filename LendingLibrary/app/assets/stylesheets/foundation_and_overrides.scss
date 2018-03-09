@@ -56,5 +56,74 @@
 // @include motion-ui-animations;
 
 .top-bar ul {
+  background-color: transparent;
+}
+
+.top-bar ul > li > ul {
+  background-color: rgba($white, 0.65);
+}
+
+// nav bar
+
+$topbar-hover-lines-transition: 0.35s ease;
+$topbar-hover-lines-border-width: 2px;
+
+// Nav bar effects
+.topbar-hover-lines {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: $topbar-hover-lines-transition;
+
+  li a {
+    padding: 0.5rem 0;
+    color: rgba($secondary-color, 0.5);
+    position: relative;
+    margin-right: 0.5rem;
+  }
+
+  li:first-child a {
+    margin-left: 0rem;
+    margin-right: 1rem;
+  }
+
+  li.active > a {
     background-color: transparent;
+  }
+
+  a:before,
+  a::after {
+    height: $topbar-hover-lines-border-width;
+    position: absolute;
+    content: '';
+    transition: $topbar-hover-lines-transition;
+    // background-color: $primary-color;
+    bottom: 0;
+    // border-bottom: $primary-color solid white;
+    width: 0;
+  }
+
+  a::before {
+    // top: 0;
+    left: 0;
+  }
+
+  a::after {
+    bottom: 0;
+    right: 0;
+  }
+
+  a:hover,
+  li.active > a {
+    color: $body-font-color;
+    transition: $topbar-hover-lines-transition;
+  }
+
+  a:hover::before,
+  .active a::before,
+  a:hover::after,
+  .active a::after {
+    width: 100%;
+  }
 }

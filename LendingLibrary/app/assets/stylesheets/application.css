@@ -39,6 +39,10 @@ footer {
   padding: 2rem 1rem;
 }
 
+footer a{
+  color: $primary-color;
+}
+
 .white.social {
   color: var(--white);
   padding: 0rem 0.4rem;
