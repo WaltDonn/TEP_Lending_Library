@@ -16,7 +16,6 @@ $alert: $red;
 body {
   background-color: $white;
   color: $black;
-  margin: 33px;
   font-family: helvetica, verdana, arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -35,7 +34,7 @@ pre {
 }
 
 a {
-  color: $black;
+  color: $orange;
 
   &:visited {
     color: $dark-grey;

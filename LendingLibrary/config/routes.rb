@@ -35,4 +35,7 @@ Rails.application.routes.draw do
   
   get '*a', to: 'errors#routing'
 
+    # Set the root url
+    root :to => 'home#home'
+
 end
