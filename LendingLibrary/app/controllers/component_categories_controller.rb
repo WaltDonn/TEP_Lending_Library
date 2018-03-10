@@ -1,6 +1,7 @@
 class ComponentCategoriesController < ApplicationController
   before_action :set_component_category, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /component_categories
   # GET /component_categories.json
   def index

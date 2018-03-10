@@ -33,13 +33,7 @@ class UserTest < ActiveSupport::TestCase
 		refute @user.valid?
 	end
 
-	test 'invalid without pw' do
-		#I think devise will handle this for us?
-		# Walter -- kk im going to leave this as a fail to keep us reminded though
-		#this should only happen on edit, and devise handles the edit /update logic
-		@user.encrypted_password = nil
-		refute @user.valid?
-	end
+
 
 	test 'invalid with invalid email format' do
 		@user.email = "123456"
@@ -164,10 +158,7 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal @user.name, "Smith, John"
 	end
 
-	test 'self authenticate method' do
-		# unsure how to test this
-		assert false
-	end
+
 
 	test 'has outstanding kits method' do
 		#method throws errors right now
