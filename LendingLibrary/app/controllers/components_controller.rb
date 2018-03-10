@@ -1,6 +1,7 @@
 class ComponentsController < ApplicationController
   before_action :set_component, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /components
   # GET /components.json
   def index

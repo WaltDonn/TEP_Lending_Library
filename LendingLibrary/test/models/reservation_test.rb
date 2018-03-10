@@ -10,6 +10,7 @@ class ReservationTest < ActiveSupport::TestCase
 
 	test 'valid reservation' do
 		assert @res.valid?
+	
 		assert @res3.valid?
 	end
 
@@ -216,7 +217,7 @@ class ReservationTest < ActiveSupport::TestCase
 
 	test 'teacher cannot rent a kit if they already have one out' do
 		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, returned: false, release_form_id: 001, kit_id: 1, teacher_id: 3 )
-		refute @res.valid?
+		refute @extra_res.valid?
 	end
 
 
