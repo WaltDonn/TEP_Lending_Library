@@ -118,7 +118,7 @@ class Reservation < ApplicationRecord
             return false
         end
         check = self.teacher.owned_reservations.select{|r| r.returned == false}
-        if(check.size > 1)
+        if(check.size > 0)
             errors.add(:start_date, "Teacher already has outstanding reservations")
             return false
         end
