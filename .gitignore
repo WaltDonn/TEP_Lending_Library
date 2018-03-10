@@ -46,6 +46,9 @@ LendingLibrary/.byebug_history
 # Ignore node_modules
 LendingLibrary/node_modules/
 
+#Ignore ruby version file
+LendingLibrary/.ruby-version
+
 # Ignore application configuration
 LendingLibrary/config/application.yml
 
