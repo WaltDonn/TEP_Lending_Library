@@ -13,6 +13,7 @@
  *= require foundation_and_overrides
  *= require simple_form
  *= require jquery-ui
+ *= require_tree .
  */
 
 :root {
@@ -37,6 +38,10 @@ footer {
   background-color: var(--footer-bg);
   color: var(--med-grey);
   padding: 2rem 1rem;
+}
+
+footer a{
+  color: $primary-color;
 }
 
 .white.social {
