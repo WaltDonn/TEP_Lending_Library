@@ -21,7 +21,7 @@ class Reservation < ApplicationRecord
     belongs_to :kit
     belongs_to :teacher,   :class_name => 'User'
     belongs_to :user_check_in, :class_name => 'User', optional: true
-    belongs_to :user_check_out, :class_name => 'User'
+    belongs_to :user_check_out, :class_name => 'User', optional: true
     
     scope :open_reservations,     -> { where(returned: false) }
     scope :get_month,             ->(month){where('extract(month from pick_up_date) = ?', month)}

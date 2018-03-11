@@ -10,14 +10,14 @@ one:
   picked_up: true
   release_form_id: 123
   kit_id: 1
-  teacher_id: 1
+  teacher_id: 4
   user_check_in_id: 2
   user_check_out_id: 2
 two:
   start_date: <%= 10.day.ago %>
-  end_date: <%= 1.day.ago %>
+  end_date: <%= 1.day.from_now %>
   pick_up_date: <%= 9.day.ago %>
-  return_date: nil
+  return_date: <%= 1.day.from_now %>
   returned: false
   picked_up: true
   release_form_id: 124

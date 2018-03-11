@@ -124,4 +124,26 @@ class SchoolTest < ActiveSupport::TestCase
 		assert_equal @school4.users.map{|c| c.is_active}, [false]
 	end
 
+	test 'should return proper number of owned reservations' do
+		assert_equal 2, @school.total_number_reservations
+		assert_equal 1, @school4.total_number_reservations
+		assert_equal 0, @school2.total_number_reservations
+	end
+
+	test 'should return proper number of current reservations' do
+		assert_equal 1, @school.number_of_current_reservations
+		assert_equal 0, @school4.number_of_current_reservations
+		assert_equal 0, @school2.number_of_current_reservations
+	end
+
+	test 'should not allow an inactive school with outstanding reservations' do
+		assert @school3.valid?
+		@school3.is_active = false
+		assert @school3.valid?
+
+		assert @school.valid?
+		@school.is_active = false
+		refute @school.valid?
+	end
+
 end

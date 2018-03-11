@@ -122,8 +122,6 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal User.alphabetical.map{|c| c.id}, [5, 8, 7, 3, 1, 2, 4, 6]
 	end
 
-	#test active/inactive scopes?
-
 	test 'there should be 2 employees' do
 		assert_equal 2, User.employees.size
 	end
@@ -158,19 +156,12 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal @user.name, "Smith, John"
 	end
 
-	test 'self authenticate method' do
-		# goes by diff name in devise, figure that out 
-		assert false
-	end
-
 	test 'has outstanding kits method' do
-		#method throws errors right now
 		assert @user3.has_outstanding_kit
 	end
 
 
 	test 'class size present method' do
-		#failing because not being case insensitive throughout model i.e. Teacher != teacher
 		assert @user3.valid?
 		@user3.class_size = nil
 		refute @user3.valid?
