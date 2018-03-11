@@ -32,16 +32,34 @@ class KitTest < ActiveSupport::TestCase
 
 # test methods
 	
-	test 'test black out all and light up all' do
+	test 'test black out all' do
 		Kit.blackout_all
+
+		@kit.reload
+		@kit2.reload
+		@kit3.reload
+		@kit4.reload
+		@kit5.reload
+		@kit6.reload
+
 		assert @kit.blackout
 		assert @kit2.blackout
 		assert @kit3.blackout
 		assert @kit4.blackout
 		assert @kit5.blackout
 		assert @kit6.blackout
-		
+	end
+
+	test 'test light up all' do
 		Kit.lightup_all
+
+		@kit.reload
+		@kit2.reload
+		@kit3.reload
+		@kit4.reload
+		@kit5.reload
+		@kit6.reload
+
 		refute @kit.blackout
 		refute @kit2.blackout
 		refute @kit3.blackout

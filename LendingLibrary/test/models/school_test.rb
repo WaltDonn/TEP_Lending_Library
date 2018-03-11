@@ -71,8 +71,8 @@ class SchoolTest < ActiveSupport::TestCase
 
 # test relationships
 
-	test 'school 1 should have 2 teachers' do
-		assert_equal 2, @school.users.size
+	test 'school 1 should have 3 teachers' do
+		assert_equal 3, @school.users.size
 	end
 
 # test scopes
@@ -109,36 +109,19 @@ class SchoolTest < ActiveSupport::TestCase
 		refute @school7.valid?
 	end
 
-	test 'no outstanding reservations' do
-		#Alex -- why is this a validation? 
 
-		# school with no teachers should have NO outstanding
-		assert @school3.no_outstanding_reservations
-
-		# school with teachers with no reservations should have NO outstanding
-		assert @school2.no_outstanding_reservations
-
-		# school with teachers with no outstanding should have NO outstanding
-		assert @school4.no_outstanding_reservations
-
-		# school with outstanding should have outstanding
-		refute @school1.no_outstanding_reservations
-	end
 
 	test 'should set all teachers to inactive if set school to inactive' do
+		#remember, will throw error if any teachers have outstanding reservations
+		@school2.is_active = false
+		assert_equal @school2.users.map{|c| c.is_active}, [true]
+		@school2.save
+		assert_equal @school2.users.map{|c| c.is_active}, [false]
+
 		@school4.is_active = false
 		assert_equal @school4.users.map{|c| c.is_active}, [true]
 		@school4.save
 		assert_equal @school4.users.map{|c| c.is_active}, [false]
-
-		# i think issues with no outstanding reservations is affecting this?
-			#Yes, teacher 3 has an oustandind reservation of id 2
-		#Walt run the below line - this should help with your testing
-		#byebug
-		@school.is_active = false
-		assert_equal @school.users.map{|c| c.is_active}, [true, true]
-		@school.save
-		assert_equal @school.users.map{|c| c.is_active}, [false, false]
 	end
 
 end
