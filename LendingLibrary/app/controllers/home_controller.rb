@@ -10,8 +10,4 @@ class HomeController < ApplicationController
 
   def privacy
   end
-  
-  #Validate employee
-  def reports
-  end
 end

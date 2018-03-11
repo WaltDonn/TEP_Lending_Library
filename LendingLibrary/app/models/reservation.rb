@@ -10,7 +10,7 @@ class Reservation < ApplicationRecord
     validates_presence_of :teacher_id
     validates :returned, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     validates :picked_up, inclusion: { in: [ true, false ] , message: "Must be true or false" }
-    validate :only_one_open
+    validate :only_one_open, :on => :create
     validate :checkout_present
     validate :checkin_present_and_returned
     validate :valid_renter
@@ -24,7 +24,7 @@ class Reservation < ApplicationRecord
     belongs_to :user_check_out, :class_name => 'User'
     
     scope :open_reservations,     -> { where(returned: false) }
-    scope :get_month,             -> (month){where('extract(month from pick_up_date) = ?', month)}
+    scope :get_month,             ->(month){where('extract(month from pick_up_date) = ?', month)}
     scope :returning_today,       -> { where(return_date: Date.current)}
     scope :picking_up_today,      -> { where(pick_up_date: Date.current)}  
 
@@ -117,9 +117,9 @@ class Reservation < ApplicationRecord
             errors.add(:teacher_id, "Teacher not present")
             return false
         end
-        check = self.teacher.owned_reservations.select{|r| r.returned == false}
-        if(check.size > 1)
-            errors.add(:start_date, "Teacher already has outstanding reservations")
+        check = self.teacher.owned_reservations.select{|r| r.returned == false && r.id != self.id}
+        if(check.size > 0)
+            errors.add(:teacher_id, "Teacher already has outstanding reservations")
             return false
         end
         return true

@@ -109,22 +109,7 @@ class SchoolTest < ActiveSupport::TestCase
 		refute @school7.valid?
 	end
 
-	test 'no outstanding reservations' do
-		#Alex -- why is this a validation? 
-		# private method, so cant access it
 
-		# school with no teachers should have NO outstanding
-		assert @school3.no_outstanding_reservations
-
-		# school with teachers with no reservations should have NO outstanding
-		assert @school2.no_outstanding_reservations
-
-		# school with teachers with no outstanding should have NO outstanding
-		assert @school4.no_outstanding_reservations
-
-		# school with outstanding should have outstanding
-		refute @school1.no_outstanding_reservations
-	end
 
 	test 'should set all teachers to inactive if set school to inactive' do
 		#remember, will throw error if any teachers have outstanding reservations
