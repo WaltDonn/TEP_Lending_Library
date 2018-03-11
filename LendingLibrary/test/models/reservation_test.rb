@@ -123,24 +123,24 @@ class ReservationTest < ActiveSupport::TestCase
 		# return false
 		# building below may be failing for other reasons, need to check the assert cases
 
-		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: Date.tomorrow, return_date: nil, returned: false, picked_up: false, release_form_id: 1, kit_id: 3, teacher_id: 7) 
+		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: Date.tomorrow, return_date: 10.days.from_now, returned: false, picked_up: false, release_form_id: 1, kit_id: 3, teacher_id: 7) 
 		@extra_res.save!
 		#above causes an error because model expecting non-nil return dates. 
 		#im still of the opinion that this variable is recorded on dropoff. what do u think?
 		assert @extra_res.valid?
 		@extra_res.delete
 
-		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: Date.tomorrow, return_date: nil, returned: false, picked_up: false, release_form_id: 1, kit_id: 4, teacher_id: 7)
+		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: Date.tomorrow, return_date: 10.days.from_now, returned: false, picked_up: false, release_form_id: 1, kit_id: 4, teacher_id: 7)
 		@extra_res.save!
 		refute @extra_res.valid?
 		@extra_res.delete
 
-		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: Date.tomorrow, return_date: nil, returned: false, picked_up: false, release_form_id: 2, kit_id: 5, teacher_id: 7)
+		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: Date.tomorrow, return_date: 10.days.from_now, returned: false, picked_up: false, release_form_id: 2, kit_id: 5, teacher_id: 7)
 		@extra_res.save!
 		refute @extra_res.valid?
 		@extra_res.delete
 
-		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: Date.tomorrow, return_date: nil, returned: false, picked_up: false, release_form_id: 3, kit_id: 6, teacher_id: 7)
+		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: Date.tomorrow, return_date: 10.days.from_now, returned: false, picked_up: false, release_form_id: 3, kit_id: 6, teacher_id: 7)
 		@extra_res.save!
 		refute @extra_res.valid?
 		@extra_res.delete

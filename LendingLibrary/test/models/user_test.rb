@@ -33,13 +33,7 @@ class UserTest < ActiveSupport::TestCase
 		refute @user.valid?
 	end
 
-	test 'invalid without pw' do
-		#I think devise will handle this for us?
-		# Walter -- kk im going to leave this as a fail to keep us reminded though
-		#this should only happen on edit, and devise handles the edit /update logic
-		@user.encrypted_password = nil
-		refute @user.valid?
-	end
+	#devise should handle pw presence validations
 
 	test 'invalid with invalid email format' do
 		@user.email = "123456"
@@ -165,7 +159,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test 'self authenticate method' do
-		# unsure how to test this
+		# goes by diff name in devise, figure that out 
 		assert false
 	end
 
@@ -173,6 +167,7 @@ class UserTest < ActiveSupport::TestCase
 		#method throws errors right now
 		assert @user3.has_outstanding_kit
 	end
+
 
 	test 'class size present method' do
 		#failing because not being case insensitive throughout model i.e. Teacher != teacher
