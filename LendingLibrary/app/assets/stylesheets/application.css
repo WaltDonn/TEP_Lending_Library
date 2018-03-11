@@ -40,8 +40,8 @@ footer {
   padding: 2rem 1rem;
 }
 
-footer a{
-  color: $primary-color;
+footer a {
+  color: var(--primary);
 }
 
 .white.social {

@@ -5,20 +5,39 @@
 @import 'settings';
 @import 'foundation';
 
-#profile table, th, td{
-  margin-bottom: 10px;
-  padding: 5px;
-  background-color: $white;
-  text-align: center;
-  font-family: 'Open sans', sans-serif;
-  font-size: 0.85rem;
+#profile {
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  th {
+    text-align: left;
+  }
+}
+
+#user-profile, table, th, td, tr, thead {
+  background-color: $none;
+  border-color: $none;
+  font-size: 1rem;
   font-weight: 400;
+
+  th {
+    color: $dark-gray;
+    text-align: right;
+    padding-bottom: 1.5rem;
+  }
+  
+  td {
+    color: $primary-color;
+    padding-bottom: 1.5rem;
+  }
 }
 
-#profile th{
-  color: $medium-gray;
+#profile-title-box {
+  color: $white;
+  background-color: $primary-color;
+  padding: 2rem 0rem;
 }
 
-#profile td{
-  color: $primary-color;
+#user-information {
+  background-color: rgba($color: $primary-color, $alpha: 0.2);
+  padding: 1rem 0rem;
 }
