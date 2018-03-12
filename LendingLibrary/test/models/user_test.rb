@@ -1,11 +1,16 @@
 require 'test_helper'
 
-
 class UserTest < ActiveSupport::TestCase
   # test validations
 	def setup
 		@user = users(:one)
+		@user2 = users(:two)
 		@user3 = users(:three)
+		@user4 = users(:four)
+		@user5 = users(:five)
+		@user6 = users(:six)
+		@user7 = users(:seven)
+		@user8 = users(:eight)
 	end
 
 	test 'valid user' do
@@ -181,6 +186,17 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal "412-000-9999", @user.phone_num
 		@user.save
 		assert_equal "4120009999", @user.phone_num
+	end
+
+	test 'can rent method' do
+		assert @user.can_rent
+		refute @user2.can_rent
+		assert @user3.can_rent
+		assert @user4.can_rent
+		assert @user5.can_rent
+		assert @user6.can_rent
+		assert @user7.can_rent
+		refute @user8.can_rent
 	end
 
 

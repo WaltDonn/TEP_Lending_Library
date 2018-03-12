@@ -120,7 +120,6 @@ class ReservationTest < ActiveSupport::TestCase
 	end
 
 	test 'reservations made to kits that are inactive or blacked out are not valid' do
-		# this should be a validation on_create, not a general validation because what if kits from old reservations get blacked out or become inactive?
 
 		@extra_res = Reservation.new(start_date: Date.tomorrow, end_date: 10.days.from_now, pick_up_date: Date.tomorrow, return_date: 10.days.from_now, returned: false, picked_up: false, release_form_id: 1, kit_id: 3, teacher_id: 7) 
 		assert @extra_res.valid?
@@ -147,7 +146,6 @@ class ReservationTest < ActiveSupport::TestCase
 
 		#volunteer_id nil but returned
 		@extra_res = Reservation.new(start_date: Date.current, end_date: Date.tomorrow, pick_up_date: Date.current, return_date: Date.current, returned: true, picked_up: true, release_form_id: 1, kit_id: 3, teacher_id: 7, user_check_in_id: 2 )
-		#@extra_res.save!
 		refute @extra_res.valid?
 		@extra_res.delete
 

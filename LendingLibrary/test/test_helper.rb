@@ -1,7 +1,7 @@
 require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter '/app/models/application_record.rb'
-end
+SimpleCov.start 'rails' #do
+#   add_filter '/app/models/application_record.rb'
+# end
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
