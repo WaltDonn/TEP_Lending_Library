@@ -9,11 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require simple_form
  *= require_tree .
  *= require foundation_and_overrides
- *= require simple_form
  *= require jquery-ui
- *= require_tree .
  */
 
 :root {
