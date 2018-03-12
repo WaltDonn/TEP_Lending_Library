@@ -8,7 +8,6 @@ class ComponentTest < ActiveSupport::TestCase
 	end
 
 	test 'valid component' do
-	
 		assert @comp.valid?
 	end
 
