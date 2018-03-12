@@ -1,34 +1,36 @@
 
+<div class="grid-x">
+  <div class="cell large-offset-1 small-10">
+    <fieldset>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Checkout Date</th>
+            <th>Return Date</th>
+            <th>Current Status</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            <td><%= link_to image_tag('osmo.png', width:180, height:180), item_path(@item=Item.find(1))%></td>
+            <td>From: <%= Reservation.find(1).pick_up_date.strftime("%D") %></td>
+            <td>To: <%= Reservation.find(1).return_date.strftime("%D") %></td>
+            <td> <%= Reservation.find(1).picked_up ? "Picked Up" : "Not Yet Picked Up" %></td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </fieldset>
+  </div>
+</div>
 
-<fieldset class='center'>
-  <legend>My Rentals</legend>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Checkout Date</th>
-        <th>Return Date</th>
-        <th>Current Status</th>
-      </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-          <td><%= link_to image_tag('osmo.png', width:180, height:180), item_path(@item=Item.find(1))%></td>
-          <td><%= Reservation.find(1).pick_up_date %></td>
-          <td><%= Reservation.find(1).return_date %></td>
-          <td><%= Reservation.find(1).picked_up %></td>
-        </tr>
-
-    </tbody>
-  </table>
-
-
-</fieldset>
-
-<div class="row">
-    <div class="small-3 columns">
-      <%= link_to 'Go back', user_path(@user), :class => 'button radius info'  %>
-    </div>
+<br>
+<div class="grid-x">
+  <div class="cell auto"></div>
+  <div class="small-1 cell">
+    <%= link_to 'Go back', user_path(@user), :class => 'button radius info'  %>
+  </div>
+  <div class="small-1 cell"></div>
 </div>

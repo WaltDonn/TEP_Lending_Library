@@ -9,8 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require foundation_and_overrides
  *= require simple_form
+ *= require_tree .
+ *= require foundation_and_overrides
  *= require jquery-ui
  */
 
@@ -38,7 +39,15 @@ footer {
   padding: 2rem 1rem;
 }
 
+footer a {
+  color: var(--primary);
+}
+
 .white.social {
   color: var(--white);
   padding: 0rem 0.4rem;
+}
+
+.top-bar-left img {
+  transform: scale(0.8, 0.8);
 }

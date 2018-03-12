@@ -48,3 +48,7 @@ node_modules/
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore VS code settings
+.vscode/
+.vscode/settings.json

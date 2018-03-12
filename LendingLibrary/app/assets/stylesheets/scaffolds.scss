@@ -4,7 +4,7 @@ $black: #333333;
 $dark-grey: #707070;
 $med-grey: #BAB9B9;
 $light-grey: #EBEBEB;
-$white: #F5F5F5;
+$white: white;
 $green: #51C31E;
 $red: #DE7F7F;
 
@@ -16,7 +16,6 @@ $alert: $red;
 body {
   background-color: $white;
   color: $black;
-  margin: 33px;
   font-family: helvetica, verdana, arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -35,7 +34,7 @@ pre {
 }
 
 a {
-  color: $black;
+  color: $orange;
 
   &:visited {
     color: $dark-grey;

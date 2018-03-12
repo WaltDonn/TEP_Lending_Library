@@ -1,41 +1,50 @@
 
-
-<fieldset class='center'>
-  <legend>Your Profile Information</legend>
-  <table id="user-profile">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <td><%=  @user.name  %></td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td><%=  @user.email %></td>
-      </tr>
-      <tr>
-        <th>Phone</th>
-        <td><%=  @user.phone_num %></td>
-      </tr>
-      <tr>
-        <th>School</th>
-        <td><%=  @user.school.name %></td>
-      </tr>
-      <tr>
-        <th>Class Size</th>
-        <td><%=  @user.class_size%></td>
-      </tr>
-    </thead>
-
-  </table>
-
-
-</fieldset>
-
-<div class="row">
-    <div class="small-3 columns">
+<div class="grid-container" id="profile">
+  <div class="grid-x" id="profile-box">
+    <div class="large-offset-1 small-3" id="profile-title-box">
+      <br>
+      <h1 class="large-offset-1"> User Information </h1>
+    </div>
+    <fieldset class='cell small-7' id="user-information">
+      <br>
+      <table class="cell small-5" id="user-profile">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <td><%=  @user.name  %></td>
+          </tr>
+          <tr>
+            <th>School Email</th>
+            <td><%=  @user.email %></td>
+          </tr>
+          <tr>
+            <th>Phone Number</th>
+            <td><%=  @user.phone_num %></td>
+          </tr>
+          <tr>
+            <th>School</th>
+            <td><%=  @user.school.name %></td>
+          </tr>
+          <tr>
+            <th>Class Size</th>
+            <td><%=  @user.class_size%></td>
+          </tr>
+        </thead>
+      </table>
+    </fieldset>
+  </div>
+  <br>
+  
+  <div class="grid-x">
+  
+    <div class="cell auto"></div>
+    <div class="small-3 cell">
       <%= link_to 'View Rental History', user_path(@user), :class => 'button radius info'  %>
       <%= link_to 'Edit Information', edit_user_path(@user), :class => 'button radius'  %>
     </div>
+    <div class="small-1 cell"></div>
+  </div>
+  <hr />
+  <br>
+  <%= render :partial=>'rental_history', user: @user %>
 </div>
-
-<%= render :partial=>'rental_history', user: @user %>
