@@ -55,7 +55,7 @@
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
 
-
+// Nav bar background
 .top-bar ul {
     background-color: transparent;
 }
@@ -64,11 +64,10 @@
     background-color: rgba($white, 0.65);
 }
 
+// Nav bar hover line effects
 $topbar-hover-lines-border-width: 2px;
 $topbar-hover-lines-transition: all 0.35s ease;
 
-
-// Nav bar effects
 .topbar-hover-lines {
   text-align: center;
   font-weight: 50;
@@ -85,7 +84,7 @@ $topbar-hover-lines-transition: all 0.35s ease;
 
   li.active > a,
   ul.active > a {
-    // color: $primary-color;
+    color: $primary-color;
   }
 
   a:before,
