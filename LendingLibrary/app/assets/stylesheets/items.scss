@@ -2,59 +2,102 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 @import 'settings';
 @import 'foundation';
 
+
+// inner title style
+.inner-title h2{
+  :hover{
+    background-color: transparent;
+  }
+}
+
+.inner-title h2 > a{
+  color: var(--primary);
+}
+
+.uline{
+  padding-bottom: 0px;
+  height: 40px;
+  border-bottom: 2px solid var(--secondary);
+  display:inline-block;
+  margin-bottom: 3rem;
+}
+
 // product-card
-$global-radius: 2rem;
-
 $card-info-bg: $white;
-$card-info-font-color: $secondary-color;
-$card-info-shadow: $secondary-color;
+$card-info-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
+$card-info-hover-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
 $card-info-info-color: lighten($primary-color, 15%);
-$card-info-border-radius: $global-radius;
+$card-info-border-radius: 1rem;
+$card-info-button-radius: 2rem;
 
-.product-card {
-
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-
-  width: 240px;
-  height: 300px;
-
-  background: $card-info-bg;
-  border: 1px solid $light-gray;
-  box-shadow: $card-info-shadow;
-  margin: 1rem 0;
-  overflow: hidden;
-  border-radius: $card-info-border-radius;
-
+.grid-x{
+  @include xy-grid();
+  @include xy-grid-container(90%);
+  @include xy-cell($breakpoint: (small: 1, medium: 4, large: 5))
 }
 
-.product-card-thumbnail {
-  // display: block;
-  position: relative;
-}
-
-.product-card-title {
-  font-family: 'Open sans', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  line-height: 1.45rem;
-  margin-top: 1rem;
+.product-card-container{
+  margin-top: 0;
+  margin-right: 0.625rem;
+  margin-left: 0.625rem;
   margin-bottom: 0;
 }
 
-.product-card-desc {
-  color: $dark-gray;
-  display: block;
-  font-family: 'Open sans', sans-serif;
-  font-size: 0.85rem;
+.product-card {
+  padding: 0.5rem 0rem 0.5rem 0rem;
+  margin-bottom: 1rem;
+  width: 240px;
+  height: 320px;
+  background: $card-info-bg;
+  border: 1.5px solid $light-gray;
+  box-shadow: $card-info-shadow;
+  overflow: hidden;
+  border-radius: $card-info-border-radius;
+  transition: 0.3s;
 }
 
-.product-card-color-option {
-  display: inline-block;
-  height: 25px;
-  width: 25px;
+.product-card:hover{
+  box-shadow: $card-info-hover-shadow;
+}
+
+.product-card-thumbnail {
+  margin-top: -5px;
+  text-align: center;
+  display: block;
+  position: relative;
+  border-bottom: 2px solid $light-gray;
+  width: 110%;
+}
+
+.product-card-title {
+  width: 98%;
+  text-align: center;
+  color: $dark-gray;
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.button {
+  position: absolute;
+  width: 100px;
+  background-color: transparent;
+  box-shadow: 0;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border: 1.5px solid $light-gray;
+  border-radius: $card-info-button-radius;
+}
+
+.product-card-button {
+  padding: 0.25rem;
+  margin: 0rem 6rem 2rem 0rem;
+  text-align: center;
+}
+
+.product-card-button:hover{
+  box-shadow: 0;
 }

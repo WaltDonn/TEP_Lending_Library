@@ -3,7 +3,7 @@
   <div class="title-bar-title">Navigation Menu</div>
 </div>
 
-<div class="top-bar" id="responsive-menu">
+<div class="top-bar" id="menu-nav" >
   <div class="top-bar-left">
       <%= link_to image_tag('logo.png', width:200, height:80), home_path%>
   </div>
@@ -14,7 +14,7 @@
           <!-- TODO: possibly show check out versus check in depending on current date? -->
           <li><h5><%= link_to "CHECK OUT", pickup_path %></h5></li>
           <li><h5><%= link_to "CHECK IN", returns_path %></h5></li>
-         
+
           <li><h5><%= link_to "SCHOOLS", schools_path %></h5></li>
           <li>
             <h5><%= link_to "USERS", users_path %></h5>

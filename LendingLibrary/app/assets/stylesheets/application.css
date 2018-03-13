@@ -15,6 +15,10 @@
  *= require jquery-ui
  */
 
+body {
+  overflow-x: hidden;
+}
+
 :root {
   --orange: #f99d31;
   --blue: #0076c0;
@@ -50,4 +54,15 @@ footer a {
 
 .top-bar-left img {
   transform: scale(0.8, 0.8);
+}
+
+.inner-title{
+  color: var(--primary);
+}
+
+.uline{
+  padding-bottom: 0px;
+  height: 40px;
+  border-bottom: 2px solid var(--secondary);
+  display:inline-block;
 }
