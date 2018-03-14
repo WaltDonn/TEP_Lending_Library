@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
-  get 'returns' => 'reservation#returns', as: :returns
-  get 'pickup' => 'reservation#pickup', as: :pickup
+  get 'returns' => 'reservations#returns', as: :returns
+  get 'pickup' => 'reservations#pickup', as: :pickup
   get 'rental_calendar/:month' => 'reservation#rental_calendar', as: :rental_calendar
   get 'users/:id/rental_calendar' => 'user#rental_calendar', as: :personal_rentals
   # get 'rental_form' => 'reservation#rental_form', as: :rental_form
