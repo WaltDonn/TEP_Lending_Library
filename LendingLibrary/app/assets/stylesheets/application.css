@@ -51,3 +51,12 @@ footer a {
 .top-bar-left img {
   transform: scale(0.8, 0.8);
 }
+
+.center {
+  text-align: center;
+  margin: auto;
+}
+
+.clearfix {
+  overflow: auto;
+}
