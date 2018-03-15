@@ -26,8 +26,7 @@ class User < ApplicationRecord
     belongs_to :school, optional: true
 
     has_many :owned_reservations, :class_name => 'Reservation', :foreign_key => 'teacher_id'
-    has_many :checkin_reservations, :class_name => 'Reservation', :foreign_key => 'user_check_in_id'
-    has_many :checkout_reservations, :class_name => 'Reservation', :foreign_key => 'user_check_out_id'
+   
     has_many :kits, through: :reservations
     has_many :items, through: :kits
 
