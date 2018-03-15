@@ -1,11 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<div class="grid-container">
-  <div class="inner-title">
-    <h2>Available Rental Kits</h2>
-  </div>
-
-  <div class='item-cards'>
-    <%= render :partial=>'item_cards' %>
-  </div>
+<div class="inner-title">
+  <span class="uline"><h2><%= link_to "Available Rental Kits", items_path %></h2> </span>
 </div>
+
+
+<%= render :partial=>'item_cards' %>
