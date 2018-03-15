@@ -5,10 +5,10 @@ class Kit < ApplicationRecord
     
     scope :visible_kits,     -> { where(blackout: false, is_active: true) }
     
-    def available_kits
+    def self.available_kits
         kits = Kit.visible_kits
         actual_kits = kits.select{|k| 
-            size_of_bad = k.items.select{|i| i.condition == "Broken"}
+            size_of_bad = k.items.select{|i| i.condition == "Broken"}.size
             size_of_bad == 0
         }
         return actual_kits

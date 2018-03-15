@@ -30,6 +30,13 @@ class KitTest < ActiveSupport::TestCase
 		assert_equal 2, @kit.items.size
 	end
 
+# test scopes
+	
+	test 'visible kits scope' do
+		assert_equal Kit.visible_kits.map{|c| c.id}, [1, 2, 3]
+	end
+
+
 # test methods
 	
 	test 'test black out all' do
@@ -66,6 +73,10 @@ class KitTest < ActiveSupport::TestCase
 		refute @kit4.blackout
 		refute @kit5.blackout
 		refute @kit6.blackout
+	end
+
+	test 'test available kits method' do
+		assert_equal Kit.available_kits.map{|k| k.id}, [2, 3]
 	end
 
 	
