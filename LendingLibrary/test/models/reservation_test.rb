@@ -140,18 +140,18 @@ class ReservationTest < ActiveSupport::TestCase
 	end
 
 	test 'volunteer(s) present and returned method' do
-		@extra_res = Reservation.new(start_date: Date.current, end_date: Date.tomorrow, pick_up_date: Date.current, return_date: Date.current, returned: true, picked_up: true, release_form_id: 1, kit_id: 3, teacher_id: 7, user_check_in_id: 2, user_check_out_id: 2 )
+		@extra_res = Reservation.new(start_date: Date.current, end_date: Date.tomorrow, pick_up_date: Date.current, return_date: Date.current, returned: true, picked_up: true, release_form_id: 1, kit_id: 3, teacher_id: 7, user_check_in: "John Smith", user_check_out: "Henry Ham" )
 		assert @extra_res.valid?
 		@extra_res.delete
 
 		#volunteer_id nil but returned
-		@extra_res = Reservation.new(start_date: Date.current, end_date: Date.tomorrow, pick_up_date: Date.current, return_date: Date.current, returned: true, picked_up: true, release_form_id: 1, kit_id: 3, teacher_id: 7, user_check_in_id: 2 )
+		@extra_res = Reservation.new(start_date: Date.current, end_date: Date.tomorrow, pick_up_date: Date.current, return_date: Date.current, returned: true, picked_up: true, release_form_id: 1, kit_id: 3, teacher_id: 7, user_check_in: "John Smith" )
 		refute @extra_res.valid?
 		@extra_res.delete
 
 
 		#volunteer id is not valid volunteer id
-		@extra_res = Reservation.new(start_date: Date.current, end_date: Date.tomorrow, pick_up_date: Date.current, return_date: Date.current, returned: true, picked_up: true, release_form_id: 1, kit_id: 3, teacher_id: 7, user_check_in_id: 2, user_check_out_id: 6 )
+		@extra_res = Reservation.new(start_date: Date.current, end_date: Date.tomorrow, pick_up_date: Date.current, return_date: Date.current, returned: true, picked_up: true, release_form_id: 1, kit_id: 3, teacher_id: 7, user_check_in: "John Smith", user_check_out: "John Smith" )
 		refute @extra_res.valid?
 		@extra_res.delete
 	end
@@ -164,19 +164,19 @@ class ReservationTest < ActiveSupport::TestCase
 
 	test 'picked up kits should have a volunteer that checked them out' do
 		assert @res.valid?
-		@res.user_check_out_id = nil
+		@res.user_check_out = nil
 		refute @res.valid?
 
-		@res.user_check_out_id = 3
+		@res.user_check_out = "Henry Ham"
 		refute @res.valid?
 	end
 
 	test 'checked in kits should have a volunteer that checked them in' do
 		assert @res.valid?
-		@res.user_check_in_id = nil
+		@res.user_check_in = nil
 		refute @res.valid?
 
-		@res.user_check_in_id = 3
+		@res.user_check_in = "John Smith"
 		refute @res.valid?
 	end
 
