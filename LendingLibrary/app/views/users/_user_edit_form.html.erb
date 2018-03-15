@@ -1,14 +1,15 @@
 
 <div class="grid-container" id="profile">
   <div class="grid-x" id="profile-box">
-    <div class="large-offset-1 small-3" id="profile-title-box">
+    <div class="small-1 cell"></div>
+    <div class="small-3 cell" id="profile-title-box">
       <br>
-      <h1 class="large-offset-1"> Edit User Information </h1>
+      <h2 class="center"> Edit User Information </h2>
     </div>
     <div id="user-information" class='cell small-7'>
       <%= simple_form_for @user, :html => { :class => 'form-inline user-info-form' }, defaults: {label: false} do |f| %>
       <fieldset id="profile-form">
-        <table class="cell small-5" id="user-profile">
+        <table class="cell small-5" id="user-profile-form">
           <thead>
             <tr>
               <th>Name</th>
