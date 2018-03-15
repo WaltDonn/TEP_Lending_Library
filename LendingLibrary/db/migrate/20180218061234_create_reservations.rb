@@ -10,8 +10,8 @@ class CreateReservations < ActiveRecord::Migration[5.1]
       t.integer :release_form_id
       t.references :kit
       t.references :teacher
-      t.references :user_check_in
-      t.references :user_check_out
+      t.string :user_check_in
+      t.string :user_check_out
 
       t.timestamps
     end

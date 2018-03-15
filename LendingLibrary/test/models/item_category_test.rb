@@ -74,11 +74,4 @@ class ItemCategoryTest < ActiveSupport::TestCase
 		refute @item_cat.more_available
 	end
 
-
-
-
-
-
-
-
 end
