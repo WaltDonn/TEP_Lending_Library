@@ -33,7 +33,7 @@ $card-info-info-color: lighten($primary-color, 15%);
 $card-info-border-radius: 1rem;
 $card-info-button-radius: 2rem;
 
-.grid-x{
+#product.grid-x{
   @include xy-grid();
   @include xy-grid-container(90%);
   @include xy-cell($breakpoint: (small: 1, medium: 4, large: 5))
@@ -100,4 +100,22 @@ $card-info-button-radius: 2rem;
 
 .product-card-button:hover{
   box-shadow: 0;
+}
+
+// item detail page styles
+.item-detail-title h1{
+  color: $primary-color;
+  margin-top: 1.5rem;
+}
+
+#kit-count p{
+  font-size: 1.05rem;
+  font-style: italic;
+  color: $dark-gray;
+}
+
+#kit-description p{
+  color: scale-color($dark-gray, $lightness: -20%);
+  max-width: 80%;
+  font-size: 105%;
 }

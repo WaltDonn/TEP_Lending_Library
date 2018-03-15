@@ -1,8 +1,11 @@
-<h3><%= @item.item_category.name %></h3> &nbsp;&nbsp;
-<br>
-
-<h4><%= @item.item_category.inventory_level %> kit available</h4>
-
-<p>
-  <b>Description</b>: <%= @item.item_category.description %>
-</p>
+<div class="item-detail-title">
+  <h1><%= @item.item_category.name %></h1>
+</div>
+<div class="item-detail-description">
+  <div id="kit-count">
+    <p><%= pluralize(@item.item_category.inventory_level, 'kit')%> available</p>
+  </div>
+  <div id="kit-description">
+    <p><%= @item.item_category.description %></p>
+  </div>
+</div>
