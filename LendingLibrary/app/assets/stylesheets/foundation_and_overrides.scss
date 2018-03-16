@@ -71,8 +71,15 @@
 }
 
 .top-bar-right ul li ul li{
+  visibility: hidden;
   float:none;
   position:relative;
+  a:hover{
+    visibility: visible;
+  }
+  :hover{
+    visibility: visible;
+  }
 }
 
 .top-bar-right ul li ul{
@@ -96,7 +103,7 @@
 
 
 // Nav bar hover line effects
-$topbar-hover-lines-border-width: 1.75px;
+$topbar-hover-lines-border-width: 2px;
 $topbar-hover-lines-transition: all 0.35s ease;
 
 .topbar-hover-lines {
@@ -144,15 +151,4 @@ $topbar-hover-lines-transition: all 0.35s ease;
   .active a::after {
     width: 100%;
   }
-}
-
-.inner-title{
-  color: var(--primary);
-}
-
-.uline{
-  padding-bottom: 0px;
-  height: 40px;
-  border-bottom: 2px solid var(--secondary);
-  display:inline-block;
 }

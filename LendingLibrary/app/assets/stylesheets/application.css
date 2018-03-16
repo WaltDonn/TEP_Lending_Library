@@ -64,6 +64,7 @@ footer a {
 .clearfix {
   overflow: auto;
 }
+
 .inner-title{
   color: var(--primary);
 }

@@ -1,23 +1,25 @@
 <div class="grid-container" id="product">
+  <div class="grid-y cell-block-container">
 
-  <div class="inner-title">
-    <span class="uline"><h2><%= link_to "Available Rental Kits", items_path %></h2> </span>
-  </div>
+    <div class="inner-title cell-block-y">
+      <span class="uline"><h1><%= link_to "Available Rental Kits", items_path %></h1> </span>
+    </div>
 
-  <div class="grid-x grid-margin-x center">
-
-      <% @items.each do |item| %>
-        <div class="product-card-container">
+    <div class="cell-block-y grid-x grid-margin-x">
+        <% @items.each do |item| %>
+        <div class="product-card-container large-4">
           <div class="product-card">
             <div class="product-card-thumbnail">
               <%= link_to image_tag('finch.jpg', width:260, height:260), item_path(item)%>
             </div>
-              <h2 class="product-card-title center"><%= item.item_category.name %></h2>
-              <div class="product-card-button center" data-sticky data-stick-to="bottom">
-                <%= link_to 'Details', item_path(item) %>
-              </div>
+            <h2 class="product-card-title center"><%= item.item_category.name %></h2>
+            <div class="product-card-button center" data-sticky data-stick-to="bottom">
+              <%= link_to 'Details', item_path(item) %>
+            </div>
           </div>
         </div>
-      <% end %>
+        <% end %>
     </div>
+
   </div>
+</div>

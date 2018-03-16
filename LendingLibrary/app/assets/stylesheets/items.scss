@@ -7,22 +7,22 @@
 
 
 // inner title style
-.inner-title h2{
+.inner-title h1{
   :hover{
     background-color: transparent;
   }
 }
 
-.inner-title h2 > a{
+.inner-title h1 > a{
   color: var(--primary);
 }
 
 .uline{
   padding-bottom: 0px;
-  height: 40px;
-  border-bottom: 2px solid var(--secondary);
+  height: 50px;
+  border-bottom: 3px solid var(--secondary);
   display:inline-block;
-  margin-bottom: 3rem;
+  margin-bottom: 10px;
 }
 
 // product-card
@@ -35,15 +35,12 @@ $card-info-button-radius: 18px;
 
 #product.grid-x{
   @include xy-grid();
-  @include xy-grid-container(90%);
-  // @include xy-cell($breakpoint: (small: 1, medium: 4, large: 5))
+
 }
 
 .product-card-container{
-  margin-top: 0;
-  margin-right: 15px;
-  margin-left: 15px;
-  margin-bottom: 0;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .product-card {
