@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   
   get 'returns' => 'reservations#returns', as: :returns
   get 'pickup' => 'reservations#pickup', as: :pickup
-  get 'rental_calendar/:month' => 'reservation#rental_calendar', as: :rental_calendar
-  get 'users/:id/rental_calendar' => 'user#rental_calendar', as: :personal_rentals
+  get 'rental_calendar/:month' => 'reservations#rental_calendar', as: :rental_calendar
+  get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
   # get 'rental_form' => 'reservation#rental_form', as: :rental_form
 
   get '/' => 'home#home', as: :home
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   
   get '*a', to: 'errors#routing'
 
-    # Set the root url
-    root :to => 'home#home'
+  # Set the root url
+  root :to => 'home#home'
 
 end
