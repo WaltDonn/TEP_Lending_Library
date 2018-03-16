@@ -1,9 +1,14 @@
 
 <div class="grid-container" id="profile">
-  <div class="grid-x" id="profile-box">
-    <div class="large-offset-1 small-3" id="profile-title-box">
+  <div class="grid-x center" id="profile-box">
+    <div class="small-1"></div>
+    <div class="small-3" id="profile-title-box">
       <br>
-      <h1 class="large-offset-1"> User Information </h1>
+      <h2 class="center"> User Information </h2>
+      <div class="show-for-medium" id="user-info-buttons">
+        <%= link_to 'Rental History', user_path(@user), :class => 'button small radius info', :id => 'rental-history'  %>
+        <%= link_to 'Edit Profile Information', edit_user_path(@user), :class => 'button small radius' , :id => 'edit-information' %>
+      </div>
     </div>
     <fieldset class='cell small-7' id="user-information">
       <br>
@@ -35,15 +40,15 @@
   </div>
   <br>
   
-  <div class="grid-x">
-  
+  <div class="grid-x show-for-small-only">
     <div class="cell auto"></div>
     <div class="small-3 cell">
-      <%= link_to 'View Rental History', user_path(@user), :class => 'button radius info'  %>
-      <%= link_to 'Edit Information', edit_user_path(@user), :class => 'button radius'  %>
+      <%= link_to 'View Rental History', user_path(@user), :class => 'button small radius info'  %>
+      <%= link_to 'Edit Information', edit_user_path(@user), :class => 'button small radius'  %>
     </div>
     <div class="small-1 cell"></div>
   </div>
+
   <hr />
   <br>
   <%= render :partial=>'rental_history', user: @user %>

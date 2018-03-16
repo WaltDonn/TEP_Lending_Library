@@ -1,7 +1,7 @@
 <div class="grid-container" id="product">
   <div class="grid-x grid-margin-x">
       <% @items.each do |item| %>
-       <div class="product-card-container">
+        <div class="product-card-container">
           <div class="product-card">
             <div class="product-card-thumbnail">
               <%= link_to image_tag('finch.jpg', width:200, height:200), item_path(item)%>
@@ -15,4 +15,3 @@
       <% end %>
 
   </div>
-</div>

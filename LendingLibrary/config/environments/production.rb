@@ -10,6 +10,10 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
+  
+  config.filter_parameters << :password
+
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -45,7 +49,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -66,15 +70,7 @@ Rails.application.configure do
  #https://launchschool.com/blog/handling-emails-in-rails
   config.action_mailer.delivery_method = :smtp
   # SMTP settings 
-  config.action_mailer.smtp_settings = {
-   :address              => "",
-   :port                 => 587,
-   :user_name            => ENV['email_username'],
-   :password             => ENV['email_password'],
-   :authentication       => "plain",
-  :enable_starttls_auto => true
-  }
-
+  #Deployed by respective mailers
 
 
 

@@ -20,8 +20,8 @@ class Reservation < ApplicationRecord
 
     belongs_to :kit
     belongs_to :teacher,   :class_name => 'User'
-    belongs_to :user_check_in, :class_name => 'User', optional: true
-    belongs_to :user_check_out, :class_name => 'User', optional: true
+    
+   
     
     scope :open_reservations,     -> { where(returned: false) }
     scope :get_month,             ->(month){where('extract(month from pick_up_date) = ?', month)}
@@ -70,10 +70,6 @@ class Reservation < ApplicationRecord
             errors.add(:user_check_out_id, 'Check-out user should be present if kit picked up')
             return false
         end
-        if(self.user_check_out.can_checkin == false)
-            errors.add(:user_check_out_id, 'User should be able to check out items')
-            return false
-        end
         return true
     end
     
@@ -84,10 +80,6 @@ class Reservation < ApplicationRecord
         end
         if(self.user_check_in_id == nil)
             errors.add(:user_check_in, 'Check-in user should be present if kit returned')
-            return false
-        end
-        if(self.user_check_in.can_checkin == false)
-            errors.add(:user_check_in, 'User should be able to checkin items')
             return false
         end
         return true
