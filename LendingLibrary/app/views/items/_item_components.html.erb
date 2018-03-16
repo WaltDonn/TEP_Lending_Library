@@ -1,8 +1,13 @@
-<h3>Kit Contents</h3>
-  <ul>
-  		<% @item.components.each do |component| %>
-  			<li><%= component.max_quantity %> <%= component.component_category.name %></li>
-  		<% end %>
-  	</ul>
-
-<br>
+<div class="kit-component cell-block-container">
+  <div class="kit-component-header cell-block-y auto">
+    <h3>Kit Contents</h3>
+  </div>
+  <div class="kit-component-list cell-block-y auto">
+      <ul>
+    		<% @item.components.each do |component| %>
+    			<li><%= component.max_quantity %> <%= component.component_category.name %></li>
+    		<% end %>
+    	</ul>
+      <br/>
+  </div>
+</div>

@@ -113,9 +113,14 @@ $card-info-button-radius: 18px;
 }
 
 // item detail page styles
+
+.item-detail{
+  margin-top: 1.5rem;
+}
+
 .item-detail-title h1{
   color: $primary-color;
-  margin-top: 1.5rem;
+  font-size: 40px;
 }
 
 #kit-count p{
@@ -128,4 +133,42 @@ $card-info-button-radius: 18px;
   color: scale-color($dark-gray, $lightness: -20%);
   max-width: 80%;
   font-size: 105%;
+}
+
+.kit-component-header h3{
+  margin-top: 1.05rem;
+  margin-left: 0;
+  font-size: 25px;
+  color: $black;
+}
+
+.kit-component{
+  margin-left: 0;
+}
+
+.kit-component-list ul{
+  margin-left: 0;
+  list-style-type: none;
+  list-style-position: inside;
+  padding: 0;
+  text-align: left;
+  position: relative;
+  max-width: 300px;
+  word-wrap: normal;
+}
+
+.kit-component-list ul li{
+  float: left;
+  margin-left: 0;
+  font-size: 105%;
+  color: $dark-gray;
+}
+
+.kit-component br {
+  clear: left;
+}  /* separate the list from subsequent markup */
+
+.item-pic img{
+  border: 1px solid $medium-gray;
+  border-radius: 16px;
 }

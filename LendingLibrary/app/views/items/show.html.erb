@@ -1,15 +1,19 @@
 <div class="grid-container" id="item-detail">
   <div class="grid-x grid-margin-x">
 
-    <div class="cell auto large-offset-1 medium-offset-1">
-      <%= render :partial => "item_picture" %>
-  		<%= render :partial => "item_components" %>
+    <div class="cell-block-container cell auto large-offset-2 medium-offset-1">
+      <div class="cell-block-y small-6">
+        <%= render :partial => "item_picture" %>
+      </div>
+      <div class="cell-block-y small-6">
+        <%= render :partial => "item_components" %>
+      </div>
     </div>
     <div class="cell small-6">
       <%= render :partial => "item_details" %>
       <div class="form-actions">
         <%= link_to 'RENT THIS KIT', new_reservation_path, :class => 'button radius' %>
-        <%= link_to 'SKIP INFO CONFIRMATION', edit_reservation_path(), :class => 'button radius' %>
+        <!-- <%= link_to 'SKIP INFO CONFIRMATION', edit_reservation_path(), :class => 'button radius' %> -->
       </div>
     </div>
   </div>
