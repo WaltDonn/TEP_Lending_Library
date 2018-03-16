@@ -66,8 +66,8 @@ class Reservation < ApplicationRecord
         if(self.picked_up == false)
             return true
         end
-        if(self.user_check_out_id == nil)
-            errors.add(:user_check_out_id, 'Check-out user should be present if kit picked up')
+        if(self.user_check_out == nil)
+            errors.add(:user_check_out, 'Check-out user should be present if kit picked up')
             return false
         end
         return true
@@ -78,7 +78,7 @@ class Reservation < ApplicationRecord
         if(self.returned == false)
             return true
         end
-        if(self.user_check_in_id == nil)
+        if(self.user_check_in == nil)
             errors.add(:user_check_in, 'Check-in user should be present if kit returned')
             return false
         end
