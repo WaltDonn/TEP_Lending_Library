@@ -23,7 +23,7 @@
   </p>
 <% end %>
 
-<body class="grid-y medium-grid-frame home-content overlay" id="home-content">
+<body class="grid-y medium-grid-frame home-content overlay">
 
 
     <!-- the title bar / navigation menu -->
@@ -41,15 +41,15 @@
           <%= render :partial => "partials/flash" %>
         </div>
 
-        <div class="cell medium-4 medium-cell-block-y">
+        <div class="cell cell-block-y">
           <%= yield %>
         </div>
       </div>
     </div>
 
     <!-- the footer of the page -->
-    <footer class="cell shrink footer" id="footer">
-        <div class="cell" id="footer-bar">
+    <footer class="cell footer" id="footer">
+        <div class="grid-container" id="footer-bar">
           <%= render partial: 'partials/footer' %>
         </div>
     </footer>

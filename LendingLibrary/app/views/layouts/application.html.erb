@@ -26,26 +26,26 @@
 <% end %>
 
 
-<body class="grid-y medium-grid-frame">
+<body class="grid-y grid-frame">
 
     <!-- the title bar / navigation menu -->
-    <div class="cell cell-block-container">
+    <div class="cell cell-block-container" data-sticky-container id="main_content">
           <%= render :partial => "partials/nav" %>
     </div>
 
     <!-- the page content -->
-    <div class="cell auto cell-block-container">
-        <div class="small-12 cell" id="main_content">
+    <div class="cell auto cell-block-container" >
+        <div class="cell cell-block-y">
           <%= render :partial => "partials/flash" %>
         </div>
-
-        <%= yield %>
-
+        <div class="cell cell-block-y">
+          <%= yield %>
+        </div>
     </div>
 
     <!-- the footer of the page -->
-    <footer class="cell shrink footer" id="footer">
-        <div class="cell" id="footer-bar">
+    <footer class="cell footer" data-sticky-container id="footer">
+        <div class="grid-container" data-sticky data-stick-to="bottom" id="footer-bar">
           <%= render partial: 'partials/footer' %>
         </div>
     </footer>

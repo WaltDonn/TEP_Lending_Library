@@ -1,14 +1,20 @@
 <div class="grid-container" id="product">
-  <div class="grid-x grid-margin-x">
+
+  <div class="inner-title">
+    <span class="uline"><h2><%= link_to "Available Rental Kits", items_path %></h2> </span>
+  </div>
+
+  <div class="grid-x grid-margin-x center">
+
       <% @items.each do |item| %>
         <div class="product-card-container">
           <div class="product-card">
             <div class="product-card-thumbnail">
-              <%= link_to image_tag('finch.jpg', width:200, height:200), item_path(item)%>
+              <%= link_to image_tag('finch.jpg', width:260, height:260), item_path(item)%>
             </div>
               <h2 class="product-card-title center"><%= item.item_category.name %></h2>
-              <div class="product-card-button">
-                <%= link_to 'Details', item_path(item), :class => 'button radius ' %>
+              <div class="product-card-button center" data-sticky data-stick-to="bottom">
+                <%= link_to 'Details', item_path(item) %>
               </div>
           </div>
         </div>
