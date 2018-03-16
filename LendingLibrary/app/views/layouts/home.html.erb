@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <%= csrf_meta_tags %>
-  
+
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -23,26 +23,37 @@
   </p>
 <% end %>
 
-<body id="home-content" class="home-content overlay">
-  
-  <!-- the title bar / navigation menu -->
-  <div class="home-nav">
-    <%= render :partial => "partials/nav" %>
-  </div>
-  
-  <!-- the home page content -->
-  <div>
-      <%= render :partial => "partials/flash" %>
-    <%= yield %>
-  </div>
-  
-  <!-- the footer of the page -->
-  <footer id="footer">
-    <div class="grid-container" id="footer-bar">
-      <%= render partial: 'partials/footer' %>
+<body class="grid-y medium-grid-frame home-content overlay" id="home-content">
+
+
+    <!-- the title bar / navigation menu -->
+    <div class="cell cell-block-container">
+        <div class="home-nav">
+          <%= render :partial => "partials/nav" %>
+        </div>
     </div>
-  </footer>
-  
+
+    <!-- the page content -->
+    <div class="cell auto cell-block-container">
+      <div class="grid-x padding-gutters">
+
+        <div class="small-12 cell" id="main_content">
+          <%= render :partial => "partials/flash" %>
+        </div>
+
+        <div class="cell medium-4 medium-cell-block-y">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <!-- the footer of the page -->
+    <footer class="cell shrink footer" id="footer">
+        <div class="cell" id="footer-bar">
+          <%= render partial: 'partials/footer' %>
+        </div>
+    </footer>
+
   <%= javascript_include_tag "application" %>
 
 </body>

@@ -36,7 +36,7 @@ $card-info-button-radius: 2rem;
 #product.grid-x{
   @include xy-grid();
   @include xy-grid-container(90%);
-  @include xy-cell($breakpoint: (small: 1, medium: 4, large: 5))
+  // @include xy-cell($breakpoint: (small: 1, medium: 4, large: 5))
 }
 
 .product-card-container{
