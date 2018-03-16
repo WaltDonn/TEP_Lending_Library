@@ -61,8 +61,8 @@ class ItemCategoryTest < ActiveSupport::TestCase
 	end
 
 # test relationships
-	test 'itemCat 1 should have 2 items' do
-		assert_equal 2, @item_cat.items.size
+	test 'itemCat 1 should have 7 items' do
+		assert_equal 7, @item_cat.items.size
 	end
 
 # test methods
