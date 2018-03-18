@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+#admin = User.new; admin.id = 1; admin.first_name = "Admin"; admin.last_name = "Admin"; admin.is_active = true; admin.role = "admin"; admin.email = "admin@secret.com"; admin.password = "secretpassword"; admin.password_confirmation = "secretpassword"; 
+
+
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,

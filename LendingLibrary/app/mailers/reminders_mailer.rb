@@ -8,7 +8,7 @@ class RemindersMailer < ApplicationMailer
       :port                 => ENV["email_port"],
       :authentication       => ENV["email_auth"],
       :user_name            => ENV['reminder_email_username'],
-      :password             => ENV['reminder_password']
+      :password             => ENV['reminder_password'],
       :enable_starttls_auto => ENV['tls_auto']
     }
     
