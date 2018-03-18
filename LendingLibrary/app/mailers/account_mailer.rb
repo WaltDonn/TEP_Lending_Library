@@ -9,7 +9,7 @@ class AccountMailer < Devise::Mailer
       :port                 => ENV["email_port"],
       :authentication       => ENV["email_auth"],
       :user_name            => ENV['account_email_username'],
-      :password             => ENV['account_password']
+      :password             => ENV['account_password'],
       :enable_starttls_auto => ENV['tls_auto']
     }
 
