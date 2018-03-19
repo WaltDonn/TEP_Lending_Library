@@ -60,7 +60,6 @@ body{
   overflow-y: scroll;
 }
 
-
 // Nav bar style
 .top-bar-left{
     background-color: transparent;
@@ -77,15 +76,15 @@ body{
 }
 
 .top-bar-right ul li ul li{
-  visibility: hidden;
+  // visibility: hidden;
   float:none;
   position:relative;
-  a:hover{
-    visibility: visible;
-  }
-  :hover{
-    visibility: visible;
-  }
+  // a:hover{
+  //   visibility: visible;
+  // }
+  // :hover{
+  //   visibility: visible;
+  // }
 }
 
 .top-bar-right ul li ul{
