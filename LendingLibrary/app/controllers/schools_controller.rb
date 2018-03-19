@@ -1,6 +1,7 @@
 class SchoolsController < ApplicationController
   before_action :set_school, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  # FIXME: temporarilly disabled for views editing
+  # before_action :authenticate_user!
 
   # GET /schools
   # GET /schools.json

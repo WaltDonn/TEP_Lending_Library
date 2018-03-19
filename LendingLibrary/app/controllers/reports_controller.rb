@@ -1,3 +1,5 @@
 class ReportsController < ApplicationController
-    before_action :authenticate_user!
+  # FIXME: temporarilly disabled for views editing
+  # before_action :authenticate_user!
+
 end

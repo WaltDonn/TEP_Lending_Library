@@ -23,6 +23,10 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def item_components
+
+  end
+
   # POST /items
   # POST /items.json
   def create

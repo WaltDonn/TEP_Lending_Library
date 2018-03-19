@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   resources :users
   resources :components
-  resources :items
+  resources :items do
+    member do
+       get 'item_components'
+    end
+  end
   resources :item_categories
   resources :component_categories
   resources :reservations
@@ -21,6 +25,7 @@ Rails.application.routes.draw do
   get 'rental_calendar/:month' => 'reservations#rental_calendar', as: :rental_calendar
   get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
   # get 'rental_form' => 'reservation#rental_form', as: :rental_form
+  # get 'items/:id/item_components',  as: :content
 
   get '/' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about

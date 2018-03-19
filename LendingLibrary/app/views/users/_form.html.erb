@@ -7,7 +7,7 @@
 
   <div class="grid-x grid-margin-x">
     <div class='cell small-8 medium-offset-2'>
-      <%= simple_form_for @user, :html => { :class => 'form-inline user-info-form' }, defaults: {label: false} do |f| %>
+      <%= simple_form_for :user, :html => { :class => 'form-inline' }, defaults: {label: false} do |f| %>
       <fieldset>
         <table id="signup-form">
           <thead>

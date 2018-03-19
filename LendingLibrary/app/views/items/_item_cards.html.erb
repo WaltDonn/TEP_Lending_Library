@@ -1,8 +1,16 @@
-<div class="grid-container" id="product">
-  <div class="grid-y cell-block-container">
 
-    <div class="inner-title cell-block-y">
-      <span class="uline"><h1><%= link_to "Available Rental Kits", items_path %></h1> </span>
+    <div class="cell-block-y">
+      <div class="grid-x">
+        <div class="inner-title cell-block-x small-9">
+          <span class="uline"><h1><%= link_to "Available Rental Kits", items_path %></h1> </span>
+        </div>
+
+        <!-- TODO: add cancan -->
+        <div class="cell-block-x small-2 right">
+          <h4><%= link_to 'Add New Item', new_item_path %></h4>
+        </div>
+
+      </div>
     </div>
 
     <div class="cell-block-y">
@@ -23,6 +31,3 @@
       </div>
 
     </div>
-
-  </div>
-</div>
