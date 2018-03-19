@@ -26,10 +26,15 @@
             <th>Phone Number</th>
             <td><%=  @user.phone_num %></td>
           </tr>
-          <tr>
-            <th>School</th>
-            <td><%=  @user.school.name %></td>
-          </tr>
+
+            <!-- FIXME: temporary fix for users who are not teachers -->
+            <% unless @user.school.nil? %>
+              <tr>
+                <th>School</th>
+                <td><%= @user.school.name %></td>
+              </tr>
+            <% end %>
+
           <tr>
             <th>Class Size</th>
             <td><%=  @user.class_size%></td>
@@ -39,7 +44,7 @@
     </fieldset>
   </div>
   <br>
-  
+
   <div class="grid-x show-for-small-only">
     <div class="cell auto"></div>
     <div class="small-3 cell">

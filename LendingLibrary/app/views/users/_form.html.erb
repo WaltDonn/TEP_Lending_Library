@@ -1,24 +1,82 @@
+<div class="grid-container">
+  <div class="grid-x grid-margin-x" >
+    <div class="small-5 cell medium-offset-3" id="signup">
+      <h1 class="center"> Sign Up </h1>
+    </div>
+  </div>
 
-<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Your Profile</legend>
+  <div class="grid-x grid-margin-x">
+    <div class='cell small-8 medium-offset-2'>
+      <%= simple_form_for @user, :html => { :class => 'form-inline user-info-form' }, defaults: {label: false} do |f| %>
+      <fieldset>
+        <table id="signup-form">
+          <thead>
+            <tr>
+              <th> Email </th>
+              <td>
+                <%= f.input :email, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+              </td>
+            </tr>
+            <tr>
+              <th> Password </th>
+              <td>
+                <%= f.input :password, :input_html => { :class => 'avg', :style => "width: 200px;" }  %>
+              </td>
+            </tr>
 
-    <%= f.input :email %>
-    <%= f.input :first_name %>
-		<%= f.input :last_name %>
-		<%= f.input :phone_num %>
+            <tr>
+              <th> Password Confirmation </th>
+              <td>
+                <%= f.input :password_confirmation, :input_html => { :class => 'avg', :style => "width: 200px;" }  %>
+              </td>
+            </tr>
 
-    <%= f.input :role, :collection => User::ROLES, :prompt => true %>
-    <%= f.input :class_size %>
-		<%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
+            <tr>
+              <th>Name</th>
+              <td>
+                <div class="row">
+                  <%= f.input :first_name, :input_html => { :class => 'avg', :style => "width: 200px;" }%>
+                  <%= f.input :last_name, :input_html => { :class => 'avg', :style => "width: 200px;" }%>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>School Email</th>
+              <td>
+                <%= f.input :email,  :input_html => { :class => 'avg' }%>
+              </td>
+            </tr>
+            <tr>
+              <th>Phone Number</th>
+              <td>
+                <%= f.input :phone_num,  :input_html => { :class => 'avg' }%>
+              </td>
+            </tr>
+            <tr>
+              <th>School</th>
+              <td>
+                  <%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
+              </td>
+            </tr>
+            <tr>
+              <th>Class Size</th>
+              <td>
+                  <%= f.input :class_size, :input_html => { :class => 'avg' }%>
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </fieldset>
+    </div>
+  </div>
 
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
-
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
+  <div class="grid-x grid-margin-x">
+    <div class="cell form-actions medium-offset-5">
+      <%= f.button :submit, "Sign Up", :class => 'button radius' %>
       <%= link_to 'Cancel', users_path, :class => 'button alert radius' %>
     </div>
-  </fieldset>
-<% end %>
+
+  </div>
+  <br>
+  <% end %>
+</div>

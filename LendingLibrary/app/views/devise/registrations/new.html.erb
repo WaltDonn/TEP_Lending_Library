@@ -1,27 +1,5 @@
-<h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'form-horizontal')   do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <%= f.input :first_name %>
-		<%= f.input :last_name %>
-		<%= f.input :phone_num %>
-
-    <%= f.input :role, :collection => User::ROLES, :prompt => true %>
-    <%= f.input :class_size %>
-		<%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, required: false, input_html: {class: "avg"} %>
-
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up", :class => 'button radius' %>
-    <%= link_to 'Cancel', users_path, :class => 'button alert radius' %>
-  </div>
-<% end %>
+<%= render 'users/form', user: @user %>
 
 <%= render "devise/shared/links" %>
