@@ -5,20 +5,23 @@
       <span class="uline"><h1><%= link_to "Available Rental Kits", items_path %></h1> </span>
     </div>
 
-    <div class="cell-block-y grid-x grid-margin-x">
+    <div class="cell-block-y">
+      <div class="grid-x grid-margin-x large-4 medium-2 small-1" id="card-grid">
         <% @items.each do |item| %>
-        <div class="product-card-container large-4">
+        <div class="product-card-container cell-block-x">
           <div class="product-card">
             <div class="product-card-thumbnail">
               <%= link_to image_tag('finch.jpg', width:260, height:260), item_path(item)%>
             </div>
             <h2 class="product-card-title center"><%= item.item_category.name %></h2>
-            <div class="product-card-button center" data-sticky data-stick-to="bottom">
+            <div class="product-card-button center">
               <%= link_to 'Details', item_path(item) %>
             </div>
           </div>
         </div>
         <% end %>
+      </div>
+
     </div>
 
   </div>

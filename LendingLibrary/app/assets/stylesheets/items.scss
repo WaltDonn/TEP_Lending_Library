@@ -33,25 +33,28 @@ $card-info-info-color: lighten($primary-color, 15%);
 $card-info-border-radius: 10px;
 $card-info-button-radius: 18px;
 
-#product.grid-x{
-  @include xy-grid();
+#card-grid.grid-x{
+  overflow-x: hidden;
+}
 
+.cell-block-y{
+  overflow-x: hidden;
 }
 
 .product-card-container{
   padding-left: 15px;
-  padding-right: 15px;
+  margin-left: 10px;
+  overflow-x: hidden;
 }
 
 .product-card {
-  padding: 0.5rem 0rem 0.5rem 0rem;
+  padding: 6px 0px 6px 0px;
   margin-bottom: 1rem;
   width: 264px;
   height: 382px;
   background: $card-info-bg;
-  border: 1.5px solid $light-gray;
+  border: 2px solid $light-gray;
   box-shadow: $card-info-shadow;
-  overflow: hidden;
   border-radius: $card-info-border-radius;
   transition: 0.3s;
 }
@@ -61,11 +64,12 @@ $card-info-button-radius: 18px;
 }
 
 .product-card-thumbnail {
-  width: 264px;
-  height: 264px;
+  width: 260px;
+  height: 260px;
   text-align: center;
   display: block;
   position: relative;
+  overflow: hidden;
   border-bottom: 2px solid $light-gray;
 }
 

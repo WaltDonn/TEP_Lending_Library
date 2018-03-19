@@ -55,6 +55,12 @@
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
 
+// layout
+body{
+  overflow-y: scroll;
+}
+
+
 // Nav bar style
 .top-bar-left{
     background-color: transparent;
