@@ -41,6 +41,7 @@ gem 'minitest'
 gem 'figaro'
 gem 'devise'
 
+
 gem 'erubi', '~> 1.7.1'
 gem 'actionview'
 gem 'secure_headers'
