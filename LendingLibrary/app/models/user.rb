@@ -53,6 +53,11 @@ class User < ApplicationRecord
     scope :volunteers,     -> { where(role: 'volunteer') }
 
 
+  def has_role?(authorized_role)
+    return false if role.nil?
+    self.role.downcase.to_sym == authorized_role
+  end
+
   def can_checkin
     (self.role.downcase  == "admin" || self.role.downcase  == "manager" || self.role.downcase  == "volunteer") && self.is_active == true
   end
