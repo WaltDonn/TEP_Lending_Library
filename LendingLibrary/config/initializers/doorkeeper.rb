@@ -20,7 +20,7 @@ Doorkeeper.configure do
   #   # Put your admin authentication logic here.
   #   # Example implementation:
   #   Admin.find_by_id(session[:admin_id]) || redirect_to(new_admin_session_url)
-  redirect_to root_url unless current_user != nil && current_user.has_role?(:admin)
+    redirect_to root_url unless current_user != nil && current_user.has_role?(:admin)
  
    end
 

@@ -29,6 +29,16 @@ Rails.application.routes.draw do
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
+  
+  
+  namespace :api do
+    namespace :v1 do
+      
+      get '/resource_owner' => "credentials#resource_owner"
+    end
+  end
+  
+  
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
