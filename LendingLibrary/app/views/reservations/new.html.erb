@@ -1,4 +1,4 @@
-
-<% unless @item.nil? %>
+<% puts "item id: " + @item.id.to_s %>
+<% unless @item.nil? or @current_user.nil? %>
   <%= render :partial => 'users/confirmation', locals: {item: @item, user: @current_user , reservation: @reservation} %>
 <% end %>

@@ -36,10 +36,18 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
+    # forward param for item
     @item = Item.find(params[:item])
+    # get available kits for this particular item
+    @kits = Kit.available_kits
+    # generate a random kit based on available kits
+    offset = rand(@kits.count)
+    @kit = @kits.at(offset)
+
+    @reservation.kit_id = @kit.id
 
     # FIXME: when current_user is available
-    @current_user = User.find(3)
+    @current_user = current_user
   end
 
   # GET /reservations/1/edit

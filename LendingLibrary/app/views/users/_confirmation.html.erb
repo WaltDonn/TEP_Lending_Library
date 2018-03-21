@@ -1,21 +1,15 @@
 <div class="grid-container" id="profile">
-  <div class="grid-x center" id="profile-box">
-    <div class="small-1"></div>
-    <div class="small-3" id="profile-title-box">
-      <br>
-      <h2 class="center"> User Information </h2>
-      <div class="show-for-medium" id="user-info-buttons">
-        <%= link_to 'Rental History', user_path(user), :class => 'button small radius info', :id => 'rental-history'  %>
-        <%= link_to 'Edit Profile Information', edit_user_path(user), :class => 'button small radius' , :id => 'edit-information' %>
-      </div>
-    </div>
-    <fieldset class='cell small-7' id="user-information">
+  <div class="grid-x center">
+    <h1 class="center"> Your Profile Information</h1>
+  </div>
+  <div class="grid-x center">
+    <fieldset class='cell small-7 center'>
       <br>
       <table class="cell small-5" id="user-profile">
         <thead>
           <tr>
-            <th>Name</th>
-            <td><%=  user.name  %></td>
+            <th>Full Name</th>
+            <td><%=  user.first_name + " " + user.last_name  %></td>
           </tr>
           <tr>
             <th>School Email</th>
@@ -44,13 +38,14 @@
   </div>
   <br>
 
-  <div class="grid-x show-for-small-only">
+  <div class="grid-x center">
     <div class="small-3 cell">
       <%= link_to 'Go back', item_path(@item), :class => 'button radius info'  %>
+    </br>
       <%= link_to 'Cancel Rental', items_path, :class => 'button radius' %>
     </div>
     <div class="small-5 cell">
-      Is this correct? <%= link_to 'Edit Information', edit_user_path(user), :class => 'button radius'  %>
+      Is this correct? <%= link_to 'Edit Information', edit_user_path(user, :item => @item.id, reservation: @reservation), :class => 'button radius'  %>
     </div>
     <div class="small-3 cell">
       <%= link_to 'Confirm Information', user_path(user), :class => 'button radius success'%>
