@@ -1,2 +1,4 @@
 
-<%= render :partial => 'users/confirmation', item: @item %>
+<% unless @item.nil? %>
+  <%= render :partial => 'users/confirmation', locals: {item: @item, user: @current_user , reservation: @reservation} %>
+<% end %>

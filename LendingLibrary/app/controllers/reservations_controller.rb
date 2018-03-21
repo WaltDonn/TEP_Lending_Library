@@ -36,6 +36,10 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
+    @item = Item.find(params[:item])
+
+    # FIXME: when current_user is available
+    @current_user = User.find(3)
   end
 
   # GET /reservations/1/edit

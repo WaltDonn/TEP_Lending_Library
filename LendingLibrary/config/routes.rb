@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
   resources :item_categories
   resources :component_categories
-  resources :reservations
+  resources :reservations do
+    resources :items
+  end
   resources :kits
   resources :schools
 
