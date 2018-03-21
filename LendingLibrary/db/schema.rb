@@ -112,14 +112,12 @@ ActiveRecord::Schema.define(version: 20180320011605) do
     t.integer "release_form_id"
     t.integer "kit_id"
     t.integer "teacher_id"
-    t.integer "user_check_in_id"
-    t.integer "user_check_out_id"
+    t.string "user_check_in"
+    t.string "user_check_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["kit_id"], name: "index_reservations_on_kit_id"
     t.index ["teacher_id"], name: "index_reservations_on_teacher_id"
-    t.index ["user_check_in_id"], name: "index_reservations_on_user_check_in_id"
-    t.index ["user_check_out_id"], name: "index_reservations_on_user_check_out_id"
   end
 
   create_table "schools", force: :cascade do |t|
