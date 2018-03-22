@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home/upload_users'
+
   devise_for :users
   # Set the root url
   root :to => 'home#home'
@@ -31,6 +33,8 @@ Rails.application.routes.draw do
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
+  get 'upload_users' => 'home#upload_users', as: :upload_users
+  post 'create_users' => 'home#create_users', as: :create_users
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
