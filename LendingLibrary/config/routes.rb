@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :component_categories
   resources :reservations do
     resources :items
+    resources :users
   end
   resources :kits
   resources :schools
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
   get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
   # get 'rental_form' => 'reservation#rental_form', as: :rental_form
   # get 'items/:id/item_components',  as: :content
+  get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
 
   get '/' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about

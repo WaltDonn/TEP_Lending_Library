@@ -20,10 +20,20 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
-  
+
   # GET /users/1/rental_calendar
   def rental_calendar
       @reservations = Reservation.get_month(params[:month]).select{|res| res.teacher_id == @user.id}
+  end
+
+  def confirmation
+  end
+
+  def reservation_user_edit
+    @user = User.find(params[:id])
+    # forward item and reservation
+    @item = Item.find(params[:item])
+    @reservation = :reservation
   end
 
   # POST /users

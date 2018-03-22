@@ -42,12 +42,15 @@ class ReservationsController < ApplicationController
     @kits = Kit.available_kits
     # generate a random kit based on available kits
     offset = rand(@kits.count)
+    puts "kits size: " + @kits.count.to_s
     @kit = @kits.at(offset)
 
     @reservation.kit_id = @kit.id
 
     # FIXME: when current_user is available
-    @current_user = current_user
+    # current_user = current_user
+    # puts "current_user id: " + current_user.id.to_s # this is nil
+    @current_user = User.find(3)
   end
 
   # GET /reservations/1/edit

@@ -45,7 +45,7 @@
       <%= link_to 'Cancel Rental', items_path, :class => 'button radius' %>
     </div>
     <div class="small-5 cell">
-      Is this correct? <%= link_to 'Edit Information', edit_user_path(user, :item => @item.id, reservation: @reservation), :class => 'button radius'  %>
+      Is this correct? <%= link_to 'Edit Information', reservation_user_edit_path(user, :item => @item, :reservation => @reservation), :class => 'button radius'  %>
     </div>
     <div class="small-3 cell">
       <%= link_to 'Confirm Information', user_path(user), :class => 'button radius success'%>

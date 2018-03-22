@@ -1,0 +1,64 @@
+<div class="grid-container" id="profile">
+  <div class="grid-x center">
+    <h1 class="center"> Edit User Information</h1>
+  </div>
+  <div class="grid-x center">
+    <div class="cell small-7 center">
+      <%= simple_form_for @user, :html => { :class => 'form-inline user-info-form' }, defaults: {label: false} do |f| %>
+        <fieldset>
+          <table class="cell small-5" id="user-profile-form">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <td>
+                  <div class="row">
+                    <%= f.input :first_name, :input_html => { :class => 'avg', :style => "width: 200px;" }%>
+                    <%= f.input :last_name, :input_html => { :class => 'avg', :style => "width: 200px;" }%>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>School Email</th>
+                <td>
+                  <%= f.input :email,  :input_html => { :class => 'avg' }%>
+                </td>
+              </tr>
+              <tr>
+                <th>Phone Number</th>
+                <td>
+                  <%= f.input :phone_num,  :input_html => { :class => 'avg' }%>
+                </td>
+              </tr>
+              <tr>
+                <th>School</th>
+                <td>
+                    <%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
+                </td>
+              </tr>
+              <tr>
+                <th>Class Size</th>
+                <td>
+                    <%= f.input :class_size, :input_html => { :class => 'avg' }%>
+                </td>
+              </tr>
+            </thead>
+          </table>
+        </fieldset>
+      </div>
+      </div>
+    <br>
+
+    <div class="grid-x center">
+      <div class="small-5 cell">
+          <%= link_to 'Back', :back , :class => 'button radius' %>
+      </div>
+      <div class="small-3 cell">
+
+      </div>
+      <div class="small-3 cell">
+        <%= f.submit 'Save', :class => 'button radius success bt-right' %>
+      </div>
+    </div>
+
+    <% end %>
+</div>
