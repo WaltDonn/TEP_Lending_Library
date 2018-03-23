@@ -18,7 +18,7 @@
   border-color: $none;
   font-size: 1rem;
   font-weight: 400;
-
+  
   th {
     color: $dark-gray;
     text-align: right;
@@ -31,10 +31,44 @@
   }
 }
 
+#user-profile-form, table, th, td, tr, thead {
+  background-color: $none;
+  border-color: $none;
+  font-size: 1rem;
+  font-weight: 400;
+  
+  th {
+    color: $dark-gray;
+    text-align: right;
+    padding-bottom: 0.5rem;
+  }
+  
+  td {
+    color: $primary-color;
+    padding-bottom: 0.5rem;
+  }
+}
+
 #profile-title-box {
   color: $white;
-  background-color: $primary-color;
-  padding: 2rem 0rem;
+  background-color: rgba($color: $primary-color, $alpha: 0.7);
+  padding-top: 2rem;
+}
+
+#user-info-buttons {
+  margin-top: 7rem;
+  margin-left: 1rem;
+  
+  .button {
+    display: block;
+  }
+}
+
+#rental-history {
+  width: 8rem;
+}
+#edit-information {
+  width: 12rem;
 }
 
 #user-information {

@@ -11,7 +11,7 @@
 
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;
-//@include foundation-grid;
+// @include foundation-grid;
 //@include foundation-flex-grid;
 @include foundation-flex-classes;
 @include foundation-typography;
@@ -55,23 +55,64 @@
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
 
+// layout
+body{
+  overflow-y: scroll;
+}
 
-.top-bar ul {
+// Nav bar style
+.top-bar-left{
     background-color: transparent;
+    a:hover{
+      background-color: transparent;
+    }
 }
 
-.top-bar ul > li > ul{
+.top-bar-right ul {
+  background-color: transparent;
+  a:hover{
+    background-color: inherit;
+  }
+}
+
+.top-bar-right ul li ul li{
+  // visibility: hidden;
+  float:none;
+  position:relative;
+  // a:hover{
+  //   visibility: visible;
+  // }
+  // :hover{
+  //   visibility: visible;
+  // }
+}
+
+.top-bar-right ul li ul{
+  background-color: transparent;
+  a:hover{
     background-color: rgba($white, 0.65);
+  }
 }
 
+.top-bar ul li a {
+  color: $secondary-color;
+  font-size: .975rem;
+}
+
+.top-bar ul li ul a{
+  background-color: rgba($white, 0.65);
+  font-size: 95%;
+  width:auto;
+  float: none;
+}
+
+
+// Nav bar hover line effects
 $topbar-hover-lines-border-width: 2px;
 $topbar-hover-lines-transition: all 0.35s ease;
 
-
-// Nav bar effects
 .topbar-hover-lines {
   text-align: center;
-  font-weight: 50;
   letter-spacing: 0px;
   transition: $topbar-hover-lines-transition;
 
@@ -83,12 +124,7 @@ $topbar-hover-lines-transition: all 0.35s ease;
     position: absolute;
   }
 
-  li.active > a,
-  ul.active > a {
-    // color: $primary-color;
-  }
-
-  a:before,
+  a::before,
   a::after {
     height: $topbar-hover-lines-border-width;
     position: absolute;
@@ -104,7 +140,7 @@ $topbar-hover-lines-transition: all 0.35s ease;
   }
 
   a::after {
-    top: 40px;
+    top: 46px;
     right: 0;
   }
 

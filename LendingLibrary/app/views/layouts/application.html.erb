@@ -25,27 +25,35 @@
   </p>
 <% end %>
 
+
 <body>
+    <div class="grid-y">
+      <!-- the title bar / navigation menu -->
+      <div class="cell cell-block-container" data-sticky-container id="main_content">
+            <%= render :partial => "partials/nav" %>
+      </div>
 
-  <!-- the title bar / navigation menu -->
-  <%= render :partial => "partials/nav" %>
+      <!-- the page content -->
+      <div class="cell cell-block-container" >
+          <div class="cell cell-block-y">
+            <%= render :partial => "partials/flash" %>
+          </div>
+          <div class="cell cell-block-y">
+            <%= yield %>
+          </div>
+      </div>
 
-  <!-- the page content -->
-  <div class="grid-container">
-    <div class="small-12 cell" id="main_content">
-      <%= render :partial => "partials/flash" %>
-        <%= yield %>
+      <!-- the footer of the page -->
+      <footer class="cell footer" id="footer">
+          <div class="grid-container" id="footer-bar">
+            <%= render partial: 'partials/footer' %>
+          </div>
+      </footer>
     </div>
-  </div>
 
-  <!-- the footer of the page -->
-  <footer id="footer">
-    <div class="grid-container" id="footer-bar">
-      <%= render partial: 'partials/footer' %>
-    </div>
-  </footer>
 
   <%= javascript_include_tag "application" %>
+
 </body>
 
 </html>

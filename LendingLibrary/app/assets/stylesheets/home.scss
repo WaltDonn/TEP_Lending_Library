@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'settings';
+@import 'foundation';
+
 .home-content {
     background-image: url("home_bg.jpg");
     background-size: cover;
@@ -17,4 +20,20 @@
     top: 50%;
     left: 50%;
     margin: -200px 0 0 -400px;
+}
+
+.welcome-button{
+  width: 180px;
+  height: 50px;
+  color: var(--white);
+  display: inline-block;
+  border: none;
+  border-radius: 30px;
+  background-color: $primary-color;
+  font-size: 1.2rem;
+}
+
+.welcome-button:hover,
+.welcome-button:active {
+   background-color: scale-color($primary-color, $lightness: -15%);
 }

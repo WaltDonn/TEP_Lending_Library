@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  # FIXME: temporarilly disabled to route to items pages
+  # before_action :authenticate_user!
 
   # GET /items
   # GET /items.json
@@ -20,6 +21,10 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+  end
+
+  def item_components
+
   end
 
   # POST /items

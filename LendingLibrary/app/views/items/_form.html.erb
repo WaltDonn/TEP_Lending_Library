@@ -1,16 +1,55 @@
-<%= simple_form_for @item, :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Item</legend>
+  <div class="grid-x grid-margin-x">
+    <div class='cell auto'>
+      <%= simple_form_for @item, :html => { :class => 'form-inline' }, defaults: {label: false} do |f| %>
+      <fieldset>
+        <table>
+          <thead>
+            <tr>
+              <th> Kit Name </th>
+              <td>
+                <%= f.simple_fields_for @item.item_category do |g| %>
+                  <%= g.input :name, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th> Total Amount of Kits Available </th>
+              <td>
+                <%= f.simple_fields_for @item.item_category do |g| %>
+                  <%= g.input :inventory_level, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+                <% end %>
+              </td>
+            </tr>
 
+            <tr>
+              <th> Active </th>
+              <td>
+                <%= f.input :is_active, as: :boolean %>
+              </td>
+            </tr>
 
-    <%= f.input :condition %>
-		<%= f.input :readable_id %>
-    <%= f.input :category, :collection => ItemCategory.all, input_html: {class: "avg"} %>
-    <%= f.input :kit, :collection => Kit.all, allow_blank: true, input_html: {class: "avg"} %>
+            <tr>
+              <th> Description </th>
+              <td>
+                <%= f.simple_fields_for @item.item_category do |g| %>
+                  <%= g.text_field :description, :input_html => { :class => 'avg', :style => "width: 200px;" }%>
+                <% end %>
+              </td>
+            </tr>
 
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', assignments_path, :class => 'button alert radius' %>
+          </thead>
+        </table>
+      </fieldset>
     </div>
-  </fieldset>
-<% end %>
+  </div>
+
+  <div class="grid-x grid-margin-x">
+    <div class="cell form-actions">
+      <%= f.button :submit, "SAVE CHANGES", :class => 'button radius' %>
+      <%= link_to 'CANCEL EDITS', items_path, :class => 'button alert radius' %>
+    </div>
+
+  </div>
+  <br>
+  <% end %>
+</div>
