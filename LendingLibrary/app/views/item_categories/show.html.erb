@@ -1,28 +1,26 @@
+<div class="grid-container" id="item-detail">
+  <div class="grid-x grid-margin-x">
 
-<p>
-  <strong>Name:</strong>
-  <%= @item_category.name %>
-</p>
+    <div class="cell-block-container cell auto large-offset-2 medium-offset-1">
+      <div class="cell-block-y small-6">
+        <%= render :partial => "item_picture", item_category: @item_category %>
+      </div>
+      <div class="cell-block-y small-6">
+        <%= render :partial => "item_components" %>
+        <!-- TODO: add cancan -->
+        <%= link_to 'EDIT KIT CONTENT', edit_item_category_path(@item_category), :class => 'button radius' %>
+      </div>
+    </div>
+    <div class="cell small-6">
+      <%= render :partial => "item_details" %>
+      <div class="form-actions">
+        <%= link_to 'RENT THIS KIT', new_reservation_path(:item_category => @item_category.id), :class => 'button radius' %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @item_category.description %>
-</p>
+        <!-- TODO: add cancan -->
+        <%= link_to 'EDIT THIS KIT', edit_item_category_path(@item_category), :class => 'button radius' %>
+        <%= link_to 'SEE RENTAL HISTORY', edit_reservation_path(), :class => 'button radius' %>
 
-<p>
-  <strong>Item photo:</strong>
-  <%= @item_category.item_photo %>
-</p>
-
-<p>
-  <strong>Inventory level:</strong>
-  <%= @item_category.inventory_level %>
-</p>
-
-<p>
-  <strong>Amount available:</strong>
-  <%= @item_category.amount_available %>
-</p>
-
-<%= link_to 'Edit', edit_item_category_path(@item_category) %> |
-<%= link_to 'Back', item_categories_path %>
+      </div>
+    </div>
+  </div>
+</div>

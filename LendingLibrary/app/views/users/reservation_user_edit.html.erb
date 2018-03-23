@@ -41,6 +41,11 @@
                     <%= f.input :class_size, :input_html => { :class => 'avg' }%>
                 </td>
               </tr>
+
+              <%= f.input :redir, :as => :hidden, :input_html => { :value => "users/confirmation" } %>
+
+              <%= f.input :item_category, :as => :hidden, :input_html => { :value => @item_category } %>
+
             </thead>
           </table>
         </fieldset>
@@ -56,6 +61,8 @@
 
       </div>
       <div class="small-3 cell">
+        <%= hidden_field_tag(:redir, 'users/confirmation') %>
+        <!-- <%= f.button :button, 'The Best Cake', type: 'submit', name: 'redir', value: 'users/confirmation' %> -->
         <%= f.submit 'Save', :class => 'button radius success bt-right' %>
       </div>
     </div>

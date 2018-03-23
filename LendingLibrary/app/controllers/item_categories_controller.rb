@@ -22,6 +22,10 @@ class ItemCategoriesController < ApplicationController
   def edit
   end
 
+  def steamkits
+    @item_categories = ItemCategory.all
+  end
+
   # POST /item_categories
   # POST /item_categories.json
   def create

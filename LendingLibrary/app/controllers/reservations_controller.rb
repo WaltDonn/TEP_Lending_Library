@@ -36,14 +36,18 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
-    # forward param for item
-    @item = Item.find(params[:item])
+    # forward param for item_category
+    @item_category = ItemCategory.find(params[:item_category])
+    # @item = Item.find(params[:item])
+
+    # sample a random item of the picked item category
+    @item = @item_category.items.sample(1).first
     # get available kits for this particular item
     @kits = Kit.available_kits
     # generate a random kit based on available kits
-    offset = rand(@kits.count)
+    offset2 = rand(@kits.count)
     puts "kits size: " + @kits.count.to_s
-    @kit = @kits.at(offset)
+    @kit = @kits.at(offset2)
 
     @reservation.kit_id = @kit.id
 

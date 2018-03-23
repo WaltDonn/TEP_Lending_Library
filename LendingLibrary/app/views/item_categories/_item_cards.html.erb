@@ -15,15 +15,15 @@
 
     <div class="cell-block-y">
       <div class="grid-x grid-margin-x large-4 medium-2 small-1" id="card-grid">
-        <% @items.each do |item| %>
+        <% @item_categories.each do |ic| %>
         <div class="product-card-container cell-block-x">
           <div class="product-card">
             <div class="product-card-thumbnail">
-              <%= link_to image_tag('finch.jpg', width:260, height:260), item_path(item)%>
+              <%= link_to image_tag('finch.jpg', width:260, height:260), item_category_path(ic)%>
             </div>
-            <h2 class="product-card-title center"><%= item.item_category.name %></h2>
+            <h2 class="product-card-title center"><%= ic.name %></h2>
             <div class="product-card-button center">
-              <%= link_to 'Details', item_path(item) %>
+              <%= link_to 'Details', item_category_path(ic) %>
             </div>
           </div>
         </div>
