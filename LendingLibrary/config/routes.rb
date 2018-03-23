@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'errors/not_found'
   get 'errors/internal_server_error'
 
-  resources :users
+  resources :users do
+    resources :item_categories
+  end
   resources :components
   resources :items do
     member do
@@ -18,7 +20,6 @@ Rails.application.routes.draw do
   resources :reservations do
     resources :items
     resources :users
-    resources :item_categories
   end
   resources :kits
   resources :schools

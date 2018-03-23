@@ -32,7 +32,8 @@ class UsersController < ApplicationController
   def reservation_user_edit
     @user = User.find(params[:id])
     # forward item and reservation
-    @item = Item.find(params[:item])
+    @item_category = ItemCategory.find(params[:item_category])
+    puts "============ic: " + @item_category.to_s
     @reservation = :reservation
   end
 
@@ -63,7 +64,7 @@ class UsersController < ApplicationController
           format.html { redirect_to @user, notice: 'User was successfully updated.' }
           format.json { render :show, status: :ok, location: @user }
         else
-          @ic = ItemCategroy.find(params[:item_category])
+          @ic = ItemCategory.find(params[:item_category])
           format.html { render :partial => params[:redir], locals: {:user => @user, :item_category => @ic} }
         end
 

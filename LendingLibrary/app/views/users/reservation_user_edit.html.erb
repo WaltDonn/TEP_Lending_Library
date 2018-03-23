@@ -62,6 +62,7 @@
       </div>
       <div class="small-3 cell">
         <%= hidden_field_tag(:redir, 'users/confirmation') %>
+        <%= hidden_field_tag(:item_category, @item_category.id) %>
         <!-- <%= f.button :button, 'The Best Cake', type: 'submit', name: 'redir', value: 'users/confirmation' %> -->
         <%= f.submit 'Save', :class => 'button radius success bt-right' %>
       </div>

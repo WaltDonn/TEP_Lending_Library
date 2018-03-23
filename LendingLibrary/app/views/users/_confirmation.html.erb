@@ -40,12 +40,12 @@
 
   <div class="grid-x center">
     <div class="small-3 cell">
-      <%= link_to 'Go back', item_path(@item), :class => 'button radius info'  %>
+      <%= link_to 'Go back', item_category_path(:id => @item_category.id), :class => 'button radius info'  %>
     </br>
       <%= link_to 'Cancel Rental', items_path, :class => 'button radius' %>
     </div>
     <div class="small-5 cell">
-      Is this correct? <%= link_to 'Edit Information', reservation_user_edit_path(user, :item => @item, :reservation => @reservation), :class => 'button radius'  %>
+      Is this correct? <%= link_to 'Edit Information', reservation_user_edit_path(user, :item_category => @item_category.id, :reservation => @reservation), :class => 'button radius'  %>
     </div>
     <div class="small-3 cell">
       <%= link_to 'Confirm Information', user_path(user), :class => 'button radius success'%>
