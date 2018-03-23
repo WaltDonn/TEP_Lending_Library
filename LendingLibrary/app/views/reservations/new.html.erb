@@ -1,4 +1,8 @@
-<% puts "item id: " + @item.id.to_s %>
-<% unless @item.nil? or @current_user.nil? %>
-  <%= render :partial => 'users/confirmation', locals: {item: @item, user: @current_user , reservation: @reservation} %>
+<% if params[:confirmed] == true %>
+  <%= render :partial => "select_dates", locals: {item: @item, user: @current_user, reservation: @reservation} %>
+
+<% else %>
+  <% unless @item.nil? or @current_user.nil? %>
+    <%= render :partial => 'users/confirmation', locals: {item: @item, user: @current_user , reservation: @reservation} %>
+  <% end %>
 <% end %>

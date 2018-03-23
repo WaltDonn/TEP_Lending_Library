@@ -15,7 +15,9 @@ Rails.application.routes.draw do
        get 'item_components'
     end
   end
-  resources :item_categories
+  resources :item_categories do
+    resources :reservations
+  end
   resources :component_categories
   resources :reservations do
     resources :items
@@ -34,6 +36,7 @@ Rails.application.routes.draw do
   get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
   get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
   get 'steamkits' => 'item_categories#steamkits', as: :shopping
+  get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
 
   get '/' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about

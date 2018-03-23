@@ -17,6 +17,10 @@ class ReservationsController < ApplicationController
     @today_return = Reservation.returning_today
   end
 
+  def rental_dates
+    @reservation = params[:reservation]
+  end
+
   # GET /returns
   def returns
      @today_return = Reservation.returning_today
@@ -35,6 +39,9 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
+
+
+
     @reservation = Reservation.new
     # forward param for item_category
     @item_category = ItemCategory.find(params[:item_category])
@@ -55,6 +62,8 @@ class ReservationsController < ApplicationController
     # current_user = current_user
     # puts "current_user id: " + current_user.id.to_s # this is nil
     @current_user = User.find(3)
+
+    @reservation.teacher_id = @current_user.id
   end
 
   # GET /reservations/1/edit
