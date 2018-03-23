@@ -42,9 +42,9 @@
                 </td>
               </tr>
 
-              <%= f.input :redir, :as => :hidden, :input_html => { :value => "users/confirmation" } %>
 
-              <%= f.input :item_category, :as => :hidden, :input_html => { :value => @item_category } %>
+
+
 
             </thead>
           </table>
@@ -61,9 +61,11 @@
 
       </div>
       <div class="small-3 cell">
-        <%= hidden_field_tag(:redir, 'users/confirmation') %>
+        <%= hidden_field_tag(:redir, 'new_reservation_path') %>
         <%= hidden_field_tag(:item_category, @item_category.id) %>
-        <!-- <%= f.button :button, 'The Best Cake', type: 'submit', name: 'redir', value: 'users/confirmation' %> -->
+        <%= hidden_field_tag(:reservation, @reservation) %>
+
+
         <%= f.submit 'Save', :class => 'button radius success bt-right' %>
       </div>
     </div>

@@ -27,6 +27,10 @@ class UsersController < ApplicationController
   end
 
   def confirmation
+
+    # @item_category = ItemCategory.find(params[:item_category])
+    # puts "======== confirmation item category: " + @item_category.to_s
+    # @reservation = :reservation
   end
 
   def reservation_user_edit
@@ -64,8 +68,10 @@ class UsersController < ApplicationController
           format.html { redirect_to @user, notice: 'User was successfully updated.' }
           format.json { render :show, status: :ok, location: @user }
         else
-          @ic = ItemCategory.find(params[:item_category])
-          format.html { render :partial => params[:redir], locals: {:user => @user, :item_category => @ic} }
+          @item_category = ItemCategory.find(params[:item_category])
+
+          puts "=================== @item_category id: " + @item_category.id.to_s
+          format.html { redirect_to new_reservation_path(:item_category => @item_category.id) }
         end
 
       else
