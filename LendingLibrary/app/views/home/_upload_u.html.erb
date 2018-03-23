@@ -25,6 +25,10 @@
 				            <td>
 				            	<%= f.input :users_csv, as: :file %>
 				            </td>
+				            <th> Type of user: </th>
+				            <td>
+				            	<%= f.input :role, collection: ["teacher", "volunteer", "manager", "admin"], :selected => 0%>
+				            </td>
 			            </tr>
   					</thead>
   				</table>
