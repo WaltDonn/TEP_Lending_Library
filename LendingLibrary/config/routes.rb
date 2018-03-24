@@ -9,16 +9,26 @@ Rails.application.routes.draw do
   get 'errors/not_found'
   get 'errors/internal_server_error'
 
-  resources :users, :except => [:new, :create, :delete, :destroy]
+
+  resources :users, :except => [:new, :create, :delete, :destroy]  do
+    resources :item_categories
+  end
+
+  
   resources :components
   resources :items do
     member do
        get 'item_components'
     end
   end
-  resources :item_categories
+  resources :item_categories do
+    resources :reservations
+  end
   resources :component_categories
-  resources :reservations
+  resources :reservations do
+    resources :items
+    resources :users
+  end
   resources :kits
   resources :schools
 
@@ -29,6 +39,10 @@ Rails.application.routes.draw do
   get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
   # get 'rental_form' => 'reservation#rental_form', as: :rental_form
   # get 'items/:id/item_components',  as: :content
+  get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
+  get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
+  get 'steamkits' => 'item_categories#steamkits', as: :shopping
+  get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
 
   get '/' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
