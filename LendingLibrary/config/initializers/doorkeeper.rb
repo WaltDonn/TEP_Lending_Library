@@ -2,18 +2,26 @@ Doorkeeper.configure do
   # Change the ORM that doorkeeper will use (needs plugins)
   orm :active_record
 
+
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    #fail "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
-    # Put your resource owner authentication logic here.
-    # Example implementation:
-    #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
-    
-    
     
     #https://github.com/doorkeeper-gem/doorkeeper/wiki/Running-Doorkeeper-with-Devise
+    byebug
     current_user || warden.authenticate!(:scope => :user)
+    User.find(1)
+
   end
+
+
+  #https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-Resource-Owner-Password-Credentials-flow
+  resource_owner_from_credentials do |routes|
+    user = User.find_for_database_authentication(:email => params[:username])
+    if user && user.valid_for_authentication? { user.valid_password?(params[:password]) }
+      user
+    end
+  end
+
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
    admin_authenticator do
@@ -120,8 +128,11 @@ Doorkeeper.configure do
   # before enabling:
   #   http://tools.ietf.org/html/rfc6819#section-4.4.2
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
+  #   the main concern with the password grant, is allowing third parties access to passwords.
+  #   as the only clients of this provider are TEP's other systems, this has been decided
+  #   acceptable risk.
   #
-  # grant_flows %w[authorization_code client_credentials]
+   grant_flows %w[password]
 
   # Hook into the strategies' request & response life-cycle in case your
   # application needs advanced customization or logging:
@@ -144,3 +155,5 @@ Doorkeeper.configure do
   # WWW-Authenticate Realm (default "Doorkeeper").
   # realm "Doorkeeper"
 end
+
+
