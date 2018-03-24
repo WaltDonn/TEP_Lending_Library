@@ -7,10 +7,7 @@ Doorkeeper.configure do
   resource_owner_authenticator do
     
     #https://github.com/doorkeeper-gem/doorkeeper/wiki/Running-Doorkeeper-with-Devise
-    byebug
     current_user || warden.authenticate!(:scope => :user)
-    User.find(1)
-
   end
 
 
@@ -28,7 +25,7 @@ Doorkeeper.configure do
   #   # Put your admin authentication logic here.
   #   # Example implementation:
   #   Admin.find_by_id(session[:admin_id]) || redirect_to(new_admin_session_url)
-    redirect_to root_url unless current_user != nil && current_user.has_role?(:admin)
+    redirect_to new_user_session_path unless current_user != nil && current_user.has_role?(:admin)
  
    end
 
