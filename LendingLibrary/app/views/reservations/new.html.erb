@@ -1,2 +1,8 @@
+<% if params[:confirmed] == true %>
+  <%= render :partial => "select_dates", locals: {item: @item, user: @current_user, reservation: @reservation} %>
 
-<%= render :partial => 'users/confirmation', item: @item %>
+<% else %>
+  <% unless @item.nil? or @current_user.nil? %>
+    <%= render :partial => 'users/confirmation', locals: {item: @item, user: @current_user , reservation: @reservation} %>
+  <% end %>
+<% end %>

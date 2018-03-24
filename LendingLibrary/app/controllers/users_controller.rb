@@ -20,10 +20,25 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
-  
+
   # GET /users/1/rental_calendar
   def rental_calendar
       @reservations = Reservation.get_month(params[:month]).select{|res| res.teacher_id == @user.id}
+  end
+
+  def confirmation
+
+    # @item_category = ItemCategory.find(params[:item_category])
+    # puts "======== confirmation item category: " + @item_category.to_s
+    # @reservation = :reservation
+  end
+
+  def reservation_user_edit
+    @user = User.find(params[:id])
+    # forward item and reservation
+    @item_category = ItemCategory.find(params[:item_category])
+    puts "============ic: " + @item_category.to_s
+    @reservation = :reservation
   end
 
   # POST /users
@@ -46,9 +61,19 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
+      @redir = params[:redir]
+      puts "=================== redirect_to: " + @redir
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        if params[:redir].blank?
+          format.html { redirect_to @user, notice: 'User was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          @item_category = ItemCategory.find(params[:item_category])
+
+          puts "=================== @item_category id: " + @item_category.id.to_s
+          format.html { redirect_to new_reservation_path(:item_category => @item_category.id) }
+        end
+
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }

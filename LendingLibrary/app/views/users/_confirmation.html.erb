@@ -1,48 +1,55 @@
-
-
-<%= simple_form_for @user=User.find(3), :html => { :class => 'form-horizontal' } do |f| %>
-<fieldset class='center'>
-  <legend>Your Profile Information</legend>
-  <table id="profile">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <td><%=  @user.name  %></td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td><%=  @user.email %></td>
-      </tr>
-      <tr>
-        <th>Phone</th>
-        <td><%=  @user.phone_num %></td>
-      </tr>
-      <tr>
-        <th>School</th>
-        <td><%=  @user.school.name %></td>
-      </tr>
-      <tr>
-        <th>Class Size</th>
-        <td><%=  @user.class_size%></td>
-      </tr>
-    </thead>
-
-  </table>
-
-
-</fieldset>
-
-<div class="row">
-    <div class="small-3 columns">
-      <%= link_to 'Go back', items_path, :class => 'button radius info'  %>
-      <%= link_to 'Cancel Rental', items_path, :class => 'button radius' %>
-    </div>
-    <div class="small-5 columns">
-      Is this correct? <%= link_to 'Edit Information', edit_user_path(@user), :class => 'button radius'  %>
-    </div>
-    <div class="small-3 columns">
-    <%= link_to 'Confirm Information', user_path(@user), :class => 'button radius success'%>
+<div class="grid-container" id="profile">
+  <div class="grid-x center">
+    <h1 class="center"> Your Profile Information</h1>
   </div>
-</div>
+  <div class="grid-x center">
+    <fieldset class='cell small-7 center'>
+      <br>
+      <table class="cell small-5" id="user-profile">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <td><%=  user.first_name + " " + user.last_name  %></td>
+          </tr>
+          <tr>
+            <th>School Email</th>
+            <td><%=  user.email %></td>
+          </tr>
+          <tr>
+            <th>Phone Number</th>
+            <td><%=  user.phone_num %></td>
+          </tr>
 
-<% end %>
+            <!-- FIXME: temporary fix for users who are not teachers -->
+            <% unless user.school.nil? %>
+              <tr>
+                <th>School</th>
+                <td><%= user.school.name %></td>
+              </tr>
+            <% end %>
+
+          <tr>
+            <th>Class Size</th>
+            <td><%=  user.class_size%></td>
+          </tr>
+        </thead>
+      </table>
+    </fieldset>
+  </div>
+  <br>
+
+  <div class="grid-x center">
+    <div class="small-3 cell">
+      <%= link_to 'Go back', item_category_path(@item_category), :class => 'button radius info'  %>
+    </br>
+      <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
+    </div>
+    <div class="small-5 cell">
+      Is this correct? <%= link_to 'Edit Information', reservation_user_edit_path(user, :item_category => @item_category.id), :class => 'button radius'  %>
+    </div>
+    <div class="small-3 cell">
+      <%= link_to 'Confirm Information', new_reservation_path(:confirmed => true, :item_category => @item_category.id), :class => 'button radius success'%>
+    </div>
+  </div>
+
+</div>

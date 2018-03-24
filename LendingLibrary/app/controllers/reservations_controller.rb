@@ -17,6 +17,10 @@ class ReservationsController < ApplicationController
     @today_return = Reservation.returning_today
   end
 
+  def rental_dates
+    @reservation = params[:reservation]
+  end
+
   # GET /returns
   def returns
      @today_return = Reservation.returning_today
@@ -35,7 +39,31 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
+
+
+
     @reservation = Reservation.new
+    # forward param for item_category
+    @item_category = ItemCategory.find(params[:item_category])
+    # @item = Item.find(params[:item])
+
+    # sample a random item of the picked item category
+    @item = @item_category.items.sample(1).first
+    # get available kits for this particular item
+    @kits = Kit.available_kits
+    # generate a random kit based on available kits
+    offset2 = rand(@kits.count)
+    puts "kits size: " + @kits.count.to_s
+    @kit = @kits.at(offset2)
+
+    @reservation.kit_id = @kit.id
+
+    # FIXME: when current_user is available
+    # current_user = current_user
+    # puts "current_user id: " + current_user.id.to_s # this is nil
+    @current_user = User.find(3)
+
+    @reservation.teacher_id = @current_user.id
   end
 
   # GET /reservations/1/edit
