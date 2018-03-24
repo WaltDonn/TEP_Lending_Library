@@ -68,18 +68,19 @@
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
+$light-gray: #e6e6e6;
+$medium-gray: #cacaca;
+$dark-gray: #8a8a8a;
+$black: #0a0a0a;
+$white: #fefefe;
 $foundation-palette: (
   primary: #F99D31,
   secondary: #0076C0,
   success: #51C31E,
   warning: #F99D31,
   alert: #DE7F7F,
+  info: #cacaca,
 );
-$light-gray: #e6e6e6;
-$medium-gray: #cacaca;
-$dark-gray: #8a8a8a;
-$black: #0a0a0a;
-$white: #fefefe;
 $none: transparent;
 $body-background: $white;
 $body-font-color: $black;
@@ -91,7 +92,7 @@ $global-position: 1rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
 $global-radius: 0px;
-$global-menu-padding: 0.7rem 1rem;
+$global-menu-padding: 1rem;
 $global-menu-nested-margin: 1rem;
 $global-text-direction: ltr;
 $global-flexbox: true;
@@ -286,7 +287,7 @@ $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
 $button-color-alt: $black;
-$button-radius: 20px;
+$button-radius: 10px;
 $button-hollow-border-width: 1px;
 $button-sizes: (
   tiny: 0.6rem,
@@ -330,7 +331,7 @@ $card-font-color: $body-font-color;
 $card-divider-background: $light-gray;
 $card-border: 1px solid $light-gray;
 $card-shadow: none;
-$card-border-radius: $global-radius;
+$card-border-radius: 2rem;
 $card-padding: $global-padding;
 $card-margin-bottom: $global-margin;
 
@@ -389,13 +390,13 @@ $dropdownmenu-arrows: true;
 $dropdownmenu-arrow-color: $anchor-color;
 $dropdownmenu-arrow-size: 6px;
 $dropdownmenu-arrow-padding: 1.5rem;
-$dropdownmenu-min-width: 200px;
+$dropdownmenu-min-width: 100px;
 $dropdownmenu-background: $white;
 $dropdownmenu-submenu-background: $dropdownmenu-background;
 $dropdownmenu-padding: $global-menu-padding;
 $dropdownmenu-nested-margin: 0;
 $dropdownmenu-submenu-padding: $dropdownmenu-padding;
-$dropdownmenu-border: 1px solid $medium-gray;
+$dropdownmenu-border: none;
 $dropdown-menu-item-color-active: get-color(primary);
 $dropdown-menu-item-background-active: transparent;
 
@@ -840,33 +841,28 @@ $tooltip-radius: $global-radius;
 // 55. Top Bar
 // -----------
 
-$topbar-padding: 1rem 2rem;
+$topbar-padding: 1rem;
 $topbar-background: rgba($white, 0.65);
 $topbar-submenu-background: $topbar-background;
-$topbar-title-spacing: 0.5rem 0.5rem 0.5rem 0;
+$topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;
 $topbar-unstack-breakpoint: medium;
-// Style the top bar dropdown elements
-$topbar-dropdown-bg: $white;
-$topbar-dropdown-link-color: $white;
-$topbar-dropdown-toggle-size: 5px;
-$topbar-dropdown-toggle-color: $white;
-$topbar-dropdown-toggle-alpha: .4;
-$topbar-link-color: $white;
-$topbar-link-color-active: $white;
-$topbar-link-color-active-hover: $white;
+
 
 // 56. Xy Grid
 // -----------
 
 $xy-grid: true;
+$margin-grid: true;
 $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
   small: 20px,
-  medium: 30px
+  medium: 30px,
+  large: 50px
 );
 $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;
 $grid-container-max: $global-width;
 $block-grid-max: 8;
+$grid-wrap: true;

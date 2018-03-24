@@ -34,15 +34,10 @@ pre {
 }
 
 a {
-  color: $orange;
-
-  &:visited {
-    color: $dark-grey;
-  }
+  color: $blue;
 
   &:hover {
     color: $white;
-    background-color: $primary;
     text-underline-position: $primary;
   }
 }

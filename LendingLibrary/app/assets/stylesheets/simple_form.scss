@@ -1,3 +1,8 @@
+
+@import 'settings';
+@import 'foundation';
+
+
 $body-bg: #fff;
 $body-font-color: #000;
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -20,7 +25,7 @@ $light-gray: #a0a0a0;
 $alert-color: #cc0000;
 $success-color: #b0e899;
 $warning-color: #f2dede;
-$info-color: $light-gray;
+$info-color: #cacaca;
 
 
 $white: white;
@@ -30,19 +35,23 @@ $white: white;
     margin-bottom: 10px;
     clear: both;
     color: $primary-color;
+    margin-left: -8px;
     /* Required for Webkit, but not for Gecko */
   }
   label {
     float: left;
-    margin:0 0 3px 8px;
+    // margin:0 0 3px 8px;
     font-weight: bold;
   }
 }
 
+
 .form-inline div { display: inline-block }
 
 div.boolean, .simple_form input[type='submit'] {
-  margin-left: 120px;
+  margin-left: 0px;
+  font-size: 20px;
+  font-family: $body-font-family;
 }
 
 div.boolean label {
@@ -62,7 +71,7 @@ label.collection_radio_buttons {
 }
 
 .simple_form {
-   margin:10px auto;
+   margin:0;
    max-width: 800px;
    padding: 20px 12px 10px 20px;
    border: 0px;
@@ -92,6 +101,19 @@ input {
   }
 }
 
+input.avg-checkbox{
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+input.avg-checkbox:checked {
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+
 input.avg {
   color: $primary-color;
   width: 400px;
@@ -100,9 +122,11 @@ input.avg {
   box-shadow: 0 0 2px $secondary-color;
   border: 1px solid $secondary-color;
 }
+
 select.avg {
   width: 400px;
 }
+
 textarea.avg {
   color: $primary-color;
   width: 400px;
@@ -112,6 +136,7 @@ textarea.avg {
   box-shadow: 0 0 2px $secondary-color;
   border: 1px solid $secondary-color;
 }
+
 label.collection_check_boxes {
   float: none;
   margin: 0;

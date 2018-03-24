@@ -1,31 +1,32 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  # FIXME: temporarilly disabled for views editing
+  # before_action :authenticate_user!
 
   # GET /reservations
   # GET /reservations.json
   def index
     @reservations = Reservation.all
   end
-  
-  
+
+
   # GET /reservation_calendar/1
   def rental_calendar
     @reservations = Reservation.get_month(params[:month])
     @today_pickup = Reservation.picking_up_today
-    @today_return = Reservation.returning_today 
+    @today_return = Reservation.returning_today
   end
-  
+
   # GET /returns
   def returns
-     @today_return = Reservation.returning_today 
+     @today_return = Reservation.returning_today
   end
-  
+
   # GET /pickup
   def pickup
      @today_pickup = Reservation.picking_up_today
   end
-  
+
 
   # GET /reservations/1
   # GET /reservations/1.json

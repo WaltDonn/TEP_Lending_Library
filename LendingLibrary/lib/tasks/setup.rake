@@ -5,13 +5,11 @@ namespace :lendinglibrary do
     Rake::Task["db:create"].invoke
     Rake::Task["db:setup"].invoke
     Rake::Task["db:migrate"].invoke
-    Rake::Task['db:test:prepare'].invoke
     Rake::Task["import_incidents_csv:create_incidents"].invoke
-  end
 
-  desc "import csvs"
-  task :import do
-    Rake::Task["import_incidents_csv:create_incidents"].invoke
-  end
-
+    # drop test database
+    system("RAILS_ENV=test rake db:drop")
+    # create test database
+    system("RAILS_ENV=test rake db:create")
+    end
 end
