@@ -40,6 +40,7 @@ gem 'cancancan'
 gem 'minitest'
 gem 'figaro'
 gem 'devise'
+gem 'doorkeeper'
 
 gem 'erubi', '~> 1.7.1'
 gem 'actionview'

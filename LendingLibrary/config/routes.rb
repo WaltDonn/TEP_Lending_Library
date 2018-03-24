@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
-  get 'home/upload_users'
+ 
 
-  devise_for :users
+  use_doorkeeper
+  devise_for :users, skip: :registrations
   # Set the root url
   root :to => 'home#home'
 
   get 'errors/not_found'
   get 'errors/internal_server_error'
 
-  resources :users do
+
+  resources :users, :except => [:new, :create, :delete, :destroy]  do
     resources :item_categories
   end
+
+  
   resources :components
   resources :items do
     member do
@@ -44,8 +48,18 @@ Rails.application.routes.draw do
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
+  # get 'home/upload_users'
   get 'upload_users' => 'home#upload_users', as: :upload_users
   post 'create_users' => 'home#create_users', as: :create_users
+  
+  
+  namespace :api do
+    namespace :v1 do
+      get '/resource_owner' => "credentials#resource_owner"
+    end
+  end
+  
+  
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
