@@ -20,7 +20,7 @@
 
 
           <div class="small-6 cell">
-            <%= link_to 'Go back',  :back, :class => 'button radius info'  %>
+            <%= link_to 'Go back', new_reservation_path(:confirmed => false, :item_category => @item_category.id), :class => 'button radius info'  %>
             </br>
             <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
           </div>

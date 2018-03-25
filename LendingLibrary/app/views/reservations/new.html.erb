@@ -1,8 +1,10 @@
-<% if @confirmed == true %>
+<% puts "----\n in views, @confirmed = " + @confirmed.to_s %>
+<%= puts "----\n in views, @confirmed = " + @confirmed.to_s %>
+<% if @confirmed.to_s == "true" %>
   <%= render :partial => "select_dates", locals: {item: @item, user: @current_user, reservation: @reservation} %>
-
+  <% puts "inside @confirmed" %>
 <% else %>
-  <% unless @item.nil? or @current_user.nil? %>
+  <% unless @item_category.nil? or @current_user.nil? %>
     <%= render :partial => 'users/confirmation', locals: {item: @item, user: @current_user , reservation: @reservation} %>
   <% end %>
 <% end %>

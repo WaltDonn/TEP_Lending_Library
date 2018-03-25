@@ -40,8 +40,13 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
 
+    params.each do |key,value|
+      puts "Param #{key}: #{value}"
+    end
 
     @confirmed = params[:confirmed]
+
+    # puts "@confirmed = " + @confirmed.to_s
 
     @reservation = Reservation.new
     # forward param for item_category
