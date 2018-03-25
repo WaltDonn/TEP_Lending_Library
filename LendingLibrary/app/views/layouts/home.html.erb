@@ -12,46 +12,47 @@
 </head>
 
 <!-- Devise code needed: https://guides.railsgirls.com/devise -->
-<% if notice %>
-  <p class="alert alert-success">
-    <%= notice %>
-  </p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger">
-    <%= alert %>
-  </p>
-<% end %>
 
 <body class="grid-y home-content overlay">
 
-    <!-- the title bar / navigation menu -->
-    <div class="cell cell-block-container">
-        <div class="home-nav">
-          <%= render :partial => "partials/nav" %>
-        </div>
-    </div>
+  <!-- the title bar / navigation menu -->
+  <div class="cell cell-block-container">
+      <div class="home-nav">
+        <%= render :partial => "partials/nav" %>
+      </div>
+  </div>
 
-    <!-- the page content -->
-    <div class="cell auto cell-block-container">
-      <div class="grid-x padding-gutters">
+  <% if notice %>
+    <p class="alert alert-success">
+      <%= notice %>
+    </p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger">
+      <%= alert %>
+    </p>
+  <% end %>
 
-        <div class="small-12 cell" id="main_content">
-          <%= render :partial => "partials/flash" %>
-        </div>
+  <!-- the page content -->
+  <div class="cell auto cell-block-container">
+    <div class="grid-x padding-gutters">
 
-        <div class="cell cell-block-y">
-          <%= yield %>
-        </div>
+      <div class="small-12 cell" id="main_content">
+        <%= render :partial => "partials/flash" %>
+      </div>
+
+      <div class="cell cell-block-y">
+        <%= yield %>
       </div>
     </div>
+  </div>
 
-    <!-- the footer of the page -->
-    <footer class="cell footer" id="footer">
-        <div class="grid-container" id="footer-bar">
-          <%= render partial: 'partials/footer' %>
-        </div>
-    </footer>
+  <!-- the footer of the page -->
+  <footer class="cell footer" id="footer">
+    <div class="grid-container" id="footer-bar">
+      <%= render partial: 'partials/footer' %>
+    </div>
+  </footer>
 
   <%= javascript_include_tag "application" %>
 
