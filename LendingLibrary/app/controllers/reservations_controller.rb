@@ -41,6 +41,7 @@ class ReservationsController < ApplicationController
   def new
 
 
+    @confirmed = params[:confirmed]
 
     @reservation = Reservation.new
     # forward param for item_category
