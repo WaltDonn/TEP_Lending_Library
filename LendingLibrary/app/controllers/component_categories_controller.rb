@@ -6,26 +6,31 @@ class ComponentCategoriesController < ApplicationController
   # GET /component_categories.json
   def index
     @component_categories = ComponentCategory.all
+    authorize! :index, @component_categories
   end
 
   # GET /component_categories/1
   # GET /component_categories/1.json
   def show
+    authorize! :show, @component_category
   end
 
   # GET /component_categories/new
   def new
     @component_category = ComponentCategory.new
+    authorize! :new, @component_category
   end
 
   # GET /component_categories/1/edit
   def edit
+    authorize! :edit, @component_category
   end
 
   # POST /component_categories
   # POST /component_categories.json
   def create
     @component_category = ComponentCategory.new(component_category_params)
+    authorize! :create, @component_category
 
     respond_to do |format|
       if @component_category.save
@@ -41,6 +46,7 @@ class ComponentCategoriesController < ApplicationController
   # PATCH/PUT /component_categories/1
   # PATCH/PUT /component_categories/1.json
   def update
+    authorize! :update, @component_category
     respond_to do |format|
       if @component_category.update(component_category_params)
         format.html { redirect_to @component_category, notice: 'Component category was successfully updated.' }
@@ -55,6 +61,7 @@ class ComponentCategoriesController < ApplicationController
   # DELETE /component_categories/1
   # DELETE /component_categories/1.json
   def destroy
+    authorize! :destroy, @component_category
     @component_category.destroy
     respond_to do |format|
       format.html { redirect_to component_categories_url, notice: 'Component category was successfully destroyed.' }

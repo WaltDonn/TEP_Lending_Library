@@ -1,33 +1,38 @@
 class KitsController < ApplicationController
   before_action :set_kit, only: [:show, :edit, :update, :destroy]
   # FIXME: temporarilly disabled for views editing
-  # before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /kits
   # GET /kits.json
   def index
     @kits = Kit.all
     @available_kits = Kit.available_kits
+    authorize! :index, @kits
   end
 
   # GET /kits/1
   # GET /kits/1.json
   def show
+     authorize! :show, @kit
   end
 
   # GET /kits/new
   def new
     @kit = Kit.new
+    authorize! :new, @kit
   end
 
   # GET /kits/1/edit
   def edit
+    authorize! :edit, @kit
   end
 
   # POST /kits
   # POST /kits.json
   def create
     @kit = Kit.new(kit_params)
+    authorize! :create, @kit
 
     respond_to do |format|
       if @kit.save
@@ -43,6 +48,7 @@ class KitsController < ApplicationController
   # PATCH/PUT /kits/1
   # PATCH/PUT /kits/1.json
   def update
+    authorize! :update, @kit
     respond_to do |format|
       if @kit.update(kit_params)
         format.html { redirect_to @kit, notice: 'Kit was successfully updated.' }
@@ -57,6 +63,7 @@ class KitsController < ApplicationController
   # DELETE /kits/1
   # DELETE /kits/1.json
   def destroy
+    authorize! :destroy, @kit
     @kit.destroy
     respond_to do |format|
       format.html { redirect_to kits_url, notice: 'Kit was successfully destroyed.' }

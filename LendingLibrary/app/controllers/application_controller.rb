@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
- 
-  
   
   
   rescue_from CanCan::AccessDenied do |exception|
@@ -12,6 +10,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  
+  def check_login
+    redirect_to login_path, alert: "You need to log in to view this page." if current_user.nil?
+  end
 
 
 end

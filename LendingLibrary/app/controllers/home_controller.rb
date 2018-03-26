@@ -15,9 +15,13 @@ class HomeController < ApplicationController
   end
 
   def upload_users
+  	authorize! :upload_users, nil
   end
+  
 
   def create_users
+  	authorize! :create_users, nil
+ 
   	failed_emails = Array.new
   	file = params['create_users']['users_csv'].tempfile
 	csv = CSV.read(file, :headers => true)
