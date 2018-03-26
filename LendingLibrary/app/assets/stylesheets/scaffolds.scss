@@ -1,17 +1,8 @@
-$orange: #F99D31;
-$blue: #0076C0;
-$black: #333333;
-$dark-grey: #707070;
-$med-grey: #BAB9B9;
-$light-grey: #EBEBEB;
-$white: white;
-$green: #51C31E;
-$red: #DE7F7F;
 
-$primary: $orange;
-$secondary: $blue;
-$notice: $green;
+@import 'settings';
+@import 'foundation';
 $alert: $red;
+$notice: $green;
 
 body {
   background-color: $white;
@@ -35,10 +26,47 @@ pre {
 
 a {
   color: $blue;
-
+  
   &:hover {
+    color: $primary-color;
+    text-underline-position: $primary-color;
+  }
+}
+
+.information-table {
+  // border-radius: 15px;
+  border: 1px solid smart-scale($table-background, $table-color-scale);
+  margin-bottom: 5rem;
+  overflow: hidden;
+
+  table {
+    margin: 0px;
+  }
+  
+  th {
+    border: 0px;
+    text-align: left;
+    background-color: $blue;
     color: $white;
-    text-underline-position: $primary;
+    vertical-align: middle;
+  }
+  
+  tr#table-head {
+    margin: 1.5rem 0rem;
+  }
+  
+  td {
+    color: $dark-gray;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  #active {
+    color: $green;
+  }
+  
+  #inactive {
+    color: $red;
   }
 }
 
@@ -72,7 +100,7 @@ div {
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: $alert;
-
+  
   h2 {
     text-align: left;
     font-weight: bold;
@@ -82,7 +110,7 @@ div {
     background-color: $alert;
     color: $white;
   }
-
+  
   ul li {
     font-size: 12px;
     list-style: square;
@@ -91,4 +119,33 @@ div {
 
 label {
   display: block;
+}
+
+// inner title style
+
+.inner-title {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  
+  h1{
+    :hover {
+      background-color: transparent;
+    }
+  }
+  
+  h1 > a {
+    color: $primary-color;
+  }
+}
+
+.uline{
+  padding-bottom: 0px;
+  height: 50px;
+  border-bottom: 3px solid $secondary-color;
+  display:inline-block;
+  margin-bottom: 10px;
+}
+
+.side-link {
+  padding-top: 1.5rem;
 }

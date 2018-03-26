@@ -13,12 +13,14 @@
   }
 }
 
-#user-profile, table, th, td, tr, thead {
-  background-color: $none;
-  border-color: $none;
-  font-size: 1rem;
-  font-weight: 400;
-  
+#user-profile {
+  table, th, td, tr, thead {
+    background-color: $none;
+    // border-color: $none;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
   th {
     color: $dark-gray;
     text-align: right;
@@ -33,7 +35,7 @@
 
 #user-profile-form, table, th, td, tr, thead {
   background-color: $none;
-  border-color: $none;
+  // border-color: $none;
   font-size: 1rem;
   font-weight: 400;
   

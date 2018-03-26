@@ -65,6 +65,14 @@
 // 1. Global
 // ---------
 
+$orange: #F99D31;
+$blue: #0076C0;
+$dark-grey: #707070;
+$med-grey: #BAB9B9;
+$light-grey: #EBEBEB;
+$green: #51C31E;
+$red: #DE7F7F;
+
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
@@ -74,12 +82,12 @@ $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
 $foundation-palette: (
-  primary: #F99D31,
-  secondary: #0076C0,
-  success: #51C31E,
-  warning: #F99D31,
-  alert: #DE7F7F,
-  info: #cacaca,
+  primary: $orange,
+  secondary: $blue,
+  success: $green,
+  warning: $orange,
+  alert: $red,
+  info: $medium-gray,
 );
 $none: transparent;
 $body-background: $white;
@@ -773,7 +781,7 @@ $table-padding: rem-calc(8 10 10);
 $table-hover-scale: 2%;
 $table-row-hover: darken($table-background, $table-hover-scale);
 $table-row-stripe-hover: darken($table-background, $table-color-scale + $table-hover-scale);
-$table-is-striped: true;
+$table-is-striped: false;
 $table-striped-background: smart-scale($table-background, $table-color-scale);
 $table-stripe: even;
 $table-head-background: smart-scale($table-background, $table-color-scale / 2);
