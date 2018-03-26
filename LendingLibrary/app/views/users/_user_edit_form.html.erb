@@ -21,7 +21,11 @@
               </td>
             </tr>
             <tr>
-              <th>School Email</th>
+              <% if @user.role == "Teacher" %>
+                <th>School Email</th>
+              <% else %>
+                <th>Email</th>
+              <% end %>
               <td>
                 <%= f.input :email,  :input_html => { :class => 'avg' }%>
               </td>
@@ -32,18 +36,30 @@
                 <%= f.input :phone_num,  :input_html => { :class => 'avg' }%>
               </td>
             </tr>
-            <tr>
-              <th>School</th>
-              <td>
-                  <%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
-              </td>
-            </tr>
-            <tr>
-              <th>Class Size</th>
-              <td>
-                  <%= f.input :class_size, :input_html => { :class => 'avg' }%>
-              </td>
-            </tr>
+            <% if @user.role == "Teacher" %>
+              <tr>
+                <th>School</th>
+                <td>
+                    <%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
+                </td>
+              </tr>
+              <tr>
+                <th>Class Size</th>
+                <td>
+                    <%= f.input :class_size, :input_html => { :class => 'avg' }%>
+                </td>
+              </tr>
+            <% end %>
+            <% if @user.role == 'admin' %>
+              <tr>
+                <th>Role</th>
+                <td><%=  f.input :role, :input_html => { :class => 'avg' } %></td>
+              </tr>
+              <tr>
+                <th>Active</th>
+                <td><%=  f.input :is_active, :input_html => { :class => 'avg' } %></td>
+              </tr>
+            <% end %>
           </thead>
         </table>
       </fieldset>
@@ -52,7 +68,7 @@
   <br>
   <div class="grid-x">
     <div class="form-actions large-offset-9">
-      <%= link_to 'Cancel', user_path(3), :class => 'button radius' %>
+      <%= link_to 'Cancel', user_path(current_user.id), :class => 'button radius' %>
       <%= f.submit 'Save', :class => 'button radius success bt-right' %>
     </div>
   </div>

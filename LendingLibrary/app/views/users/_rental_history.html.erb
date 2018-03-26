@@ -1,37 +1,30 @@
-
-<div class="grid-x">
-  <div class="small-1"></div>
-  <div class="cell small-10">
-    <fieldset>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Checkout Date</th>
-            <th>Return Date</th>
-            <th>Current Status</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-          <tr>
-            <td><%= link_to image_tag('osmo.png', width:180, height:180), item_path(@item=Item.find(1))%></td>
-            <td>From: <%= Reservation.find(1).pick_up_date.strftime("%D") %></td>
-            <td>To: <%= Reservation.find(1).return_date.strftime("%D") %></td>
-            <td> <%= Reservation.find(1).picked_up ? "Picked Up" : "Not Yet Picked Up" %></td>
-          </tr>
+<% unless @my_reservations.nil? || @my_reservations.empty? %>
+  <div class="grid-x">
+    <div class="small-1"></div>
+    <div class="cell small-10">
+      <fieldset>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Checkout Date</th>
+              <th>Return Date</th>
+              <th>Current Status</th>
+            </tr>
+          </thead>
           
-        </tbody>
-      </table>
-    </fieldset>
+          <tbody>
+            <% @my_reservations.each do |myr| %>
+              <tr>
+                <td><%= link_to image_tag('osmo.png', width:180, height:180), item_path(@item=Item.find(1))%></td>
+                <td>From: <%= myr.pick_up_date.strftime("%D") %></td>
+                <td>To: <%= myr.return_date.strftime("%D") %></td>
+                <td> <%= myr.picked_up ? "Picked Up" : "Not Yet Picked Up" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </fieldset>
+    </div>
   </div>
-</div>
-
-<br>
-<div class="grid-x">
-  <div class="cell auto"></div>
-  <div class="small-1 cell">
-    <%= link_to 'Go back', user_path(@user), :class => 'button radius info'  %>
-  </div>
-  <div class="small-1 cell"></div>
-</div>
+<% end %>

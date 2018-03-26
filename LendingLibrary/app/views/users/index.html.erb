@@ -15,7 +15,7 @@
     </div>
 
     <div class="rounded information-table">
-      <table class="">
+      <table>
         <thead>
           <tr id="table-head">
             <th>Name</th>
@@ -30,7 +30,7 @@
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <td><%= user.name %></td>
+              <td><%= link_to user.name, user_path(user.id) %></td>
               <% unless user.school_id.nil? %>
                 <td><%= user.school.name %></td>
               <% else %>

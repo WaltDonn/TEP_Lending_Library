@@ -31,6 +31,7 @@
   --secondary: var(--blue);
   --notice: var(--green);
   --alert: var(--red);
+  --none: transparent;
 }
 
 /* general app stylings */
@@ -139,8 +140,8 @@ footer a {
 
 
 #signup-form th {
-  background-color: $none;
-  border-color: $none;
+  background-color: none;
+  border-color: none;
   font-size: 1rem;
   color: var(--secondary);
   text-align: right;
