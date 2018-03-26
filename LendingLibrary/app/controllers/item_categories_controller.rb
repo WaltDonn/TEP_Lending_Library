@@ -2,13 +2,6 @@ class ItemCategoriesController < ApplicationController
   before_action :set_item_category, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /item_categories
-  # GET /item_categories.json
-  def index
-    @item_categories = ItemCategory.all
-    authorize! :index, @item_categories
-  end
-
   # GET /item_categories/1
   # GET /item_categories/1.json
   def show
