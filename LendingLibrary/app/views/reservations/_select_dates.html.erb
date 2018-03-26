@@ -7,9 +7,8 @@
       <%= simple_form_for :reservation_select_dates, :html => { :class => 'form-horizontal' }, :url => reservation_select_dates_path do |f| %>
         <fieldset>
 
-
-          <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", as: :string, :input_html => {:class => "avg datepicker"} %>
-          <%= f.input :return_date, label: "Please select when you would like to drop off your kit during check-in-week.", as: :string, :input_html => {:class => "avg datepicker"} %>
+          <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", as: :string, :input_html => {:class => "avg datepicker"}, :required => true %>
+          <%= f.input :return_date, label: "Please select when you would like to drop off your kit during check-in-week.", as: :string, :input_html => {:class => "avg datepicker"}, :required => true %>
 
         </fieldset>
       </div>

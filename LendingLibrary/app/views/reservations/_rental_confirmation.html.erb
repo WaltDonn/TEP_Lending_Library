@@ -13,13 +13,31 @@
             <h2 class="product-card-title center"><%=  @reservation.teacher.name %></h2>
             <h2 class="product-card-title center"><%=  @reservation.teacher.email %></h2>
             <h2 class="product-card-title center"><%=  @reservation.teacher.school.name %></h2>
+            <% link_to 'EDIT', new_reservation_path(:step => 1, :item_category => @item_category.id) %>
         </div>
 
         <div class="product-card">
             <h2> Dates </h2>
             <h2 class="product-card-title center">Pick up date: <%=  @reservation.pick_up_date %></h2>
             <h2 class="product-card-title center">Return date: <%=  @reservation.return_date %></h2>
+            <% link_to 'EDIT', new_reservation_path(:step => 2, :item_category => @item_category.id) %>
         </div>
 
   </div>
+
+  <div class="grid-x center">
+
+
+        <div class="small-6 cell">
+          <%= link_to 'Go back', :back, :class => 'button radius info'  %>
+          </br>
+          <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
+        </div>
+        <div class="small-6 cell">
+
+          <!-- <%= hidden_field_tag(:item_category, @item_category.id) %> -->
+        <%= link_to 'Confirm rental', :class => 'button radius success'%>
+      </div>
+  </div>
+
 </div>
