@@ -26,6 +26,8 @@ class Ability
         can :update, Reservation do |r|  
           r.teacher_id == user.id
         end
+        
+        
         can :crud, School
         
         
