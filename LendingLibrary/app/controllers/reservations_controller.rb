@@ -32,29 +32,32 @@ class ReservationsController < ApplicationController
   end
 
   def select_dates
-    @prep = params[:reservation]
-    @prep2 = JSON.parse @prep.gsub('=>', ':')
+    @item_category = ItemCategory.find(params[:item_category])
 
-    puts @prep2.to_s + "\n"
-    puts @prep2.to_h.to_s
 
-    @reservation = Reservation.new(@prep2)
+    # @prep = params[:reservation]
+    # @prep2 = JSON.parse @prep.gsub('=>', ':')
+    #
+    # puts @prep2.to_s + "\n"
+    # puts @prep2.to_h.to_s
+
+    # @reservation = Reservation.new(@prep2)
     # @reservation = Reservation.new(@prep2.to_h)
-    puts " ============== ============== ============== ============== "
+    # puts " ============== ============== ============== ============== "
 
-        params.each do |key,value|
-          puts "Param #{key}: #{value}"
-        end
+        # params.each do |key,value|
+        #   puts "Param #{key}: #{value}"
+        # end
 
-    @reservation.pick_up_date = params[:reservation_select_dates][:pick_up_date]
-    @reservation.return_date = params[:reservation_select_dates][:return_date]
+    @pick_up_date = params[:reservation_select_dates][:pick_up_date]
+    @return_date = params[:reservation_select_dates][:return_date]
 
-    puts " ============== ============== ============== ============== "
-    puts @reservation.attributes
+    # puts " ============== ============== ============== ============== "
+    # puts @reservation.attributes
 
     # respond_to do |format|
       # if @reservation.save
-        redirect_to new_reservation_path(:step => 3, :reservation => @reservation.to_json)
+    redirect_to new_reservation_path(:step => 3, :pick_up_date => @pick_up_date, :return_date => @return_date, :item_category => @item_category)
         # format.json { render "reservation_confirmation", status: :created, location: @reservation }
       # else
         # format.html { render :new }
@@ -72,20 +75,21 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-
-    params.each do |key,value|
-      puts "Param #{key}: #{value}"
-    end
+    # puts " ******************* IN NEW *******************"
+    # params.each do |key,value|
+    #   puts "Param #{key}: #{value}"
+    # end
 
     @step = params[:step]
 
-    case @step
-      when 1
-        @reservation = Reservation.new
-        # forward param for item_category
-        @item_category = ItemCategory.find(params[:item_category])
-        # @item = Item.find(params[:item])
+    # FIXME
+    @user = User.find(3)
 
+    # puts "------- got user:" + @user.first_name
+    @item_category = ItemCategory.find(params[:item_category])
+
+
+        @reservation = Reservation.new
         # sample a random item of the picked item category
         @item = @item_category.items.sample(1).first
         # get available kits for this particular item
@@ -99,58 +103,24 @@ class ReservationsController < ApplicationController
         # new_reservation_path(:step => 3, :item_category => @item_category.id)
 
 
-            # FIXME: when current_user is available
-            # current_user = current_user
-            # puts "current_user id: " + current_user.id.to_s # this is nil
-            @current_user = User.find(3)
 
-            @reservation.teacher_id = @current_user.id
+        @reservation.teacher_id = @user.id
 
-      when 2
-        @reservation = Reservation.new
-        # forward param for item_category
-        @item_category = ItemCategory.find(params[:item_category])
-        # @item = Item.find(params[:item])
+        unless params['pick_up_date'].nil?
+          @reservation.pick_up_date = Date::strptime((params['pick_up_date'].to_s), "%m/%d/%Y")
+          @reservation.return_date = Date::strptime((params['return_date'].to_s), "%m/%d/%Y")
+        end
 
-        # sample a random item of the picked item category
-        @item = @item_category.items.sample(1).first
-        # get available kits for this particular item
-        @kits = Kit.available_kits
-        # generate a random kit based on available kits
-        offset2 = rand(@kits.count)
-        puts "kits size: " + @kits.count.to_s
-        @kit = @kits.at(offset2)
-
-        @reservation.kit_id = @kit.id
-        # new_reservation_path(:step => 3, :item_category => @item_category.id)
-
-
-            # FIXME: when current_user is available
-            # current_user = current_user
-            # puts "current_user id: " + current_user.id.to_s # this is nil
-            @current_user = User.find(3)
-
-            @reservation.teacher_id = @current_user.id
-      when 3
-          puts " ============== ============== ============== ============== "
-            puts "pick up date: " + @reservation.pick_up_date.to_s
-            puts "return date: " + @reservation.return_date.to_s
-
-
-            puts " ============== ============== ============== ============== "
-            puts "step 3 \n"
-            puts @reservation.to_s
-
-    end
-
-
-
-
-    # unless params[:select_dates].nil?
-    #   @reservation.pick_up_date = params[:select_dates][:pick_up_date]
-    #   @reservation.return_date = params[:select_dates][:return_date]
-    # end
-
+          # puts " ============== ============== ============== ============== "
+          #   puts "param 1: " + params['pick_up_date'].to_s
+          #   puts "param 2: " + params['return_date'].to_s
+          #   puts "pick up date: " + @reservation.pick_up_date.to_s
+          #   puts "return date: " + @reservation.return_date.to_s
+          #
+          #
+          #   puts " ============== ============== ============== ============== "
+          #   puts "step 3 \n"
+          #   puts @reservation.attributes
 
 
   end

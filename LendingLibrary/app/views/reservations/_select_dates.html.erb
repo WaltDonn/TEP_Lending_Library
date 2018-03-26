@@ -8,8 +8,8 @@
         <fieldset>
 
 
-          <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", as: :string, :input_html => {:class => "avg datepicker", :value => Date.today} %>
-          <%= f.input :return_date, label: "Please select when you would like to drop off your kit during check-in-week.", as: :string, :input_html => {:class => "avg datepicker", :value => Date.tomorrow} %>
+          <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", as: :string, :input_html => {:class => "avg datepicker"} %>
+          <%= f.input :return_date, label: "Please select when you would like to drop off your kit during check-in-week.", as: :string, :input_html => {:class => "avg datepicker"} %>
 
         </fieldset>
       </div>
@@ -26,8 +26,8 @@
           </div>
           <div class="small-6 cell">
 
-            <!-- <%= hidden_field_tag(:reservation, @reservation) %> -->
-          <%= f.submit 'Confirm Rental Dates', :name => 'reservation', :value => @reservation.to_json, :class => 'button radius success'%>
+            <%= hidden_field_tag(:item_category, @item_category.id) %>
+          <%= f.submit 'Confirm Rental Dates', :class => 'button radius success'%>
         </div>
     </div>
 
