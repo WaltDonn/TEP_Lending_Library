@@ -5,6 +5,8 @@
   <%= render :partial => "select_dates", locals: {user: @user, item_category: @item_category}  %>
 <% elsif @step.to_s == "3" %>
   <%= render :partial => "rental_confirmation", locals: {reservation: @reservation}  %>
+<% elsif @step.to_s == "4" %>
+  <%= render :partial => "form" %>
 <% else %>
   <!-- TODO: add appropriate warning pages -->
   <h1> Error </h1>

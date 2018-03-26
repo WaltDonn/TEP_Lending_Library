@@ -13,14 +13,14 @@
             <h2 class="product-card-title center"><%=  @reservation.teacher.name %></h2>
             <h2 class="product-card-title center"><%=  @reservation.teacher.email %></h2>
             <h2 class="product-card-title center"><%=  @reservation.teacher.school.name %></h2>
-            <% link_to 'EDIT', new_reservation_path(:step => 1, :item_category => @item_category.id) %>
+            <h2 class="product-card-title center"><% link_to 'EDIT', new_reservation_path(:step => 1, :item_category => @item_category.id) %></h2>
         </div>
 
         <div class="product-card">
             <h2> Dates </h2>
             <h2 class="product-card-title center">Pick up date: <%=  @reservation.pick_up_date %></h2>
             <h2 class="product-card-title center">Return date: <%=  @reservation.return_date %></h2>
-            <% link_to 'EDIT', new_reservation_path(:step => 2, :item_category => @item_category.id) %>
+            <h2 class="product-card-title center"><% link_to 'EDIT', new_reservation_path(:step => 2, :item_category => @item_category.id) %></h2>
         </div>
 
   </div>
@@ -35,8 +35,9 @@
         </div>
         <div class="small-6 cell">
 
+          <!-- TODO: Add hidden fields -->
           <!-- <%= hidden_field_tag(:item_category, @item_category.id) %> -->
-        <%= link_to 'Confirm rental', :class => 'button radius success'%>
+        <%= link_to 'Confirm rental', new_reservation_path(:step => 4), :class => 'button radius success'%>
       </div>
   </div>
 

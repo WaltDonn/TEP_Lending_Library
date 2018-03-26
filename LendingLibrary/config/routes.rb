@@ -16,19 +16,10 @@ Rails.application.routes.draw do
 
 
   resources :components
-  resources :items do
-    member do
-       get 'item_components'
-    end
-  end
-  resources :item_categories do
-    resources :reservations
-  end
+  resources :items
+  resources :item_categories
   resources :component_categories
-  resources :reservations do
-    resources :items
-    resources :users
-  end
+  resources :reservations
   resources :kits
   resources :schools
 
@@ -37,8 +28,7 @@ Rails.application.routes.draw do
   get 'pickup' => 'reservations#pickup', as: :pickup
   get 'rental_calendar/:month' => 'reservations#rental_calendar', as: :rental_calendar
   get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
-  # get 'rental_form' => 'reservation#rental_form', as: :rental_form
-  # get 'items/:id/item_components',  as: :content
+  
   get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
   get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
   get 'steamkits' => 'item_categories#steamkits', as: :shopping
