@@ -1,9 +1,14 @@
 class Kit < ApplicationRecord
     validates_presence_of :location
+    validates_presence_of :reserved
+    validates :reserved, inclusion: { in: [ true, false ] , message: "Must be true or false" }
+    
     has_many :items
     has_many :reservations
     
-    scope :visible_kits,     -> { where(blackout: false, is_active: true) }
+    scope :visible_kits,     -> { where(blackout: false, is_active: true, reserved: false) }
+    
+    
     
     def self.available_kits
         kits = Kit.visible_kits
@@ -11,6 +16,8 @@ class Kit < ApplicationRecord
             size_of_bad = k.items.select{|i| i.condition == "Broken"}.size
             size_of_bad == 0
         }
+        
+        
         return actual_kits
     end
     
