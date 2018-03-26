@@ -4,7 +4,7 @@
   </div>
   <div class="grid-x center">
     <div class="cell small-5 center">
-      <%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
+      <%= simple_form_for :reservation_select_dates, :html => { :class => 'form-horizontal' }, :url => reservation_select_dates_path do |f| %>
         <fieldset>
 
 
@@ -20,12 +20,14 @@
 
 
           <div class="small-6 cell">
-            <%= link_to 'Go back',  :back, :class => 'button radius info'  %>
+            <%= link_to 'Go back', :back, :class => 'button radius info'  %>
             </br>
             <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
           </div>
           <div class="small-6 cell">
-          <%= link_to 'Confirm Rental Dates', new_reservation_path, :class => 'button radius success'%>
+
+            <%= hidden_field_tag(:item_category, @item_category.id) %>
+          <%= f.submit 'Confirm Rental Dates', :class => 'button radius success'%>
         </div>
     </div>
 

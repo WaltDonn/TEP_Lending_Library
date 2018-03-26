@@ -48,7 +48,7 @@
       Is this correct? <%= link_to 'Edit Information', reservation_user_edit_path(user, :item_category => @item_category.id), :class => 'button radius'  %>
     </div>
     <div class="small-3 cell">
-      <%= link_to 'Confirm Information', new_reservation_path(:confirmed => true, :item_category => @item_category.id), :class => 'button radius success'%>
+      <%= link_to 'Confirm Information', new_reservation_path(:step => 2, :item_category => @item_category.id), :class => 'button radius success'%>
     </div>
   </div>
 

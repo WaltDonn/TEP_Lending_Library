@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
 
   use_doorkeeper
   devise_for :users, skip: :registrations
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :item_categories
   end
 
-  
+
   resources :components
   resources :items do
     member do
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
   get 'steamkits' => 'item_categories#steamkits', as: :shopping
   get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
+  post 'reservations/select_dates' => 'reservations#select_dates', as: :reservation_select_dates
 
   get '/' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
@@ -51,15 +52,15 @@ Rails.application.routes.draw do
   # get 'home/upload_users'
   get 'upload_users' => 'home#upload_users', as: :upload_users
   post 'create_users' => 'home#create_users', as: :create_users
-  
-  
+
+
   namespace :api do
     namespace :v1 do
       get '/resource_owner' => "credentials#resource_owner"
     end
   end
-  
-  
+
+
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all

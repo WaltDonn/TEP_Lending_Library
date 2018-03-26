@@ -27,8 +27,8 @@ class UsersController < ApplicationController
   end
 
   def confirmation
-
-    # @item_category = ItemCategory.find(params[:item_category])
+    @user = User.find(params[:id])
+    @item_category = ItemCategory.find(params[:item_category])
     # puts "======== confirmation item category: " + @item_category.to_s
     # @reservation = :reservation
   end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     # forward item and reservation
     @item_category = ItemCategory.find(params[:item_category])
     puts "============ic: " + @item_category.to_s
-    @reservation = :reservation
+    # @reservation = :reservation
   end
 
   # POST /users
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
           @item_category = ItemCategory.find(params[:item_category])
 
           puts "=================== @item_category id: " + @item_category.id.to_s
-          format.html { redirect_to new_reservation_path(:item_category => @item_category.id) }
+          format.html { redirect_to new_reservation_path(:item_category => @item_category.id, :step => 1) }
         end
 
       else

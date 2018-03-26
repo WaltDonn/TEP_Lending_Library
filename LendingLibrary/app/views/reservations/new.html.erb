@@ -1,8 +1,11 @@
-<% if @confirmed == true %>
-  <%= render :partial => "select_dates", locals: {item: @item, user: @current_user, reservation: @reservation} %>
-
+<% if @step.to_s == "1" %>
+  <% puts "------- got user:" + @user.first_name %>
+  <%= render :partial => 'users/confirmation', locals: {user: @user, item_category: @item_category} %>
+<% elsif @step.to_s == "2" %>
+  <%= render :partial => "select_dates", locals: {user: @user, item_category: @item_category}  %>
+<% elsif @step.to_s == "3" %>
+  <%= render :partial => "rental_confirmation", locals: {reservation: @reservation}  %>
 <% else %>
-  <% unless @item.nil? or @current_user.nil? %>
-    <%= render :partial => 'users/confirmation', locals: {item: @item, user: @current_user , reservation: @reservation} %>
-  <% end %>
+  <!-- TODO: add appropriate warning pages -->
+  <h1> Error </h1>
 <% end %>
