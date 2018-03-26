@@ -3,11 +3,26 @@ module Api::V1
     before_action :doorkeeper_authorize!
     respond_to     :json
 
-    #response = at.get('/api/v1/resource_owner', :params => {:nounce => 101})
+    #response = at.get('/api/v1/resource_owner', :params => {:nounce => nounce})
+    #Nounce = SecureRandom.base64(32)
     def resource_owner
-      user = current_resource_owner
-      nounce = params['nounce']
-      respond_with user.attributes.merge(:nounce => nounce)
+
+      if(params['nounce'].length != 44)
+        response = {
+          error: "Nounce not set correctly"
+        }
+      else
+        user = current_resource_owner
+        response = {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            role: user.role,
+            nounce: params['nounce']
+        }
+      end
+
+      respond_with response
     end
   end
 end
