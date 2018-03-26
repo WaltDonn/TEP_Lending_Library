@@ -17,16 +17,31 @@ class Ability
         can :crud, ItemCategory
         can :crud, Item
         #can :crud, Report
-        can :crud, Reservation
+        can :read, Reservation
+        can :show, Reservation
+        can :create, Reservation
+        can :edit, Reservation do |r|  
+          r.teacher_id == user.id
+        end
+        can :update, Reservation do |r|  
+          r.teacher_id == user.id
+        end
         can :crud, School
+        
         
         can :read, User
         can :show, User
+        
+        can :returns, Reservation
+        can :pickup, Reservation
 
         
     elsif user.has_role? :volunteer
         can :returns, Reservation
         can :pickup, Reservation
+        
+        can :read, Kit
+        can :show, Kit
     
     elsif user.has_role? :teacher
       can :show, User do |u|  
@@ -38,12 +53,16 @@ class Ability
       end
       
       can :crud, Reservation do |r|
-        r.user_id == user.id
+        r.teacher_id == user.id
       end
+      
+      can :read, Kit
+      can :show, Kit
       
       
     else
       can :read, Kit
+      can :show, Kit
     end
     
   end
