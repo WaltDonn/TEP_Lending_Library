@@ -14,6 +14,7 @@ module Api::V1
       else
         user = current_resource_owner
         response = {
+            id: user.id,
             first_name: user.first_name,
             last_name: user.last_name,
             email: user.email,
