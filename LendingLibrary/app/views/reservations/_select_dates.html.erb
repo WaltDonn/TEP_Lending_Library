@@ -4,12 +4,12 @@
   </div>
   <div class="grid-x center">
     <div class="cell small-5 center">
-      <%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
+      <%= simple_form_for :reservation_select_dates, :html => { :class => 'form-horizontal' }, :url => reservation_select_dates_path do |f| %>
         <fieldset>
 
 
-          <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", as: :string, :input_html => {:class => "avg datepicker"} %>
-          <%= f.input :return_date, label: "Please select when you would like to drop off your kit during check-in-week.", as: :string, :input_html => {:class => "avg datepicker"} %>
+          <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", as: :string, :input_html => {:class => "avg datepicker", :value => Date.today} %>
+          <%= f.input :return_date, label: "Please select when you would like to drop off your kit during check-in-week.", as: :string, :input_html => {:class => "avg datepicker", :value => Date.tomorrow} %>
 
         </fieldset>
       </div>
@@ -20,12 +20,14 @@
 
 
           <div class="small-6 cell">
-            <%= link_to 'Go back', new_reservation_path(:confirmed => false, :item_category => @item_category.id), :class => 'button radius info'  %>
+            <%= link_to 'Go back', :back, :class => 'button radius info'  %>
             </br>
             <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
           </div>
           <div class="small-6 cell">
-          <%= link_to 'Confirm Rental Dates', new_reservation_path, :class => 'button radius success'%>
+
+            <!-- <%= hidden_field_tag(:reservation, @reservation) %> -->
+          <%= f.submit 'Confirm Rental Dates', :name => 'reservation', :value => @reservation.to_json, :class => 'button radius success'%>
         </div>
     </div>
 

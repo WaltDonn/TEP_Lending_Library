@@ -1,10 +1,13 @@
-<% puts "----\n in views, @confirmed = " + @confirmed.to_s %>
-<%= puts "----\n in views, @confirmed = " + @confirmed.to_s %>
-<% if @confirmed.to_s == "true" %>
-  <%= render :partial => "select_dates", locals: {item: @item, user: @current_user, reservation: @reservation} %>
-  <% puts "inside @confirmed" %>
-<% else %>
-  <% unless @item_category.nil? or @current_user.nil? %>
+<% if @step.to_s == "1" %>
+  <!-- TODO: if the below variables are nil, pop up warning -->
+  <% unless @item.nil? or @current_user.nil? %>
     <%= render :partial => 'users/confirmation', locals: {item: @item, user: @current_user , reservation: @reservation} %>
   <% end %>
+<% elsif @step.to_s == "2" %>
+  <%= render :partial => "select_dates", locals: {item: @item, user: @current_user, reservation: @reservation} %>
+<% elsif @step.to_s == "3" %>
+  <%= render :partial => "rental_confirmation", locals: {reservation: @reservation} %>
+<% else %>
+  <!-- TODO: add appropriate warning pages -->
+  <h1> Error </h1>
 <% end %>
