@@ -35,6 +35,7 @@ class ReservationsController < ApplicationController
   def select_dates
     @item_category = ItemCategory.find(params[:item_category])
     # FIXME: hypothetical date restriction
+    # Need appropriate dates and validations on dates that the teacher could pick
     @start_date = Date.today.beginning_of_month.next_month
     @end_date = Date.today.end_of_month.next_month
 
@@ -94,6 +95,7 @@ class ReservationsController < ApplicationController
 
     unless params['pick_up_date'].nil? || params['return_date'].nil?
       # FIXME: hypothetical date restriction
+      # Need appropriate dates and validations on dates that the teacher could pick
       @reservation.start_date = Date.today.beginning_of_month.next_month
       @reservation.end_date = Date.today.end_of_month.next_month
       @reservation.pick_up_date = params['pick_up_date']
@@ -115,7 +117,8 @@ class ReservationsController < ApplicationController
       if @reservation.save
         format.html { redirect_to @reservation, notice: 'Thank you for supporting the STEAM Kit rental program.' }
         format.json { render :show, status: :created, location: @reservation }
-      else
+      elsif current_user.
+
         format.html { render :new }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
