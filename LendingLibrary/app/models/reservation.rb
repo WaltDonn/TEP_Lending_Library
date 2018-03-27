@@ -4,8 +4,9 @@ class Reservation < ApplicationRecord
     validates_date :end_date, on_or_after: :start_date
     validates_date :pick_up_date, on_or_after: :start_date
     validates_date :return_date, on_or_after: :pick_up_date
-    validates_presence_of :release_form_id
-    validates_numericality_of :release_form_id, :only_integer => true, :greater_than_or_equal_to => 1
+    # FIXME
+    # validates_presence_of :release_form_id
+    validates_numericality_of :release_form_id, :allow_blank => true, :only_integer => true, :greater_than_or_equal_to => 1
     validates_presence_of :kit_id
     validates_presence_of :teacher_id
     validates :returned, inclusion: { in: [ true, false ] , message: "Must be true or false" }

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'pickup' => 'reservations#pickup', as: :pickup
   get 'rental_calendar/:month' => 'reservations#rental_calendar', as: :rental_calendar
   get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
-  
+
   get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
   get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
   get 'steamkits' => 'item_categories#steamkits', as: :shopping

@@ -93,7 +93,7 @@ class ReservationsController < ApplicationController
 
     unless params['pick_up_date'].nil? || params['return_date'].nil?
       # FIXME release form id
-      @reservation.release_form_id = 1
+      # @reservation.release_form_id = 1
       # FIXME: hypothetical date restriction
       @reservation.start_date = Date.today.beginning_of_month.next_month
       @reservation.end_date = Date.today.end_of_month.next_month
