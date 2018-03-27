@@ -1,7 +1,5 @@
 class RemindersMailer < ApplicationMailer
-    #https://launchschool.com/blog/handling-emails-in-rails
-    
-    default from: "reminders@theeducationpartnership.org"
+    default from: ENV['reminder_email_username']
     
     @@smtp_settings = {
       :address              => ENV["email_addr"],
@@ -18,11 +16,14 @@ class RemindersMailer < ApplicationMailer
         @teacher = user
         @reservation = reservation
         mail(to: @teacher.email, subject: 'Pickup Reminder for STEAM Rental')
+        mail.delivery_method.settings.merge! @smtp_settings
     end
     
     def drop_off_reminder(user, reservation)
         @teacher = user
         @reservation = reservation
         mail(to: @teacher.email, subject: 'Pickup Reminder for STEAM Rental')
+        mail.delivery_method.settings.merge! @@smtp_settings
+        mail
     end
 end
