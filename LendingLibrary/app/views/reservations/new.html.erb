@@ -1,5 +1,4 @@
 <% if @step.to_s == "1" %>
-  <% puts "------- got user:" + @user.first_name %>
   <%= render :partial => 'users/confirmation', locals: {user: @user, item_category: @item_category} %>
 <% elsif @step.to_s == "2" %>
   <%= render :partial => "select_dates", locals: {user: @user, item_category: @item_category}  %>

@@ -4,7 +4,7 @@
   </div>
   <div class="grid-x center">
     <div class="cell small-5 center">
-      <%= simple_form_for :reservation_select_dates, :html => { :class => 'form-horizontal' }, :url => reservation_select_dates_path do |f| %>
+      <%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
         <fieldset>
 
           <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", as: :string, :input_html => {:class => "avg datepicker"}, :required => true %>
@@ -19,7 +19,9 @@
 
 
           <div class="small-6 cell">
+
             <%= link_to 'Go back', new_reservation_path(:step => 1, :item_category => @item_category.id), :class => 'button radius info'  %>
+
             </br>
             <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
           </div>
@@ -27,6 +29,7 @@
 
           <%= hidden_field_tag(:item_category, @item_category.id) %>
           <%= f.submit 'Confirm Rental Dates', :class => 'button radius success'%>
+
         </div>
     </div>
 
