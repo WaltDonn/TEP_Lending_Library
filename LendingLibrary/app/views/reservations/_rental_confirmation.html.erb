@@ -11,9 +11,12 @@
 
         <div class="product-card">
             <h2> Renter Info </h2>
-            <h2 class="product-card-title center"><%=  @reservation.teacher.name %></h2>
-            <h2 class="product-card-title center"><%=  @reservation.teacher.email %></h2>
-            <h2 class="product-card-title center"><%=  @reservation.teacher.school.name %></h2>
+            <h2 class="product-card-title center"><%=  current_user.name %></h2>
+            <h2 class="product-card-title center"><%=  current_user.email %></h2>
+            <!-- FIXME: fix by Friday on teacher cancan-->
+            <% unless current_user.school.nil? %>
+            <h2 class="product-card-title center"><%=  current_user.school.name %></h2>
+            <% end %>
             <h2 class="product-card-title center"><% link_to "EDIT", new_reservation_path(:step => 1, :item_category => @item_category.id), :class => 'button radius' %></h2>
         </div>
 
@@ -42,7 +45,7 @@
               <%= f.input :end_date, :value => @reservation.end_date, as: :hidden  %>
               <%= f.input :pick_up_date, :value => @reservation.pick_up_date, as: :hidden  %>
               <%= f.input :return_date, :value => @reservation.return_date, as: :hidden %>
-              <%= f.input :teacher_id, :value => @reservation.teacher_id, as: :hidden %>
+              <%= f.input :teacher_id, :value => current_user, as: :hidden %>
               <%= f.input :kit_id, :value => @reservation.kit.id, as: :hidden %>
               <!-- <%= f.input :release_form_id, :value => @reservation.release_form_id, as: :hidden %> -->
 

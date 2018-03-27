@@ -62,17 +62,16 @@ class ReservationsController < ApplicationController
   def show
 
     authorize! :index, @reservation
-    # FIXME current user
-    @user = User.find(7)
+    @user = current_user
     @reservations = Reservation.select{|res| res.teacher_id == @user.id}
   end
 
   # GET /reservations/new
   def new
+    authorize! :new, @reservation
     @step = params[:step]
 
-    # FIXME current user
-    @user = User.find(7)
+    @user = current_user
     @reservation = Reservation.new
 
     # params.each do |key, value|
@@ -94,8 +93,6 @@ class ReservationsController < ApplicationController
     end
 
     unless params['pick_up_date'].nil? || params['return_date'].nil?
-      # FIXME release form id
-      # @reservation.release_form_id = 1
       # FIXME: hypothetical date restriction
       @reservation.start_date = Date.today.beginning_of_month.next_month
       @reservation.end_date = Date.today.end_of_month.next_month
