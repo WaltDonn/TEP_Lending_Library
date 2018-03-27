@@ -54,8 +54,8 @@ class User < ApplicationRecord
 
 
   def has_role?(authorized_role)
-    return false if authorized_role.nil?
-    self.role.downcase.to_sym == authorized_role.to_sym
+    return false if role.nil?
+    self.role.downcase.to_sym == authorized_role
   end
 
   def can_checkin
