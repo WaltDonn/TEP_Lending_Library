@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :rental_calendar]
+  before_action :authenticate_user!
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    authorize! :index, @users
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    authorize! :show, @user
     @user = User.find(params[:user])
     @reservations = Reservation.select{|res| res.teacher_id == @user.id}
   end
@@ -21,6 +24,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    authorize! :edit, @user
   end
 
   # GET /users/1/rental_calendar
@@ -53,6 +57,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    authorize! :update, @user
     respond_to do |format|
       @redir = params[:redir]
       if @user.update(user_params)

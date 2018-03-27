@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   get 'steamkits' => 'item_categories#steamkits', as: :shopping
   get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
   post 'reservations/select_dates' => 'reservations#select_dates', as: :reservation_select_dates
-  
+
   get '/' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
