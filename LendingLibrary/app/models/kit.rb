@@ -1,6 +1,5 @@
 class Kit < ApplicationRecord
     validates_presence_of :location
-    validates_presence_of :reserved
     validates :reserved, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     
     has_many :items

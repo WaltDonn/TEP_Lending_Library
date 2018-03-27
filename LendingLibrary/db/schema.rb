@@ -57,7 +57,8 @@ ActiveRecord::Schema.define(version: 20180320011605) do
   create_table "kits", force: :cascade do |t|
     t.string "location"
     t.boolean "is_active"
-    t.boolean "blackout"
+    t.boolean "blackout", default: false
+    t.boolean "reserved", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
