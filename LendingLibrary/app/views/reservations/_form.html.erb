@@ -10,8 +10,9 @@
 		<%= f.input :release_form_id %>
 
     <%= f.input :teacher_id, :collection => User.active.teachers.alphabetical.all, input_html: {class: "avg"} %>
-    <%= f.input :volunteer_id, :collection => User.active.volunteers.alphabetical.all, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :kit_id, :collection => Kit.alphabetical.all, include_blank: true, input_html: {class: "avg"} %>
+    <%= f.input :user_check_in, :collection => User.active.volunteers.alphabetical.all.map{|o| o.name}, include_blank: true, input_html: {class: "avg"} %>
+
+    <%= f.input :kit_id, :collection => Kit.all, include_blank: true, input_html: {class: "avg"} %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>

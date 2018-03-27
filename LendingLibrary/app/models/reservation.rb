@@ -1,5 +1,5 @@
 class Reservation < ApplicationRecord
-    validates_date :start_date 
+    validates_date :start_date
     validates_date :start_date, on_or_after: Date.current, :on => :create
     validates_date :end_date, on_or_after: :start_date
     validates_date :pick_up_date, on_or_after: :start_date
@@ -14,24 +14,24 @@ class Reservation < ApplicationRecord
     validate :checkout_present
     validate :checkin_present_and_returned
     validate :valid_renter
-    validate :available_kit, on: :create 
+    validate :available_kit, on: :create
     validate :cant_return_before_pickup
-    
+
 
     belongs_to :kit
     belongs_to :teacher,   :class_name => 'User'
-    
-   
-    
+
+
+
     scope :open_reservations,     -> { where(returned: false) }
     scope :get_month,             ->(month){where('extract(month from pick_up_date) = ?', month)}
     scope :returning_today,       -> { where(return_date: Date.current)}
-    scope :picking_up_today,      -> { where(pick_up_date: Date.current)}  
+    scope :picking_up_today,      -> { where(pick_up_date: Date.current)}
 
     def past_due?
         Date.current > self.end_date && self.returned == false
     end
-    
+
     private
     def available_kit
         if(self.kit == nil)
@@ -46,11 +46,11 @@ class Reservation < ApplicationRecord
             errors.add(:kit_id, 'Kit is currently not available')
             return false
         end
-        
-        
+
+
         return true
     end
-    
+
     def cant_return_before_pickup
         if(self.returned == true)
             if(self.picked_up == false)
@@ -61,7 +61,7 @@ class Reservation < ApplicationRecord
         end
         return true
     end
-    
+
     def checkout_present
         if(self.picked_up == false)
             return true
@@ -72,8 +72,8 @@ class Reservation < ApplicationRecord
         end
         return true
     end
-    
-    
+
+
     def checkin_present_and_returned
         if(self.returned == false)
             return true
@@ -84,14 +84,14 @@ class Reservation < ApplicationRecord
         end
         return true
     end
-    
-    
+
+
     def valid_renter
         if(self.teacher_id == nil)
             return false
         end
         checkid = self.teacher_id
-		unless (User.where(id: checkid).present?) 
+		unless (User.where(id: checkid).present?)
 			errors.add(:is_active, 'Teacher is not present')
 			return false
 		end
@@ -103,7 +103,7 @@ class Reservation < ApplicationRecord
 		return true
     end
 
-    
+
     def only_one_open
         if(self.teacher == nil)
             errors.add(:teacher_id, "Teacher not present")

@@ -1,3 +1,5 @@
+
+
 <div class="grid-container">
   <span class="uline"><h2> Rental Confirmation </h2></span>
   <div class="grid-x grid-padding-x small-up-2 medium-up-3">
@@ -5,7 +7,7 @@
           <div class="product-card-thumbnail center">
             <%= link_to image_tag('osmo.png', width:180, height:180), item_path(@item=Item.find(1))%>
           </div>
-            <h2 class="product-card-title center"><%= Item.find(1).item_category.name %></h2>
+            <h2 class="product-card-title center"><%= @item_category.name %></h2>
         </div>
 
         <div class="product-card">
@@ -35,9 +37,20 @@
         </div>
         <div class="small-6 cell">
 
-          <!-- TODO: Add hidden fields -->
-          <!-- <%= hidden_field_tag(:item_category, @item_category.id) %> -->
-        <%= link_to 'Confirm rental', new_reservation_path(:step => 4), :class => 'button radius success'%>
+          <%= simple_form_for @reservation, :url => reservations_path do |f| %>
+
+              <%= f.input :start_date, :value => @reservation.start_date, as: :hidden  %>
+              <%= f.input :end_date, :value => @reservation.end_date, as: :hidden  %>
+              <%= f.input :pick_up_date, :value => @reservation.pick_up_date, as: :hidden  %>
+              <%= f.input :return_date, :value => @reservation.return_date, as: :hidden %>
+              <%= f.input :teacher_id, :value => @reservation.teacher_id, as: :hidden %>
+              <%= f.input :kit_id, :value => @reservation.kit.id, as: :hidden %>
+              <%= f.input :release_form_id, :value => @reservation.release_form_id, as: :hidden %>
+
+
+          <%= f.submit "Confirm rental",  :class => 'button radius success' %>
+          <% end %>
+        
       </div>
   </div>
 
