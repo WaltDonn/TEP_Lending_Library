@@ -15,14 +15,14 @@
             <h2 class="product-card-title center"><%=  @reservation.teacher.name %></h2>
             <h2 class="product-card-title center"><%=  @reservation.teacher.email %></h2>
             <h2 class="product-card-title center"><%=  @reservation.teacher.school.name %></h2>
-            <h2 class="product-card-title center"><% link_to 'EDIT', new_reservation_path(:step => 1, :item_category => @item_category.id) %></h2>
+            <h2 class="product-card-title center"><% link_to "EDIT", new_reservation_path(:step => 1, :item_category => @item_category.id), :class => 'button radius' %></h2>
         </div>
 
         <div class="product-card">
             <h2> Dates </h2>
             <h2 class="product-card-title center">Pick up date: <%=  @reservation.pick_up_date %></h2>
             <h2 class="product-card-title center">Return date: <%=  @reservation.return_date %></h2>
-            <h2 class="product-card-title center"><% link_to 'EDIT', new_reservation_path(:step => 2, :item_category => @item_category.id) %></h2>
+            <h2 class="product-card-title center"><% link_to "EDIT", new_reservation_path(:step => 2, :item_category => @item_category.id), :class => 'button radius' %></h2>
         </div>
 
   </div>
@@ -50,7 +50,7 @@
 
           <%= f.submit "Confirm rental",  :class => 'button radius success' %>
           <% end %>
-        
+
       </div>
   </div>
 
