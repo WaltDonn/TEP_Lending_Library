@@ -5,6 +5,15 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @title = 'USERS'
+    case params[:role]
+      when 'teacher'
+        @users = User.teachers.all
+        @title = 'TEACHERS'
+      when 'employee'
+        @users = User.employees.all
+        @title = 'EMPLOYEES'
+    end
   end
 
   # GET /users/1

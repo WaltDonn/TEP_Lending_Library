@@ -10,37 +10,43 @@
 
   <div class="top-bar-right topbar-hover-lines">
         <ul class="dropdown menu" data-dropdown-menu>
-          <!-- TODO: rewrite nav organization to  -->
           <!-- TODO: possibly show check out versus check in depending on current date? -->
-          <li><h5><%= link_to "CHECK OUT", pickup_path %></h5></li>
-          <li><h5><%= link_to "CHECK IN", returns_path %></h5></li>
+          <!-- only volunteers, managers, and admins  -->
+          <% if current_user.has_role?(:admin) || current_user.has_role?(:manager) || current_user.has_role?(:volunteer) %>
+            <li><h5><%= link_to "CHECK OUT", pickup_path %></h5></li>
+            <li><h5><%= link_to "CHECK IN", returns_path %></h5></li>
+          <% end %>
 
-          <li><h5><%= link_to "SCHOOLS", schools_path %></h5></li>
-          <li>
-            <h5><%= link_to "USERS", users_path %></h5>
-            
-            <!-- TODO: add back in after adding filters to users to display lists of roles -->
-            <!--<ul class="menu vertical">
-              <li><a href="#">TEACHERS</a></li>
-              <li><a href="#">VOLUNTEERS</a></li>
-              <li><a href="#">EMPLOYEES</a></li>
-            </ul>-->
-          </li>
-          
-          <li><h5><%= link_to "RENTALS", rental_calendar_path(Date.today.strftime("%B")) %></h5></li>
-          <li><h5><%= link_to "KITS", shopping_path %></h5></li>
-          <!-- TODO: when login information is available change to current_user -->
-          <li>
-            <% if current_user %>
-            <h5><a href="#">ACCOUNT</a></h5>
-            <ul class="menu vertical">
-                <li><%= link_to "PROFILE", user_path(current_user.id)  %></li>
-                <li><%= link_to "LOGOUT", home_path  %></li>
-            </ul>
-            <% else %>
-              <h5><%= link_to  "LOG IN", new_user_session_path %></h5>
-            <% end %>
-          </li>
+          <!-- only managers, and admins  -->
+          <% if current_user.has_role?(:admin) || current_user.has_role?(:manager) %>
+            <li><h5><%= link_to "SCHOOLS", schools_path %></h5></li>
+            <li>
+              <h5><%= link_to "USERS", users_path %></h5>
+              <!-- TODO: add back in after adding filters to users to display lists of roles -->
+              <ul class="menu vertical">
+                <li><%= link_to "ALL USERS", users_path %></li>
+                <li><%= link_to "TEACHERS", users_path(:role => 'teacher') %></li>
+                <li><%= link_to "EMPLOYEES", users_path(:role => 'employee') %></li>
+              </ul>
+            </li>
+            <li><h5><%= link_to "RENTALS", rental_calendar_path(Date.today.strftime("%B")) %></h5></li>
+          <% end %>
+
+          <!-- only teachers, managers, admins -->
+          <% if current_user.role != 'volunteer' %>
+            <li><h5><%= link_to "KITS", shopping_path %></h5></li>
+            <li>
+              <% if current_user %>
+              <h5><a href="#">ACCOUNT</a></h5>
+              <ul class="menu vertical">
+                  <li><%= link_to "PROFILE", user_path(current_user.id)  %></li>
+                  <li><%= link_to "LOGOUT", home_path  %></li>
+              </ul>
+              <% else %>
+                <h5><%= link_to  "LOG IN", new_user_session_path %></h5>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
   </div>
 </div>
