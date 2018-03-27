@@ -1,6 +1,14 @@
 class ItemCategoriesController < ApplicationController
   before_action :set_item_category, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
+
+
+  # GET /steamkits
+  # GET /steamkits.json
+  def steamkits
+    @item_categories = ItemCategory.all
+  end
+
 
   # GET /item_categories/1
   # GET /item_categories/1.json

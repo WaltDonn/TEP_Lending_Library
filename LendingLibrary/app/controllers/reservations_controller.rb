@@ -1,6 +1,5 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-  # FIXME: temporarilly disabled for views editing
   before_action :authenticate_user!
 
   # GET /reservations

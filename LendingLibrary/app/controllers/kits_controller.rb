@@ -1,7 +1,6 @@
 class KitsController < ApplicationController
   before_action :set_kit, only: [:show, :edit, :update, :destroy]
-  # FIXME: temporarilly disabled for views editing
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
 
   # GET /kits
   # GET /kits.json

@@ -17,6 +17,7 @@ class Ability
         can :crud, ItemCategory
         can :crud, Item
         #can :crud, Report
+        can :steamkits, ItemCategory
         can :read, Reservation
         can :show, Reservation
         can :create, Reservation
@@ -58,13 +59,11 @@ class Ability
         r.teacher_id == user.id
       end
       
-      can :read, Kit
-      can :show, Kit
+      can :steamkits, ItemCategory
       
       
     else
-      can :read, Kit
-      can :show, Kit
+      can :steamkits, ItemCategory
     end
     
   end
