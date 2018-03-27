@@ -21,7 +21,7 @@ Rails.application.routes.draw do
        get 'item_components'
     end
   end
-  resources :item_categories do
+  resources :item_categories, :except  => [:index] do
     resources :reservations
   end
   resources :component_categories

@@ -1,12 +1,12 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-  # FIXME: temporarilly disabled for views editing
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   # GET /reservations
   # GET /reservations.json
   def index
     @reservations = Reservation.all
+    authorize! :index, @reservations
   end
 
 
@@ -35,12 +35,11 @@ class ReservationsController < ApplicationController
   # GET /reservations/1
   # GET /reservations/1.json
   def show
+    authorize! :index, @reservation
   end
 
   # GET /reservations/new
   def new
-
-
     @confirmed = params[:confirmed]
 
     @reservation = Reservation.new
@@ -69,13 +68,13 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1/edit
   def edit
+    authorize! :edit, @reservation
   end
 
   # POST /reservations
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
-
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
@@ -90,6 +89,7 @@ class ReservationsController < ApplicationController
   # PATCH/PUT /reservations/1
   # PATCH/PUT /reservations/1.json
   def update
+    authorize! :update, @reservations
     respond_to do |format|
       if @reservation.update(reservation_params)
         format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }

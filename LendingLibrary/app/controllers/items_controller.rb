@@ -1,26 +1,29 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  # FIXME: temporarilly disabled to route to items pages
   before_action :authenticate_user!
 
   # GET /items
   # GET /items.json
   def index
     @items = Item.all
+    authorize! :index, @items
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    authorize! :show, @item
   end
 
   # GET /items/new
   def new
     @item = Item.new
+    authorize! :new, @item
   end
 
   # GET /items/1/edit
   def edit
+    authorize! :edit, @item
   end
 
   def item_components
@@ -31,6 +34,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
+    authorize! :create, @item
 
     respond_to do |format|
       if @item.save
@@ -46,6 +50,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
+    authorize! :update, @item
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -60,6 +65,7 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
+    authorize! :destroy, @item
     @item.destroy
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }

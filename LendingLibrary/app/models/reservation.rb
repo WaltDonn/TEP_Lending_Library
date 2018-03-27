@@ -4,8 +4,8 @@ class Reservation < ApplicationRecord
     validates_date :end_date, on_or_after: :start_date
     validates_date :pick_up_date, on_or_after: :start_date
     validates_date :return_date, on_or_after: :pick_up_date
-    validates_presence_of :release_form_id
-    validates_numericality_of :release_form_id, :only_integer => true, :greater_than_or_equal_to => 1
+    
+    validates_numericality_of :release_form_id, :only_integer => true, :greater_than_or_equal_to => 1, :allow_nil => true
     validates_presence_of :kit_id
     validates_presence_of :teacher_id
     validates :returned, inclusion: { in: [ true, false ] , message: "Must be true or false" }
@@ -16,6 +16,7 @@ class Reservation < ApplicationRecord
     validate :valid_renter
     validate :available_kit, on: :create 
     validate :cant_return_before_pickup
+    validate :release_form_signed
     
 
     belongs_to :kit
@@ -33,6 +34,18 @@ class Reservation < ApplicationRecord
     end
     
     private
+    def release_form_signed
+        if(self.picked_up == true)
+            if(self.release_form_id.nil?)
+                 errors.add(:release_form_id, 'Release form should be present if item picked up')
+                return false
+            end
+            return true
+        end
+        return true
+    end
+    
+    
     def available_kit
         if(self.kit == nil)
              errors.add(:kit_id, 'Kit should be present')
