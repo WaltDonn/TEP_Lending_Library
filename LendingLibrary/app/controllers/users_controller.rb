@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :rental_calendar]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :rental_calendar, :reservation_user_edit]
   before_action :authenticate_user!
 
   # GET /users
@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     authorize! :show, @user
-    @user = User.find(params[:user])
     @reservations = Reservation.select{|res| res.teacher_id == @user.id}
   end
 
@@ -33,7 +32,6 @@ class UsersController < ApplicationController
   end
 
   def reservation_user_edit
-    @user = User.find(params[:id])
     # forward item and reservation
     @item_category = ItemCategory.find(params[:item_category])
   end
