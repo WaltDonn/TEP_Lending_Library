@@ -1,2 +1,2 @@
-start_date,end_date,pick_up_date,return_date,returned,picked_up,release_form_id,kit_id,teacher_id,user_check_in,user_check_out
-05/02/2018,05/23/2018,05/04/2018,05/22/2018,false,false,1,1,3,"John Doe","Jane Smith"
+start_date,end_date,pick_up_date,return_date,returned,picked_up,release_form_id,kit_id,teacher_id
+05/02/2018,05/23/2018,05/04/2018,05/22/2018,false,false,1,1,3

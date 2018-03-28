@@ -48,7 +48,7 @@ class User < ApplicationRecord
     scope :alphabetical, -> { order('last_name, first_name') }
     scope :active, -> { where(is_active: true) }
     scope :inactive, -> { where.not(is_active: true) }
-    scope :employees,     -> { where.not('role = ? OR role = ?', "teacher", "volunteer") }
+    scope :employees,     -> { where.not('role = ?', "teacher") }
     scope :teachers,     -> { where(role: 'teacher') }
     scope :volunteers,     -> { where(role: 'volunteer') }
 

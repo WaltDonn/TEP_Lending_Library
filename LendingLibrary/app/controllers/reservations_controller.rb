@@ -8,27 +8,27 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all
     authorize! :index, @reservations
   end
-
-
+  
+  
   # GET /reservation_calendar/1
   def rental_calendar
     @reservations = Reservation.get_month(params[:month])
     @today_pickup = Reservation.picking_up_today
     @today_return = Reservation.returning_today
   end
-
+  
   def rental_dates
     @reservation = params[:reservation]
   end
-
+  
   # GET /returns
   def returns
-     @today_return = Reservation.returning_today
+    @today_return = Reservation.returning_today
   end
-
+  
   # GET /pickup
   def pickup
-     @today_pickup = Reservation.picking_up_today
+    @today_pickup = Reservation.picking_up_today
   end
 
   # POST /select_dates
@@ -66,7 +66,7 @@ class ReservationsController < ApplicationController
     @user = current_user
     @reservations = Reservation.select{|res| res.teacher_id == @user.id}
   end
-
+  
   # GET /reservations/new
   def new
     authorize! :new, @reservation
@@ -103,12 +103,12 @@ class ReservationsController < ApplicationController
     end
 
   end
-
+  
   # GET /reservations/1/edit
   def edit
     authorize! :edit, @reservation
   end
-
+  
   # POST /reservations
   # POST /reservations.json
   def create
@@ -124,7 +124,7 @@ class ReservationsController < ApplicationController
       end
     end
   end
-
+  
   # PATCH/PUT /reservations/1
   # PATCH/PUT /reservations/1.json
   def update
@@ -139,7 +139,7 @@ class ReservationsController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
@@ -149,7 +149,7 @@ class ReservationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation

@@ -6,7 +6,6 @@
       <br>
       <h2 class="center"> User Information </h2>
       <div class="show-for-medium" id="user-info-buttons">
-        <%= link_to 'Rental History', user_path(@user), :class => 'button small radius info', :id => 'rental-history'  %>
         <%= link_to 'Edit Profile Information', edit_user_path(@user), :class => 'button small radius' , :id => 'edit-information' %>
       </div>
     </div>
@@ -27,18 +26,31 @@
             <td><%=  @user.phone_num %></td>
           </tr>
 
-            <!-- FIXME: temporary fix for users who are not teachers -->
-            <% unless @user.school.nil? %>
-              <tr>
-                <th>School</th>
-                <td><%= @user.school.name %></td>
-              </tr>
-            <% end %>
+          <!-- FIXME: temporary fix for users who are not teachers -->
+          <% unless @user.school.nil? %>
+            <tr>
+              <th>School</th>
+              <td><%= @user.school.name %></td>
+            </tr>
+          <% end %>
 
-          <tr>
-            <th>Class Size</th>
-            <td><%=  @user.class_size%></td>
-          </tr>
+          <% unless @user.school.nil? %>
+            <tr>
+              <th>Class Size</th>
+              <td><%=  @user.class_size %></td>
+            </tr>
+          <% end %>
+
+          <% if @user.role == 'admin' %>
+            <tr>
+              <th>Role</th>
+              <td><%=  @user.role %></td>
+            </tr>
+            <tr>
+              <th>Active</th>
+              <td><%=  @user.is_active %></td>
+            </tr>
+          <% end %>
         </thead>
       </table>
     </fieldset>
@@ -48,13 +60,12 @@
   <div class="grid-x show-for-small-only">
     <div class="cell auto"></div>
     <div class="small-3 cell">
-      <%= link_to 'View Rental History', user_path(@user), :class => 'button small radius info'  %>
       <%= link_to 'Edit Information', edit_user_path(@user), :class => 'button small radius'  %>
     </div>
     <div class="small-1 cell"></div>
   </div>
 
-  <hr />
+  <hr/>
   <br>
   <%= render :partial=>'rental_history', user: @user %>
 </div>

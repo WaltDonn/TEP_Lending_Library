@@ -1,43 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="cell-block-y">
+  <div class="grid-container">
 
-<h1>Users</h1>
+    <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Phone num</th>
-      <th>Class size</th>
-      <th>School</th>
-      <th>Is active</th>
+    <div class="grid-x">
+      <div class="inner-title cell-block-x small-10">
+        <span class="uline"><h1><%= @title %></h1> </span>
+      </div>
 
-      <th>Role</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <!-- TODO: add cancan -->
+      <div class="cell-block-x small-2 right side-link">
+        <h4><%= link_to 'Upload Users', upload_users_path %></h4>
+      </div>
+    </div>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.phone_num %></td>
-        <td><%= user.class_size %></td>
-        <td><%= user.school_id %></td>
-        <td><%= user.is_active %></td>
-        
-        <td><%= user.role %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="rounded information-table">
+      <table>
+        <thead>
+          <tr id="table-head">
+            <th>Name</th>
+            <th>School</th>
+            <th>Email</th>
+            <th>Phone num</th>
+            <th>Active?</th>
+            <th>Role</th>
+          </tr>
+        </thead>
 
-<br>
-
-<%= link_to 'Upload Users', upload_users_path %>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user.name, user_path(user.id) %></td>
+              <% unless user.school_id.nil? %>
+                <td><%= user.school.name %></td>
+              <% else %>
+                <td>None</td>
+              <% end %>
+              <td><%= user.email %></td>
+              <td><%= user.phone_num %></td>
+              <% if user.is_active %>
+                <td id="active">active</td>
+              <% else %>
+                <td id="inactive">inactive</td>
+              <% end %>
+              <td><%= user.role %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

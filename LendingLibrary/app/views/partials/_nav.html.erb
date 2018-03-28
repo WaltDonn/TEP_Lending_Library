@@ -10,37 +10,28 @@
 
   <div class="top-bar-right topbar-hover-lines">
         <ul class="dropdown menu" data-dropdown-menu>
-          <!-- TODO: rewrite nav organization to  -->
-          <!-- TODO: possibly show check out versus check in depending on current date? -->
-          <li><h5><%= link_to "CHECK OUT", pickup_path %></h5></li>
-          <li><h5><%= link_to "CHECK IN", returns_path %></h5></li>
-
-          <li><h5><%= link_to "SCHOOLS", schools_path %></h5></li>
-          <li>
-            <h5><%= link_to "USERS", users_path %></h5>
-
-            <!-- TODO: add back in after adding filters to users to display lists of roles -->
-            <!--<ul class="menu vertical">
-              <li><a href="#">TEACHERS</a></li>
-              <li><a href="#">VOLUNTEERS</a></li>
-              <li><a href="#">EMPLOYEES</a></li>
-            </ul>-->
-          </li>
-
-          <li><h5><%= link_to "RENTALS", rental_calendar_path(Date.today.strftime("%B")) %></h5></li>
-          <li><h5><%= link_to "KITS", shopping_path %></h5></li>
-          <!-- TODO: when login information is available change to current_user -->
-          <li>
-            <% if current_user %>
-            <h5><a href="#">ACCOUNT</a></h5>
-            <ul class="menu vertical">
-                <li><%= link_to "PROFILE", user_path(current_user.id)  %></li>
-                <li><%= link_to "LOGOUT",  destroy_user_session_path, method: :delete  %></li>
-            </ul>
-            <% else %>
-              <h5><%= link_to  "LOG IN", new_user_session_path %></h5>
+          <% if current_user %>
+            <!-- only volunteers, managers, and admins  -->
+            <% if (current_user.has_role?(:admin) || current_user.has_role?(:manager) || current_user.has_role?(:volunteer)) %>
+              <%= render :partial => "partials/volunteer_links" %>
             <% end %>
-          </li>
+
+            <!-- only managers, and admins  -->
+            <% if (current_user.has_role?(:admin) || current_user.has_role?(:manager)) %>
+              <%= render :partial => "partials/schools_users_rentals_link" %>
+            <% end %>
+
+            <!-- only teachers, managers, admins -->
+            <% if current_user.role != 'volunteer' %>
+              <%= render :partial => "partials/account_link.html.erb" %>
+            <% end %>
+
+          <% else %>
+            <!-- if you're not logged in -->
+            <% if current_user.nil? %>
+              <li><h5><%= link_to  "LOG IN", new_user_session_path %></h5></li>
+            <% end %>
+          <% end %>
         </ul>
   </div>
 </div>

@@ -13,12 +13,14 @@
   }
 }
 
-#user-profile, table, th, td, tr, thead {
-  background-color: $none;
-  border-color: $none;
-  font-size: 1rem;
-  font-weight: 400;
-  
+#user-profile {
+  table, th, td, tr, thead {
+    background-color: $none;
+    // border-color: $none;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
   th {
     color: $dark-gray;
     text-align: right;
@@ -33,7 +35,7 @@
 
 #user-profile-form, table, th, td, tr, thead {
   background-color: $none;
-  border-color: $none;
+  // border-color: $none;
   font-size: 1rem;
   font-weight: 400;
   
@@ -56,7 +58,7 @@
 }
 
 #user-info-buttons {
-  margin-top: 7rem;
+  margin-top: 8rem;
   margin-left: 1rem;
   
   .button {
@@ -67,8 +69,9 @@
 #rental-history {
   width: 8rem;
 }
+
 #edit-information {
-  width: 12rem;
+  width: 10rem;
 }
 
 #user-information {

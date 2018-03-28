@@ -31,7 +31,10 @@
   --secondary: var(--blue);
   --notice: var(--green);
   --alert: var(--red);
+  --none: transparent;
 }
+
+/* general app stylings */
 
 body {
   overflow-x: hidden;
@@ -56,24 +59,27 @@ footer a {
   transform: scale(0.8, 0.8);
 }
 
+/* general stylings */
+
 .center {
   text-align: center;
   margin: auto;
 }
 
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.rounded {
+  border-radius: 20px;
+}
+
 .clearfix {
   overflow: auto;
-}
-
-.inner-title{
-  color: var(--primary);
-}
-
-.uline{
-  padding-bottom: 0px;
-  height: 40px;
-  border-bottom: 2px solid var(--secondary);
-  display:inline-block;
 }
 
 /* login page */
@@ -134,8 +140,8 @@ footer a {
 
 
 #signup-form th {
-  background-color: $none;
-  border-color: $none;
+  background-color: none;
+  border-color: none;
   font-size: 1rem;
   color: var(--secondary);
   text-align: right;
