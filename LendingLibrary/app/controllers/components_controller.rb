@@ -6,26 +6,31 @@ class ComponentsController < ApplicationController
   # GET /components.json
   def index
     @components = Component.all
+    authorize! :index, @components
   end
 
   # GET /components/1
   # GET /components/1.json
   def show
+    authorize! :show, @component
   end
 
   # GET /components/new
   def new
     @component = Component.new
+    authorize! :new, @component
   end
 
   # GET /components/1/edit
   def edit
+    authorize! :edit, @component
   end
 
   # POST /components
   # POST /components.json
   def create
     @component = Component.new(component_params)
+    authorize! :create, @component
 
     respond_to do |format|
       if @component.save
@@ -41,6 +46,7 @@ class ComponentsController < ApplicationController
   # PATCH/PUT /components/1
   # PATCH/PUT /components/1.json
   def update
+    authorize! :update, @component
     respond_to do |format|
       if @component.update(component_params)
         format.html { redirect_to @component, notice: 'Component was successfully updated.' }
@@ -55,6 +61,7 @@ class ComponentsController < ApplicationController
   # DELETE /components/1
   # DELETE /components/1.json
   def destroy
+    authorize! :destroy, @component
     @component.destroy
     respond_to do |format|
       format.html { redirect_to components_url, notice: 'Component was successfully destroyed.' }

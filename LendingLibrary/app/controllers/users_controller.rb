@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :rental_calendar]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :rental_calendar, :reservation_user_edit]
+  before_action :authenticate_user!
 
   # GET /users
   # GET /users.json
@@ -14,11 +15,14 @@ class UsersController < ApplicationController
         @users = User.employees.all
         @title = 'EMPLOYEES'
     end
+    authorize! :index, @users
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    authorize! :show, @user
+    @reservations = Reservation.select{|res| res.teacher_id == @user.id}
   end
 
   # GET /users/new
@@ -28,6 +32,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    authorize! :edit, @user
   end
 
   # GET /users/1/rental_calendar
@@ -35,19 +40,9 @@ class UsersController < ApplicationController
       @reservations = Reservation.get_month(params[:month]).select{|res| res.teacher_id == @user.id}
   end
 
-  def confirmation
-
-    # @item_category = ItemCategory.find(params[:item_category])
-    # puts "======== confirmation item category: " + @item_category.to_s
-    # @reservation = :reservation
-  end
-
   def reservation_user_edit
-    @user = User.find(params[:id])
     # forward item and reservation
     @item_category = ItemCategory.find(params[:item_category])
-    puts "============ic: " + @item_category.to_s
-    @reservation = :reservation
   end
 
   # POST /users
@@ -69,18 +64,16 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    authorize! :update, @user
     respond_to do |format|
       @redir = params[:redir]
-      puts "=================== redirect_to: " + @redir
       if @user.update(user_params)
         if params[:redir].blank?
           format.html { redirect_to @user, notice: 'User was successfully updated.' }
           format.json { render :show, status: :ok, location: @user }
         else
           @item_category = ItemCategory.find(params[:item_category])
-
-          puts "=================== @item_category id: " + @item_category.id.to_s
-          format.html { redirect_to new_reservation_path(:item_category => @item_category.id) }
+          format.html { redirect_to new_reservation_path(:item_category => @item_category.id, :step => 1) }
         end
 
       else

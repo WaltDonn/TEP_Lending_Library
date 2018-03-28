@@ -1,35 +1,37 @@
 class ItemCategoriesController < ApplicationController
   before_action :set_item_category, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
 
-  # GET /item_categories
-  # GET /item_categories.json
-  def index
+
+  # GET /steamkits
+  # GET /steamkits.json
+  def steamkits
     @item_categories = ItemCategory.all
   end
+
 
   # GET /item_categories/1
   # GET /item_categories/1.json
   def show
+    authorize! :show, @item_category
   end
 
   # GET /item_categories/new
   def new
     @item_category = ItemCategory.new
+    authorize! :new, @item_category
   end
 
   # GET /item_categories/1/edit
   def edit
-  end
-
-  def steamkits
-    @item_categories = ItemCategory.all
+    authorize! :edit, @item_category
   end
 
   # POST /item_categories
   # POST /item_categories.json
   def create
     @item_category = ItemCategory.new(item_category_params)
+    authorize! :create, @item_category
 
     respond_to do |format|
       if @item_category.save
@@ -45,6 +47,7 @@ class ItemCategoriesController < ApplicationController
   # PATCH/PUT /item_categories/1
   # PATCH/PUT /item_categories/1.json
   def update
+    authorize! :update, @item_category
     respond_to do |format|
       if @item_category.update(item_category_params)
         format.html { redirect_to @item_category, notice: 'Item category was successfully updated.' }
@@ -59,6 +62,7 @@ class ItemCategoriesController < ApplicationController
   # DELETE /item_categories/1
   # DELETE /item_categories/1.json
   def destroy
+    authorize! :destroy, @item_category
     @item_category.destroy
     respond_to do |format|
       format.html { redirect_to item_categories_url, notice: 'Item category was successfully destroyed.' }

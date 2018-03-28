@@ -1,32 +1,36 @@
 class SchoolsController < ApplicationController
   before_action :set_school, only: [:show, :edit, :update, :destroy]
-  # FIXME: temporarilly disabled for views editing
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   # GET /schools
   # GET /schools.json
   def index
     @schools = School.all
+    authorize! :index, @schools
   end
 
   # GET /schools/1
   # GET /schools/1.json
   def show
+     authorize! :show, @school
   end
 
   # GET /schools/new
   def new
     @school = School.new
+    authorize! :new, @school
   end
 
   # GET /schools/1/edit
   def edit
+    authorize! :edit, @school
   end
 
   # POST /schools
   # POST /schools.json
   def create
     @school = School.new(school_params)
+    authorize! :create, @school
 
     respond_to do |format|
       if @school.save
@@ -42,6 +46,7 @@ class SchoolsController < ApplicationController
   # PATCH/PUT /schools/1
   # PATCH/PUT /schools/1.json
   def update
+    authorize! :update, @school
     respond_to do |format|
       if @school.update(school_params)
         format.html { redirect_to @school, notice: 'School was successfully updated.' }
@@ -56,6 +61,7 @@ class SchoolsController < ApplicationController
   # DELETE /schools/1
   # DELETE /schools/1.json
   def destroy
+    authorize! :destroy, @school
     @school.destroy
     respond_to do |format|
       format.html { redirect_to schools_url, notice: 'School was successfully destroyed.' }

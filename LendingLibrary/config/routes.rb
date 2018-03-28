@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
 
   use_doorkeeper
   devise_for :users, skip: :registrations
@@ -14,21 +14,12 @@ Rails.application.routes.draw do
     resources :item_categories
   end
 
-  
+
   resources :components
-  resources :items do
-    member do
-       get 'item_components'
-    end
-  end
-  resources :item_categories do
-    resources :reservations
-  end
+  resources :items
+  resources :item_categories
   resources :component_categories
-  resources :reservations do
-    resources :items
-    resources :users
-  end
+  resources :reservations
   resources :kits
   resources :schools
 
@@ -37,12 +28,12 @@ Rails.application.routes.draw do
   get 'pickup' => 'reservations#pickup', as: :pickup
   get 'rental_calendar/:month' => 'reservations#rental_calendar', as: :rental_calendar
   get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
-  # get 'rental_form' => 'reservation#rental_form', as: :rental_form
-  # get 'items/:id/item_components',  as: :content
+
   get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
   get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
   get 'steamkits' => 'item_categories#steamkits', as: :shopping
   get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
+  post 'reservations/select_dates' => 'reservations#select_dates', as: :reservation_select_dates
 
   get '/' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
@@ -51,15 +42,15 @@ Rails.application.routes.draw do
   # get 'home/upload_users'
   get 'upload_users' => 'home#upload_users', as: :upload_users
   post 'create_users' => 'home#create_users', as: :create_users
-  
-  
+
+
   namespace :api do
     namespace :v1 do
       get '/resource_owner' => "credentials#resource_owner"
     end
   end
-  
-  
+
+
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
