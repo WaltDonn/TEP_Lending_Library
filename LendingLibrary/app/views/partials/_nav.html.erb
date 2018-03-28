@@ -13,12 +13,12 @@
           <% if current_user %>
             <!-- only volunteers, managers, and admins  -->
             <% if (current_user.has_role?(:admin) || current_user.has_role?(:manager) || current_user.has_role?(:volunteer)) %>
-              <%= render :partial => "volunteer_links" %>
+              <%= render :partial => "partials/volunteer_links" %>
             <% end %>
 
             <!-- only managers, and admins  -->
             <% if (current_user.has_role?(:admin) || current_user.has_role?(:manager)) %>
-              <%= render :partial => "schools_users_rentals_link" %>
+              <%= render :partial => "partials/schools_users_rentals_link" %>
             <% end %>
 
             <!-- only teachers, managers, admins -->
