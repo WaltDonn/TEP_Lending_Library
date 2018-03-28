@@ -31,39 +31,77 @@ class ReservationsController < ApplicationController
      @today_pickup = Reservation.picking_up_today
   end
 
+  # POST /select_dates
+  def select_dates
+    @item_category = ItemCategory.find(params[:item_category])
+    # FIXME: hypothetical date restriction
+    # Need appropriate dates and validations on dates that the teacher could pick
+    @start_date = Date.today.beginning_of_month.next_month
+    @end_date = Date.today.end_of_month.next_month
+
+    @pick_up_date = (params[:reservation_select_dates][:pick_up_date]).to_date
+    @return_date = (params[:reservation_select_dates][:return_date]).to_date
+
+
+    if @pick_up_date.nil?
+      redirect_to new_reservation_path(:step => 2, :item_category => @item_category), notice: 'Pick up date cannot be null.'
+    elsif @return_date.nil?
+      redirect_to new_reservation_path(:step => 2, :item_category => @item_category), notice: 'Return date cannot be null.'
+    elsif @pick_up_date < @start_date
+      redirect_to new_reservation_path(:step => 2, :item_category => @item_category), notice: 'Pick up date must be after start date.'
+    elsif @return_date < @pick_up_date
+      redirect_to new_reservation_path(:step => 2, :item_category => @item_category), notice: 'Return date must be after pick update.'
+    else
+      redirect_to new_reservation_path(:step => 3, :pick_up_date => @pick_up_date, :return_date => @return_date, :item_category => @item_category)
+    end
+
+  end
+
 
   # GET /reservations/1
   # GET /reservations/1.json
   def show
+
     authorize! :index, @reservation
+    @user = current_user
+    @reservations = Reservation.select{|res| res.teacher_id == @user.id}
   end
 
   # GET /reservations/new
   def new
-    @confirmed = params[:confirmed]
+    authorize! :new, @reservation
+    @step = params[:step]
 
+    @user = current_user
     @reservation = Reservation.new
-    # forward param for item_category
-    @item_category = ItemCategory.find(params[:item_category])
-    # @item = Item.find(params[:item])
 
-    # sample a random item of the picked item category
-    @item = @item_category.items.sample(1).first
-    # get available kits for this particular item
-    @kits = Kit.available_kits
-    # generate a random kit based on available kits
-    offset2 = rand(@kits.count)
-    puts "kits size: " + @kits.count.to_s
-    @kit = @kits.at(offset2)
+    # params.each do |key, value|
+    #   "#{key}: #{value}"
+    # end
 
-    @reservation.kit_id = @kit.id
+    unless @step.nil?
+      @item_category = ItemCategory.find(params[:item_category])
+      # sample a random item of the picked item category
+      @item = @item_category.items.sample(1).first
+      # get available kits for this particular item
+      @kits = Kit.available_kits
+      # generate a random kit based on available kits
+      offset2 = rand(@kits.count)
+      @kit = @kits.at(offset2)
 
-    # FIXME: when current_user is available
-    # current_user = current_user
-    # puts "current_user id: " + current_user.id.to_s # this is nil
-    @current_user = User.find(3)
+      @reservation.kit_id = @kit.id
+      @reservation.teacher_id = @user.id
+    end
 
-    @reservation.teacher_id = @current_user.id
+    unless params['pick_up_date'].nil? || params['return_date'].nil?
+      # FIXME: hypothetical date restriction
+      # Need appropriate dates and validations on dates that the teacher could pick
+      @reservation.start_date = Date.today.beginning_of_month.next_month
+      @reservation.end_date = Date.today.end_of_month.next_month
+      @reservation.pick_up_date = params['pick_up_date']
+      @reservation.return_date = params['return_date']
+    end
+
   end
 
   # GET /reservations/1/edit
@@ -77,9 +115,10 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+        format.html { redirect_to @reservation, notice: 'Thank you for supporting the STEAM Kit rental program.' }
         format.json { render :show, status: :created, location: @reservation }
-      else
+      elsif current_user.
+
         format.html { render :new }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
@@ -119,6 +158,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:start_date, :end_date, :pick_up_date, :return_date, :returned, :picked_up, :release_form_id, :kit_id, :teacher_id, :user_check_in_id, :user_check_out_id)
+      params.require(:reservation).permit(:start_date, :end_date, :pick_up_date, :return_date, :returned, :picked_up, :release_form_id, :kit_id, :teacher_id, :user_check_in, :user_check_out)
     end
 end
