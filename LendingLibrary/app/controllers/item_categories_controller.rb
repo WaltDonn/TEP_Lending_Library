@@ -3,9 +3,9 @@ class ItemCategoriesController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
 
 
-  # GET /steamkits
-  # GET /steamkits.json
-  def steamkits
+  # GET /item_categories
+  # GET /item_categories.json
+  def index
     @item_categories = ItemCategory.all
   end
 

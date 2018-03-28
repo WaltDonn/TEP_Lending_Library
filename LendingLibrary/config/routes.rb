@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
   get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
-  get 'steamkits' => 'item_categories#steamkits', as: :shopping
+  get 'steamkits' => 'item_categories#index', as: :shopping
   get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
   post 'reservations/select_dates' => 'reservations#select_dates', as: :reservation_select_dates
 
