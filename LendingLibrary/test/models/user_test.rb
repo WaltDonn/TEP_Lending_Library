@@ -199,6 +199,12 @@ class UserTest < ActiveSupport::TestCase
 		refute @user8.can_rent
 	end
 
+	test 'has_role? method' do
+		refute @user.has_role?(nil)
+		refute @user.has_role?(:teacher)
+		assert @user.has_role?(:admin)
+	end
+
 
 
 end
