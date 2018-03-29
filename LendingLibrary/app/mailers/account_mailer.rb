@@ -19,8 +19,11 @@ class AccountMailer < Devise::Mailer
      mail(:to => @resource.email, :subject => "Reset password instructions", :tag => 'password-reset', :content_type => "text/html") do |format|
        format.html { render "devise/mailer/reset_password_instructions" }
      end
+     mail.delivery_method.settings.merge! @@smtp_settings
+    mail
     end
     
+    #if this isnt working, make sure to check you have figaro setup
     
     
     def welcome(user, password)
