@@ -43,10 +43,7 @@ class HomeController < ApplicationController
 			@user.school_id = row['school_id']
 			@user.is_active = true
 			@user.role = params['create_users']['role']
-			#if this isnt working, make sure to check you have figaro setup
-			if @user.save
-				AccountMailer.welcome(@user, generated_password).deliver
-			else
+			unless @user.save 
 				unless @user.errors.messages[:email] == ["has already been taken"]
 					failed_emails.push(row['email'])
 				end

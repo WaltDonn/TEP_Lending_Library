@@ -26,19 +26,21 @@ class AccountMailer < Devise::Mailer
     #if this isnt working, make sure to check you have figaro setup
     
     
-    def welcome(user, token)
-        @user = user
-        @password = @user.password
-        mail(to: @user.email, subject: "Welcome to TEP's Lending Library!", :tag => "Welcome to TEP!")
-        mail.delivery_method.settings.merge! @@smtp_settings
-        mail
-    end
+    # def welcome(user, password)
+    #     @user = user
+    #     @password = password
+    #     mail(to: @user.email, subject: "Welcome to TEP's Lending Library!", :tag => "Welcome to TEP!")
+    #     mail.delivery_method.settings.merge! @@smtp_settings
+    #     mail
+    # end
 
     def confirmation_instructions(user, token, somethingElse)
         @resource = user
+        @password = user.password
         @token = token
+        @name = user.first_name
         @email = user.email
-        mail(to: @resource.email, subject: "Confirm Email", :tag => "Welcome to TEP!")
+        mail(to: @resource.email, subject: "Confirm Email", :tag => "Welcome to the TEP Lending Library!")
         mail.delivery_method.settings.merge! @@smtp_settings
         mail
     end
