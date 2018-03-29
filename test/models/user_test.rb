@@ -127,8 +127,8 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal User.alphabetical.map{|c| c.id}, [5, 8, 7, 3, 1, 2, 4, 6]
 	end
 
-	test 'there should be 2 employees' do
-		assert_equal 2, User.employees.size
+	test 'there should be 3 employees' do
+		assert_equal 3, User.employees.size
 	end
 
 	test 'there should be 5 teachers' do
