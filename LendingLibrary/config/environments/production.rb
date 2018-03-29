@@ -72,6 +72,8 @@ Rails.application.configure do
   # SMTP settings 
   #Deployed by respective mailers
 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
 
 
   # Ignore bad email addresses and do not raise email delivery errors.
