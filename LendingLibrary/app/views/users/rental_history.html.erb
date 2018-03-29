@@ -1,6 +1,4 @@
-
 <div class="grid-container">
-
   <div class="grid-y cell-block-container">
     <div class="grid-x">
       <div class="inner-title cell-block-x small-10">
@@ -8,7 +6,7 @@
       </div>
     </div>
 
-    <% unless @my_reservations.nil? || @my_reservations.empty? %>
+    <% unless @reservations.nil? || @reservations.empty? %>
       <div class="grid-x">
         <div class="small-1"></div>
         <div class="cell small-10">
@@ -24,7 +22,7 @@
               </thead>
 
               <tbody>
-                <% @my_reservations.each do |myr| %>
+                <% @reservations.each do |myr| %>
                   <tr>
                     <td><%= link_to image_tag('osmo.png', width:180, height:180), item_path(@item=Item.find(1))%></td>
                     <td>From: <%= myr.pick_up_date.strftime("%D") %></td>

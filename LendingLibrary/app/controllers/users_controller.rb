@@ -42,6 +42,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/rental_history
   def rental_history
+    @reservations = Reservation.select{|res| res.teacher_id == @user.id}
   end
 
   def reservation_user_edit
