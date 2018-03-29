@@ -1,18 +1,32 @@
+# README
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+### Populate the sqlite3 database with csv files
 
+### csv files path
+```
+/app/csvs/<table name>.csv
+```
 
-Hi there! Welcome to Cloud9 IDE!
+i.e. users, schools
 
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
+### commands to run rails/rake tasks
+```
+bundle install
+```
 
-Happy coding!
-The Cloud9 IDE team
+setup drops existing database, import does not
+
+```
+rails lendinglibrary:setup
+```
+
+```
+rails lendinglibrary:import
+```
+
+to check if the tables are correctly populated
+
+```
+rails c
+> School.limit(5).order('id desc')
+```
