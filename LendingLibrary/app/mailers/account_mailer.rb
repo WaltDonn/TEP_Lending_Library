@@ -20,18 +20,28 @@ class AccountMailer < Devise::Mailer
        format.html { render "devise/mailer/reset_password_instructions" }
      end
      mail.delivery_method.settings.merge! @@smtp_settings
-    mail
+     mail
     end
     
     #if this isnt working, make sure to check you have figaro setup
     
     
-    def welcome(user, password)
+    def welcome(user, token)
         @user = user
-        @password = password
+        @password = @user.password
         mail(to: @user.email, subject: "Welcome to TEP's Lending Library!", :tag => "Welcome to TEP!")
         mail.delivery_method.settings.merge! @@smtp_settings
         mail
     end
+
+    def confirmation_instructions(user, token, somethingElse)
+        @resource = user
+        @token = token
+        @email = user.email
+        mail(to: @resource.email, subject: "Confirm Email", :tag => "Welcome to TEP!")
+        mail.delivery_method.settings.merge! @@smtp_settings
+        mail
+    end
+
 
 end
