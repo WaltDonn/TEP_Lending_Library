@@ -1,0 +1,84 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'settings';
+@import 'foundation';
+
+#profile {
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  th {
+    text-align: left;
+  }
+}
+
+#user-profile {
+  table, th, td, tr, thead {
+    background-color: $none;
+    // border-color: $none;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  th {
+    color: $dark-gray;
+    text-align: right;
+    padding-bottom: 1.5rem;
+  }
+  
+  td {
+    color: $primary-color;
+    padding-bottom: 1.5rem;
+  }
+}
+
+#user-profile-form, table, th, td, tr, thead {
+  background-color: $none;
+  // border-color: $none;
+  font-size: 1rem;
+  font-weight: 400;
+  
+  th {
+    color: $dark-gray;
+    text-align: right;
+    padding-bottom: 0.5rem;
+  }
+  
+  td {
+    color: $primary-color;
+    padding-bottom: 0.5rem;
+  }
+}
+
+#profile-title-box {
+  color: $white;
+  background-color: rgba($color: $primary-color, $alpha: 0.7);
+  padding-top: 2rem;
+}
+
+#user-info-buttons {
+  margin-top: 8rem;
+  margin-left: 1rem;
+  
+  .button {
+    display: block;
+  }
+}
+
+#rental-history {
+  width: 8rem;
+}
+
+#edit-information {
+  width: 10rem;
+}
+
+#user-information {
+  background-color: rgba($color: $primary-color, $alpha: 0.2);
+  padding: 1rem 0rem;
+}
+
+div.input, .avg {
+  margin: 0px;
+}

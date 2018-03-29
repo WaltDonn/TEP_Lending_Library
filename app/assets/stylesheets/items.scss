@@ -1,0 +1,160 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'settings';
+@import 'foundation';
+
+// product-card
+$card-info-bg: $white;
+$card-info-shadow: 0;
+$card-info-hover-shadow: 0;
+$card-info-info-color: lighten($primary-color, 15%);
+$card-info-border-radius: 10px;
+$card-info-button-radius: 18px;
+
+#card-grid.grid-x{
+  overflow-x: hidden;
+}
+
+.cell-block-y{
+  overflow-x: hidden;
+}
+
+.product-card-container{
+  padding-left: 15px;
+  margin-left: 10px;
+  overflow-x: hidden;
+}
+
+.product-card {
+  padding: 6px 0px 6px 0px;
+  margin-bottom: 1rem;
+  width: 264px;
+  height: 382px;
+  background: $card-info-bg;
+  border: 2px solid $light-gray;
+  box-shadow: $card-info-shadow;
+  border-radius: $card-info-border-radius;
+  transition: 0.3s;
+}
+
+.product-card:hover{
+  box-shadow: $card-info-hover-shadow;
+}
+
+.product-card-thumbnail {
+  width: 260px;
+  height: 260px;
+  text-align: center;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid $light-gray;
+}
+
+.product-card-title {
+  width: 98%;
+  text-align: center;
+  color: $dark-gray;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+
+  font-size: 23px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-align: center;
+
+}
+
+.product-card-button {
+  padding: 0.3rem;
+  text-align: center;
+  width: 125px;
+  height: 30px;
+  background-color: transparent;
+  box-shadow: 0;
+  font-size: 0.9rem;
+  border: 1.5px solid $light-gray;
+  border-radius: $card-info-button-radius;
+  a {
+    color: $dark-gray;
+  }
+}
+
+.product-card-button:hover{
+  box-shadow: 0;
+  border: 1.5px solid $medium-gray;
+  a{
+    color: scale-color($dark-gray, $lightness: -40%);
+  }
+}
+
+#details-button {
+  padding: 1rem 0rem;
+}
+
+// item detail page styles
+
+.item-detail{
+  margin-top: 1.5rem;
+}
+
+.item-detail-title h1{
+  color: $primary-color;
+  font-size: 40px;
+}
+
+#kit-count p{
+  font-size: 1.05rem;
+  font-style: italic;
+  color: $dark-gray;
+}
+
+#kit-description p{
+  color: scale-color($dark-gray, $lightness: -20%);
+  max-width: 80%;
+  font-size: 105%;
+}
+
+.kit-component-header h3{
+  margin-top: 1.05rem;
+  margin-left: 0;
+  font-size: 25px;
+  color: $black;
+}
+
+.kit-component{
+  margin-left: 0;
+}
+
+.kit-component-list ul{
+  margin-left: 0;
+  list-style-type: none;
+  list-style-position: inside;
+  padding: 0;
+  text-align: left;
+  position: relative;
+  max-width: 300px;
+  word-wrap: normal;
+}
+
+.kit-component-list ul li{
+  float: left;
+  margin-left: 0;
+  font-size: 105%;
+  color: $dark-gray;
+}
+
+.kit-component br {
+  clear: left;
+}  /* separate the list from subsequent markup */
+
+.item-pic{
+  padding: 1.2rem;
+  margin-right: 1.2rem;
+  border: 1px solid $medium-gray;
+  border-radius: 16px;
+}

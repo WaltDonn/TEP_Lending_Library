@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>The Education Partnership Lending Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<% if notice %>
+  <p class="alert alert-success">
+    <%= notice %>
+  </p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger">
+    <%= alert %>
+  </p>
+<% end %>
+
+
+<body>
+    <div class="grid-y">
+      <!-- the title bar / navigation menu -->
+      <div class="cell cell-block-container" data-sticky-container id="main_content">
+            <%= render :partial => "partials/nav" %>
+      </div>
+
+      <!-- the page content -->
+      <div class="cell cell-block-container" >
+          <div class="cell cell-block-y">
+            <%= render :partial => "partials/flash" %>
+          </div>
+          <div class="cell cell-block-y">
+            <%= yield %>
+          </div>
+      </div>
+
+      <!-- the footer of the page -->
+      <footer class="cell footer" id="footer">
+          <div class="grid-container" id="footer-bar">
+            <%= render partial: 'partials/footer' %>
+          </div>
+      </footer>
+    </div>
+
+</body>
+
+</html>

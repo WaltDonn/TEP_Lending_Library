@@ -1,0 +1,49 @@
+<div id="welcome">
+		<div class="grid-container">
+  <div class="grid-x grid-margin-x" >
+    <div class="small-5 cell medium-offset-3" id="signup">
+      <h1 class="center"> Upload Users </h1>
+    </div>
+  </div>
+<!-- change this to simple form boi -->
+  <div class="grid-x grid-margin-x">
+    <div class='cell small-8 medium-offset-2'>
+    	<!-- <form action="/create_users" method="post">
+    		<input id="user_csv" type="file" accept=".csv" />
+    		<div class="grid-x grid-margin-x">
+    			<div class="cell form-actions medium-offset-5">
+    				<input type="submit" value="Submit This Form">
+    			</div>
+    		</div>
+  		</form> -->
+  		<%= simple_form_for(:create_users, url: create_users_url, html: { :multipart => true, :class => 'form-inline' }, defaults: {label: false}) do |f| %>
+  			<fieldset>
+  				<table id="signup-form">
+  					<thead>
+  						<tr>
+              				<th> Upload CSV File: </th>
+				            <td>
+				            	<%= f.input :users_csv, as: :file %>
+				            </td>
+				            <th> Type of user: </th>
+				            <td>
+				            	<%= f.input :role, collection: ["teacher", "volunteer", "manager", "admin"], :selected => 0%>
+				            </td>
+			            </tr>
+  					</thead>
+  				</table>
+  			</fieldset>
+    </div>
+  </div>
+  <div class="grid-x grid-margin-x">
+    <div class="cell form-actions medium-offset-5">
+      <%= f.button :submit, "Sign Up", :class => 'button radius' %>
+      <%= link_to 'Cancel', users_path, :class => 'button alert radius' %>
+    </div>
+
+  </div>
+
+  <br>
+</div>
+<% end %>
+</div>

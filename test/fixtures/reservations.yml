@@ -1,0 +1,52 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+one:
+  start_date: <%= 10.day.ago %>
+  end_date: <%= 1.day.ago %>
+  pick_up_date: <%= 9.day.ago %>
+  return_date: <%= 2.day.ago %>
+  returned: true
+  picked_up: true
+  release_form_id: 123
+  kit_id: 1
+  teacher_id: 4
+  user_check_in: John Smith
+  user_check_out: Henry Ham
+two:
+  start_date: <%= 10.day.ago %>
+  end_date: <%= 1.day.from_now %>
+  pick_up_date: <%= 9.day.ago %>
+  return_date: <%= 1.day.from_now %>
+  returned: false
+  picked_up: true
+  release_form_id: 124
+  kit_id: 2
+  teacher_id: 3
+  user_check_in: John Smith
+  user_check_out: Henry Ham
+three:
+  start_date: <%= 20.day.ago %>
+  end_date: <%= 11.day.ago %>
+  pick_up_date: <%= 19.day.ago %>
+  return_date: <%= 12.day.ago %>
+  returned: true
+  picked_up: true
+  release_form_id: 125
+  kit_id: 3
+  teacher_id: 3
+  user_check_in: John Smith
+  user_check_out: Henry Ham
+four: 
+  start_date: <%= 10.day.ago %>
+  end_date: <%= 1.day.ago %>
+  pick_up_date: <%= 9.day.ago %>
+  return_date: <%= 2.day.ago %>
+  returned: true
+  picked_up: true
+  release_form_id: 126
+  kit_id: 3
+  teacher_id: 7
+  user_check_in: John Smith
+  user_check_out: Henry Ham
+

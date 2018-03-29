@@ -1,0 +1,151 @@
+
+@import 'settings';
+@import 'foundation';
+$alert: $red;
+$notice: $green;
+
+body {
+  background-color: $white;
+  color: $black;
+  font-family: helvetica, verdana, arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+p, ol, ul, td {
+  font-family: helvetica, verdana, arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: $white;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a {
+  color: $blue;
+  
+  &:hover {
+    color: $primary-color;
+    text-underline-position: $primary-color;
+  }
+}
+
+.information-table {
+  // border-radius: 15px;
+  border: 1px solid smart-scale($table-background, $table-color-scale);
+  margin-bottom: 5rem;
+  overflow: hidden;
+
+  table {
+    margin: 0px;
+  }
+  
+  th {
+    border: 0px;
+    text-align: left;
+    background-color: $blue;
+    color: $white;
+    vertical-align: middle;
+  }
+  
+  tr#table-head {
+    margin: 1.5rem 0rem;
+  }
+  
+  td {
+    color: $dark-gray;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  #active {
+    color: $green;
+  }
+  
+  #inactive {
+    color: $red;
+  }
+}
+
+th {
+  padding-bottom: 5px;
+}
+
+td {
+  padding: 0 5px 7px;
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+#notice {
+  color: $notice;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: $alert;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid $alert;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  background-color: $alert;
+  
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px -7px 0;
+    background-color: $alert;
+    color: $white;
+  }
+  
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+label {
+  display: block;
+}
+
+// inner title style
+
+.inner-title {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  
+  h1{
+    :hover {
+      background-color: transparent;
+    }
+  }
+  
+  h1 > a {
+    color: $primary-color;
+  }
+}
+
+.uline{
+  padding-bottom: 0px;
+  height: 50px;
+  border-bottom: 3px solid $secondary-color;
+  display:inline-block;
+  margin-bottom: 10px;
+}
+
+.side-link {
+  padding-top: 1.5rem;
+}

@@ -1,0 +1,55 @@
+  <div class="grid-x grid-margin-x">
+    <div class='cell auto'>
+      <%= simple_form_for @item, :html => { :class => 'form-inline' }, defaults: {label: false} do |f| %>
+      <fieldset>
+        <table>
+          <thead>
+            <tr>
+              <th> Kit Name </th>
+              <td>
+                <%= f.simple_fields_for @item.item_category do |g| %>
+                  <%= g.input :name, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th> Total Amount of Kits Available </th>
+              <td>
+                <%= f.simple_fields_for @item.item_category do |g| %>
+                  <%= g.input :inventory_level, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+                <% end %>
+              </td>
+            </tr>
+
+            <tr>
+              <th> Active </th>
+              <td>
+                <%= f.input :is_active, as: :boolean %>
+              </td>
+            </tr>
+
+            <tr>
+              <th> Description </th>
+              <td>
+                <%= f.simple_fields_for @item.item_category do |g| %>
+                  <%= g.text_field :description, :input_html => { :class => 'avg', :style => "width: 200px;" }%>
+                <% end %>
+              </td>
+            </tr>
+
+          </thead>
+        </table>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="grid-x grid-margin-x">
+    <div class="cell form-actions">
+      <%= f.button :submit, "SAVE CHANGES", :class => 'button radius' %>
+      <%= link_to 'CANCEL EDITS', items_path, :class => 'button alert radius' %>
+    </div>
+
+  </div>
+  <br>
+  <% end %>
+</div>

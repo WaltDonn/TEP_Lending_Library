@@ -1,0 +1,9 @@
+<% if @step.to_s == "1" %>
+  <%= render :partial => 'users/confirmation', locals: {user: @user, item_category: @item_category} %>
+<% elsif @step.to_s == "2" %>
+  <%= render :partial => "select_dates", locals: {user: @user, item_category: @item_category}  %>
+<% elsif @step.to_s == "3" %>
+  <%= render :partial => "rental_confirmation", locals: {reservation: @reservation}  %>
+<% else %>
+  <%= render :partial => "form" %>
+<% end %>
