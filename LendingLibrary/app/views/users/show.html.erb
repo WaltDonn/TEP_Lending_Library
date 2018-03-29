@@ -5,7 +5,11 @@
     <div class="small-3" id="profile-title-box">
       <br>
       <h2 class="center"> User Information </h2>
-      <div class="show-for-medium" id="user-info-buttons">
+
+      <div class="show-for-medium">
+          <%= link_to 'View Rentals', rental_history_path(@user), :class => 'button small radius' %>
+      </div>
+      <div class="show-for-medium" id="user-info-uttons">
         <%= link_to 'Edit Profile Information', edit_user_path(@user), :class => 'button small radius' , :id => 'edit-information' %>
       </div>
     </div>
@@ -57,15 +61,8 @@
   </div>
   <br>
 
-  <div class="grid-x show-for-small-only">
-    <div class="cell auto"></div>
-    <div class="small-3 cell">
-      <%= link_to 'Edit Information', edit_user_path(@user), :class => 'button small radius'  %>
-    </div>
-    <div class="small-1 cell"></div>
-  </div>
 
   <hr/>
   <br>
-  <%= render :partial=>'rental_history', user: @user %>
+
 </div>

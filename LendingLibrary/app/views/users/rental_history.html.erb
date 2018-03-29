@@ -1,0 +1,41 @@
+<div class="grid-container">
+  <div class="grid-y cell-block-container">
+    <div class="grid-x">
+      <div class="inner-title cell-block-x small-10">
+        <span class="uline"><h1>Rental History</h1> </span>
+      </div>
+    </div>
+
+    <% unless @reservations.nil? || @reservations.empty? %>
+      <div class="grid-x">
+        <div class="small-1"></div>
+        <div class="cell small-10">
+          <fieldset>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Checkout Date</th>
+                  <th>Return Date</th>
+                  <th>Current Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @reservations.each do |myr| %>
+                  <tr>
+                    <td><%= link_to image_tag('osmo.png', width:180, height:180), item_path(@item=Item.find(1))%></td>
+                    <td>From: <%= myr.pick_up_date.strftime("%D") %></td>
+                    <td>To: <%= myr.return_date.strftime("%D") %></td>
+                    <td> <%= myr.picked_up ? "Picked Up" : "Not Yet Picked Up" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </fieldset>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

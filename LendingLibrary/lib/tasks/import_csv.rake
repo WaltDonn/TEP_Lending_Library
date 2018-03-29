@@ -45,12 +45,12 @@ namespace :import_incidents_csv do
     csvs = Dir[File.join(Rails.root, 'app', 'csvs', 'reservations.csv')]
     csvs.each do |csv|
       CSV.foreach(csv, :headers => true, :col_sep => ',') do |row|
-        res = row.to_h
-        res[:start_date] = DateTime.strptime(row[1], "%m/%d/%Y")
-        res[:end_date] = DateTime.strptime(row[1], "%m/%d/%Y")
-        res[:pick_up_date] = DateTime.strptime(row[1], "%m/%d/%Y")
-        res[:return_date] = DateTime.strptime(row[1], "%m/%d/%Y")
-        Reservation.create!(res)
+        res = Reservation.new(row.to_h)
+        res[:start_date] = DateTime.strptime(row[1], "%Y-%m-%d")
+        res[:end_date] = DateTime.strptime(row[1], "%Y-%m-%d")
+        res[:pick_up_date] = DateTime.strptime(row[1], "%Y-%m-%d")
+        res[:return_date] = DateTime.strptime(row[1], "%Y-%m-%d")
+        res.save(:validate => false)
       end
     end
   end
