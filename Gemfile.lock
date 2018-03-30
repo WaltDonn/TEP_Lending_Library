@@ -145,6 +145,7 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
+    pg (1.0.0)
     power_assert (1.1.1)
     public_suffix (3.0.2)
     puma (3.11.3)
@@ -282,6 +283,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   minitest
+  pg
   puma (~> 3.7)
   rails (~> 5.1.5)
   rails-controller-testing
