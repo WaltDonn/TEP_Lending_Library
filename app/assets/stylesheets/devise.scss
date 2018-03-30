@@ -8,7 +8,7 @@
   position: relative;
 }
 
-#login {
+#login, #resend-confirm {
   color: $white;
   position: absolute;
   width: 800px;
@@ -62,6 +62,35 @@
   h5 {
     font-size: 1rem;
     line-height: 1rem;
+  }
+}
+
+/* confirmation resend page */
+
+div.error_notification {
+  text-align: left;
+}
+
+#resend-confirm {
+  width: 900px;
+  height: 200px;
+  margin: -200px 0 0 -450px;
+
+  .form-actions {
+    .button {
+      width: 10rem;
+      font-size: 15px;
+    }
+  }
+  
+  .form-inputs {
+    margin-bottom: 1.5rem;
+
+    .error {
+      color: $white;
+      text-align: right;
+      margin-right: 1rem;
+    }
   }
 }
 
