@@ -124,8 +124,7 @@ $topbar-hover-lines-transition: all 0.35s ease;
     position: absolute;
   }
 
-  a::before,
-  a::after {
+  a::before {
     height: $topbar-hover-lines-border-width;
     position: absolute;
     content: '';
