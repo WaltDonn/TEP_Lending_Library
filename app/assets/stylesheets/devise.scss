@@ -1,0 +1,112 @@
+@import 'settings';
+@import 'foundation';
+
+/* login page */
+.devise-content {
+  background-image: url("home_bg.jpg");
+  background-size: cover;
+  position: relative;
+}
+
+#login {
+  color: $white;
+  position: absolute;
+  width: 800px;
+  height: 200px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -200px 0 0 -400px;
+
+  h1 {
+    padding-top: 60px;
+    font-size: 60px;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+  }
+}
+
+#login-buttons {
+  list-style: none;
+  list-style-position:inside;
+  margin: 0rem 0rem -1rem 0rem;
+
+  .button {
+    width: 200px;
+    height: 40px;
+    padding: 0rem;
+  }
+}
+
+#login-form {
+  padding: 0rem;
+  margin: 0rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  list-style: none;
+  list-style-position: inside;
+  border-radius: 20px;
+  
+  .checkbox {
+    color: $white;
+    .avg-checkbox {
+      margin: 0rem;
+    }
+  }
+}
+
+#forgot-password {
+  height: 2rem;
+  padding-top: 0.5rem;
+
+  h5 {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+}
+
+/* signup page */
+#user-upload-form {
+  fieldset, table, tbody, tr, td {
+    border: 0rem;
+    background-color: $none;
+  }
+
+  .input {
+    margin: 0;
+  }
+  
+  th {
+    background-color: none;
+    border-color: none;
+    font-size: 1rem;
+    color: $white;
+    text-align: right;
+    padding-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  #create_users_users_csv {
+    margin: 0;
+    color: $white;
+  }
+
+  #create_users_role {
+    width: 12rem;
+    margin-top: 1rem;
+  }
+}
+
+.form-actions {
+  .upload-button, .button {
+    width: 8rem;
+    height: 2rem;
+    padding: 0rem;
+  }
+}
+
+#signup h1{
+  color: $white;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}

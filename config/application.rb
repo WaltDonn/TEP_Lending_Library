@@ -13,6 +13,11 @@ module LendingLibrary
 
     config.exceptions_app = self.routes
 
+    config.to_prepare do
+      # Configure single controller layout
+      Devise::SessionsController.layout "home"
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

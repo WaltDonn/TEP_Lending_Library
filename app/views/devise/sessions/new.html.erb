@@ -1,32 +1,25 @@
-<div id="login" class="center">
-		<div class="cell auto">
-			<h1 class="text-center">LOGIN</h1>
-			<br/>
-        <%= simple_form_for(:user, :url => session_path(:user),
-        :html => { :class => 'form-inline user-info-form' }, :defaults => {:label => false}) do |f| %>
+<div id="login" class="center grid-x">
+    <div class="cell small-6 small-offset-3 center">
+      <h2 class="text-center">LOGIN</h2>
+      
+        <%= simple_form_for(:user, :url => session_path(:user), :html => { :class => 'form-inline user-info-form', :id => 'login-form' }, :defaults => {:label => false}) do |f| %>
         <fieldset id="profile-form">
           <div class="cell small-5 center" >
-              <ul id="login-form" class="avg-checkbox">
-                <li><%= f.input :email, :input_html => { :class => 'avg', :style => "width: 200px;", :value => 'Email'} %></li>
-                <li><%= f.input :password, :input_html => { :class => 'avg', :style => "width: 200px;", :value => 'Password' }  %></li>
-                <li>
-                  <%= f.input :remember_me, :inline_label => true,  :input_html => { :class => 'avg-checkbox'}, as: :boolean if devise_mapping.rememberable? %></li>
+              <ul id="login-form">
+                <li><%= f.input :email, :input_html => { :class => 'avg', :style => "width: 200px;", :placeholder => 'Email'} %></li>
+                <li><%= f.input :password, :input_html => { :class => 'avg', :style => "width: 200px;", :placeholder => 'Password' }  %></li>
+                <li><%= f.input :remember_me, :inline_label => true,  :input_html => { :class => 'avg-checkbox'}, as: :boolean if devise_mapping.rememberable? %></li>
               </ul>
           </div>
         </fieldset>
 
-      <div class="form-actions">
-        <ul id="login-buttons">
-          <li><%= f.button :submit, "Log in", :class => 'login-button radius button' %></li>
-          <li><%= link_to 'Cancel', users_path, :class => 'cancel-button' %></li>
-        </ul>
-      </div>
-    <% end %>
+        <div class="form-actions" id="login-buttons">
+          <%= f.button :submit, "Log in", :class => 'radius button small' %>
+        </div>
+      <% end %>
 
-			<br/>
-			<div class="center">
+      <div class="center" id="forgot-password">
         <h5><%= render "devise/shared/links" %></h5>
-			</div>
-		</div>
-
+      </div>
+    </div>
 </div>
