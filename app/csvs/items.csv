@@ -1,8 +1,8 @@
 readable_id,condition,kit_id,item_category_id,is_active
 osmo1,Good,1,1,true
 osmo2,Good,2,1,true
-osmo3,Good,3,1,true
-osmo4,Good,4,1,true
+osmo3,Good,2,1,true
+osmo4,Good,3,1,true
 osmo5,Good,5,1,true
 osmo6,Good,6,1,true
 osmo7,Good,7,1,true
@@ -49,6 +49,6 @@ osmo47,Good,47,1,true
 osmo48,Good,48,1,true
 osmo49,Good,49,1,true
 osmo50,Good,50,1,true
-finch1,Good,2,2,true
-hummingbird1,Good,3,3,true
+finch1,Good,51,2,true
+hummingbird1,Good,52,3,true
 lego1,Good,4,4,true
