@@ -7,4 +7,10 @@
     <li><%= link_to "EMPLOYEES", users_path(:role => 'employee') %></li>
   </ul>
 </li>
-<li><h5><%= link_to "RENTALS", rental_calendar_path(Date.today.strftime("%B")) %></h5></li>
+<li>
+  <h5><%= link_to "RENTALS", reservations_path %></h5>
+  <ul class="menu vertical">
+      <li><%= link_to "TABLE", reservations_path %></li>
+      <li><%= link_to "CALENDAR", rental_calendar_path(Date.today.strftime("%B")) %></li>
+  </ul>
+</li>
