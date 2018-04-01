@@ -1,22 +1,59 @@
-<%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Reservation</legend>
+<div class="cell-block-y">
+  <div class="grid-container">
+    <%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
+      <!-- <fieldset> -->
+        <div class="grid-x">
+          <div class="inner-title cell-block-x small-10 small-offset-3">
+            <span class="uline"><h1><%= controller.action_name.capitalize %> Reservation</h1> </span>
+          </div>
+        </div>
 
-    <%= f.input :start_date, label: "Start Date", as: :string, :input_html => {:class => "avg datepicker"} %>
-    <%= f.input :end_date, label: "End Date", as: :string, :input_html => {:class => "avg datepicker"} %>
-    <%= f.input :pick_up_date, label: "Pick Up Date", as: :string, :input_html => {:class => "avg datepicker"} %>
-    <%= f.input :return_date, label: "Return Date", as: :string, :input_html => {:class => "avg datepicker"} %>
+        <div class="grid-x" id="reservation-form">
+          <div class="small-offset-3">
+            <table>
+              <tbody>
+                <tr>
+                  <td><%= f.label :start_date %></td>
+                  <td><%= f.input :start_date, label: false, as: :date, order: [:month, :day, :year], :input_html => {:id => "middle-label", :class => "avg datepicker"} %></td>
+                <tr>
+                </tr>
+                  <td><%= f.label :end_date %></td>
+                  <td><%= f.input :end_date, label: false, as: :date, order: [:month, :day, :year], :input_html => {:id => "middle-label", :class => "avg datepicker"} %></td>
+                </tr>
+                <tr>
+                  <td><%= f.label :pick_up_date %></td>
+                  <td><%= f.input :pick_up_date, label: false, as: :date, order: [:month, :day, :year], :input_html => {:id => "middle-label", :class => "avg datepicker"} %></td>
+                <tr>
+                </tr>
+                  <td><%= f.label :return_date %></td>
+                  <td><%= f.input :return_date, label: false, as: :date, order: [:month, :day, :year], :input_html => {:id => "middle-label", :class => "avg datepicker"} %></td>
+                </tr>
+                <tr>
+                  <td><%= f.label :teacher, required: false %></td>
+                  <td><%= f.association :teacher, label: false, input_html: {class: "avg"} %></td>
+                <tr>
+                </tr>
+                  <td><%= f.label :kit, required: false %></td>
+                  <td><%= f.association :kit, label: false, :collection => Kit.all.map{|k| k.items.first.item_category.name}, input_html: {class: "avg"} %></td>
+                </tr>
+                <tr>
+                  <td><%= f.label :release_form_id %></td>
+                  <td colspan="3"><%= f.input :release_form_id, label: false, as: :integer, prompt: "type the number of the corresponding release form", :input_html => {:class => "avg", :placeholder => "12345"} %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-		<%= f.input :release_form_id %>
-
-    <%= f.input :teacher_id, :collection => User.active.teachers.alphabetical.all, input_html: {class: "avg"} %>
-    <%= f.input :user_check_in, :collection => User.active.volunteers.alphabetical.all.map{|o| o.name}, include_blank: true, input_html: {class: "avg"} %>
-
-    <%= f.input :kit_id, :collection => Kit.all, include_blank: true, input_html: {class: "avg"} %>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', reservations_path, :class => 'button alert radius' %>
-    </div>
-  </fieldset>
-<% end %>
+        <div class="grid-x">
+          <div class="form-actions cell small-4 small-offset-5 right">
+            <%= f.submit 'Create Reservation', :class => 'button radius small' %>
+            <%= link_to 'Cancel', reservations_path, :class => 'button alert radius small' %>
+          </div>
+          <div class="cell auto">
+          </div>
+        </div>
+      <!-- </fieldset> -->
+    <% end %>
+  </div>
+</div>
