@@ -1,34 +1,24 @@
-<h1>Editing Item</h1>
-
-
-
-<div class="grid-container" id="item-detail">
-  <div class="grid-x grid-margin-x">
-
-    <div class="cell-block-container cell auto large-offset-2 medium-offset-1">
-      <div class="cell-block-y small-6">
-        <%= render :partial => "item_picture" %>
-        <a href="#">Change picture</a>
-      </div>
-      <div class="cell-block-y small-6">
-        <%= render :partial => "item_components" %>
-        <!-- TODO: add cancan -->
-        <%= link_to(item_components_item_path(item: @item), class: 'button radius', remote: true) do %>
-          EDIT KIT CONTENT
-        <% end %>
-
+<div class="grid-container">
+    <div class="grid-x">
+      <div class="inner-title cell-block-x small-12">
+        <span class="uline"><h1>Editing <%= @item.readable_id %></h1> </span>
       </div>
     </div>
-    <div class="cell small-6">
 
-      <%= render 'form', item: @item %>
+  <div class="grid-x grid-margin-x">
+    <div class="cell-block-container cell auto">
+      <div class="cell-block-y small-6" id="component-block">
+        <%= @item.item_category.item_photo %>
+        <!-- show item components information -->
+        <%= render  "item_components", components: @item.components %>
 
+        <%= link_to 'EDIT KIT CONTENT', edit_item_path(@item), :class => 'button radius small' %>
+      </div>
+    </div>
+
+    <div class="cell small-6" id="item-block">
+    <!-- show item information -->
+      <%= render  "form" %>
     </div>
   </div>
 </div>
-
-
-
-
-<%= link_to 'Show', @item %> |
-<%= link_to 'Back', items_path %>
