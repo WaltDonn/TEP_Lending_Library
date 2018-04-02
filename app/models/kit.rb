@@ -29,5 +29,9 @@ class Kit < ApplicationRecord
         Kit.all.map{|kit| kit.blackout = false
                           kit.save!}
     end
+
+    def name
+        self.items.first.item_category.name
+    end
     
 end
