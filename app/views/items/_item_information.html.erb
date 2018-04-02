@@ -1,0 +1,23 @@
+<h5>Item Information</h5>
+<br/>
+<table>
+  <tbody>
+    <tr>
+      <td>Item Location</td>
+      <td><%= link_to @item.kit.location, @item.kit %></td>
+    </tr>
+    <tr>
+      <td>Item Condition</td>
+      <td><%= @item.condition %> </td>
+    </tr>
+    <tr>
+      <td>Item Category</td>
+      <td><%= link_to @item.item_category.name, @item.item_category %></td>
+    </tr>
+    <tr>
+      <td>Active</td>
+      <td><%= @item.is_active %></td>
+    </tr>
+  </tbody>
+</table>
+<br/>

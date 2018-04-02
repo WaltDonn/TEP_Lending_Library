@@ -1,24 +1,28 @@
-<div class="grid-container" id="item-detail">
-  <div class="grid-x grid-margin-x">
-
-    <div class="cell-block-container cell auto large-offset-2 medium-offset-1">
-      <div class="cell-block-y small-6">
-        <%= render :partial => "item_picture", item: @item %>
-      </div>
-      <div class="cell-block-y small-6">
-        <%= render :partial => "item_components" %>
-        <!-- TODO: add cancan -->
-        <%= link_to 'EDIT KIT CONTENT', edit_item_path(@item), :class => 'button radius' %>
+<div class="grid-container">
+    <div class="grid-x">
+      <div class="inner-title cell-block-x small-12">
+        <span class="uline"><h1><%= @item.readable_id %></h1> </span>
       </div>
     </div>
-    <div class="cell small-6">
-      <%= render :partial => "item_details" %>
-      <div class="form-actions">
-        <%= link_to 'RENT THIS KIT', new_reservation_path(:item => @item.id), :class => 'button radius' %>
 
-        <!-- TODO: add cancan -->
-        <%= link_to 'EDIT THIS KIT', edit_item_path(@item), :class => 'button radius' %>
-        <%= link_to 'SEE RENTAL HISTORY', edit_reservation_path(), :class => 'button radius' %>
+  <div class="grid-x grid-margin-x">
+    <div class="cell-block-container cell auto">
+      <div class="cell-block-y small-6" id="component-block">
+        <%= @item.item_category.item_photo %>
+        <!-- show item components information -->
+        <%= render  "item_components", components: @item.components %>
+
+        <%= link_to 'EDIT KIT CONTENT', edit_item_path(@item), :class => 'button radius small' %>
+      </div>
+    </div>
+
+    <div class="cell small-6" id="item-block">
+    <!-- show item information -->
+      <%= render  "item_information" %>
+      <br/>
+      <div>
+        <%= link_to 'EDIT', edit_item_path(@item), :class => 'button radius small' %>
+        <%= link_to 'DESTROY', item_path(@item), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button alert radius small' %>
 
       </div>
     </div>
