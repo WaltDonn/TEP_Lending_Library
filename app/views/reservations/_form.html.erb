@@ -34,7 +34,7 @@
                 <tr>
                 </tr>
                   <td><%= f.label :kit, required: false %></td>
-                  <td><%= f.association :kit, label: false, :collection => Kit.all.map{|k| k.items.first.item_category.name}, input_html: {class: "avg"} %></td>
+                  <td><%= f.association :kit, label: false, :collection => Kit.all.map{|k| k.name}, input_html: {class: "avg"} %></td>
                 </tr>
                 <tr>
                   <td><%= f.label :release_form_id %></td>
