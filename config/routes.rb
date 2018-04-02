@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  
+  # devise/sessions and signup confirmation routes
+  use_doorkeeper
+  devise_for :users, skip: :registrations
+  get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
+  
   # main resources routes
   resources :users, :except => [:new, :create, :delete, :destroy]  do
     resources :item_categories
@@ -13,11 +18,6 @@ Rails.application.routes.draw do
   resources :kits
   resources :schools
   
-  # devise/sessions and signup confirmation routes
-  use_doorkeeper
-  devise_for :users, skip: :registrations
-  get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
-  
   # management routes
   get 'returns' => 'reservations#returns', as: :returns
   get 'pickup' => 'reservations#pickup', as: :pickup
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
   get 'users/:id/rental_history' => 'users#rental_history', as: :rental_history
   get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
-
+  
   # kit shopping routes
   get 'steamkits' => 'item_categories#index', as: :shopping
   post 'reservations/select_dates' => 'reservations#select_dates', as: :reservation_select_dates
@@ -60,5 +60,5 @@ Rails.application.routes.draw do
   
   # Set the root url
   root :to => 'home#home'
-
+  
 end
