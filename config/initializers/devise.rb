@@ -143,7 +143,6 @@ Devise.setup do |config|
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
   config.reconfirmable = false
-  config.secret_key = 'df8f6bb485c97b15813e31caf961ba8cb432f41008d840831553337ad08a541e613b5d387167c87431aa98cd9df70d70c49dc24a842f95254da78f92b1b4f5f0'
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [:email]

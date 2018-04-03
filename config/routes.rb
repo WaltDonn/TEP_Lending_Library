@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-
-  get 'home/upload_schools'
-
   use_doorkeeper
   devise_for :users, skip: :registrations
   # Set the root url
