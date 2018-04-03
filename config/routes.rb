@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   # devise/sessions and signup confirmation routes
+
   use_doorkeeper
   devise_for :users, skip: :registrations
   get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, :except => [:new, :create, :delete, :destroy]  do
     resources :item_categories
   end
+  
   resources :components
   resources :items
   resources :item_categories
@@ -43,6 +46,13 @@ Rails.application.routes.draw do
   # uploading users from a csv
   get 'upload_users' => 'home#upload_users', as: :upload_users
   post 'create_users' => 'home#create_users', as: :create_users
+
+  
+  
+  # get 'home/upload_schools'
+  get 'upload_schools' => 'home#upload_schools', as: :upload_schools
+  post 'create_schools' => 'home#create_schools', as: :create_schools
+
   
   
   namespace :api do

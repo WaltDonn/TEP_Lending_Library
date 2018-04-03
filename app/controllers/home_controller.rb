@@ -58,5 +58,39 @@ class HomeController < ApplicationController
 		end
   end
   
+  def upload_schools
+  	authorize! :upload_schools, nil
+  end
+  
+
+  def create_schools
+  	authorize! :create_schools, nil
+ 
+  	failed_schools = Array.new
+  	file = params['create_schools']['schools_csv'].tempfile
+		csv = CSV.read(file, :headers => true)
+		csv.each do |row|
+			@school = School.new
+			@school.name = row['name']
+			@school.street_1 = row['street_1']
+			@school.street_2 = row['street_2']
+			@school.city = row['city']
+			@school.state = row['state']
+			@school.zip = row['zip']
+			@school.is_active = true
+			unless @school.save 
+				unless @school.errors.messages[:name] == ["already exists for this school at this location"]
+					failed_schools.push(row['name'])
+				end
+			end
+		end
+		
+		if failed_schools.size > 0
+			data = "All schools added except for schools with the following names: "+failed_schools.join(", ")
+			send_data( data, :filename => "failed_schools.txt" )
+		else
+			redirect_to schools_url
+		end
+  end
   
 end
