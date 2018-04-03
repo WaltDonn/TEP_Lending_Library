@@ -1,0 +1,21 @@
+<h5>Components</h5>
+<table class="component-table">
+  <thead>
+    <th>Name</th>
+    <th>Amt.</th>
+    <th>Damaged</th>
+    <th>Missing</th>
+    <th>Consumable</th>
+  </thead>
+  <tbody>
+    <% components.each do |component| %>
+      <tr>
+        <td><%= component.component_category.name %></td>
+        <td><%= component.max_quantity %></td>
+        <td><%= component.damaged %></td>
+        <td><%= component.missing %></td>
+        <td><%= component.consumable %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

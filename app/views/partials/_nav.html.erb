@@ -18,7 +18,7 @@
 
             <!-- only managers, and admins  -->
             <% if (current_user.has_role?(:admin) || current_user.has_role?(:manager)) %>
-              <%= render :partial => "partials/schools_users_rentals_link" %>
+              <%= render :partial => "partials/manager_links" %>
             <% end %>
 
             <!-- only teachers, managers, admins -->
