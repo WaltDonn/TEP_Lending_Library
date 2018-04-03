@@ -81,3 +81,11 @@ footer a {
 .clearfix {
   overflow: auto;
 }
+
+.red {
+  color: var(--red);
+}
+
+.green {
+  color: var(--green)
+}

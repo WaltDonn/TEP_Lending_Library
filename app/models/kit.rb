@@ -15,8 +15,6 @@ class Kit < ApplicationRecord
             size_of_bad = k.items.select{|i| i.condition == "Broken"}.size
             size_of_bad == 0
         }
-        
-        
         return actual_kits
     end
     
@@ -29,5 +27,18 @@ class Kit < ApplicationRecord
         Kit.all.map{|kit| kit.blackout = false
                           kit.save!}
     end
+
+    def photo
+        self.items.first.item_category.item_photo
+    end
+
+    def name
+        self.items.first.item_category.name
+    end
+
+    def inventory
+        Kit.visible_kits.map{|kit| kit.name == self.name}.count(true)
+    end
+
     
 end

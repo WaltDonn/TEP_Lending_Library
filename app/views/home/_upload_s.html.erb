@@ -1,26 +1,20 @@
 <div id="welcome">
 	<div class="cener" id="signup">
-		<h1 class="center"> Upload Users </h1>
+		<h1 class="center"> Upload Schools </h1>
 	</div>
 
   <div class="grid-x grid-margin-x">
     <div class='center'>
-  		<%= simple_form_for(:create_users, url: create_users_url, html: { :multipart => true, :class => 'form-inline' }, defaults: {label: false}) do |f| %>
+  		<%= simple_form_for(:create_schools, url: create_schools_url, html: { :multipart => true, :class => 'form-inline' }, defaults: {label: false}) do |f| %>
   			<fieldset>
   				<table id="user-upload-form">
   					<tbody>
   						<tr>
 									<th class="left"> Upload CSV File: </th>
 									<td class="left">
-										<%= f.input :users_csv, as: :file %>
+										<%= f.input :schools_csv, as: :file %>
 									</td>
 							</tr>
-  						<tr>
-									<th class="left"> Type of user: </th>
-									<td class="left">
-										<%= f.input :role, collection: ["teacher", "volunteer", "manager", "admin"], :selected => 0, input_html: { class: "role_select" } %>
-									</td>
-								</tr>
   					</tbody>
   				</table>
   			</fieldset>
