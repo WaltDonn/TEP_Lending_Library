@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'home/upload_schools'
+
   use_doorkeeper
   devise_for :users, skip: :registrations
   # Set the root url
@@ -42,7 +44,9 @@ Rails.application.routes.draw do
   # get 'home/upload_users'
   get 'upload_users' => 'home#upload_users', as: :upload_users
   post 'create_users' => 'home#create_users', as: :create_users
-
+  # get 'home/upload_schools'
+  get 'upload_schools' => 'home#upload_schools', as: :upload_schools
+  post 'create_schools' => 'home#create_schools', as: :create_schools
 
   namespace :api do
     namespace :v1 do
