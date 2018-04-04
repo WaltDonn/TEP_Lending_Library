@@ -9,6 +9,16 @@
   </ul>
 </li>
 <li>
+  <h5><%= link_to "ITEMS", items_path %></h5>
+  <ul class="menu vertical">
+    <li><%= link_to "ALL ITEMS", items_path %></li>
+    <li><%= link_to "AVAILABLE ITEMS", items_path(:status => 'Available') %></li>
+    <li><%= link_to "USED ITEMS", items_path(:status => 'Kits') %></li>
+    <li><%= link_to "GOOD ITEMS", items_path(:status => 'Good') %></li>
+    <li><%= link_to "BROKEN ITEMS", items_path(:status => 'Broken') %></li>
+  </ul>
+</li>
+<li>
   <h5><%= link_to "RENTALS", reservations_path %></h5>
   <ul class="menu vertical">
       <li><%= link_to "TABLE", reservations_path %></li>
