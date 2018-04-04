@@ -1,10 +1,10 @@
 <div class="cell-block-y">
   <div class="grid-container">
     <div class="inner-title cell-block-x small-9">
-      <span class="uline"><h1>CHECK IN</h1> </span>
+      <span class="uline"><h1>CHECK OUT</h1> </span>
     </div>
 
-  <% unless @today_return.nil? || @today_return.empty? %>
+  <% unless @today_pickup.nil? || @today_pickup.empty? %>
     <div class="rounded information-table">
       <table class="information-table">
         <thead>
@@ -17,13 +17,13 @@
         </thead>
 
         <tbody>
-          <% @today_return.each do |returnKit| %>
+          <% @today_pickup.each do |pickupKit| %>
             <tr>
-              <td><%= returnKit.teacher.school.name %></td>
-              <td style="text-align:center;"><%= returnKit.teacher.name %></td>
-              <td style="text-align:center;"><%= returnKit.kit.items.first.item_category.name %></td>
+              <td><%= pickupKit.teacher.school.name %></td>
+              <td style="text-align:center;"><%= pickupKit.teacher.name %></td>
+              <td style="text-align:center;"><%= pickupKit.kit.items.first.item_category.name %></td>
               <td>
-                <%= link_to 'Drop Off', returned_url(returnKit), :class => 'button radius success', method: :patch %>
+              	<%= link_to 'Pick Up', picked_up_path(pickupKit), :class => 'button radius success', method: :patch %>
               </td>
             </tr>
           <% end %>
@@ -31,7 +31,7 @@
       </table>
     </div>
     <% else %>
-      <p><strong>All kits returned for today.</strong></p>
+      <p><strong>All kits picked up for today.</strong></p>
     <% end %>
   </div>
 </div>
