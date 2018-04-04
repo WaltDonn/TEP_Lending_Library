@@ -14,26 +14,69 @@ class Reservation < ApplicationRecord
     validate :checkout_present
     validate :checkin_present_and_returned
     validate :valid_renter
-    validate :available_kit, on: :create
     validate :cant_return_before_pickup
     validate :release_form_signed
+    validate :kit_marked_reserved
+    validate :kit_rentable, on: :create
     
-
+    
+    
     belongs_to :kit
     belongs_to :teacher,   :class_name => 'User'
-
+    
 
 
     scope :open_reservations,     -> { where(returned: false) }
-    scope :get_month,             ->(month){where('extract(month from pick_up_date) = ?', month)}
+    scope :get_month,             ->(month){where("cast(strftime('%m', pick_up_date) as int) = ?", month)}
     scope :returning_today,       -> { where(return_date: Date.current)}
     scope :picking_up_today,      -> { where(pick_up_date: Date.current)}
 
     def past_due?
         Date.current > self.end_date && self.returned == false
     end
+    
+    
 
     private
+    def kit_rentable
+        if(self.kit == nil)
+             errors.add(:kit_id, 'Kit should be present')
+             return false
+        end
+        
+        if(self.kit.rentable == false)
+             errors.add(:kit, 'Kit should be rentable')
+             return false
+        end
+    end
+    
+    
+    def kit_marked_reserved
+        if(self.kit.nil?)
+            errors.add(:kit, 'Kit should be set')
+            return false
+        end
+        
+        if(self.picked_up == true && self.returned == false)
+            #Kit still out
+            if(self.kit.reserved == false)
+                errors.add(:kit, 'Kit should be marked as reserved as the kit has not been returned yet')
+                return false
+            end
+        end
+        
+        
+        other_res = self.kit.reservations.get_month(self.start_date.month)
+        
+        if(other_res.select{|r| r.id != self.id}.size > 0)
+             errors.add(:kit, 'Kit should only be in 1 reservation a month')
+             return false
+        end
+        
+    end
+        
+
+    
     def release_form_signed
         if(self.picked_up == true)
             if(self.release_form_id.nil?)
@@ -45,24 +88,6 @@ class Reservation < ApplicationRecord
         return true
     end
 
-
-    def available_kit
-        if(self.kit == nil)
-             errors.add(:kit_id, 'Kit should be present')
-             return false
-        end
-        if(self.kit.is_active == false)
-            errors.add(:kit_id, 'Kit should be active')
-            return false
-        end
-        if(self.kit.blackout == true)
-            errors.add(:kit_id, 'Kit is currently not available')
-            return false
-        end
-
-
-        return true
-    end
 
     def cant_return_before_pickup
         if(self.returned == true)

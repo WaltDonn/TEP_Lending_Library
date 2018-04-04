@@ -4,7 +4,7 @@
   </div>
   <div class="grid-x center">
     <div class="cell small-7 center">
-      <%= simple_form_for @user, :html => { :class => 'form-inline user-info-form' }, defaults: {label: false} do |f| %>
+      <%= simple_form_for @user, url: submit_user_details_url, :html => { :class => 'form-inline user-info-form' }, defaults: {label: false} do |f| %>
         <fieldset>
           <table class="cell small-5" id="user-profile-form">
             <thead>
@@ -41,11 +41,6 @@
                     <%= f.input :class_size, :input_html => { :class => 'avg' }%>
                 </td>
               </tr>
-
-
-
-
-
             </thead>
           </table>
         </fieldset>
@@ -61,9 +56,6 @@
 
       </div>
       <div class="small-3 cell">
-        <%= hidden_field_tag(:redir, true) %>
-        <%= hidden_field_tag(:item_category, @item_category.id) %>
-
         <%= f.submit 'Save', :class => 'button radius success bt-right' %>
       </div>
     </div>

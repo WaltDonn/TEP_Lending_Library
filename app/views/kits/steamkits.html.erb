@@ -1,0 +1,30 @@
+ 
+ <div class="cell-block-y">
+   <div class="grid-x">
+     <div class="inner-title cell-block-x small-10">
+       <span class="uline"><h1>Available Rentals</h1> </span>
+     </div>
+   </div>
+ </div>
+
+ <div class="cell-block-y">
+   <div class="grid-x grid-margin-x large-4 medium-2 small-1" id="card-grid">
+    <% @rental_categories.each do |rental_cat| %>
+     <div class="product-card-container cell-block-x">
+       <div class="product-card">
+         <div class="product-card-thumbnail">
+          <%= render :partial => "item_picture", locals: {:rental_category => rental_cat} %>
+         </div>
+        <h2 class="product-card-title center"><%= rental_cat.name %></h2>
+         <div class="product-card-button center">
+          <%= link_to 'Details', available_kit_path(rental_cat) %>
+         </div>
+         <div class="product-card-button center">
+          <%= link_to 'Rent Me', confirm_user_details_path(), :onclick => session[:rental_category_id] = rental_cat.id %>
+         </div>
+       </div>
+     </div>
+     <% end %>
+   </div>
+
+ </div>

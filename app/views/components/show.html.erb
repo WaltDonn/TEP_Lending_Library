@@ -1,6 +1,11 @@
 
 
 <p>
+  <strong>Name:</strong>
+  <%= @component.Name %>
+</p>
+
+<p>
   <strong>Max quantity:</strong>
   <%= @component.max_quantity %>
 </p>
@@ -25,10 +30,6 @@
   <%= @component.item_id %>
 </p>
 
-<p>
-  <strong>Component category:</strong>
-  <%= @component.component_category_id %>
-</p>
 
 <%= link_to 'Edit', edit_component_path(@component) %> |
 <%= link_to 'Back', components_path %>
