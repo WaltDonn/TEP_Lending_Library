@@ -5,8 +5,24 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
-    authorize! :index, @items
+    case params[:status]
+      when 'Good'
+        @items = Item.good
+        @title = 'TEACHERS'
+      when 'Broken'
+        @items = Item.broken
+        @title = 'EMPLOYEES'
+      when 'Available'
+        @items = Item.available_for_kits
+        @title = 'AVAILABLE FOR KITS'
+      when 'Kits'
+        @items = Item.has_kit
+        @title = 'CURRENTLY USED'
+      else 
+         @items = Item.all
+         @title = 'ALL ITEMS'
+    end
+     authorize! :index, @items
   end
 
   # GET /items/1

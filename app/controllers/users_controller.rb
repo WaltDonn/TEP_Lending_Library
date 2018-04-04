@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     @title = 'USERS'
     case params[:role]
       when 'teacher'
-        @users = User.teachers.all
+        @users = User.teachers
         @title = 'TEACHERS'
       when 'employee'
-        @users = User.employees.all
+        @users = User.employees
         @title = 'EMPLOYEES'
     end
     authorize! :index, @users
