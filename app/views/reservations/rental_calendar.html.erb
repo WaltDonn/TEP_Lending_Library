@@ -1,0 +1,14 @@
+<%= month_calendar(attribute: :pick_up_date, end_attribute: :return_date, events: @reservations) do |date, reservations| %>
+  <%= date.day %>
+  <% reservations.each do |reservation| %>
+      <% if date == reservation.pick_up_date %>
+        <div>
+          <p>Pickup: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
+        </div>
+        <% elsif date == reservation.return_date %>
+        <div>
+          <p>Return: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
+        </div>
+      <% end %> 
+  <% end %>
+<% end %>

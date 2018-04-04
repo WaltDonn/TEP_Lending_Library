@@ -42,6 +42,7 @@ gem 'figaro'
 gem 'devise'
 gem 'doorkeeper'
 gem 'will_paginate'
+gem "simple_calendar", "~> 2.0"
 
 gem 'erubi', '~> 1.7.1'
 gem 'actionview'

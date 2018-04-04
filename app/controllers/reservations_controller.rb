@@ -14,9 +14,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservation_calendar/1
   def rental_calendar
-    @reservations = Reservation.get_month(params[:month])
-    @today_pickup = Reservation.picking_up_today
-    @today_return = Reservation.returning_today
+    @reservations = Reservation.all
   end
 
   def rental_dates
