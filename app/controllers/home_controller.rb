@@ -17,6 +17,9 @@ class HomeController < ApplicationController
   
   def privacy
   end
+  
+  def reports
+  end
 
   def upload_users
   	authorize! :upload_users, nil

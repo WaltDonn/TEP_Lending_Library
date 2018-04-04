@@ -9,17 +9,12 @@ Rails.application.routes.draw do
   get 'users/:id/confirmation' => 'users#confirmation', as: :user_info_confirmation
   
   # main resources routes
-  resources :users, :except => [:new, :create, :delete, :destroy]  do
-    resources :item_categories
-  end
-  
+  resources :users, :except => [:new, :create, :delete, :destroy]
   resources :components
   resources :items
-  resources :item_categories
-  resources :component_categories
   resources :reservations
-  resources :kits
   resources :schools
+  resources :kits
   
   # management routes
   get 'returns' => 'reservations#returns', as: :returns
@@ -33,17 +28,24 @@ Rails.application.routes.draw do
   get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
   get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
   get 'users/:id/rental_history' => 'users#rental_history', as: :rental_history
-  get 'users/:id/reservation_user_edit' => 'users#reservation_user_edit', as: :reservation_user_edit
   
   # kit shopping routes
-  get 'steamkits' => 'item_categories#index', as: :shopping
-  post 'reservations/select_dates' => 'reservations#select_dates', as: :reservation_select_dates
+  get 'steamkits' => 'kits#steamkits', as: :shopping
+  get 'choose_dates' => 'reservations#choose_dates', as: :reservation_choose_dates
+  post 'select_dates' => 'reservations#select_dates', as: :reservation_select_dates
+  get 'available_kit/:id' => 'kits#available_kit', as: :available_kit
+  get 'confirm_user_details' => 'reservations#confirm_user_details', as: :confirm_user_details
+  get 'edit_user_details' => 'reservations#edit_user_details', as: :edit_user_details
+  patch 'submit_user_details' => 'reservations#submit_user_details', as: :submit_user_details
+  get 'reservation_error' => 'reservations#reservation_error', as: :reservation_error
+  
   
   # static page routes
   get '/' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
+  get 'reports' => 'home#reports', as: :reports
   
   # uploading users from a csv
   get 'upload_users' => 'home#upload_users', as: :upload_users

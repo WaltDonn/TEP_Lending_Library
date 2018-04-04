@@ -1,0 +1,22 @@
+<div class="grid-container" id="product">
+  <div class="grid-y cell-block-container">
+        <div class="cell-block-y">
+            <div class="inner-title cell-block-x small-9">
+                <table class="component-table">
+                  <thead>
+                    <th>Name</th>
+                    <th>Amt.</th>
+                  </thead>
+                  <tbody>
+                    <% components.each do |component| %>
+                      <tr>
+                        <td><%= component.name %></td>
+                        <td><%= component.max_quantity %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                 </table>
+            </div>
+        </div>
+  </div>
+</div>

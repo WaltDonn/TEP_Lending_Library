@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     scope :good, -> { where(condition: "Good") }
 
     #Relationships
-    belongs_to :kit
+    belongs_to :kit, optional: true
     belongs_to :item_category
 
     def item_component_condition

@@ -19,13 +19,12 @@
 
 
           <div class="small-6 cell">
-            <%= link_to 'Go back', new_reservation_path(:step => 1, :item_category => @item_category.id), :class => 'button radius info'  %>
+            <%= link_to 'Go Back', :back, :class => 'button radius'%>
             </br>
             <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
           </div>
           <div class="small-6 cell">
 
-          <%= hidden_field_tag(:item_category, @item_category.id) %>
           <%= f.submit 'Confirm Rental Dates', :class => 'button radius success'%>
         </div>
     </div>
