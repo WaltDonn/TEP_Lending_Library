@@ -1,6 +1,7 @@
 class Kit < ApplicationRecord
     validates_presence_of :location
     validates :reserved, inclusion: { in: [ true, false ] , message: "Must be true or false" }
+    validates :is_active, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     
     has_many :items
     has_many :reservations
@@ -10,13 +11,29 @@ class Kit < ApplicationRecord
     
     
     def self.available_kits
-        kits = Kit.visible_kits
-        actual_kits = kits.select{|k| 
-            size_of_bad = k.items.select{|i| i.condition == "Broken"}.size
-            size_of_bad == 0
-        }
-        return actual_kits
+        return Kit.all.select{|k| k.rentable && k.reserved == false}
     end
+    
+    def self.rental_categories
+        kits = Kit.available_kits
+        full_list = kits.map{|k| k.items.first.item_category}
+        return full_list.uniq
+    end
+    
+    def self.available_for_item_category(rental_category)
+        kits = Kit.available_kits
+        kits.select{|k| k.items.first.item_category.id == rental_category.id}
+    end
+    
+    
+    def rentable
+        #Checks everything but self.reserved
+        #self.reserved is handled by reservation model
+        self.blackout == false && self.is_active == true && 
+            self.items.select{|i| i.condition == "Broken"}.size == 0
+    end
+    
+    
     
     def self.blackout_all
         Kit.all.map{|kit| kit.blackout = true 
@@ -39,6 +56,15 @@ class Kit < ApplicationRecord
     def inventory
         Kit.visible_kits.map{|kit| kit.name == self.name}.count(true)
     end
-
+    
+    def set_reserved
+        self.reserved = true;
+        self.save!
+    end
+    
+    def unset_reserved
+        self.reserved = false;
+        self.save!
+    end
     
 end

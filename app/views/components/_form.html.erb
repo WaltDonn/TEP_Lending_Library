@@ -2,12 +2,13 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Component</legend>
 
+    <%= f.input :name %>
 		<%= f.input :max_quantity %>
 		<%= f.input :damaged %>
     <%= f.input :missing %>
     <%= f.input :consumable %>
 
-    <%= f.input :component_category_id, :collection => ComponentCategory.all, input_html: {class: "avg"} %>
+
     <%= f.input :item_id, :collection => Item.all, input_html: {class: "avg"} %>
 
     <div class="form-actions">

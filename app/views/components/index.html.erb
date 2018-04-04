@@ -3,12 +3,12 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Max quantity</th>
       <th>Damaged</th>
       <th>Missing</th>
       <th>Consumable</th>
       <th>Item</th>
-      <th>Component category</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,12 +16,12 @@
   <tbody>
     <% @components.each do |component| %>
       <tr>
+        <td><%= component.name %></td>
         <td><%= component.max_quantity %></td>
         <td><%= component.damaged %></td>
         <td><%= component.missing %></td>
         <td><%= component.consumable %></td>
         <td><%= component.item_id %></td>
-        <td><%= component.component_category_id %></td>
         <td><%= link_to 'Show', component %></td>
         <td><%= link_to 'Edit', edit_component_path(component) %></td>
         <td><%= link_to 'Destroy', component, method: :delete, data: { confirm: 'Are you sure?' } %></td>

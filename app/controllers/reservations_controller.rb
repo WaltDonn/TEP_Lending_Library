@@ -1,6 +1,8 @@
+require 'thread'
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  @@semaphore = Mutex.new
 
   # GET /reservations
   # GET /reservations.json
@@ -30,78 +32,124 @@ class ReservationsController < ApplicationController
   def pickup
     @today_pickup = Reservation.picking_up_today
   end
+  
+  def choose_dates
+    if(session[:rental_category_id].nil?)
+      redirect_to shopping_path
+    end
+  end
 
   # POST /select_dates
   def select_dates
-    @item_category = ItemCategory.find(params[:item_category])
-    # FIXME: hypothetical date restriction
-    # Need appropriate dates and validations on dates that the teacher could pick
+    if(session[:rental_category_id].nil?)
+      redirect_to shopping_path
+    end
+    
     @start_date = Date.today.beginning_of_month.next_month
     @end_date = Date.today.end_of_month.next_month
 
-    @pick_up_date = (params[:reservation_select_dates][:pick_up_date]).to_date
+    @pickup_date = (params[:reservation_select_dates][:pick_up_date]).to_date
     @return_date = (params[:reservation_select_dates][:return_date]).to_date
+    
 
 
-    if @pick_up_date.nil?
-      redirect_to new_reservation_path(:step => 2, :item_category => @item_category), notice: 'Pick up date cannot be null.'
-    elsif @return_date.nil?
-      redirect_to new_reservation_path(:step => 2, :item_category => @item_category), notice: 'Return date cannot be null.'
-    elsif @pick_up_date < @start_date
-      redirect_to new_reservation_path(:step => 2, :item_category => @item_category), notice: 'Pick up date must be after start date.'
-    elsif @return_date < @pick_up_date
-      redirect_to new_reservation_path(:step => 2, :item_category => @item_category), notice: 'Return date must be after pick update.'
-    else
-      redirect_to new_reservation_path(:step => 3, :pick_up_date => @pick_up_date, :return_date => @return_date, :item_category => @item_category)
+    respond_to do |format|
+      if @pickup_date.nil? || @return_date.nil? 
+          format.html { render :choose_dates }
+      else
+          if @pickup_date < @start_date || @pickup_date > @end_date
+              flash.now[:error] = "Needs to be a valid pickup date"
+              format.html { render :choose_dates }
+          elsif @return_date < @start_date || @return_date > @end_date || @return_date < @pickup_date
+               flash.now[:error] = "Needs to be a valid return date"
+              format.html { render :choose_dates }
+          else
+            #Valid date
+            session[:start_date] = @start_date
+            session[:end_date] = @end_date
+            session[:pickup_date] = @pickup_date
+            session[:return_date] = @return_date
+            format.html { redirect_to new_reservation_path }
+          end
+      end
     end
-
   end
 
-
+  
+  def confirm_user_details
+    if(session[:rental_category_id].nil?)
+      redirect_to shopping_path
+    end
+  
+    @rental_category = ItemCategory.find(session[:rental_category_id])
+    authorize! :confirm_user_details, nil
+  end
+  
+  def edit_user_details
+    if(session[:rental_category_id].nil?)
+      redirect_to shopping_path
+    end
+    
+    @rental_category = ItemCategory.find(session[:rental_category_id])
+    @user = current_user
+    authorize! :edit_user_details, nil
+  end
+  
+  def submit_user_details
+    @user = current_user
+    if(!params[:user][:first_name].nil?)
+      @user.first_name = params[:user][:first_name]
+    end
+    
+    if(!params[:user][:last_name].nil?)
+      @user.last_name = params[:user][:last_name]
+    end
+    if(!params[:user][:email].nil?)
+      @user.email = params[:user][:email]
+    end
+    if(!params[:user][:schoold_id].nil?)
+      @user.school_id = params[:user][:school_id]
+    end
+    if(!params[:user][:class_size].nil?)
+      @user.class_size = params[:user][:class_size]
+    end
+    respond_to do |format|
+      if @user.save!
+          format.html { redirect_to reservation_choose_dates_path }
+      else
+           format.html { render :edit_user_details }
+      end
+    end
+  end
+  
+  def reservation_error
+  end
+  
+  
   # GET /reservations/1
   # GET /reservations/1.json
   def show
-
-    authorize! :index, @reservation
+    authorize! :show, @reservation
     @user = current_user
     @reservations = Reservation.select{|res| res.teacher_id == @user.id}
   end
 
+
   # GET /reservations/new
   def new
-    authorize! :new, @reservation
-    @step = params[:step]
-
-    @user = current_user
     @reservation = Reservation.new
-
-    # params.each do |key, value|
-    #   "#{key}: #{value}"
-    # end
-
-    unless @step.nil?
-      @item_category = ItemCategory.find(params[:item_category])
-      # sample a random item of the picked item category
-      @item = @item_category.items.sample(1).first
-      # get available kits for this particular item
-      @kits = Kit.available_kits
-      # generate a random kit based on available kits
-      offset2 = rand(@kits.count)
-      @kit = @kits.at(offset2)
-
-      @reservation.kit_id = @kit.id
-      @reservation.teacher_id = @user.id
+    authorize! :new, @reservation
+    
+    if(session[:rental_category_id].nil? || session[:pickup_date].nil? ||
+      session[:return_date].nil? || session[:start_date].nil? || session[:end_date].nil?)
+      redirect_to shopping_path
     end
 
-    unless params['pick_up_date'].nil? || params['return_date'].nil?
-      # FIXME: hypothetical date restriction
-      # Need appropriate dates and validations on dates that the teacher could pick
-      @reservation.start_date = Date.today.beginning_of_month.next_month
-      @reservation.end_date = Date.today.end_of_month.next_month
-      @reservation.pick_up_date = params['pick_up_date']
-      @reservation.return_date = params['return_date']
-    end
-
+    @rental_category = ItemCategory.find(session[:rental_category_id])
+    @reservation.start_date = session[:start_date]
+    @reservation.end_date = session[:end_date]
+    @reservation.pick_up_date = session[:pickup_date]
+    @reservation.return_date = session[:return_date]
   end
 
   # GET /reservations/1/edit
@@ -113,16 +161,37 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
-    respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to rental_history_path(current_user), notice: 'Thank you for supporting the STEAM Kit rental program.' }
-        format.json { render :show, status: :created, location: @reservation }
-      else
-
-        format.html { render :new }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
+    @reservation.teacher_id = current_user.id
+    
+    if(session[:rental_category_id].nil?)
+      redirect_to shopping_path
     end
+    
+   
+    reservation_category = ItemCategory.find(session[:rental_category_id])
+    #Nasty race condition if multiple ppl grab same kit
+    @@semaphore.synchronize {
+      kit_pool = Kit.available_for_item_category(reservation_category)
+  
+      test_kit = kit_pool.sample
+      if(!test_kit.nil?)
+          test_kit.set_reserved
+          test_kit.reload
+          @reservation.kit_id = test_kit.id
+      end
+      
+      respond_to do |format|
+        if @reservation.save
+          format.html { redirect_to rental_history_path(current_user), notice: 'Thank you for supporting the STEAM Kit rental program.' }
+        else
+          if(!test_kit.nil?)
+             test_kit.unset_reserved
+             test_kit.reload
+          end
+          format.html { redirect_to  reservation_error_path }
+        end
+      end
+    }
   end
 
   # PATCH/PUT /reservations/1

@@ -4,14 +4,14 @@ class Component < ApplicationRecord
     validates_numericality_of :missing, :only_integer => true, :greater_than_or_equal_to => 0
     validates :consumable, inclusion: { in: [ true, false ] }
     validates_presence_of :item_id
-    validates_presence_of :component_category_id
+    validates_presence_of :name
     validate :total_number_parts
+    
     
     
     #Callback
     before_save :check_condition_item
     
-    belongs_to :component_category
     belongs_to :item
     
     def good_condition
