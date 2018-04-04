@@ -28,9 +28,11 @@ class Reservation < ApplicationRecord
 
 
     scope :open_reservations,     -> { where(returned: false) }
+
     scope :get_month,             ->(month){where("cast(strftime('%m', pick_up_date) as int) = ?", month)}
-    scope :returning_today,       -> { where(return_date: Date.current)}
-    scope :picking_up_today,      -> { where(pick_up_date: Date.current)}
+    scope :returning_today,       -> { where("picked_up == ? AND returned == ? AND return_date == ?", true, false, Date.current)}
+    scope :picking_up_today,      -> { where("picked_up == ? AND pick_up_date == ?", false, Date.current) }
+
 
     def past_due?
         Date.current > self.end_date && self.returned == false

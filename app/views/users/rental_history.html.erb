@@ -22,12 +22,16 @@
               </thead>
 
               <tbody>
-                <% @reservations.each do |myr| %>
+                <% @reservations.each do |reservation| %>
                   <tr>
-                    <td><%= link_to image_tag('osmo.png', width:180, height:180), item_path(@item=Item.find(1))%></td>
-                    <td>From: <%= myr.pick_up_date.strftime("%D") %></td>
-                    <td>To: <%= myr.return_date.strftime("%D") %></td>
-                    <td> <%= myr.picked_up ? "Picked Up" : "Not Yet Picked Up" %></td>
+                    <td><%= reservation.kit.items.first.item_category.name %></td>
+                    <td><%= reservation.pick_up_date.strftime("%D") %></td>
+                    <td><%= reservation.return_date.strftime("%D") %></td>
+                    <% if reservation.returned %>
+                      <td> Returned</td>
+                    <% else %>
+                      <td> <%= reservation.picked_up ? "Picked Up" : "Not Yet Picked Up" %></td>
+                    <% end %>
                   </tr>
                 <% end %>
               </tbody>

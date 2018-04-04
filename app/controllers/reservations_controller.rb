@@ -1,6 +1,6 @@
 require 'thread'
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :picked_up, :returned]
   before_action :authenticate_user!
   @@semaphore = Mutex.new
 
@@ -14,9 +14,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservation_calendar/1
   def rental_calendar
-    @reservations = Reservation.get_month(params[:month])
-    @today_pickup = Reservation.picking_up_today
-    @today_return = Reservation.returning_today
+    @reservations = Reservation.all
   end
 
   def rental_dates
@@ -36,6 +34,43 @@ class ReservationsController < ApplicationController
   def choose_dates
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
+    end
+  end
+
+  def picked_up
+    authorize! :picked_up, @reservations
+
+    @reservation.picked_up = true
+    @reservation.user_check_out = "filler"
+
+    #FIX THIS: How will we be handling this in the future?
+    @reservation.release_form_id = 1
+
+    respond_to do |format|
+      if @reservation.save!
+        format.html { redirect_to pickup_path, notice: 'Reservation was successfully checked out.' }
+      else
+        format.html { redirect_to pickup_path, notice: 'Issue checking out item.' }
+      end
+    end
+  end
+
+  def returned
+    authorize! :returned, @reservations
+
+    @reservation.returned = true
+    @reservation.user_check_in = "filler"
+
+    @kit = @reservation.kit
+    @kit.reserved = false
+    @kit.save!
+
+    respond_to do |format|
+      if @reservation.save!
+        format.html { redirect_to returns_path, notice: 'Reservation was successfully checked in.' }
+      else
+        format.html { redirect_to returns_path, notice: 'Issue checking in item.' }
+      end
     end
   end
 

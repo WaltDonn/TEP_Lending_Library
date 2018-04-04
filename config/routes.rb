@@ -22,10 +22,12 @@ Rails.application.routes.draw do
   # management routes
   get 'returns' => 'reservations#returns', as: :returns
   get 'pickup' => 'reservations#pickup', as: :pickup
+  patch 'picked_up/:id' => 'reservations#picked_up', as: :picked_up
+  patch 'returned/:id' => 'reservations#returned', as: :returned
   get 'dashboard' => 'dashboard#dashboard', as: :dashboard
   
   # rental/reservations routes
-  get 'rental_calendar/:month' => 'reservations#rental_calendar', as: :rental_calendar
+  get 'rental_calendar' => 'reservations#rental_calendar', as: :rental_calendar
   get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
   get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
   get 'users/:id/rental_history' => 'users#rental_history', as: :rental_history
