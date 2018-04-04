@@ -5,10 +5,13 @@
 @import 'settings';
 @import 'foundation';
 
+
 .home-content {
-    background-image: url("home_bg.jpg");
+    height: 100%;
+    background-image: image-url("home_bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
 }
 
 #welcome {
@@ -17,7 +20,7 @@
     width: 800px;
     height: 200px;
     z-index: 15;
-    top: 50%;
+    top: 60%;
     left: 50%;
     margin: -200px 0 0 -400px;
 }
