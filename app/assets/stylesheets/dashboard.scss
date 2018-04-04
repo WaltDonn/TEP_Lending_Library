@@ -1,3 +1,117 @@
 @import 'settings';
 @import 'foundation';
 
+#dash-container {
+  width: 80%;
+  margin: auto;
+}
+
+h5#dash {
+  margin: 0.5rem 0rem 0.5rem 2rem;
+  color: $darker-gray;
+}
+
+.cell .radius {
+  border: $dark-gray solid 1px;
+  border-radius: $rounded-radius;
+  margin: 0.5rem;
+}
+
+#top-row {
+  .top-row-chart {
+    /*width: 32%;*/
+    height: 4rem;
+    margin: auto;
+    border: 0px;
+    padding: 0.75rem;
+
+    // a spacing adjustment only for large screens
+    @media screen and (min-width: 1024px) {
+      &:nth-child(1) {
+        margin-left: 0rem;
+        padding-left: 0rem;
+      }
+      &:nth-child(3) {
+        margin-right: 0rem;
+        padding-right: 0.25rem;
+      }
+    }
+
+    #kits-rented, #schools-renting, #teachers-renting {
+      border: $dark-gray solid 1px;
+      border-radius: $rounded-radius;
+    }
+  }
+}
+
+#left-charts {
+  table {
+    margin-bottom: 0.3rem;
+  }
+
+  #top-kits, #quicklist {
+    margin-left: 0rem;
+
+    thead {
+      background-color: $secondary-color;
+    }
+
+    th {
+      color: $white;
+      text-align: left;
+    }
+
+    td {
+      color: $dark-gray;
+      border-bottom: 1px solid $medium-gray;
+      font-size: 10px;
+      font-weight: bold;
+
+      #show-more {
+        margin-top: 1.5rem;
+      }
+    }
+
+    tr#show-more-row, td#show-more {
+      border-bottom: 0px;
+      text-align: center;
+    }
+
+    td a {
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
+}
+
+#right-col {
+  margin-right: 0rem;
+
+  #quick-links {
+    a.button {
+      border: 0px;
+      display: block;
+      color: $white;
+      width: 75%;
+      height: 2rem;
+      margin: 0.3rem auto;
+
+      &:last-child {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  #quick-details{
+    ul {
+      list-style: none;
+      li {
+        margin: 0.25rem 2rem;
+        font-size: 15px;
+      }
+    }
+    hr {
+      margin: 0rem 2rem;
+    }
+  }
+}

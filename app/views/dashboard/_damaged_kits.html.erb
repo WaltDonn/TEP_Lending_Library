@@ -1,0 +1,10 @@
+<ul>
+  <h5 id="dash">Damaged Kits List</h5>
+  <% @damaged_kits.each do |kit| %>
+    <li class="damaged-kit">
+      <div class="cell small-3"><%= kit.photo %></div>
+      <div class="cell small-9"><%= link_to kit.name, kit_path(kit) %></div>
+    </li>
+    <hr/>
+  <% end %>
+</ul>

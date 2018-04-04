@@ -1,0 +1,21 @@
+<table>
+  <h5 id="dash">Top Kits</h5>
+  <thead>
+    <th colspan="2">Product</th>
+    <th>Availability</th>
+    <th>Times Rented</th>
+  </thead>
+  <tbody>
+    <% @top_kits.each do |kit| %>
+      <tr>
+        <td><%= kit.photo %></td>
+        <td><%= kit.name %></td>
+        <td><%= kit.inventory %> in stock</td>
+        <td><%= kit.reservations.count %></td>
+      </tr>
+    <% end %>
+    <tr id="show-more-row">
+      <td id="show-more" colspan="4"><%= link_to "Show More", shopping_path %></td>
+    </tr>
+  </tbody>
+</table>
