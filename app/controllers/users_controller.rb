@@ -45,11 +45,6 @@ class UsersController < ApplicationController
     @reservations = Reservation.select{|res| res.teacher_id == @user.id}
   end
 
-  def reservation_user_edit
-    # forward item and reservation
-    @item_category = ItemCategory.find(params[:item_category])
-  end
-
   # POST /users
   # POST /users.json
   # def create

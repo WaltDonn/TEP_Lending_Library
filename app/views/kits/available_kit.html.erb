@@ -1,0 +1,28 @@
+ <div class="grid-container" id="item-detail">
+   <div class="grid-x grid-margin-x">
+ 
+     <div class="cell-block-container cell auto large-offset-2 medium-offset-1">
+       <div class="cell-block-y small-6">
+        <%= render :partial => "item_picture", locals: {:rental_category => @rental_category} %>
+       </div>
+       
+       <% if @rental_category.one_components_group.size > 0 %>
+        <div class="cell-block-y small-6">
+          <%= render :partial => "item_components",locals: {:components => @rental_category.one_components_group}  %>
+        </div>
+       <% end %>
+       
+       
+     </div>
+     <div class="cell small-6">
+       <%= render :partial => "item_details" %>
+       <div class="form-actions">
+        <% if @kits_count <= 0 %>
+          <h3>No kits are currently available, check back next month please</h3>
+        <% else %>
+          <%= link_to 'RENT THIS KIT', confirm_user_details_path(), :onclick => session[:rental_category_id] = @rental_category.id, :class => 'button radius' %>
+        <% end %>
+       </div>
+     </div>
+   </div>
+ </div>

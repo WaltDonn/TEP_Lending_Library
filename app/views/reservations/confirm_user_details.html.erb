@@ -9,28 +9,27 @@
         <thead>
           <tr>
             <th>Full Name</th>
-            <td><%=  user.first_name + " " + user.last_name  %></td>
+            <td><%=  current_user.first_name + " " + current_user.last_name  %></td>
           </tr>
           <tr>
             <th>School Email</th>
-            <td><%=  user.email %></td>
+            <td><%=  current_user.email %></td>
           </tr>
           <tr>
             <th>Phone Number</th>
-            <td><%=  user.phone_num %></td>
+            <td><%=  current_user.phone_num %></td>
           </tr>
 
-            <!-- FIXME: temporary fix for users who are not teachers -->
-            <% unless user.school.nil? %>
+            <% unless current_user.school.nil? %>
               <tr>
                 <th>School</th>
-                <td><%= user.school.name %></td>
+                <td><%= current_user.school.name %></td>
               </tr>
             <% end %>
 
           <tr>
             <th>Class Size</th>
-            <td><%=  user.class_size%></td>
+            <td><%=  current_user.class_size%></td>
           </tr>
         </thead>
       </table>
@@ -40,15 +39,15 @@
 
   <div class="grid-x center">
     <div class="small-3 cell">
-      <%= link_to 'Go back', item_category_path(@item_category), :class => 'button radius info'  %>
+      <%= link_to 'Go back', :back, :class => 'button radius info'  %>
     </br>
       <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
     </div>
     <div class="small-5 cell">
-      Is this correct? <%= link_to 'Edit Information', reservation_user_edit_path(user, :item_category => @item_category.id), :class => 'button radius'  %>
+      Is this correct? <%= link_to 'Edit Information', edit_user_details_path(), :class => 'button radius'  %>
     </div>
     <div class="small-3 cell">
-      <%= link_to 'Confirm Information', new_reservation_path(:step => 2, :item_category => @item_category.id), :class => 'button radius success'%>
+      <%= link_to 'Confirm Information', reservation_choose_dates_path(), :class => 'button radius success'%>
     </div>
   </div>
 

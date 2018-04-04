@@ -1,13 +1,21 @@
 class KitsController < ApplicationController
   before_action :set_kit, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show, :index, :edit, :update, :destroy, :new, :create]
 
   # GET /kits
   # GET /kits.json
   def index
     @kits = Kit.all
-    @available_kits = Kit.available_kits
     authorize! :index, @kits
+  end
+  
+  def steamkits
+    @rental_categories = Kit.rental_categories
+  end
+  
+  def available_kit
+    @rental_category = ItemCategory.find(params[:id])
+    @kits_count = 1
   end
 
   # GET /kits/1
