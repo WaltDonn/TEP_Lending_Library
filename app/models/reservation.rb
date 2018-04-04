@@ -23,7 +23,8 @@ class Reservation < ApplicationRecord
     
     belongs_to :kit
     belongs_to :teacher,   :class_name => 'User'
-    
+    has_one :school,    :through => :teacher
+
 
 
     scope :open_reservations,     -> { where(returned: false) }
@@ -36,6 +37,19 @@ class Reservation < ApplicationRecord
     end
     
     
+
+    def self.kit_history
+        group_by_month(:start_date, format: "%b", last: 12, current: true).sum("kit_id")
+    end
+
+    def self.teacher_rental_hist
+        group_by_month(:start_date, format: "%b", last: 12, current: true).sum("teacher_id")
+    end
+    
+    def self.school_rental_hist
+        joins(:teacher).group_by_month(:start_date, format: "%b", last: 12, current: true).count("school_id")
+    end
+
 
     private
     def kit_rentable

@@ -1,11 +1,11 @@
 class DashboardController < ApplicationController
 
   def dashboard
-    @kits = Kit.available_kits
-    @top_kits = Kit.joins(:reservations).group("kits.id").order("count(kits.id) DESC").limit(5)
+    @kits_rented = Reservation.kit_history
+    @top_kits = Kit.top_kits
     @reservations = Reservation.open_reservations
-    @schools = School.active
-    @teachers = User.active.teachers
+    @school_rentals = Reservation.school_rental_hist
+    @teacher_rentals = Reservation.teacher_rental_hist
     @employees = User.active.employees
     @damaged_kits = Kit.damaged
   end

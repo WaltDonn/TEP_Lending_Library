@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require foundation
+//= require highcharts
+//= require chartkick
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

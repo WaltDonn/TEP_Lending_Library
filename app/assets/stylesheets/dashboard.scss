@@ -4,9 +4,10 @@
 #dash-container {
   width: 80%;
   margin: auto;
+  margin-bottom: 5rem;
 }
 
-h5#dash {
+h5#dash, h6#dash {
   margin: 0.5rem 0rem 0.5rem 2rem;
   color: $darker-gray;
 }
@@ -19,8 +20,6 @@ h5#dash {
 
 #top-row {
   .top-row-chart {
-    /*width: 32%;*/
-    height: 4rem;
     margin: auto;
     border: 0px;
     padding: 0.75rem;
@@ -102,13 +101,14 @@ h5#dash {
     }
   }
 
-  #quick-details{
+  #quick-details-damaged{
     ul {
       list-style: none;
-      li {
-        margin: 0.25rem 2rem;
-        font-size: 15px;
-      }
+      margin-left: 0rem;
+    }
+    li {
+      margin: 0.5rem 2.5rem;
+      font-size: 15px;
     }
     hr {
       margin: 0rem 2rem;

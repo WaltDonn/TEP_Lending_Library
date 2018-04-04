@@ -1,21 +1,15 @@
 <div class="cell small-12" id="top-row">
   <div class="grid-x">
     <div class="top-row-chart cell medium-4 small-12 radius">
-      <div id="kits-rented">
-        <h5 id="dash">Kits Rented</h5>
-      </div>
+      <%= render  "kits_rented" %>
     </div>
 
     <div class="top-row-chart cell medium-4 small-12 radius">
-      <div id="schools-renting">
-        <h5 id="dash">Schools Renting</h5>
-      </div>
+      <%= render  "schools_renting" %>
     </div>
 
     <div class="top-row-chart cell medium-4 small-12 radius">
-      <div id="teachers-renting">
-        <h5 id="dash">Teachers Renting</h5>
-      </div>
+      <%= render  "teachers_renting" %>
     </div>
   </div>
 </div>
@@ -36,7 +30,7 @@
   <div class="radius" id="quick-links">
     <%= render  "quick_links" %>
   </div>
-  <div class="radius" id="quick-details">
+  <div class="radius" id="quick-details-damaged">
     <%= render  "damaged_kits" %>
   </div>
 </div>

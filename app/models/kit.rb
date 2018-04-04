@@ -32,6 +32,10 @@ class Kit < ApplicationRecord
         kits = Kit.available_kits
         kits.select{|k| k.items.first.item_category.id == rental_category.id}
     end
+
+    def self.top_kits
+        joins(:reservations).group("kits.id").order("count(kits.id) DESC").limit(5)
+    end
     
     
     def rentable
