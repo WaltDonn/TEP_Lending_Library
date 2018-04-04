@@ -4,14 +4,14 @@
       <span class="uline"><h1>CHECK OUT</h1> </span>
     </div>
 
-  <%# unless @today_pickup.nil? || @today_pickup.empty? %>
+  <% unless @today_pickup.nil? || @today_pickup.empty? %>
     <div class="rounded information-table">
       <table class="information-table">
         <thead>
           <tr>
             <th>School</th>
             <th style="text-align:center;">Teacher Renting</th>
-            <th style="text-align:center;">Kits being Rented</th>
+            <th style="text-align:center;">Kit being Rented</th>
             <th></th>
           </tr>
         </thead>
@@ -19,20 +19,19 @@
         <tbody>
           <% @today_pickup.each do |pickupKit| %>
             <tr>
-              <td><%= pickupKit.school.name %></td>
-              <td style="text-align:center;"><%= pickupKit.teacher.full_name %></td>
-              <td style="text-align:center;"><%= pickupKit.item_category.name %></td>
-              <td style="text-align:right;"><i class="fas fa-caret-down"></i></td>
+              <td><%= pickupKit.teacher.school.name %></td>
+              <td style="text-align:center;"><%= pickupKit.teacher.name %></td>
+              <td style="text-align:center;"><%= pickupKit.kit.items.first.item_category.name %></td>
+              <td>
+              	<%= link_to 'Pick Up', picked_up_path(pickupKit), :class => 'button radius success', method: :patch %>
+              </td>
             </tr>
-            <div id="">
-              <tr>
-            <div>
           <% end %>
         </tbody>
       </table>
     </div>
-    <%# else %>
-      <!-- <p><strong>All kits picked up. Good work!</strong></p> -->
-    <%# end %>
+    <% else %>
+      <p><strong>All kits picked up for today.</strong></p>
+    <% end %>
   </div>
 </div>

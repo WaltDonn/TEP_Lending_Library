@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :picked_up, :returned]
   before_action :authenticate_user!
 
   # GET /reservations
@@ -29,6 +29,43 @@ class ReservationsController < ApplicationController
   # GET /pickup
   def pickup
     @today_pickup = Reservation.picking_up_today
+  end
+
+  def picked_up
+    authorize! :picked_up, @reservations
+
+    @reservation.picked_up = true
+    @reservation.user_check_out = "filler"
+
+    #FIX THIS: How will we be handling this in the future?
+    @reservation.release_form_id = 1
+
+    respond_to do |format|
+      if @reservation.save!
+        format.html { redirect_to pickup_path, notice: 'Reservation was successfully checked out.' }
+      else
+        format.html { redirect_to pickup_path, notice: 'Issue checking out item.' }
+      end
+    end
+  end
+
+  def returned
+    authorize! :returned, @reservations
+
+    @reservation.returned = true
+    @reservation.user_check_in = "filler"
+
+    @kit = @reservation.kit
+    @kit.reserved = false
+    @kit.save!
+
+    respond_to do |format|
+      if @reservation.save!
+        format.html { redirect_to returns_path, notice: 'Reservation was successfully checked in.' }
+      else
+        format.html { redirect_to returns_path, notice: 'Issue checking in item.' }
+      end
+    end
   end
 
   # POST /select_dates

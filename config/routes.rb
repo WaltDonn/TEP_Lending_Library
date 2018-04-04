@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   # management routes
   get 'returns' => 'reservations#returns', as: :returns
   get 'pickup' => 'reservations#pickup', as: :pickup
+  patch 'picked_up/:id' => 'reservations#picked_up', as: :picked_up
+  patch 'returned/:id' => 'reservations#returned', as: :returned
   get 'dashboard' => 'dashboard#dashboard', as: :dashboard
   
   # rental/reservations routes
