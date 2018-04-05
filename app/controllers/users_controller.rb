@@ -5,8 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    @title = 'USERS'
+    @role = params[:role]
     case params[:role]
       when 'teacher'
         @users = User.teachers
@@ -14,6 +13,9 @@ class UsersController < ApplicationController
       when 'employee'
         @users = User.employees
         @title = 'EMPLOYEES'
+      else
+         @users = User.all
+         @title = 'USERS'
     end
     authorize! :index, @users
   end
