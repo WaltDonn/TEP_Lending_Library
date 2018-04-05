@@ -27,9 +27,10 @@
               <%= simple_form_for(:picked_up_path, url: picked_up_url(pickupKit)) do |f| %>
               <td>
                 <%= f.input :form_id, required: true, label: false %>
-              <td>
+              </td>
               <td>
                 <%= f.input :name, required: true, label: false %>
+              </td>
               <td>
                 <%= f.button :submit, "Pick Up", :class => 'button' %>
               </td>

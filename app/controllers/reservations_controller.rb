@@ -71,7 +71,7 @@ class ReservationsController < ApplicationController
     authorize! :returned, @reservations
 
     @reservation.returned = true
-    @reservation.user_check_in = "filler"
+    @reservation.user_check_in = params["returned_path"]["name"]
 
     @kit = @reservation.kit
     @kit.reserved = false
