@@ -12,6 +12,7 @@
             <th>School</th>
             <th style="text-align:center;">Teacher Renting</th>
             <th style="text-align:center;">Kit being Rented</th>
+            <th style="text-align:center;">Volunteer Name</th>
             <th></th>
           </tr>
         </thead>
@@ -22,9 +23,14 @@
               <td><%= returnKit.teacher.school.name %></td>
               <td style="text-align:center;"><%= returnKit.teacher.name %></td>
               <td style="text-align:center;"><%= returnKit.kit.items.first.item_category.name %></td>
+              <%= simple_form_for(:returned_path, url: returned_url(returnKit)) do |f| %>
               <td>
-                <%= link_to 'Drop Off', returned_url(returnKit), :class => 'button radius success', method: :patch %>
+                <%= f.input :name, required: true, label: false %>
               </td>
+              <td>
+                <%= f.button :submit, "Drop Off", :class => 'button' %>
+              </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

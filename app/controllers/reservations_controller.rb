@@ -49,13 +49,14 @@ class ReservationsController < ApplicationController
   end
 
   def picked_up
+
     authorize! :picked_up, @reservations
 
     @reservation.picked_up = true
-    @reservation.user_check_out = "filler"
-
-    #FIX THIS: How will we be handling this in the future?
-    @reservation.release_form_id = 1
+    @reservation.user_check_out = params["picked_up_path"]["name"]
+    @reservation.release_form_id = params["picked_up_path"]["form_id"]
+    
+    
 
     respond_to do |format|
       if @reservation.save!
@@ -70,7 +71,7 @@ class ReservationsController < ApplicationController
     authorize! :returned, @reservations
 
     @reservation.returned = true
-    @reservation.user_check_in = "filler"
+    @reservation.user_check_in = params["returned_path"]["name"]
 
     @kit = @reservation.kit
     @kit.reserved = false
