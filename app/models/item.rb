@@ -6,7 +6,7 @@ class Item < ApplicationRecord
     has_many :components
 
 
-    CONDITIONS = [['Broken', :broken],['Good', :good]]
+    CONDITIONS = ['Broken','Good']
 
     
     scope :available_for_kits, -> { where(condition: "Good", is_active: true, kit_id: nil) }
@@ -17,6 +17,7 @@ class Item < ApplicationRecord
     #Relationships
     belongs_to :kit, optional: true
     belongs_to :item_category
+    accepts_nested_attributes_for :item_category
 
     def item_component_condition
         if(self.condition == "Good")

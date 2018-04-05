@@ -5,20 +5,99 @@
       </div>
     </div>
 
-  <div class="grid-x grid-margin-x">
-    <div class="cell-block-container cell auto">
-      <div class="cell-block-y small-6" id="component-block">
-        <%= @item.item_category.item_photo %>
-        <!-- show item components information -->
-        <%= render  "item_components", components: @item.components %>
-
-        <%= link_to 'EDIT KIT CONTENT', edit_item_path(@item), :class => 'button radius small' %>
+    <%= simple_form_for @item, :html => { :class => 'form-inline' }, defaults: {label: false} do |f| %>
+        
+        <div class="grid-x grid-margin-x">
+            <div class="cell-block-container cell auto">
+              <div class="cell-block-y small-3" id="component-block">
+                <p> Item Category Information</p>
+                <%= f.simple_fields_for :item_category, :html => { :class => 'form-inline' }, defaults: {label: false} do |g| %>
+                    <% if !@item.item_category.item_photo.nil? %>
+                       <%= image_tag(@item.item_category.item_photo, width: "50px", height: "50px") %>
+                    <% end %>
+                     <table>
+                    <thead>
+                      <tr>
+                        <th class="item-edit-head"> Change Picture </th>
+                          <td>
+                          <%= g.file_field :item_photo %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="item-edit-head"> Category Name </th>
+                        <td>
+                          <%= g.input :name %>
+                        </td>
+                      </tr>
+                      <tr>
+                         <th class="item-edit-head"> Category Description </th>
+                         <td>
+                           <%= g.input :description %>
+                         </td>
+                      </tr>
+                    </thead>
+                  </table>
+                <% end %>
+              </div>
+            </div>
+  
+  
+          <div class="grid-x grid-margin-x">
+            <div class="cell-block-container cell auto">
+              <div class="cell-block-y small-3" id="component-block">
+                <%= @item.item_category.item_photo %>
+                <%= render  "item_components", components: @item.components %>
+                <p> add a component</p>
+              </div>
+            </div>
+          </div>
+          <div class="grid-x grid-margin-x">
+            <div class="cell-block-container cell auto">
+              <div class="cell-block-y small-4" id="component-block">
+               <p> Item Information </p>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th class="item-edit-head"> Location </th>
+                          <td>
+                           <% if @item.kit.nil? || @item.kit.location.nil? %>
+                             <p>Item needs to be assigned to a kit</p>
+                          <% else %>
+                            <%= f.simple_fields_for @item.kit do |g| %>
+                              <%= g.input :location, disabled: true, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="item-edit-head"> Item Condtion </th>
+                        <td>
+                          <%= f.input :condition, collection: Item::CONDITIONS, include_blank: false, 
+                          selected: @item.condition, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="item-edit-head"> Item Active </th>
+                        <td>
+                          <%= f.input :is_active, as: :boolean, :input_html => { :class => 'avg'} %>
+                        </td>
+                      </tr>
+                      
+                    </thead>
+                  </table>
+                      
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid-x grid-margin-x">
+        <div>
+          <%= f.button :submit, "SAVE CHANGES", :class => 'button radius small' %>
+          <%= link_to 'CANCEL EDITS', items_path, :class => 'button alert radius small' %>
+        </div>
       </div>
-    </div>
-
-    <div class="cell small-6" id="item-block">
-    <!-- show item information -->
-      <%= render  "form" %>
-    </div>
-  </div>
+        
+        
+    <% end %>
 </div>

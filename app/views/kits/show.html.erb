@@ -1,8 +1,33 @@
+<div class="grid-container">
+    <div class="grid-x">
+      <div class="inner-title cell-block-x small-12">
+        <span class="uline"><h1>Kit: <%= @kit.id %></h1> </span>
+      </div>
+    </div>
+    
+  <div class="grid-x grid-margin-x">
+    <div class="cell-block-container cell auto">
+      <div class="cell-block-y small-6" id="component-block">
+        <p> Kit Details</p>
+        
+      </div>
+    </div>
 
-<div class="row">
+  <% if @kit.items.size > 0 %>
+    <div class="grid-x grid-margin-x">
+      <div class="cell-block-container cell auto">
+        <div class="cell-block-y small-6" id="component-block">
+         <p> items</p>
+        </div>
+      </div>
+    </div>
+    <% end %>
 
 
-  <div class="form-actions">
-    <%= link_to 'RENT THIS KIT', kit_path(@kit), :class => 'button radius' %>
+  </div>
+  <div>
+        <%= link_to 'EDIT', edit_kit_path(@kit), :class => 'button radius small' %>
+        <%= link_to 'DESTROY', kit_path(@kit), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button alert radius small' %>
+
   </div>
 </div>
