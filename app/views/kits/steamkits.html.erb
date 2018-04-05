@@ -27,9 +27,6 @@
                 <div class="product-card-button center">
                   <%= link_to 'Details', available_kit_path(rental_cat) %>
                 </div>
-                <div class="product-card-button center">
-                  <%= link_to 'Rent Me', confirm_user_details_path(), :onclick => session[:rental_category_id] = rental_cat.id %>
-                </div>
               </div>
             </div>
           <% end %>

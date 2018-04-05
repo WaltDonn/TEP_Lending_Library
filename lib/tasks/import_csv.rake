@@ -9,7 +9,6 @@ namespace :import_incidents_csv do
     Rake::Task["import_incidents_csv:create_schools"].invoke
     Rake::Task["import_incidents_csv:create_users"].invoke
     Rake::Task["import_incidents_csv:create_item_categories"].invoke
-    Rake::Task["import_incidents_csv:create_component_categories"].invoke
     Rake::Task["import_incidents_csv:create_kits"].invoke
     Rake::Task["import_incidents_csv:create_items"].invoke
     Rake::Task["import_incidents_csv:create_components"].invoke

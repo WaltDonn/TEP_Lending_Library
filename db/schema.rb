@@ -10,26 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405220206) do
-
-  create_table "component_categories", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20180329040413) do
 
   create_table "components", force: :cascade do |t|
+    t.string "name"
     t.integer "max_quantity"
     t.integer "damaged"
     t.integer "missing"
     t.boolean "consumable"
     t.integer "item_id"
-    t.integer "component_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.index ["component_category_id"], name: "index_components_on_component_category_id"
     t.index ["item_id"], name: "index_components_on_item_id"
   end
 
@@ -37,8 +28,6 @@ ActiveRecord::Schema.define(version: 20180405220206) do
     t.string "name"
     t.string "description"
     t.string "item_photo"
-    t.integer "inventory_level"
-    t.integer "amount_available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -114,6 +103,8 @@ ActiveRecord::Schema.define(version: 20180405220206) do
     t.integer "release_form_id"
     t.integer "kit_id"
     t.integer "teacher_id"
+    t.string "user_check_in"
+    t.string "user_check_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["kit_id"], name: "index_reservations_on_kit_id"
