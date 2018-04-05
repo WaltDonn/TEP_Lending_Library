@@ -3,7 +3,7 @@
 
     <div class="grid-x">
       <div class="inner-title cell-block-x small-8 small-offset-1">
-        <span class="uline"><h1>ITEMS LISTING</h1> </span>
+        <span class="uline"><h1><%= @title %></h1> </span>
       </div>
 
       <div class="cell-block-x small-2 right side-link">
@@ -27,9 +27,14 @@
           <tbody>
             <% @items.each do |item| %>
               <tr>
-                <td><%= item.readable_id %> </td>
+                <td><%= link_to item.readable_id, item_path(item) %> </td>
                 <td><%= item.condition %></td>
-                <td><%= link_to item.kit.location, item.kit %></td>
+                <% if item.kit.nil? %>
+                   <td>Not currently assigned</td>
+                <% else %>
+                  <td><%= link_to item.kit.location, item.kit %></td>
+                <% end %>
+                
                 <% if item.is_active %>
                   <td id="active">Active</td>
                 <% else %>

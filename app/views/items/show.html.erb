@@ -4,27 +4,38 @@
         <span class="uline"><h1><%= @item.readable_id %></h1> </span>
       </div>
     </div>
-
+    
   <div class="grid-x grid-margin-x">
     <div class="cell-block-container cell auto">
       <div class="cell-block-y small-6" id="component-block">
-        <%= @item.item_category.item_photo %>
-        <!-- show item components information -->
-        <%= render  "item_components", components: @item.components %>
-
-        <%= link_to 'EDIT KIT CONTENT', edit_item_path(@item), :class => 'button radius small' %>
+        <p> Item Category Details</p>
+        <p>Name: <%= @item.item_category.name %></p>
+        <% if @item.item_category.item_photo_url.nil? %>
+            <%= image_tag("not_found.jpg", width: "50%", height: "40%") %>
+        <% else %>
+          <%= link_to image_tag(@item.item_category.item_photo_url) %>
+        <% end %>
+         <p>Description: <%= @item.item_category.description %> </p>
       </div>
     </div>
 
+  <% if @item.components.size > 0 %>
+    <div class="grid-x grid-margin-x">
+      <div class="cell-block-container cell auto">
+        <div class="cell-block-y small-6" id="component-block">
+          <%= render  "item_components", components: @item.components %>
+  
+        </div>
+      </div>
+    <% end %>
+
     <div class="cell small-6" id="item-block">
-    <!-- show item information -->
       <%= render  "item_information" %>
-      <br/>
-      <div>
+    </div>
+  </div>
+  <div>
         <%= link_to 'EDIT', edit_item_path(@item), :class => 'button radius small' %>
         <%= link_to 'DESTROY', item_path(@item), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button alert radius small' %>
 
-      </div>
-    </div>
   </div>
 </div>
