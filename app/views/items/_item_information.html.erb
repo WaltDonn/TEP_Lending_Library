@@ -4,8 +4,12 @@
   <tbody>
     <tr>
       <td>Item Location</td>
-      <td><%= link_to @item.kit.location, @item.kit %></td>
-    </tr>
+      <% if @item.kit.nil? %>
+        <td>Item not in a kit</td>
+      <% else %>
+        <td><%= link_to @item.kit.location, @item.kit %></td>
+      <% end %>
+    </tr> 
     <tr>
       <td>Item Condition</td>
       <td><%= @item.condition %> </td>
