@@ -1,3 +1,7 @@
-<!-- TODO: possibly show check out versus check in depending on current date? -->
-<li><h5><%= link_to "CHECK OUT", pickup_path %></h5></li>
-<li><h5><%= link_to "CHECK IN", returns_path %></h5></li>
+<li>
+  <h5> <li><%= link_to "VOLUNTEER PORTAL", volunteer_portal_path  %></li></h5>
+  <ul class="menu vertical">
+      <li><%= link_to "CHECK IN", returns_path  %></li>
+      <li><%= link_to "CHECK OUT", pickup_path  %></li>
+  </ul>
+</li>

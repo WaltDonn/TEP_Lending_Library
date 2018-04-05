@@ -20,6 +20,7 @@ class HomeController < ApplicationController
   
   def reports
   end
+  
 
   def upload_users
   	authorize! :upload_users, nil

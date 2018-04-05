@@ -20,6 +20,10 @@ class ReservationsController < ApplicationController
   def rental_dates
     @reservation = params[:reservation]
   end
+  
+  # GET /returns
+  def volunteer_portal
+  end
 
   # GET /returns
   def returns

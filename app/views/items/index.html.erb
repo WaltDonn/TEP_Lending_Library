@@ -3,8 +3,21 @@
 
     <div class="grid-x">
       <div class="inner-title cell-block-x small-8 small-offset-1">
-        <span class="uline"><h1><%= @title %></h1> </span>
+        <ul class="dropdown menu" data-dropdown-menu>
+             <li>
+              <h5><li><span class="uline"><%= link_to @title, items_path(:status => @status)  %></span></li></h5>
+              <ul class="menu vertical">
+                <li><%= link_to "ALL ITEMS", items_path %></li>
+                <li><%= link_to "AVAILABLE ITEMS", items_path(:status => 'Available') %></li>
+                <li><%= link_to "USED ITEMS", items_path(:status => 'Kits') %></li>
+                <li><%= link_to "GOOD ITEMS", items_path(:status => 'Good') %></li>
+                <li><%= link_to "BROKEN ITEMS", items_path(:status => 'Broken') %></li>
+              </ul>
+            </li>
+        </ul>
       </div>
+  
+  
 
       <div class="cell-block-x small-2 right side-link">
         <h4><%= link_to 'New Item', new_item_path %></h4>
