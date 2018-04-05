@@ -17,6 +17,7 @@ class Item < ApplicationRecord
     #Relationships
     belongs_to :kit, optional: true
     belongs_to :item_category
+    accepts_nested_attributes_for :item_category
 
     def item_component_condition
         if(self.condition == "Good")

@@ -1,12 +1,11 @@
   <div class="grid-x grid-margin-x">
     <div class='cell auto'>
-      <%= simple_form_for @item, :html => { :class => 'form-inline' }, defaults: {label: false} do |f| %>
       <table>
         <thead>
           <tr>
             <th class="item-edit-head"> Location </th>
             <td>
-              <%= f.simple_fields_for @item.kit do |g| %>
+              <%= f.simple_fields_for :kit do |g| %>
                 <%= g.input :location, disabled: true, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
               <% end %>
             </td>
@@ -41,6 +40,5 @@
           <%= link_to 'CANCEL EDITS', items_path, :class => 'button alert radius small' %>
         </div>
       </div>
-    <% end %>
   </div>
 </div>
