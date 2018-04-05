@@ -1,7 +1,7 @@
 <div class="grid-container">
     <div class="grid-x">
       <div class="inner-title cell-block-x small-12">
-        <span class="uline"><h1><%= @item.readable_id %></h1> </span>
+        <span class="uline"><h1>Item: <%= @item.readable_id %></h1> </span>
       </div>
     </div>
     
@@ -26,6 +26,7 @@
           <%= render  "item_components", components: @item.components %>
         </div>
       </div>
+    </div>
     <% end %>
 
     <div class="cell small-6" id="item-block">
