@@ -9,6 +9,10 @@ class ErrorsController < ApplicationController
   def internal_server_error
     render(:status => 500)
   end
+
+  def access_denied
+    render(:status => 403)
+  end
   
   def routing
     unless params[:a].nil?

@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/julfie/simple_calendar
+  revision: 944113e96a58cf8e5b03e435dca17eef2dc50ff4
+  specs:
+    simple_calendar (2.2.7)
+      rails (>= 3.0)
+
+GIT
   remote: https://github.com/thoughtbot/shoulda-matchers.git
   revision: 4b160bd19ecca7f97d7ac22dccd5fde9b0da5a9f
   branch: rails-5
@@ -207,8 +214,6 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     shoulda (2.11.3)
-    simple_calendar (2.2.7)
-      rails (>= 3.0)
     simple_form (3.5.1)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
@@ -304,7 +309,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda
   shoulda-matchers!
-  simple_calendar (~> 2.0)
+  simple_calendar (~> 2.0)!
   simple_form
   simplecov
   single_test

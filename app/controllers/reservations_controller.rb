@@ -15,6 +15,13 @@ class ReservationsController < ApplicationController
   # GET /reservation_calendar/1
   def rental_calendar
     @reservations = Reservation.all
+    authorize! :index, @reservations
+  end
+
+  def month_calendar_td_options
+    ->(start_date, current_calendar_date) {
+      {class: "calendar-date", data: {day: current_calendar_date}}
+    }
   end
 
   def rental_dates

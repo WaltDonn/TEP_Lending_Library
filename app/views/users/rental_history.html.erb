@@ -1,43 +1,43 @@
-<div class="grid-container">
+<div class="grid-container" id="res_history">
   <div class="grid-y cell-block-container">
+
     <div class="grid-x">
       <div class="inner-title cell-block-x small-10">
         <span class="uline"><h1>Rental History</h1> </span>
       </div>
+      <div class="cell-block-x small-2 right side-link">
+        <h4><%= link_to 'New Reservation', new_reservation_path %></h4>
+      </div>
     </div>
 
     <% unless @reservations.nil? || @reservations.empty? %>
-      <div class="grid-x">
-        <div class="small-1"></div>
-        <div class="cell small-10">
-          <fieldset>
-            <table>
-              <thead>
-                <tr>
-                  <th>Item</th>
-                  <th>Checkout Date</th>
-                  <th>Return Date</th>
-                  <th>Current Status</th>
-                </tr>
-              </thead>
+      <div class="rounded information-table">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Item</th>
+              <th>Checkout Date</th>
+              <th>Return Date</th>
+              <th>Current Status</th>
+            </tr>
+          </thead>
 
-              <tbody>
-                <% @reservations.each do |reservation| %>
-                  <tr>
-                    <td><%= reservation.kit.items.first.item_category.name %></td>
-                    <td><%= reservation.pick_up_date.strftime("%D") %></td>
-                    <td><%= reservation.return_date.strftime("%D") %></td>
-                    <% if reservation.returned %>
-                      <td> Returned</td>
-                    <% else %>
-                      <td> <%= reservation.picked_up ? "Picked Up" : "Not Yet Picked Up" %></td>
-                    <% end %>
-                  </tr>
+          <tbody>
+            <% @reservations.each do |reservation| %>
+              <tr>
+                <td><%= reservation.kit.items.first.item_category.item_photo %></td>
+                <td><%= link_to available_kit_path(), reservation.kit.items.first.item_category.name %></td>
+                <td><%= reservation.pick_up_date.strftime("%D") %></td>
+                <td><%= reservation.return_date.strftime("%D") %></td>
+                <% if reservation.returned %>
+                  <td> Returned</td>
+                <% else %>
+                  <td> <%= reservation.picked_up ? "Picked Up" : "Not Yet Picked Up" %></td>
                 <% end %>
-              </tbody>
-            </table>
-          </fieldset>
-        </div>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     <% end %>
 
