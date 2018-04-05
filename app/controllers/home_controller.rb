@@ -1,7 +1,6 @@
 require 'csv' 
 require 'tempfile'
 
-
 class HomeController < ApplicationController
   layout 'home'
   before_action :authenticate_user!, only: [:upload_users, :create_users]
@@ -20,7 +19,6 @@ class HomeController < ApplicationController
   
   def reports
   end
-  
 
   def upload_users
   	authorize! :upload_users, nil
@@ -95,6 +93,27 @@ class HomeController < ApplicationController
 		else
 			redirect_to schools_url
 		end
+  end
+
+  def reports
+  	authorize! :reports, nil
+  end
+
+  def gen_reports
+  	authorize! :gen_reports, nil
+
+  	@one = params["gen_reports"]["input_1"]
+  	@two = params["gen_reports"]["input_2"]
+
+
+#---------------------------------------------------------------------------
+#currently not working for turning the page into a pdf
+	kit = PDFKit.new(<<-HTML)
+	  <p>Goodbye Envato!</p>
+	HTML
+  	#kit = PDFKit.new(File.new('app/views/home/gen_reports.html.erb'))
+	#probs not where i should be putting it, temp for now, should also make them name the pdf or it be generated
+	kit.to_file('app/views/reports/hello2.pdf')
   end
   
 end

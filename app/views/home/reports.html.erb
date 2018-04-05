@@ -1,0 +1,39 @@
+<div id="welcome">
+	<div class="cener" id="signup">
+		<h1 class="center"> Generate Reports </h1>
+	</div>
+
+  <div class="grid-x grid-margin-x">
+    <div class='center'>
+  		<%= simple_form_for(:gen_reports, url: gen_reports_url, html: { :multipart => true, :class => 'form-inline' }, defaults: {label: false}) do |f| %>
+  			<fieldset>
+  				<table id="user-upload-form">
+  					<tbody>
+  						<tr>
+							<th class="left"> Input 1: </th>
+							<td class="left">
+								<%= f.input :input_1 %>
+							</td>
+						</tr>
+  						<tr>
+							<th class="left"> Input 2: </th>
+							<td class="left">
+								<%= f.input :input_2 %>
+							</td>
+						</tr>
+						<tr>
+							<th class="left"> Included in Report: </th>
+							<td class="left">
+								<%= f.input :gender, as: :radio_buttons, collection: [['0', 'female'], ['1', 'male']], label_method: :second, value_method: :first %>
+							</td>
+						</tr>
+  					</tbody>
+  				</table>
+  			</fieldset>
+				<div class="form-actions">
+					<%= f.button :submit, "Generate", :class => 'button radius upload-button' %>
+				</div>
+			<% end %>
+    </div>
+  </div>
+</div>
