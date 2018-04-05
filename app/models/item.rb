@@ -6,7 +6,7 @@ class Item < ApplicationRecord
     has_many :components
 
 
-    CONDITIONS = [['Broken', :broken],['Good', :good]]
+    CONDITIONS = ['Broken','Good']
 
     
     scope :available_for_kits, -> { where(condition: "Good", is_active: true, kit_id: nil) }

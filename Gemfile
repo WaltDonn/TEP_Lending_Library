@@ -61,8 +61,8 @@ gem 'font-awesome-sass'
 gem "chartkick"
 gem "highcharts-rails"
 gem 'groupdate'
-
 gem 'hirb'
+gem 'byebug'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
