@@ -104,16 +104,19 @@ class HomeController < ApplicationController
 
   	@one = params["gen_reports"]["input_1"]
   	@two = params["gen_reports"]["input_2"]
+  	@choice_array = params["gen_reports"]["report_choices"]
+
+  	@items = Item.all
 
 
 #---------------------------------------------------------------------------
 #currently not working for turning the page into a pdf
-	kit = PDFKit.new(<<-HTML)
-	  <p>Goodbye Envato!</p>
-	HTML
-  	#kit = PDFKit.new(File.new('app/views/home/gen_reports.html.erb'))
-	#probs not where i should be putting it, temp for now, should also make them name the pdf or it be generated
-	kit.to_file('app/views/reports/hello2.pdf')
+	# kit = PDFKit.new(<<-HTML)
+	#   <p>Goodbye Envato!</p>
+	# HTML
+ #  	#kit = PDFKit.new(File.new('app/views/home/gen_reports.html.erb'))
+	# #probs not where i should be putting it, temp for now, should also make them name the pdf or it be generated
+	# kit.to_file('app/views/reports/hello2.pdf')
   end
   
 end
