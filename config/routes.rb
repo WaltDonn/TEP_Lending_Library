@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   patch 'picked_up/:id' => 'reservations#picked_up', as: :picked_up
   patch 'returned/:id' => 'reservations#returned', as: :returned
   get 'dashboard' => 'dashboard#dashboard', as: :dashboard
+  get 'management' => 'home#management', as: :management
+  get 'volunteer_portal' => 'reservations#volunteer_portal', as: :volunteer_portal
   
   # rental/reservations routes
   get 'rental_calendar' => 'reservations#rental_calendar', as: :rental_calendar
