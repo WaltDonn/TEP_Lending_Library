@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
+  # Set the root url
+  root :to => 'home#home'
+  
   # devise/sessions and signup confirmation routes
 
   use_doorkeeper
@@ -71,8 +74,5 @@ Rails.application.routes.draw do
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
   get '*a', to: 'errors#routing'
-  
-  # Set the root url
-  root :to => 'home#home'
   
 end

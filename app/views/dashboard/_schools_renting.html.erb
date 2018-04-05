@@ -1,0 +1,21 @@
+<div id="schools-renting" class="grid-x">
+  <div id="title" class="cell small-4">
+    <h6 id="dash">Schools Renting</h6>
+  </div>
+  <div id="chart" class="cell small-8">
+    <%= area_chart @school_rentals,
+      width: "200px",
+      height: "100px",
+      library: {
+        yAxis: {
+          labels: {
+            format: '{value}'
+          }
+        },
+        tooltip: {
+          pointFormat: 'Schools: <b>{point.y}</b>',
+          xDateFormat: '%B'
+        }
+      } %>
+  </div>
+</div>

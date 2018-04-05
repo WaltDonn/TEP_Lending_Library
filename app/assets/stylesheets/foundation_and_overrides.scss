@@ -129,7 +129,7 @@ $topbar-hover-lines-transition: all 0.35s ease;
     position: absolute;
     content: '';
     transition: $topbar-hover-lines-transition;
-    background-color: $primary-color;
+    background-color: $secondary-color;
     width: 0;
     top: 40px;
   }

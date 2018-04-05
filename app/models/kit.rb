@@ -9,9 +9,17 @@ class Kit < ApplicationRecord
     scope :visible_kits,     -> { where(blackout: false, is_active: true, reserved: false) }
     
     
-    
     def self.available_kits
         return Kit.all.select{|k| k.rentable && k.reserved == false}
+    end
+
+    def self.damaged
+        kits = Kit.visible_kits
+        damaged_kits = kits.select{|k| 
+            size_of_bad = k.items.select{|i| i.condition == "Broken"}.size
+            size_of_bad > 0
+        }
+        return damaged_kits
     end
     
     def self.rental_categories
@@ -23,6 +31,10 @@ class Kit < ApplicationRecord
     def self.available_for_item_category(rental_category)
         kits = Kit.available_kits
         kits.select{|k| k.items.first.item_category.id == rental_category.id}
+    end
+
+    def self.top_kits
+        joins(:reservations).group("kits.id").order("count(kits.id) DESC").limit(5)
     end
     
     

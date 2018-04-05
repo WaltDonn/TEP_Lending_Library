@@ -1,0 +1,36 @@
+<div class="cell small-12" id="top-row">
+  <div class="grid-x">
+    <div class="top-row-chart cell medium-4 small-12 radius">
+      <%= render  "kits_rented" %>
+    </div>
+
+    <div class="top-row-chart cell medium-4 small-12 radius">
+      <%= render  "schools_renting" %>
+    </div>
+
+    <div class="top-row-chart cell medium-4 small-12 radius">
+      <%= render  "teachers_renting" %>
+    </div>
+  </div>
+</div>
+
+<div class="cell medium-8 small-12" id="left-charts">
+  <div class="grid-x">
+    <div class="small-12 radius" id="top-kits">
+      <%= render  "top_kits" %>
+    </div>
+
+    <div class="small-12 radius" id="quicklist">
+      <%= render  "contact" %>
+    </div>
+  </div>
+</div>
+
+<div class="cell medium-4 small-12" id="right-col">
+  <div class="radius" id="quick-links">
+    <%= render  "quick_links" %>
+  </div>
+  <div class="radius" id="quick-details-damaged">
+    <%= render  "damaged_kits" %>
+  </div>
+</div>

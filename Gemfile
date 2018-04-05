@@ -34,7 +34,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'validates_timeliness', '~> 4.0'
 gem 'date_validator'
-gem 'will_paginate'
 gem 'carrierwave'
 gem 'cancancan'
 gem 'minitest'
@@ -58,6 +57,12 @@ gem 'simple_form'
 gem 'foundation-rails', '~> 6.4'
 # Use font awesome icons
 gem 'font-awesome-sass'
+# use chartkick for chart generation
+gem "chartkick"
+gem "highcharts-rails"
+gem 'groupdate'
+
+gem 'hirb'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

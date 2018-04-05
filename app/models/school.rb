@@ -41,7 +41,6 @@ class School < ApplicationRecord
          self.owned_reservations.select { |res| res.returned == false}.size
     end
 
-
     private
     def no_outstanding_reservations
         if(self.is_active == false)

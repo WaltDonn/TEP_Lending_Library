@@ -1,0 +1,21 @@
+<div id="kits-rented" class="grid-x">
+  <div id="title" class="cell small-4">
+    <h6 id="dash">Kits Rented</h6>
+  </div>
+  <div id="chart" class="cell small-8">
+    <%= area_chart @kits_rented,
+      width: "200px",
+      height: "100px",
+      library: {
+        yAxis: {
+          labels: {
+            format: '{value}'
+          }
+        },
+        tooltip: {
+          pointFormat: 'Total Bought: <b>{point.y}</b>',
+          xDateFormat: '%B'
+        }
+      } %>
+  </div>
+</div>

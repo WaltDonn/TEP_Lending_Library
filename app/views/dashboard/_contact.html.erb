@@ -1,0 +1,24 @@
+<table>
+  <h5 id="dash">Quick Contact Info</h5>
+  <thead>
+    <tr>
+      <th colspan="1"></th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |user| %>
+      <tr>
+        <td colspan="1"></td>
+        <td><%= link_to user.name, user_path(user.id) %></td>
+        <td><%= mail_to user.email %></td>
+        <td><%= link_to user.phone_num, "tel:#{user.phone_num}" %></td>
+        <td><%= user.role %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
