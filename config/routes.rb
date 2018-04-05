@@ -72,8 +72,10 @@ Rails.application.routes.draw do
   # error pages
   get 'errors/not_found'
   get 'errors/internal_server_error'
+  get 'errors/access_denied'
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
+  match "/403", :to => "errors#access_denied", :via => :all
   get '*a', to: 'errors#routing'
   
 end
