@@ -3,12 +3,22 @@
 
     <div class="grid-x">
       <div class="inner-title cell-block-x small-10">
-        <span class="uline"><h1><%= @title %></h1> </span>
+         <ul class="dropdown menu" data-dropdown-menu>
+             <li>
+              <h5><li><span class="uline"><%= link_to @title, users_path(:role => @role)  %></span></li></h5>
+              <ul class="menu vertical">
+                <li><%= link_to "ALL USERS", users_path %></li>
+                <li><%= link_to "TEACHERS", users_path(:role => 'teacher') %></li>
+                <li><%= link_to "EMPLOYEES", users_path(:role => 'employee') %></li>
+              </ul>
+            </li>
+        </ul>
       </div>
+      
+      
 
-      <!-- TODO: add cancan -->
-      <div class="cell-block-x small-2 right side-link">
-        <h4><%= link_to 'Upload Users', upload_users_path %></h4>
+      <div class="cell-block-x small-2 side-link">
+        <%= link_to 'Upload Users', upload_users_path, :class => "button success small radius" %>
       </div>
     </div>
 

@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
+    @status = params[:status]
     case params[:status]
       when 'Good'
         @items = Item.good
