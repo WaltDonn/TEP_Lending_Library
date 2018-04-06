@@ -1,14 +1,27 @@
-<%= month_calendar(attribute: :pick_up_date, end_attribute: :return_date, events: @reservations) do |date, reservations| %>
-  <%= date.day %>
-  <% reservations.each do |reservation| %>
-      <% if date == reservation.pick_up_date %>
-        <div>
-          <p>Pickup: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
-        </div>
-        <% elsif date == reservation.return_date %>
-        <div>
-          <p>Return: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
-        </div>
-      <% end %> 
-  <% end %>
-<% end %>
+<div class="cell-block-y">
+  <div class="grid-container">
+
+    <div class="grid-x">
+      <div class="inner-title cell-block-x small-10">
+        <span class="uline"><h1>RESERVATIONS</h1> </span>
+      </div>
+    </div>
+
+    <div class="calendar-view rounded">
+      <%= month_calendar(attribute: :pick_up_date, end_attribute: :return_date, events: @reservations) do |date, reservations| %>
+        <%= date.day %>
+        <% reservations.each do |reservation| %>
+            <% if date == reservation.pick_up_date %>
+              <div>
+                <p>Pickup: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
+              </div>
+            <% elsif date == reservation.return_date %>
+              <div>
+                <p>Return: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
+              </div>
+          <% end %> 
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

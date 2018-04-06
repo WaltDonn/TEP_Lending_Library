@@ -37,8 +37,6 @@ class Reservation < ApplicationRecord
     def past_due?
         Date.current > self.end_date && self.returned == false
     end
-    
-    
 
     def self.kit_history
         group_by_month(:start_date, format: "%b", last: 12, current: true).sum("kit_id")

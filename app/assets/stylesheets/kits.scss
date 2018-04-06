@@ -38,7 +38,6 @@ $card-info-button-radius: 18px;
   padding: 0px 0px 6px 0px;
   margin-bottom: 1rem;
   width: 264px;
-  height: 382px;
   background: $card-info-bg;
   border: 2px solid $light-gray;
   box-shadow: $card-info-shadow;
@@ -103,4 +102,25 @@ $card-info-button-radius: 18px;
     height: 260px;
     width: auto;
   }
+}
+
+// avaiable_kit show page
+
+#item-detail {
+  margin-top: 2rem;
+}
+
+div #kit-components.button.radius, #rent-kit-button.button.radius {
+  height: 2rem;
+  padding: 0.5rem;
+  border: 0px;
+  margin: 0.5rem 0rem;
+  a {
+    color: $white;
+    padding: 0rem;
+  }
+}
+
+#kit-components.button.radius {
+  width: 100%;
 }

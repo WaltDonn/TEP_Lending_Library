@@ -2,6 +2,7 @@
   <div class="grid-x center">
     <h1 class="center"> Your Profile Information</h1>
   </div>
+
   <div class="grid-x center">
     <fieldset class='cell small-7 center'>
       <br>
@@ -37,16 +38,15 @@
   </div>
   <br>
 
-  <div class="grid-x center">
-    <div class="small-3 cell">
+  <div class="grid-x center" id="buttons">
+    <div class="small-3 small-offset-1 left cell">
       <%= link_to 'Go back', :back, :class => 'button radius info'  %>
-    </br>
       <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
     </div>
-    <div class="small-5 cell">
+    <div class="small-4 cell">
       Is this correct? <%= link_to 'Edit Information', edit_user_details_path(), :class => 'button radius'  %>
     </div>
-    <div class="small-3 cell">
+    <div class="small-3 cell right">
       <%= link_to 'Confirm Information', reservation_choose_dates_path(), :class => 'button radius success'%>
     </div>
   </div>

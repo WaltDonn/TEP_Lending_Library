@@ -1,63 +1,75 @@
 <div class="grid-container">
-  <span class="uline"><h2> Rental Confirmation </h2></span>
-  <div class="grid-x grid-padding-x small-up-2 medium-up-3">
-        <div class="product-card">
-          <div class="product-card-thumbnail center">
-            <% if @rental_category.nil? || @rental_category.item_photo_url.nil? %>
-                <%= image_tag("not_found.jpg", width: "50%", height: "40%") %>
-            <% else %>
-                <%= image_tag(rental_category.item_photo_url) %>
-            <% end %>
-            
-          </div>
-            <h2 class="product-card-title center"><%= @rental_category.name %></h2>
-        </div>
-
-        <div class="product-card">
-            <h2> Renter Info </h2>
-            <h4 class="product-card-title center"><%=  current_user.name %></h4>
-            <h4 class="product-card-title center"><%=  current_user.email %></h4>
-            
-            <% unless current_user.school.nil? %>
-              <h4 class="product-card-title center"><%=  current_user.school.name %></h4>
-            <% end %>
-            
-        </div>
-
-        <div class="product-card">
-            <h2> Dates </h2>
-            <h4 class="product-card-title center">Pick up date: <%=  @reservation.pick_up_date %></h4>
-            <h4 class="product-card-title center">Return date: <%=  @reservation.return_date %></h4>
-            <%= link_to 'Choose new Dates', reservation_choose_dates_path(), :class => 'button radius'%>
-        </div>
-
+  <div class="grid-x">
+    <div class="inner-title cell-block-x small-8 small-offset-1">
+      <span class="uline"><h1>Rental Confirmation</h1> </span>
+    </div>
   </div>
 
-  <div class="grid-x center">
-
-
-        <div class="small-6 cell">
-          <%= link_to 'Go back', :back, :class => 'button radius info'  %>
-          </br>
-          <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius' %>
+  <div class="grid-x">
+    <div class="small-offset-1 medium-3 small-12">
+      <div class="product-card confirmation" id="first">
+        <div class="card-divider" id="kit-info">
+          <h4> Kit Info </h4>
         </div>
-        <div class="small-6 cell">
-
-          <%= simple_form_for @reservation, :url => reservations_path do |f| %>
-
-              <%= f.input :start_date, :value => @reservation.start_date, as: :hidden  %>
-              <%= f.input :end_date, :value => @reservation.end_date, as: :hidden  %>
-              <%= f.input :pick_up_date, :value => @reservation.pick_up_date, as: :hidden  %>
-              <%= f.input :return_date, :value => @reservation.return_date, as: :hidden %>
-              <%= f.input :teacher_id, :value => current_user, as: :hidden %>
-             
-             
-
-
-          <%= f.submit "Confirm rental",  :class => 'button radius success' %>
-          <% end %>
-
+        <% if @rental_category.nil? || @rental_category.item_photo_url.nil? %>
+            <%= image_tag("not_found.jpg") %>
+        <% else %>
+            <%= image_tag(rental_category.item_photo_url) %>
+        <% end %>
+        <div class="card-section">
+          <h2 class="product-card-title"><%= @rental_category.name %></h2>
+        </div>
       </div>
+    </div>
+
+    <div class="medium-4 small-12">
+      <div class="product-card confirmation">
+        <div class="card-divider">
+          <h4> Renter Info </h4>
+        </div>
+        <div class="card-section">
+          <p><b>Name</b></p>
+          <p class="body-text"><%=  current_user.name %></p>
+          <p><b>Email</b></p>
+          <p class="body-text"><%=  current_user.email %></p>
+          <% unless current_user.school.nil? %>
+            <p><b>School:</b></p>
+            <p class="body-text"><%=  current_user.school.name %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="medium-3 small-12">
+      <div class="product-card confirmation">
+        <div class="card-divider">
+          <h4> Dates </h4>
+        </div>
+        <div class="card-section">
+          <p><b>Pick up date:</b></p>
+          <p class="body-text"><%=  @reservation.pick_up_date %></p>
+          <p><b>Return date:</b></p>
+          <p class="body-text"><%=  @reservation.return_date %></p>
+          <%= link_to 'Choose new Dates', reservation_choose_dates_path(), :class => 'button radius', :id => 'new-date-button'%>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <div class="grid-x center" id="buttons">
+    <div class="small-3 small-offset-1 left cell">
+      <%= link_to 'Go back', :back, :class => 'button radius info'  %>
+      <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius small' %>
+    </div>
+    <div class="small-3 small-offset-4 cell right">
+      <%= simple_form_for @reservation, :url => reservations_path do |f| %>
+        <%= f.input :start_date, :value => @reservation.start_date, as: :hidden, :class => 'hidden-form'  %>
+        <%= f.input :end_date, :value => @reservation.end_date, as: :hidden, :class => 'hidden-form'  %>
+        <%= f.input :pick_up_date, :value => @reservation.pick_up_date, as: :hidden, :class => 'hidden-form'  %>
+        <%= f.input :return_date, :value => @reservation.return_date, as: :hidden, :class => 'hidden-form' %>
+        <%= f.input :teacher_id, :value => current_user, as: :hidden, :class => 'hidden-form' %>
+        <%= f.submit "Confirm rental",  :class => 'button radius success small' %>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -9,7 +9,6 @@ namespace :import_incidents_csv do
     Rake::Task["import_incidents_csv:create_schools"].invoke
     Rake::Task["import_incidents_csv:create_users"].invoke
     Rake::Task["import_incidents_csv:create_item_categories"].invoke
-    Rake::Task["import_incidents_csv:create_component_categories"].invoke
     Rake::Task["import_incidents_csv:create_kits"].invoke
     Rake::Task["import_incidents_csv:create_items"].invoke
     Rake::Task["import_incidents_csv:create_components"].invoke
@@ -35,7 +34,22 @@ namespace :import_incidents_csv do
     csvs = Dir[File.join(Rails.root, 'app', 'csvs', 'users.csv')]
     csvs.each do |csv|
       CSV.foreach(csv, :headers => true, :col_sep => ',', :force_quotes => true) do |row|
-        User.create!(row.to_h)
+
+        @user = User.new
+        @user.email = row['email']
+        @user.first_name = row['first_name']
+        @user.last_name = row['last_name']
+        @user.password = row['password']
+        @user.password_confirmation = row['password_confirmation']
+        @user.phone_num = row['phone_num']
+        @user.class_size = row['class_size']
+        unless School.by_name(row['school']).first.nil?
+          @user.school_id = School.by_name(row['school']).first.id
+        end
+        @user.is_active = true
+        @user.role = row['role']
+        @user.save!
+
       end
     end
   end
@@ -81,17 +95,6 @@ namespace :import_incidents_csv do
     csvs.each do |csv|
       CSV.foreach(csv, :headers => true, :col_sep => ',') do |row|
         Component.create!(row.to_h)
-      end
-    end
-  end
-
-  desc "Import component categories"
-  task :create_component_categories => :environment do
-    csvs = Dir[File.join(Rails.root, 'app', 'csvs', 'component_categories.csv')]
-    csvs.each do |csv|
-      csv = csv.gsub /^$\n/, ''
-      CSV.foreach(csv, :headers => true, :col_sep => ',', :row_sep => :auto) do |row|
-        ComponentCategory.create!(row.to_h)
       end
     end
   end

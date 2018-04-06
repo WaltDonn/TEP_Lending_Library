@@ -5,10 +5,24 @@
 @import 'settings';
 @import 'foundation';
 
-#component-block, #item-block  {
-  border: 1px solid $medium-gray;
+// show page
+
+#item-show-blocks {
+  margin-bottom: 2rem;
+}
+
+#component-block, #item-block, #category-block  {
+  border: 2px solid $medium-gray;
   border-radius: $rounded-radius;
   padding: 1rem;
+  margin: 1rem;
+  h4 {
+    color: $darker-gray;
+    margin: 0.5rem 0rem;
+  }
+  a{
+    color: $white;
+  }
 }
 
 .item-pic {
@@ -18,7 +32,6 @@
   border-radius: 16px;
 }
 
-// show page
 table{
   thead, th, tbody, tr, td {
     border: 0px;
@@ -41,10 +54,27 @@ a.button.radius {
   border: 0px;
 }
 
+#category-block {
+  color: $dark-gray;
+
+  h5#item-title {
+    font-size: 18px;
+    margin: 0.5rem 0rem;
+  }
+}
+
 // items edit form
 
+.simple_form.form-inline {
+  margin: 0rem;
+  max-width: 100%;
+  padding: 0rem;
+}
+
 .item-edit-head {
-  width: 8rem;
+  width: 4rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
 }
 
 input.btn.button {

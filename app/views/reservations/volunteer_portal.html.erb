@@ -3,20 +3,25 @@
   <div class="grid-container">
 
     <div class="grid-x">
-      <div class="inner-title cell-block-x small-10">
+      <div class="inner-title cell-block-x small-12">
         <span class="uline"><h1>Available Rentals</h1> </span>
       </div>
+      <br>
+      <div class="subtitle cell-block-x small-12">
+        <p>What would you like to do?</p>
+      </div>
+      <br>
     </div>
 
     <div class="cell-block-y">
       <div class="grid-x grid-margin-x">
       <div class="cell-block-container cell auto">
-        <div class="cell-block-y small-6" id="component-block">
+        <div class="cell-block-y small-6 button radius" id="component-block">
           <h5><%= link_to "CHECK OUT", pickup_path %></h5>
         </div>
       </div>
       <div class="cell-block-container cell auto">
-        <div class="cell-block-y small-6" id="component-block">
+        <div class="cell-block-y small-6 button radius" id="component-block">
           <h5><%= link_to "CHECK IN", returns_path %></h5>
         </div>
       </div>
