@@ -53,7 +53,7 @@
                   <div class="center"><i class="fas fa-times red"></i></div>
                 </td>
               <% end %>
-              <td><%= link_to "item", item_path(reservation.kit.items.first) %></td>
+              <td><%= link_to reservation.kit.name, item_path(reservation.kit.items.first) %></td>
               <td><%= link_to reservation.teacher.name, user_path(reservation.teacher_id) %></td>
               <td>
                 <%= link_to reservation do %>
