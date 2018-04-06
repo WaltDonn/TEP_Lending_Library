@@ -8,7 +8,7 @@
     </div>
 
     <div class="calendar-view rounded">
-      <%= month_calendar(attribute: :pick_up_date, end_attribute: :return_date, events: @reservations) do |date, reservations| %>
+      <%= month_calendar(attribute: :pick_up_date, events: @reservations) do |date, reservations| %>
         <%= date.day %>
         <% reservations.each do |reservation| %>
             <% if date == reservation.pick_up_date %>
