@@ -8,14 +8,15 @@
     </div>
 
     <div class="calendar-view rounded">
-      <%= month_calendar(attribute: :pick_up_date, events: @reservations) do |date, reservations| %>
+      <%= month_calendar(attribute: :pick_up_date, end_attribute: :return_date, events: @reservations) do |date, reservations| %>
         <%= date.day %>
         <% reservations.each do |reservation| %>
             <% if date == reservation.pick_up_date %>
               <div>
                 <p>Pickup: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
               </div>
-            <% elsif date == reservation.return_date %>
+            <% end %>
+            <% if date == reservation.return_date %>
               <div>
                 <p>Return: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
               </div>
