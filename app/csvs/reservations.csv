@@ -1,4 +1,4 @@
 start_date,end_date,pick_up_date,return_date,returned,picked_up,release_form_id,kit_id,teacher_id,user_check_in,user_check_out
-2018-02-02,2018-02-28,2018-02-03,2018-02-24,true,true,2,2,1,Killian,Killian
-2018-03-02,2018-03-28,2018-03-03,2018-03-24,true,true,3,6,7,Killian,Killian
+2018-02-02,2018-02-28,2018-02-03,2018-02-24,true,true,2,2,1,,
+2018-03-02,2018-03-28,2018-03-03,2018-03-24,true,true,3,6,7,,
 2018-05-02,2018-05-23,2018-05-04,2018-05-22,false,false,1,1,3,,
