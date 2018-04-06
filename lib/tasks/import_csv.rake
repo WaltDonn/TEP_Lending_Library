@@ -9,7 +9,6 @@ namespace :import_incidents_csv do
     Rake::Task["import_incidents_csv:create_schools"].invoke
     Rake::Task["import_incidents_csv:create_users"].invoke
     Rake::Task["import_incidents_csv:create_item_categories"].invoke
-    # Rake::Task["import_incidents_csv:create_component_categories"].invoke
     Rake::Task["import_incidents_csv:create_kits"].invoke
     Rake::Task["import_incidents_csv:create_items"].invoke
     Rake::Task["import_incidents_csv:create_components"].invoke
@@ -96,17 +95,6 @@ namespace :import_incidents_csv do
     csvs.each do |csv|
       CSV.foreach(csv, :headers => true, :col_sep => ',') do |row|
         Component.create!(row.to_h)
-      end
-    end
-  end
-
-  desc "Import component categories"
-  task :create_component_categories => :environment do
-    csvs = Dir[File.join(Rails.root, 'app', 'csvs', 'component_categories.csv')]
-    csvs.each do |csv|
-      csv = csv.gsub /^$\n/, ''
-      CSV.foreach(csv, :headers => true, :col_sep => ',', :row_sep => :auto) do |row|
-        ComponentCategory.create!(row.to_h)
       end
     end
   end

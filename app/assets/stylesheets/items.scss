@@ -9,6 +9,13 @@
   border: 1px solid $medium-gray;
   border-radius: $rounded-radius;
   padding: 1rem;
+  margin-top: 2rem;
+  h5 {
+    margin: 0rem;
+  }
+  a{
+    color: $white;
+  }
 }
 
 .item-pic {
