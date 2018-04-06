@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   # management routes
   get 'returns' => 'reservations#returns', as: :returns
   get 'pickup' => 'reservations#pickup', as: :pickup
-  patch 'picked_up/:id' => 'reservations#picked_up', as: :picked_up
-  patch 'returned/:id' => 'reservations#returned', as: :returned
+  post 'picked_up/:id' => 'reservations#picked_up', as: :picked_up
+  post 'returned/:id' => 'reservations#returned', as: :returned
   get 'dashboard' => 'dashboard#dashboard', as: :dashboard
   get 'volunteer_portal' => 'reservations#volunteer_portal', as: :volunteer_portal
   
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
-  get 'reports' => 'home#reports', as: :reports
+  
   
   # uploading users from a csv
   get 'upload_users' => 'home#upload_users', as: :upload_users
@@ -61,6 +61,9 @@ Rails.application.routes.draw do
   get 'upload_schools' => 'home#upload_schools', as: :upload_schools
   post 'create_schools' => 'home#create_schools', as: :create_schools
 
+  # generate reports
+  get 'reports' =>  'home#reports', as: :reports
+  post 'gen_reports' => 'home#gen_reports', as: :gen_reports
   
   
   namespace :api do
