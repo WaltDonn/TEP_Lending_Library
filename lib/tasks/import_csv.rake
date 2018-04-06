@@ -34,7 +34,22 @@ namespace :import_incidents_csv do
     csvs = Dir[File.join(Rails.root, 'app', 'csvs', 'users.csv')]
     csvs.each do |csv|
       CSV.foreach(csv, :headers => true, :col_sep => ',', :force_quotes => true) do |row|
-        User.create!(row.to_h)
+
+        @user = User.new
+        @user.email = row['email']
+        @user.first_name = row['first_name']
+        @user.last_name = row['last_name']
+        @user.password = row['password']
+        @user.password_confirmation = row['password_confirmation']
+        @user.phone_num = row['phone_num']
+        @user.class_size = row['class_size']
+        unless School.by_name(row['school']).first.nil?
+          @user.school_id = School.by_name(row['school']).first.id
+        end
+        @user.is_active = true
+        @user.role = row['role']
+        @user.save!
+
       end
     end
   end
@@ -83,7 +98,7 @@ namespace :import_incidents_csv do
       end
     end
   end
-  
+
   desc "Import kits"
   task :create_kits => :environment do
     csvs = Dir[File.join(Rails.root, 'app', 'csvs', 'kits.csv')]
