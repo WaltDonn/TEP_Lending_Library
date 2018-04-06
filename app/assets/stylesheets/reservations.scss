@@ -7,12 +7,94 @@
 @import 'settings';
 @import 'foundation';
 
-// reservation form
+// choosing dates view
+
+form.simple_form {
+  margin: 0rem;
+  max-width: 100%;
+
+  input.avg, label.avg {
+    margin: auto;
+  }
+
+  .button {
+    margin-top: 1rem;
+  }
+
+  .success {
+    background-color: $green;
+    border: 0px;
+    color: $white;
+  }
+}
 
 #new_reservation.simple_form.form-horizontal {
   margin: 0px;
   max-width: 100%;
 }
+
+// confirmation page
+
+#buttons {
+  margin: 2rem 0rem 2rem 0rem;
+  
+  .button {
+    color: $white;
+  }
+
+  form {
+    padding: 0rem;
+  }
+
+  .hidden-form {
+    display: none;
+  }
+
+  .button.success {
+    margin: 0rem;
+    color: $white;
+  }
+}
+
+
+.product-card.confirmation {
+  width: auto;
+  margin: 0rem 1rem;
+  overflow: hidden;
+  height: 23rem;
+
+  .product-card-title {
+    font-size: 18px;
+  }
+
+  #new-date-button {
+    margin-top: 5rem;
+    float: right;
+  }
+
+  p.body-text {
+    padding-left: 1.5rem;
+  }
+
+  p b {
+    font-size: 18px;
+  }
+
+  .card-divider {
+    background-color: $secondary-color;
+  }
+
+  h4 {
+    color: $white;
+  }
+
+  .body-text {
+    font-size: 16px;
+    color: $dark-gray;
+  }
+}
+
+// reservation form
 
 #reservation-form {
   table, tbody, tr, td {
