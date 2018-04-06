@@ -104,3 +104,24 @@ $card-info-button-radius: 18px;
     width: auto;
   }
 }
+
+// avaiable_kit show page
+
+#item-detail {
+  margin-top: 2rem;
+}
+
+div #kit-components.button.radius, #rent-kit-button.button.radius {
+  height: 2rem;
+  padding: 0.5rem;
+  border: 0px;
+  margin: 0.5rem 0rem;
+  a {
+    color: $white;
+    padding: 0rem;
+  }
+}
+
+#kit-components.button.radius {
+  width: 100%;
+}
