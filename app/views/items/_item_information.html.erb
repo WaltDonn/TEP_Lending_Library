@@ -1,4 +1,4 @@
-<h5>Item Information</h5>
+<h4>Item Information</h4>
 <br/>
 <table>
   <tbody>
@@ -25,3 +25,7 @@
   </tbody>
 </table>
 <br/>
+<div class="right">
+  <%= link_to 'EDIT ITEM', edit_item_path(@item), :class => 'button radius small' %>
+  <%= link_to 'DESTROY ITEM', item_path(@item), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button alert radius small' %>
+</div>
