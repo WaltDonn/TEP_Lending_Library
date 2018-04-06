@@ -42,7 +42,13 @@ class HomeController < ApplicationController
 			@user.password_confirmation = generated_password
 			@user.phone_num = row['phone_num']
 			@user.class_size = row['class_size']
-			@user.school_id = School.by_name(row['school']).first.id
+
+      # Get school id by school name
+      @school = School.by_name(row['school']).first
+      unless @school.nil?
+  			@user.school_id = @school.id
+      end
+
 			@user.is_active = true
 			@user.role = params['create_users']['role']
 			unless @user.save
