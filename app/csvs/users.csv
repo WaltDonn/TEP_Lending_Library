@@ -1,5 +1,5 @@
 email,first_name,last_name,phone_num,class_size,school,is_active,password,password_confirmation,role
-admin@teplending.org,Admin,Admin,412-142-1492,,,true,secretpassword,secretpassword,admin
+accounts@theeducationpartnership.org,Admin,Admin,412-142-1492,,,true,secretpassword,secretpassword,admin
 volunteer@teplending.org,Volunteer,Volunteer,,,,true,123secret,123secret,volunteer
 rgarcia@teplending.org,Holly,Lawson,412-733-7854,20,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
 firstpr@teplending.org,Pam,Phillips,307-276-8755,30,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
