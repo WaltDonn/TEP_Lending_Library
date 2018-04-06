@@ -1,0 +1,9 @@
+<h4> Item Category Details</h4>
+<% if @item.item_category.item_photo_url.nil? %>
+    <%= image_tag("not_found.jpg", width: "50%", height: "40%") %>
+<% else %>
+  <%= link_to image_tag(@item.item_category.item_photo_url) %>
+<% end %>
+
+<h5 id="item-title"><%= @item.item_category.name %></h5>
+<p><%= @item.item_category.description %> </p>

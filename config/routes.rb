@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :components
   resources :items
   resources :reservations
-  resources :schools
+  resources :schools, :except => [:new, :create, :delete, :destroy]
   resources :kits
   
   # management routes
