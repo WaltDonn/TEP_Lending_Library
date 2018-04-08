@@ -4,10 +4,10 @@ module Api::V1
     respond_to     :json
 
     #response = at.get('/api/v1/resource_owner', :params => {:nounce => nounce})
-    #Nounce = SecureRandom.base64(32)
+    #Nounce = SecureRandom.hex(32)
     def resource_owner
 
-      if(params['nounce'].length != 44)
+      if(params['nounce'].length != 64)
         response = {
           error: "Nounce not set correctly"
         }
