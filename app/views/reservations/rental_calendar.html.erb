@@ -15,7 +15,8 @@
               <div>
                 <p>Pickup: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
               </div>
-            <% elsif date == reservation.return_date %>
+            <% end %>
+            <% if date == reservation.return_date %>
               <div>
                 <p>Return: <%= link_to reservation.teacher.name, user_path(reservation.teacher) %></p>
               </div>
