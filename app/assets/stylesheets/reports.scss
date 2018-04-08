@@ -1,3 +1,44 @@
 // Place all the styles related to the reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'settings';
+@import 'foundation';
+
+body.home-content {
+  // background-image: none;
+}
+
+div#welcome.report-block {
+  top: 55%;
+}
+
+#signup h1 {
+  color: $primary-color;
+}
+
+#welcome {
+  border: $medium-gray solid 1px;
+  border-radius: $rounded-radius;
+  padding-top: 1rem;
+}
+
+#welcome #reports {
+
+  #user-upload-form th {
+    color: $secondary-color;
+    padding-top: 0rem;
+  }
+
+  .gen_reports_report_choices {
+    width: 26rem;
+  }
+
+  label {
+    margin-right: 1rem;
+  }
+
+  .upload-button {
+    margin-top: 0rem;
+  }
+}
