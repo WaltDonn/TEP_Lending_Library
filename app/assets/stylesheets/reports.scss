@@ -11,16 +11,13 @@ body.home-content {
 
 div#welcome.report-block {
   top: 55%;
+  border: $medium-gray solid 1px;
+  border-radius: $rounded-radius;
+  padding-top: 1rem;
 }
 
 #signup h1 {
   color: $primary-color;
-}
-
-#welcome {
-  border: $medium-gray solid 1px;
-  border-radius: $rounded-radius;
-  padding-top: 1rem;
 }
 
 #welcome #reports {
