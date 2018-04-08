@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-#admin = User.new; admin.id = 1; admin.first_name = "Admin"; admin.last_name = "Admin"; admin.is_active = true; admin.role = "admin"; admin.email = "beebot@mailinator.com"; admin.password = "secretpassword"; admin.password_confirmation = "secretpassword"; admin.save 
+#admin = User.new; admin.id = 1; admin.first_name = "Admin"; admin.last_name = "Admin"; admin.is_active = true; admin.role = "admin"; admin.email = "accounts@theeducationpartnership.org"; admin.password = "secretpassword"; admin.password_confirmation = "secretpassword"; admin.save 
 #school1 = School.new; school1.id = 1; school1.name = "Some School"; school1.street_1 = "100 Learning Way"; school1.city = "Pittsburgh"; school1.state = "PA"; school1.zip = "15213"; school1.is_active = true; school1.save
 
     # Include default devise modules. Others available are:
