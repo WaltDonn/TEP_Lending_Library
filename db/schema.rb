@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20180329040413) do
 
   create_table "kits", force: :cascade do |t|
     t.string "location"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.boolean "blackout", default: false
     t.boolean "reserved", default: false
     t.datetime "created_at", null: false
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20180329040413) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
