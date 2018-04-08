@@ -23,6 +23,9 @@ class User < ApplicationRecord
     validates_confirmation_of :password, on: :create, message: "does not match"
     validates_presence_of :encrypted_password, on: :create 
     
+    before_destroy :is_destroyable
+    
+    
 
 
     #Relationships
@@ -81,6 +84,11 @@ class User < ApplicationRecord
 
 
  private
+ 
+ def is_destroyable
+    errors.add(:id, 'Do not delete users')
+    reutrn false
+ end
 
 
   def class_size_present
