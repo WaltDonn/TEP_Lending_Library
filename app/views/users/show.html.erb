@@ -27,9 +27,15 @@
           </tr>
           <tr>
             <th>Phone Number</th>
-            <td><%=  @user.phone_num %></td>
+            <td><%=  @user.phone_num %> </td>
           </tr>
-
+          <% if !@user.phone_ext.nil? %>
+            <tr>
+               <th>Phone Extension</th>
+                <td> <%= @user.phone_ext%> </td>
+            </tr>
+          <% end %>
+          
           <!-- FIXME: temporary fix for users who are not teachers -->
           <% unless @user.school.nil? %>
             <tr>

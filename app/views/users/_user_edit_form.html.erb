@@ -36,6 +36,13 @@
                 <%= f.input :phone_num,  :input_html => { :class => 'avg' }%>
               </td>
             </tr>
+            <tr>
+              <th>Phone Extension</th>
+              <td>
+                <%= f.input :phone_ext,  :input_html => { :class => 'avg' }%>
+              </td>
+            </tr>
+            
             <% if @user.role == "Teacher" %>
               <tr>
                 <th>School</th>
