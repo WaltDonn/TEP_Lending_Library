@@ -2,7 +2,7 @@ require 'csv'
 require 'tempfile'
 
 class HomeController < ApplicationController
-  layout 'home'
+  layout :resolve_layout
   before_action :authenticate_user!, only: [:upload_users, :create_users]
 
   def home
@@ -112,17 +112,27 @@ class HomeController < ApplicationController
   	@two = params["gen_reports"]["input_2"]
   	@choice_array = params["gen_reports"]["report_choices"]
 
-  	@items = Item.all
-
-
-#---------------------------------------------------------------------------
-#currently not working for turning the page into a pdf
-	# kit = PDFKit.new(<<-HTML)
-	#   <p>Goodbye Envato!</p>
-	# HTML
- #  	#kit = PDFKit.new(File.new('app/views/home/gen_reports.html.erb'))
-	# #probs not where i should be putting it, temp for now, should also make them name the pdf or it be generated
-	# kit.to_file('app/views/reports/hello2.pdf')
+		@items = Item.all
+		
+		
+		
+		#---------------------------------------------------------------------------
+		#currently not working for turning the page into a pdf
+		# kit = PDFKit.new(<<-HTML)
+		#   <p>Goodbye Envato!</p>
+		# HTML
+		#  	#kit = PDFKit.new(File.new('app/views/home/gen_reports.html.erb'))
+		# #probs not where i should be putting it, temp for now, should also make them name the pdf or it be generated
+		# kit.to_file('app/views/reports/hello2.pdf')
   end
+	
+	def resolve_layout
+		case action_name
+		when "reports", "gen_reports", "upload_users", "create_users", "upload_schools", "create_schools"
+			"home_no_bg"
+		else
+			"home"
+		end
+	end
 
 end
