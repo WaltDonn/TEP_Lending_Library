@@ -25,16 +25,11 @@ class AccountMailer < Devise::Mailer
     
     #if this isnt working, make sure to check you have figaro setup
     
-    
-    # def welcome(user, password)
-    #     @user = user
-    #     @password = password
-    #     mail(to: @user.email, subject: "Welcome to TEP's Lending Library!", :tag => "Welcome to TEP!")
-    #     mail.delivery_method.settings.merge! @@smtp_settings
-    #     mail
-    # end
+
 
     def confirmation_instructions(user, token, somethingElse)
+        AccountMailer.default_url_options[:host] = "tep-lending-library.herokuapp.com"
+        
         @resource = user
         @password = user.password
         @token = token

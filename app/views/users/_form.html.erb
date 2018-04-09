@@ -47,6 +47,14 @@
               </td>
             </tr>
             <tr>
+              <th>Phone Extension</th>
+              <td>
+                <%= f.input :phone_ext,  :input_html => { :class => 'avg' }%>
+              </td>
+            </tr>
+            
+            
+            <tr>
               <th>School</th>
               <td>
                   <%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
