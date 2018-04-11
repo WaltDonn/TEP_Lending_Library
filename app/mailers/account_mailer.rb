@@ -14,7 +14,7 @@ class AccountMailer < Devise::Mailer
     }
     
     # send password reset instructions
-    def reset_password_instructions(user)
+    def reset_password_instructions(user, token, commit)
      @resource = user
      mail(:to => @resource.email, :subject => "Reset password instructions", :tag => 'password-reset', :content_type => "text/html") do |format|
        format.html { render "devise/mailer/reset_password_instructions" }
@@ -29,7 +29,7 @@ class AccountMailer < Devise::Mailer
 
     def confirmation_instructions(user, token, somethingElse)
         AccountMailer.default_url_options[:host] = "tep-lending-library.herokuapp.com"
-        
+        byebug
         @resource = user
         @password = user.password
         @token = token
