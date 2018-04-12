@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-#admin = User.new; admin.id = 1; admin.first_name = "Admin"; admin.last_name = "Admin"; admin.is_active = true; admin.role = "admin"; admin.email = "accounts@theeducationpartnership.org"; admin.password = "secretpassword"; admin.password_confirmation = "secretpassword"; admin.save 
-#school1 = School.new; school1.id = 1; school1.name = "Some School"; school1.street_1 = "100 Learning Way"; school1.city = "Pittsburgh"; school1.state = "PA"; school1.zip = "15213"; school1.is_active = true; school1.save
+#admin = User.new; admin.id = 1; admin.first_name = "Admin"; admin.last_name = "Admin"; admin.is_active = true; admin.role = "admin"; admin.email = "beebot@mailinator.com"; admin.password = "secretpassword"; admin.password_confirmation = "secretpassword"; admin.save 
+#school1 = School.new; school1.id = 1; school1.name = "Highlands Middle School"; school1.street_1 = "100 Learning Way"; school1.city = "Pittsburgh"; school1.state = "PA"; school1.zip = "15213"; school1.is_active = true; school1.save
 
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -75,6 +75,14 @@ class User < ApplicationRecord
 
   def has_outstanding_kit
     self.owned_reservations.select{|res| res.returned == false}.size > 0
+  end
+
+  def res_for_year(lookup_year)
+    self.owned_reservations.select{|r| r.start_date.year == lookup_year}.size
+  end
+
+  def res_for_month(lookup_month, lookup_year)
+    self.owned_reservations.select{|r| r.start_date.year == lookup_year and r.start_date.month == lookup_month}.size
   end
 
   def destroy
