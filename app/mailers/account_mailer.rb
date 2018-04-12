@@ -14,7 +14,7 @@ class AccountMailer < Devise::Mailer
     }
     
     # send password reset instructions
-    def reset_password_instructions(user)
+    def reset_password_instructions(user, token, commit)
      @resource = user
      mail(:to => @resource.email, :subject => "Reset password instructions", :tag => 'password-reset', :content_type => "text/html") do |format|
        format.html { render "devise/mailer/reset_password_instructions" }
@@ -25,16 +25,10 @@ class AccountMailer < Devise::Mailer
     
     #if this isnt working, make sure to check you have figaro setup
     
-    
-    # def welcome(user, password)
-    #     @user = user
-    #     @password = password
-    #     mail(to: @user.email, subject: "Welcome to TEP's Lending Library!", :tag => "Welcome to TEP!")
-    #     mail.delivery_method.settings.merge! @@smtp_settings
-    #     mail
-    # end
+
 
     def confirmation_instructions(user, token, somethingElse)
+        AccountMailer.default_url_options[:host] = "tep-lending-library.herokuapp.com"
         @resource = user
         @password = user.password
         @token = token

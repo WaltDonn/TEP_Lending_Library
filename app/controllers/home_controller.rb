@@ -44,8 +44,9 @@ class HomeController < ApplicationController
 			@user.class_size = row['class_size']
 
       # Get school id by school name
-      @school = School.by_name(row['school']).first
-      unless @school.nil?
+    
+      unless row['school'].nil? && School.by_name(row['school']).first.nil?
+        @school = School.by_name(row['school']).first
   			@user.school_id = @school.id
       end
 

@@ -12,6 +12,10 @@ Rails.application.configure do
 
   
   config.filter_parameters << :password
+  
+  config.action_controller.default_url_options = {host: "tep-lending-library.herokuapp.com"}
+  config.action_mailer.default_url_options = {host: "tep-lending-library.herokuapp.com" }
+  config.action_controller.asset_host = "tep-lending-library.herokuapp.com"
 
 
   # Full error reports are disabled and caching is turned on.
@@ -72,7 +76,7 @@ Rails.application.configure do
   # SMTP settings 
   #Deployed by respective mailers
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
 
 
 

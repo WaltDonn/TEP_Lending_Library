@@ -6,7 +6,7 @@ class School < ApplicationRecord
     validates_presence_of :state
     validates_presence_of :zip
     validates_format_of :zip, :with => /\A\d{5}\Z/, :message => 'Zip code should be a 5 digit zip'
-    validates_format_of :street_1, :with => /\A\d+\s[A-z]+\s[A-z]+\Z/, :message => 'Invalid address'
+    validates_format_of :street_1, :with => /\A(\d+\s)?([A-z]\s)?(\d*[A-z]+\s)?[A-z]+(\s?(\-)?(\#)?\s?)?(\d+|\s\w+)?\Z/, :message => 'Invalid address'
     validates_inclusion_of :state, in: STATES_LIST.to_h.values, message: "is not an option"
     validate :no_outstanding_reservations
     validate :school_is_not_a_duplicate, on: :create
@@ -32,11 +32,11 @@ class School < ApplicationRecord
     def already_exists?
         School.where(name: self.name, zip: self.zip).size == 1
     end
-    
+
     def total_number_reservations
         self.owned_reservations.select { |res| res.returned == true}.size
     end
-    
+
     def number_of_current_reservations
          self.owned_reservations.select { |res| res.returned == false}.size
     end
