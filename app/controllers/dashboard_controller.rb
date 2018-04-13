@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
     @employees = User.active.employees
     @damaged_kits = Kit.damaged
 
-    authorize! :dashboard, Dashboard
+    authorize! :dashboard, :Dashboard
   end
   
 end
