@@ -1,0 +1,10 @@
+#Plop this in rails console to delete all your pre-populated stuff
+#Note the last line doesnt have a semicolon, so that it executes the statements
+
+Reservation.all.delete_all;
+User.all.delete_all;
+Kit.all.delete_all;
+School.all.delete_all;
+ItemCategory.all.delete_all;
+Item.all.delete_all;
+Component.all.delete_all
