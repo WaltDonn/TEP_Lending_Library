@@ -238,3 +238,31 @@ a.button.alert.radius.small {
     }
   }
 }
+
+i {
+  color: $secondary-color;
+}
+
+// volunteer portal
+
+#welcome-users, #welcome-schools {
+  color: $white;
+  position: absolute;
+  width: 800px;
+  height: 250px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -200px 0 0 -400px;
+  border: $medium-gray solid 1px;
+  border-radius: $rounded-radius;
+  padding-top: 1rem;
+}
+
+#welcome-schools {
+  height: 170px;
+}
+
+#component-block {
+  border: 0px;
+}

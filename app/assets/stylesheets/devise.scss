@@ -9,7 +9,7 @@
 }
 
 #login, #resend-confirm {
-  color: $white;
+  color: $secondary-color;
   position: absolute;
   width: 800px;
   height: 200px;
@@ -48,7 +48,7 @@
   border-radius: 20px;
   
   .checkbox {
-    color: $white;
+    color: $secondary-color;
     .avg-checkbox {
       margin: 0rem;
     }
@@ -87,7 +87,7 @@ div.error_notification {
     margin-bottom: 1.5rem;
 
     .error {
-      color: $white;
+      color: $secondary-color;
       text-align: right;
       margin-right: 1rem;
     }
@@ -109,7 +109,7 @@ div.error_notification {
     background-color: none;
     border-color: none;
     font-size: 1rem;
-    color: $white;
+    color: $secondary-color;
     text-align: right;
     padding-bottom: 0.5rem;
     font-weight: bold;
@@ -117,7 +117,7 @@ div.error_notification {
 
   #create_users_users_csv {
     margin: 0;
-    color: $white;
+    color: $secondary-color;
   }
 
   #create_users_role {
@@ -135,7 +135,12 @@ div.error_notification {
 }
 
 #signup h1{
-  color: $white;
+  color: $secondary-color;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+#signup {
+  top: 50%;
 }

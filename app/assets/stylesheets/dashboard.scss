@@ -39,6 +39,8 @@ h5#dash, h6#dash {
     #kits-rented, #schools-renting, #teachers-renting {
       border: $dark-gray solid 1px;
       border-radius: $rounded-radius;
+      overflow: hidden;
+      padding-top: 1rem;
     }
   }
 }
@@ -59,16 +61,23 @@ h5#dash, h6#dash {
       color: $white;
       text-align: left;
     }
+    
+    tr {
+      border-bottom: 1px solid $medium-gray;
+    }
 
     td {
       color: $dark-gray;
-      border-bottom: 1px solid $medium-gray;
       font-size: 10px;
       font-weight: bold;
 
       #show-more {
         margin-top: 1.5rem;
       }
+    }
+
+    #quicklist, tr:last-child {
+      border-bottom: 0px;
     }
 
     tr#show-more-row, td#show-more {
