@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20180329040413) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "components", force: :cascade do |t|
     t.string "name"
     t.integer "max_quantity"
     t.integer "damaged"
     t.integer "missing"
     t.boolean "consumable"
-    t.integer "item_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_components_on_item_id"
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 20180329040413) do
   create_table "items", force: :cascade do |t|
     t.string "readable_id"
     t.string "condition"
-    t.integer "kit_id"
-    t.integer "item_category_id"
+    t.bigint "kit_id"
+    t.bigint "item_category_id"
     t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,7 +58,7 @@ ActiveRecord::Schema.define(version: 20180329040413) do
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
-    t.integer "application_id", null: false
+    t.bigint "application_id", null: false
     t.string "token", null: false
     t.integer "expires_in", null: false
     t.text "redirect_uri", null: false
@@ -68,7 +71,7 @@ ActiveRecord::Schema.define(version: 20180329040413) do
 
   create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer "resource_owner_id"
-    t.integer "application_id"
+    t.bigint "application_id"
     t.string "token", null: false
     t.string "refresh_token"
     t.integer "expires_in"
@@ -101,8 +104,8 @@ ActiveRecord::Schema.define(version: 20180329040413) do
     t.boolean "returned", default: false
     t.boolean "picked_up", default: false
     t.integer "release_form_id"
-    t.integer "kit_id"
-    t.integer "teacher_id"
+    t.bigint "kit_id"
+    t.bigint "teacher_id"
     t.string "user_check_in"
     t.string "user_check_out"
     t.datetime "created_at", null: false
@@ -129,7 +132,7 @@ ActiveRecord::Schema.define(version: 20180329040413) do
     t.string "phone_num"
     t.string "phone_ext"
     t.integer "class_size"
-    t.integer "school_id"
+    t.bigint "school_id"
     t.boolean "is_active"
     t.string "role"
     t.datetime "created_at", null: false
@@ -154,4 +157,6 @@ ActiveRecord::Schema.define(version: 20180329040413) do
     t.index ["school_id"], name: "index_users_on_school_id"
   end
 
+  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
 end

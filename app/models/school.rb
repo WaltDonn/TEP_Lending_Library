@@ -41,6 +41,14 @@ class School < ApplicationRecord
          self.owned_reservations.select { |res| res.returned == false}.size
     end
 
+    def school_res_for_year(lookup_year)
+        self.users.inject(0){|sum, u| sum + u.res_for_year(lookup_year)}
+    end
+
+    def school_res_for_month(lookup_month, lookup_year)
+        self.users.inject(0){|sum, u| sum + u.res_for_month(lookup_month, lookup_year)}
+    end
+
     private
     def no_outstanding_reservations
         if(self.is_active == false)

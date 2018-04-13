@@ -10,16 +10,29 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: lending_library_dev
+  user: lending_library
+  password: password1
+  pool: 5
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: db/test.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: lending_library_test
+  password: password1
+  user: lending_library
+  pool: 5
 
+
+#Heroku overrides this.
+#You may need to change this for your own deployment
 production:
   <<: *default
   database: db/production.sqlite3
