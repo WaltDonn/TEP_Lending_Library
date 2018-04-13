@@ -10,7 +10,7 @@
       <%= render :partial => 'manager_dash' %>
 
     <% elsif current_user.has_role?(:volunteer) %>
-      <%= render :partial => 'volunteer_dash' %>
+      <%= render :partial => 'volunteer_portal' %>
 
     <% end %>
   </div>
