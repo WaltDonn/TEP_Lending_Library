@@ -8,6 +8,8 @@ class DashboardController < ApplicationController
     @teacher_rentals = Reservation.teacher_rental_hist
     @employees = User.active.employees
     @damaged_kits = Kit.damaged
+
+    authorize! :dashboard, Dashboard
   end
   
 end

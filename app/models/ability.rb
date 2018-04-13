@@ -11,6 +11,7 @@ class Ability
     if user.has_role? :admin
         can :manage, :all
     elsif user.has_role? :manager
+        can :dashboard, Dashboard
         can :crud, ComponentCategory
         can :crud, Component
         can :crud, Kit

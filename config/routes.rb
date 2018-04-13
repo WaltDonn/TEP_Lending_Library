@@ -79,6 +79,6 @@ Rails.application.routes.draw do
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
   match "/403", :to => "errors#access_denied", :via => :all
-  get '*a', to: 'errors#routing'
+  get '*a', to: 'errors#not_found'
   
 end

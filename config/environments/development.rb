@@ -7,7 +7,6 @@ Rails.application.configure do
   config.cache_classes = false
 
 
-
   config.force_ssl = false
 
   # Do not eager load code on boot.

@@ -10,6 +10,7 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
+  config.exceptions_app = self.routes
   
   config.filter_parameters << :password
   
