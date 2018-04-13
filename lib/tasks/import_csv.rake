@@ -9,11 +9,14 @@ namespace :import_incidents_csv do
     Rake::Task["import_incidents_csv:create_schools"].invoke
     Rake::Task["import_incidents_csv:create_users"].invoke
     Rake::Task["import_incidents_csv:create_item_categories"].invoke
-    Rake::Task["import_incidents_csv:create_kits"].invoke
     Rake::Task["import_incidents_csv:create_items"].invoke
     Rake::Task["import_incidents_csv:create_components"].invoke
+    Rake::Task["import_incidents_csv:create_kits"].invoke
     Rake::Task["import_incidents_csv:create_reservations"].invoke
   end
+
+
+
 
   desc "Import schools"
   task :create_schools=> :environment do
@@ -61,9 +64,9 @@ namespace :import_incidents_csv do
       CSV.foreach(csv, :headers => true, :col_sep => ',') do |row|
         res = Reservation.new(row.to_h)
         res[:start_date] = DateTime.strptime(row[1], "%Y-%m-%d")
-        res[:end_date] = DateTime.strptime(row[1], "%Y-%m-%d")
-        res[:pick_up_date] = DateTime.strptime(row[1], "%Y-%m-%d")
-        res[:return_date] = DateTime.strptime(row[1], "%Y-%m-%d")
+        res[:end_date] = DateTime.strptime(row[2], "%Y-%m-%d")
+        res[:pick_up_date] = DateTime.strptime(row[3], "%Y-%m-%d")
+        res[:return_date] = DateTime.strptime(row[4], "%Y-%m-%d")
         res.save(:validate => false)
       end
     end

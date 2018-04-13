@@ -87,7 +87,7 @@ class User < ApplicationRecord
 
   def destroy
     errors.add(:id, 'Do not delete users')
-    reutrn false
+    return false
   end
 
 
