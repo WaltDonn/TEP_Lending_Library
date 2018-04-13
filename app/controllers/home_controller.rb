@@ -4,6 +4,7 @@ require 'tempfile'
 class HomeController < ApplicationController
   layout :resolve_layout
   before_action :authenticate_user!, except: [:home]
+  
 
   def home
   end

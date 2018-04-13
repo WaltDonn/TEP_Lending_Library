@@ -55,12 +55,10 @@ class Reservation < ApplicationRecord
 
     private
     def destroyable
-        if(self.picked_up == true && self.returned == true)
-            return true
-        elsif (self.picked_up == false)
+        if(self.picked_up == false)
             return true
         end
-        errors.add("Kit must be returned before reservation can be deleted")
+        errors.add(:kit_id, "Reservations with a kit picked up can't be deleted")
         return false
     end
 
