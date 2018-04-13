@@ -76,7 +76,8 @@ class School < ApplicationRecord
     end
 
     def destroyable
-        false
+        errors.add(:id, "Cannot destroy school")
+        return false
     end
 
 
