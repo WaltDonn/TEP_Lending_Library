@@ -9,8 +9,8 @@
     <div class="grid-x">
       <div class="cell small-4 center">
         <fieldset>
-          <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", as: :string, :input_html => {:class => "avg datepicker"}, :required => true %>
-          <%= f.input :return_date, label: "Please select when you would like to drop off your kit during check-in-week.", as: :string, :input_html => {:class => "avg datepicker"}, :required => true %>
+          <%= f.input :pick_up_date, label: "Please select when you would like to pick up your kit during check-out-week.", collection: @pick_up_dates, input_html: {class: "avg"}, :required => true  %>
+          <%= f.input :return_date, label: "Please select when you would like to drop off your kit during check-in-week.", collection: @return_dates, input_html: {class: "avg"}, :required => true  %>
         </fieldset>
       </div>
     </div>
