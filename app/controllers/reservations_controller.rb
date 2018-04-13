@@ -169,12 +169,17 @@ class ReservationsController < ApplicationController
     if(!params[:user][:first_name].nil?)
       @user.first_name = params[:user][:first_name]
     end
-    
     if(!params[:user][:last_name].nil?)
       @user.last_name = params[:user][:last_name]
     end
     if(!params[:user][:email].nil?)
       @user.email = params[:user][:email]
+    end
+    if(!params[:user][:phone_num].nil?)
+      @user.phone_num = params[:user][:phone_num]
+    end
+    if(!params[:user][:phone_ext].nil?)
+      @user.phone_ext = params[:user][:phone_ext]
     end
     if(!params[:user][:schoold_id].nil?)
       @user.school_id = params[:user][:school_id]
@@ -183,7 +188,7 @@ class ReservationsController < ApplicationController
       @user.class_size = params[:user][:class_size]
     end
     respond_to do |format|
-      if @user.save!
+      if @user.save
           format.html { redirect_to reservation_choose_dates_path }
       else
            format.html { render :edit_user_details }
