@@ -14,22 +14,22 @@ class Ability
         can :manage, :all
     elsif user.has_role? :manager
         can :crud,                 Component
-        can :dashboard,            Dashboard
-        can :upload_users,         Home
-        can :create_users,         Home
-        can :upload_schools,       Home
-        can :create_schools,       Home
-        can :reports,              Home
-        can :gen_reports,          Home
+        can :dashboard,            :Dashboard
+        can :upload_users,         :Home
+        can :create_users,         :Home
+        can :upload_schools,       :Home
+        can :create_schools,       :Home
+        can :reports,              :Home
+        can :gen_reports,          :Home
         can :crud,                 Item
         can :crud,                 Kit
         can :crud,                 Reservation
-        can :rental_calendar,      Reservation
-        can :submit_user_details,  Reservation
-        can :edit_user_details,    Reservation
-        can :confirm_user_details, Reservation
-        can :rent_kit,             Reservation
-        can :volunteer_actions,    Reservation
+        can :rental_calendar,      :Reservation
+        can :submit_user_details,  :Reservation
+        can :edit_user_details,    :Reservation
+        can :confirm_user_details, :Reservation
+        can :rent_kit,             :Reservation
+        can :volunteer_actions,    :Reservation
         can :crud,                 School
         can :crud,                 User
         can :rental_history,       User

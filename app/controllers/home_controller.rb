@@ -10,12 +10,12 @@ class HomeController < ApplicationController
   end
 
   def upload_users
-  	authorize! :upload_users, Home
+  	authorize! :upload_users, :Home
   end
 
 
   def create_users
-  	authorize! :create_users, Home
+  	authorize! :create_users, :Home
 
   	failed_emails = Array.new
   	file = params['create_users']['users_csv'].tempfile
@@ -59,12 +59,12 @@ class HomeController < ApplicationController
   end
 
   def upload_schools
-  	authorize! :upload_schools, Home
+  	authorize! :upload_schools, :Home
   end
 
 
   def create_schools
-  	authorize! :create_schools, Home
+  	authorize! :create_schools, :Home
 
   	failed_schools = Array.new
   	file = params['create_schools']['schools_csv'].tempfile
@@ -94,11 +94,11 @@ class HomeController < ApplicationController
   end
 
   def reports
-  	authorize! :reports, Home
+  	authorize! :reports, :Home
   end
 
   def gen_reports
-  	authorize! :gen_reports, Home
+  	authorize! :gen_reports, :Home
 
   	@choice_array = params["gen_reports"]["report_choices"]
 

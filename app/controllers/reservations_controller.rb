@@ -28,23 +28,23 @@ class ReservationsController < ApplicationController
 
   # GET /returns
   def volunteer_portal
-    authorize! :volunteer_portal, Reservation
+    authorize! :volunteer_portal, :Reservation
   end
 
   # GET /returns
   def returns
     @today_return = Reservation.returning_today
-    authorize! :returns, Reservation
+    authorize! :returns, :Reservation
   end
 
   # GET /pickup
   def pickup
     @today_pickup = Reservation.picking_up_today
-    authorize! :pickup, Reservation
+    authorize! :pickup, :Reservation
   end
 
   def picked_up
-    authorize! :picked_up, Reservation
+    authorize! :picked_up, :Reservation
 
     @reservation.picked_up = true
     @reservation.user_check_out = params["picked_up_path"]["name"]
@@ -62,7 +62,7 @@ class ReservationsController < ApplicationController
   end
 
   def returned
-    authorize! :returned, Reservation
+    authorize! :returned, :Reservation
 
     @reservation.returned = true
     @reservation.user_check_in = params["returned_path"]["name"]
@@ -85,7 +85,7 @@ class ReservationsController < ApplicationController
 #RENT A KIT ACTIONS
 
   def choose_dates
-    authorize! :choose_dates, Reservation
+    authorize! :choose_dates, :Reservation
 
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
@@ -107,7 +107,7 @@ class ReservationsController < ApplicationController
 
   # POST /select_dates
   def select_dates
-    authorize! :select_dates, Reservation
+    authorize! :select_dates, :Reservation
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
     end
@@ -143,7 +143,7 @@ class ReservationsController < ApplicationController
   end
 
   def confirm_user_details
-    authorize! :confirm_user_details, Reservation
+    authorize! :confirm_user_details, :Reservation
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
     end
@@ -288,10 +288,10 @@ class ReservationsController < ApplicationController
     authorize! :update, @reservation
     respond_to do |format|
        #Shouldn't accept new kit, after being returned
-      if(@reservation.picked_up == true){
+      if(@reservation.picked_up == true)
            @reservation.errors.add(:kit_id, "Cannot change kit after kit has been picked up")
            format.html { render :edit }
-      }
+      end
 
 
       #If the kit has been changed, then we need to un-reserve the old one
