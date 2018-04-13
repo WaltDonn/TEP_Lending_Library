@@ -46,10 +46,6 @@ Rails.application.routes.draw do
   
   # static page routes
   get '/' => 'home#home', as: :home
-  get 'about' => 'home#about', as: :about
-  get 'contact' => 'home#contact', as: :contact
-  get 'privacy' => 'home#privacy', as: :privacy
-  
   
   # uploading users from a csv
   get 'upload_users' => 'home#upload_users', as: :upload_users

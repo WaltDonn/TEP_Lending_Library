@@ -7,6 +7,9 @@ class Kit < ApplicationRecord
     
     has_many :items
     has_many :reservations
+    has_one :item_category, :through => :items
+    accepts_nested_attributes_for :items
+    accepts_nested_attributes_for :item_category
     
     scope :visible_kits,     -> { where(blackout: false, is_active: true, reserved: false) }
     

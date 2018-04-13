@@ -1,23 +1,21 @@
-<div id="welcome">
-	<div class="cener" id="signup">
-		<h1 class="center"> Generate Reports </h1>
-	</div>
+<div class="small-offset-1" id="signup">
+	<h1 class="uline"> Generate Reports </h1>
+</div>
 
-  <div class="grid-x grid-margin-x">
+<div id="welcome" class="report-block">
+  <div class="grid-x grid-margin-x" id="reports">
     <div class='center'>
   		<%= simple_form_for(:gen_reports, url: gen_reports_url, html: { :multipart => true, :class => 'form-inline' }, defaults: {label: false}) do |f| %>
-  			<fieldset>
   				<table id="user-upload-form">
   					<tbody>
 						<tr>
-							<th class="left"> Included in Report: </th>
+							<th class=""> Included in Report: </th>
 							<td class="left">
 								<%= f.input :report_choices, as: :check_boxes, collection: [ ['0', 'Inventory Summary'], ['1', 'School Kit Rentals Monthly'], ['2', 'School Kit Rentals Yearly'], ['3', 'Teacher Rentals Monthly'], ['4', 'Teacher Rentals Yearly'], ['5', 'Kit Statuses'], ['6', 'Kit Popularity']], label_method: :second, value_method: :first %>
 							</td>
 						</tr>
   					</tbody>
   				</table>
-  			</fieldset>
 				<div class="form-actions">
 					<%= f.button :submit, "Generate", :class => 'button radius upload-button' %>
 				</div>

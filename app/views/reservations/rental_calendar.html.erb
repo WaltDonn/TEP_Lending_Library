@@ -2,8 +2,21 @@
   <div class="grid-container">
 
     <div class="grid-x">
+      <!-- page title -->
       <div class="inner-title cell-block-x small-10">
         <span class="uline"><h1>RESERVATIONS</h1> </span>
+      </div>
+
+      <!-- button to see reservations list view -->
+      <% if (current_user.has_role?(:admin) || current_user.has_role?(:manager)) %>
+        <div class="cell-block-x small-2 side-link">
+          <h4><%= link_to 'List View', reservations_path %></h4>
+        </div>
+      <% end %>
+
+      <!-- page subtitle -->
+      <div class="subtitle cell-block-x small-12">
+        <p>Teacher reservation pick-up and drop-off dates</p>
       </div>
     </div>
 

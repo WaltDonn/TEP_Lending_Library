@@ -2,12 +2,17 @@
   <div class="grid-container">
 
     <div class="grid-x">
-      <div class="inner-title cell-block-x small-10">
+      <!-- page title -->
+      <div class="inner-title cell-block-x small-9">
         <span class="uline"><h1>RESERVATIONS</h1> </span>
       </div>
-      <div class="cell-block-x small-2 right side-link">
-        <h4><%= link_to 'New Reservation', new_reservation_path %></h4>
-      </div>
+      <!-- page subtitle -->
+      <div class="cell-block-x small-3 right side-link">
+        <h4><%= link_to 'New Reservation', new_reservation_path %> <i class="fas fa-plus blue"></i></h4>
+      <% if (current_user.has_role?(:admin) || current_user.has_role?(:manager)) %>
+          <h4><%= link_to 'Calendar View', rental_calendar_path %> <i class="far fa-calendar-alt"></i></h4>
+        </div>
+      <% end %>
     </div>
 
     <div class="rounded information-table">

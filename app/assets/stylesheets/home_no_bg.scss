@@ -6,12 +6,9 @@
 @import 'foundation';
 
 
-.home-content {
-    height: 100%;
-    background-image: image-url("home_bg.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.no-bg {
+  background-image: none;
+  height: 100%;
 }
 
 #welcome {
@@ -20,7 +17,6 @@
     width: 800px;
     height: 200px;
     z-index: 15;
-    top: 60%;
     left: 50%;
     margin: -200px 0 0 -400px;
 }
