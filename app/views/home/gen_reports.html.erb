@@ -4,25 +4,173 @@
 			<br/>
 			<div class="center">
 				<% if @choice_array != nil && @choice_array.size > 1 %>
-
 					<% if @choice_array.include? "0" %>
-						<p>TO ADD: Inventory Summary table.</p>
+						<!-- currently just the same as KIT ITEM STATUSES -->
+						<div class="cell-block-y">
+							<div class="grid-container">
+								<div class="inner-title cell-block-x small-9" >
+							      	<span class="uline"><h1>INVENTORY SUMMARY</h1> </span>
+							    </div>
+								<% unless @items.nil? || @items.empty? %>
+									<div class="rounded information-table">
+								      	<table class="information-table">
+									        <thead>
+									          <tr>
+									            <th>Kit Item ID</th>
+									            <th style="text-align:center;">Item Category</th>
+									            <th style="text-align:center;">Location</th>
+									            <th style="text-align:center;">Condition</th>
+									            <th style="text-align:center;">Reserved</th>
+									            <th style="text-align:center;">Blacked Out</th>
+									            <th style="text-align:center;">Active</th>
+									          </tr>
+									        </thead>
+									        <tbody>
+									          <% @items.each do |kitItem| %>
+									            <tr>
+									              <td><%= kitItem.readable_id %></td>
+									              <td style="text-align:center;"><%= kitItem.item_category.name %></td>
+									              <td style="text-align:center;"><%= kitItem.kit.location %></td>
+									              <td style="text-align:center;"><%= kitItem.condition %></td>
+									              <td style="text-align:center;"><%= kitItem.kit.reserved %></td>
+									              <td style="text-align:center;"><%= kitItem.kit.blackout %></td>
+									              <td style="text-align:center;"><%= kitItem.kit.is_active %></td>
+									            </tr>
+									          <% end %>
+									        </tbody>
+								      	</table>
+								    </div>
+								<% else %>
+								    <p><strong>No kit items in the system.</strong></p>
+								<% end %>	
+							</div>
+						</div>				
 					<% end %>
 
 					<% if @choice_array.include? "1" %>
-						<p>TO ADD: School Kit Rentals Monthly table.</p>
+						<div class="cell-block-y">
+							<div class="grid-container">
+								<div class="inner-title cell-block-x small-9" >
+							      	<span class="uline"><h1>SCHOOL MONTHLY RENTALS</h1> </span>
+							    </div>
+								<% unless @schools.nil? || @schools.empty? %>
+									<div class="rounded information-table">
+								      	<table class="information-table">
+									        <thead>
+									          <tr>
+									            <th>School</th>
+									            <th style="text-align:center;">Kits Rented</th>
+									            <th style="text-align:center;">Month</th>
+									            <th style="text-align:center;">Year</th>
+									          </tr>
+									        </thead>
+									        <tbody>
+									        	<% for y in 2015..Date.current.year do %>
+									        		<% for m in 1..12 do %>
+											          <% @schools.each do |school| %>
+												        <% if school.school_res_for_month(m, y) > 0 %>
+												            <tr>
+												              <td><%= school.name %></td>
+												              <td style="text-align:center;"><%= school.school_res_for_month(m, y) %></td> 
+												              <td style="text-align:center;"><%= m %></td>
+												              <td style="text-align:center;"><%= y %></td>
+												            </tr>
+												        <% end %>
+											          <% end %>
+											        <% end %>
+										        <% end %>
+									        </tbody>
+								      	</table>
+								    </div>
+								<% else %>
+								    <p><strong>No kit items in the system.</strong></p>
+								<% end %>	
+							</div>
+						</div>
 					<% end %>
 
+
+
 					<% if @choice_array.include? "2" %>
-						<p>TO ADD: School Kit Rentals Yearly table.</p>
+						<div class="cell-block-y">
+							<div class="grid-container">
+								<div class="inner-title cell-block-x small-9" >
+							      	<span class="uline"><h1>SCHOOL YEARLY RENTALS</h1> </span>
+							    </div>
+								<% unless @schools.nil? || @schools.empty? %>
+									<div class="rounded information-table">
+								      	<table class="information-table">
+									        <thead>
+									          <tr>
+									            <th>School</th>
+									            <th style="text-align:center;">Kits Rented</th>
+									            <th style="text-align:center;">Year</th>
+									          </tr>
+									        </thead>
+									        <tbody>
+									        	<% for y in 2015..Date.current.year do %>
+										          <% @schools.each do |school| %>
+											        <% if school.school_res_for_year(y) > 0 %>
+											            <tr>
+											              <td><%= school.name %></td>
+											              <td style="text-align:center;"><%= school.school_res_for_year(y) %></td> 
+											              <td style="text-align:center;"><%= y %></td>
+											            </tr>
+											        <% end %>
+										          <% end %>
+										        <% end %>
+									        </tbody>
+								      	</table>
+								    </div>
+								<% else %>
+								    <p><strong>No kit items in the system.</strong></p>
+								<% end %>	
+							</div>
+						</div>
 					<% end %>
+
+
 
 					<% if @choice_array.include? "3" %>
 						<p>TO ADD: Teacher Rentals Monthly table.</p>
 					<% end %>
 
 					<% if @choice_array.include? "4" %>
-						<p>TO ADD: Teacher Rentals Yearly table.</p>
+						<div class="cell-block-y">
+							<div class="grid-container">
+								<div class="inner-title cell-block-x small-9" >
+							      	<span class="uline"><h1>TEACHER YEARLY RENTALS</h1> </span>
+							    </div>
+								<% unless @users.nil? || @users.empty? %>
+									<div class="rounded information-table">
+								      	<table class="information-table">
+									        <thead>
+									          <tr>
+									            <th>Name</th>
+									            <th style="text-align:center;">Kits Rented</th>
+									            <th style="text-align:center;">Year</th>
+									          </tr>
+									        </thead>
+									        <tbody>
+									        	<% for y in 2015..Date.current.year do %>
+										          <% @users.each do |user| %>
+											        <% if user.res_for_year(y) > 0 %>
+											            <tr>
+											              <td><%= user.name %></td>
+											              <td style="text-align:center;"><%= user.res_for_year(y) %></td> 
+											              <td style="text-align:center;"><%= y %></td>
+											            </tr>
+											        <% end %>
+										          <% end %>
+										        <% end %>
+									        </tbody>
+								      	</table>
+								    </div>
+								<% else %>
+								    <p><strong>No kit items in the system.</strong></p>
+								<% end %>	
+							</div>
+						</div>		
 					<% end %>
 
 					<% if @choice_array.include? "5" %>

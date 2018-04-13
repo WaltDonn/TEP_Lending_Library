@@ -109,11 +109,13 @@ class HomeController < ApplicationController
   def gen_reports
   	authorize! :gen_reports, nil
 
-  	@one = params["gen_reports"]["input_1"]
-  	@two = params["gen_reports"]["input_2"]
   	@choice_array = params["gen_reports"]["report_choices"]
 
   	@items = Item.all
+
+  	@users = User.all
+
+  	@schools = School.all
 
 
 #---------------------------------------------------------------------------
