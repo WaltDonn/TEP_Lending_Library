@@ -256,6 +256,7 @@ class ReservationsController < ApplicationController
     
    
     reservation_category = ItemCategory.find(session[:rental_category_id])
+    
     #Nasty race condition if multiple ppl grab same kit
     @@semaphore.synchronize {
       kit_pool = Kit.available_for_item_category(reservation_category)
@@ -286,10 +287,35 @@ class ReservationsController < ApplicationController
   def update
     authorize! :update, @reservation
     respond_to do |format|
+       #Shouldn't accept new kit, after being returned
+      if(@reservation.picked_up == true){
+           @reservation.errors.add(:kit_id, "Cannot change kit after kit has been picked up")
+           format.html { render :edit }
+      }
+
+
+      #If the kit has been changed, then we need to un-reserve the old one
+      #Reserve the new one
+      save_kit_id = nil
+
+      if(params[:kit_id] != @reservation.kit_id)
+        save_kit_id = @reservation.kit_id
+        Kit.find(params[:kit_id]).set_reserved
+        @reservation.kit.unset_reserved
+      end
+
+
+
       if @reservation.update(reservation_params)
+        if(save_kit_id != nil)
+          #Kit was changed, and was saved
+          Kit.find(save_kit_id).unset_reserved
+        end
         format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
         format.json { render :show, status: :ok, location: @reservation }
       else
+        #Change not accepted, unreserve kit
+        Kit.find(params[:kit_id]).unset_reserved
         format.html { render :edit }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
