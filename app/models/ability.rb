@@ -11,14 +11,26 @@ class Ability
     if user.has_role? :admin
         can :manage, :all
     elsif user.has_role? :manager
-        can :dashboard, Dashboard
-        can :crud, ComponentCategory
-        can :crud, Component
-        can :crud, Kit
-        can :crud, ItemCategory
-        can :crud, Item
-        #can :crud, Report
-        can :steamkits, ItemCategory
+        can :dashboard,      Dashboard
+        can :upload_users,   Home
+        can :create_users,   Home
+        can :upload_schools, Home
+        can :create_schools, Home
+        can :reports,        Home
+        can :gen_reports,    Home
+        can :crud,           Item
+        can :crud,           Kit
+
+        can :crud,           School
+        can :crud,           User
+        can :rental_history, User
+
+
+
+        
+
+        
+    
         can :read, Reservation
         can :show, Reservation
         can :create, Reservation
@@ -28,13 +40,6 @@ class Ability
         can :update, Reservation do |r|  
           r.teacher_id == user.id
         end
-        
-        
-        can :crud, School
-        
-        
-        can :read, User
-        can :show, User
         
         can :returns, Reservation
         can :pickup, Reservation
@@ -59,12 +64,6 @@ class Ability
       can :crud, Reservation do |r|
         r.teacher_id == user.id
       end
-      
-      can :steamkits, ItemCategory
-      
-      
-    else
-      can :steamkits, ItemCategory
     end
     
   end

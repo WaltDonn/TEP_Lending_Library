@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
-
+    before_action :authenticate_user!
+  
   def dashboard
     @kits_rented = Reservation.kit_history
     @top_kits = Kit.top_kits
