@@ -63,6 +63,7 @@ gem "highcharts-rails"
 gem 'groupdate'
 gem 'hirb'
 gem 'byebug'
+gem 'pg'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -85,9 +86,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :production do
-   gem 'pg'
-end
 
 group :test do
   gem 'test-unit'
