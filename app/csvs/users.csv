@@ -1,10 +1,9 @@
-email,first_name,last_name,phone_num,class_size,school,is_active,password,password_confirmation,role
-accounts@theeducationpartnership.org,Admin,Admin,412-142-1492,,,true,secretpassword,secretpassword,admin
-volunteer@teplending.org,Volunteer,Volunteer,,,,true,123secret,123secret,volunteer
-rgarcia@teplending.org,Holly,Lawson,412-733-7854,20,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
-firstpr@teplending.org,Pam,Phillips,307-276-8755,30,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
-webdragon@teplending.org,Chandra,Roberts,412-853-7126,40,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
-jguyer@teplending.org,Mary,Urbaniak,412-363-8145,30,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
-sakusha@teplending.org,Anthony,Butz,412-452-7041,40,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
-crandall@teplending.org,Ronald,Hatch,412-439-0310,20,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
-xhuang1@andrew.cmu.edu,Killian,Huang,914-327-1375,,,true,123secret,123secret,admin
+id,email,first_name,last_name,phone_num,class_size,school,is_active,password,password_confirmation,role
+1,accounts@theeducationpartnership.org,Admin,Admin,412-142-1492,,,true,secretpassword,secretpassword,admin
+2,volunteer@teplending.org,Volunteer,Volunteer,,,,true,123secret,123secret,volunteer
+3,rgarcia@teplending.org,Holly,Lawson,412-733-7854,20,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
+4,firstpr@teplending.org,Pam,Phillips,307-276-8755,30,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
+5,webdragon@teplending.org,Chandra,Roberts,412-853-7126,40,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
+6,jguyer@teplending.org,Mary,Urbaniak,412-363-8145,30,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
+7,sakusha@teplending.org,Anthony,Butz,412-452-7041,40,Aliquippa Junior-Senior High,true,123secret,123secret,teacher
+8,crandall@teplending.org,Ronald,Hatch,412-439-0310,20,Aliquippa Junior-Senior High,true,123secret,123secret,teacher

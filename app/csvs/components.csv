@@ -1,31 +1,31 @@
-name,max_quantity,damaged,missing,consumable,item_id
-Teachers guide,2,0,0,false,1
-Learning Systems (iPad Holder w/ red reflector),4,0,0,false,1
-Word Tiles (52 tiles per box),4,0,0,false,1
-Tangram Pieces (7 tiles per cox),4,0,0,false,1
-Number Pieces (40 tiles per box),4,0,0,false,1
-Plastic Storage System (3 trays with lid),4,0,0,false,1
-Strap,1,0,0,false,1
-iPad,4,0,0,false,1
-Finch Robot,4,0,0,false,2
-Power Cord,1,0,0,false,2
-Hummingbird Duo Controller,4,0,0,false,3
-5V/2A Power Cable,4,0,0,false,3
-USB Cable,4,0,0,false,3
-Terminal Tool,4,0,0,false,3
-Standoffs,16,0,0,false,3
-Servos,10,0,0,false,3
-Servo Extension Cable,6,0,0,false,3
-Single Color LED's,12,0,0,false,3
-Tri-Color LED's,8,0,0,false,3
-Light Sensor,4,0,0,false,3
-Sound Sensor,2,0,0,false,3
-Rotary Sensor,2,0,0,false,3
-Temperature Sensor,4,0,0,false,3
-Distance Sensor,2,0,0,false,3
-Vibration Motors,4,0,0,false,3
-Gear Motors,4,0,0,false,3
-Wheel Adapter,4,0,0,false,3
-Plastic Block Adapter,4,0,0,false,3
-280 lego pieces,3,0,0,false,4
-iPad,3,0,0,false,4
+id,name,max_quantity,damaged,missing,consumable,item_id
+1,Teachers guide,2,0,0,false,1
+2,Learning Systems (iPad Holder w/ red reflector),4,0,0,false,1
+3,Word Tiles (52 tiles per box),4,0,0,false,1
+4,Tangram Pieces (7 tiles per cox),4,0,0,false,1
+5,Number Pieces (40 tiles per box),4,0,0,false,1
+6,Plastic Storage System (3 trays with lid),4,0,0,false,1
+7,Strap,1,0,0,false,1
+8,iPad,4,0,0,false,1
+9,Finch Robot,4,0,0,false,2
+10,Power Cord,1,0,0,false,2
+11,Hummingbird Duo Controller,4,0,0,false,3
+12,5V/2A Power Cable,4,0,0,false,3
+13,USB Cable,4,0,0,false,3
+14,Terminal Tool,4,0,0,false,3
+15,Standoffs,16,0,0,false,3
+16,Servos,10,0,0,false,3
+17,Servo Extension Cable,6,0,0,false,3
+18,Single Color LED's,12,0,0,false,3
+19,Tri-Color LED's,8,0,0,false,3
+20,Light Sensor,4,0,0,false,3
+21,Sound Sensor,2,0,0,false,3
+22,Rotary Sensor,2,0,0,false,3
+23,Temperature Sensor,4,0,0,false,3
+24,Distance Sensor,2,0,0,false,3
+25,Vibration Motors,4,0,0,false,3
+26,Gear Motors,4,0,0,false,3
+27,Wheel Adapter,4,0,0,false,3
+28,Plastic Block Adapter,4,0,0,false,3
+29,280 lego pieces,3,0,0,false,4
+30,iPad,3,0,0,false,4
