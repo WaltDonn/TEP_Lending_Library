@@ -1,6 +1,6 @@
 class KitsController < ApplicationController
   before_action :set_kit, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:show, :index, :edit, :update, :destroy, :new, :create]
+  before_action :authenticate_user!, except: [:steamkits, :available_kit]
 
   # GET /kits
   # GET /kits.json
@@ -15,7 +15,7 @@ class KitsController < ApplicationController
   
   def available_kit
     @rental_category = ItemCategory.find(params[:id])
-    @kits_count = 1
+    @kits_count = Kit.available_for_item_category(@rental_category).count
   end
 
   # GET /kits/1

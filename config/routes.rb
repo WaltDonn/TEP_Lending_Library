@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   # rental/reservations routes
   get 'rental_calendar' => 'reservations#rental_calendar', as: :rental_calendar
   get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
-  get 'users/:id/rental_calendar' => 'users#rental_calendar', as: :personal_rentals
   get 'users/:id/rental_history' => 'users#rental_history', as: :rental_history
   
   # kit shopping routes
@@ -75,6 +74,6 @@ Rails.application.routes.draw do
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
   match "/403", :to => "errors#access_denied", :via => :all
-  get '*a', to: 'errors#routing'
+  get '*a', to: 'errors#not_found'
   
 end

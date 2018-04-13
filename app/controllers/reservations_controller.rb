@@ -4,68 +4,47 @@ class ReservationsController < ApplicationController
   before_action :authenticate_user!
   @@semaphore = Mutex.new
 
-  # GET /reservations
-  # GET /reservations.json
-  def index
-    @reservations = Reservation.all
-    authorize! :index, @reservations
-  end
+
 
 
   # GET /reservation_calendar/1
   def rental_calendar
     @reservations = Reservation.all
-    authorize! :index, @reservations
+    authorize! :rental_calendar, @reservations
   end
 
-  def month_calendar_td_options
-    ->(start_date, current_calendar_date) {
-      {class: "calendar-date", data: {day: current_calendar_date}}
-    }
-  end
+  # def month_calendar_td_options
+  #   ->(start_date, current_calendar_date) {
+  #     {class: "calendar-date", data: {day: current_calendar_date}}
+  #   }
+  # end
 
-  def rental_dates
-    @reservation = params[:reservation]
-  end
+  # def rental_dates
+  #   @reservation = params[:reservation]
+  # end
   
+
+#VOLUNTEER ACTIONS
+
   # GET /returns
   def volunteer_portal
+    authorize! :volunteer_portal, Reservation
   end
 
   # GET /returns
   def returns
     @today_return = Reservation.returning_today
+    authorize! :returns, Reservation
   end
 
   # GET /pickup
   def pickup
     @today_pickup = Reservation.picking_up_today
-  end
-  
-  def choose_dates
-    if(session[:rental_category_id].nil?)
-      redirect_to shopping_path
-    end
-
-    @start_date = Date.today.next_month.beginning_of_month
-    @end_date = Date.today.next_month.end_of_month
-
-    # pick_up_dates is the first full week of next month starting from the first weekday
-    @pick_up_start_date = @start_date
-    @pick_up_start_date += 1.days until @pick_up_start_date.wday == 1 # wday 1 is monday, etc.
-    @pick_up_dates = @pick_up_start_date..(@pick_up_start_date + 5.days)
-
-    # return_dates is the last full week of next month ending on the last weekday
-    @return_end_date = @end_date
-    @return_end_date -= 1.days until @return_end_date.wday == 5 # wday 1 is monday, etc.
-    @return_dates = (@return_end_date - 5.days)..@return_end_date
-
-
+    authorize! :pickup, Reservation
   end
 
   def picked_up
-
-    authorize! :picked_up, @reservations
+    authorize! :picked_up, Reservation
 
     @reservation.picked_up = true
     @reservation.user_check_out = params["picked_up_path"]["name"]
@@ -83,17 +62,17 @@ class ReservationsController < ApplicationController
   end
 
   def returned
-    authorize! :returned, @reservations
+    authorize! :returned, Reservation
 
     @reservation.returned = true
     @reservation.user_check_in = params["returned_path"]["name"]
 
-    @kit = @reservation.kit
-    @kit.reserved = false
-    @kit.save!
+    kit = @reservation.kit
+    kit.reserved = false
+    
 
     respond_to do |format|
-      if @reservation.save!
+      if @reservation.save! && kit.save!
         format.html { redirect_to returns_path, notice: 'Reservation was successfully checked in.' }
       else
         format.html { redirect_to returns_path, notice: 'Issue checking in item.' }
@@ -101,8 +80,34 @@ class ReservationsController < ApplicationController
     end
   end
 
+
+
+#RENT A KIT ACTIONS
+
+  def choose_dates
+    authorize! :choose_dates, Reservation
+
+    if(session[:rental_category_id].nil?)
+      redirect_to shopping_path
+    end
+
+    @start_date = Date.today.next_month.beginning_of_month
+    @end_date = Date.today.next_month.end_of_month
+
+    # pick_up_dates is the first full week of next month starting from the first weekday
+    @pick_up_start_date = @start_date
+    @pick_up_start_date += 1.days until @pick_up_start_date.wday == 1 # wday 1 is monday, etc.
+    @pick_up_dates = @pick_up_start_date..(@pick_up_start_date + 5.days)
+
+    # return_dates is the last full week of next month ending on the last weekday
+    @return_end_date = @end_date
+    @return_end_date -= 1.days until @return_end_date.wday == 5 # wday 1 is monday, etc.
+    @return_dates = (@return_end_date - 5.days)..@return_end_date
+  end
+
   # POST /select_dates
   def select_dates
+    authorize! :select_dates, Reservation
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
     end
@@ -137,16 +142,15 @@ class ReservationsController < ApplicationController
     end
   end
 
-  
   def confirm_user_details
+    authorize! :confirm_user_details, Reservation
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
     end
   
     @rental_category = ItemCategory.find(session[:rental_category_id])
-    authorize! :confirm_user_details, nil
   end
-  
+
   def edit_user_details
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
@@ -154,20 +158,28 @@ class ReservationsController < ApplicationController
     
     @rental_category = ItemCategory.find(session[:rental_category_id])
     @user = current_user
-    authorize! :edit_user_details, nil
+
+    authorize! :edit_user_details, @user
   end
   
   def submit_user_details
     @user = current_user
+    authorize! :submit_user_details, @user
+
     if(!params[:user][:first_name].nil?)
       @user.first_name = params[:user][:first_name]
     end
-    
     if(!params[:user][:last_name].nil?)
       @user.last_name = params[:user][:last_name]
     end
     if(!params[:user][:email].nil?)
       @user.email = params[:user][:email]
+    end
+    if(!params[:user][:phone_num].nil?)
+      @user.phone_num = params[:user][:phone_num]
+    end
+    if(!params[:user][:phone_ext].nil?)
+      @user.phone_ext = params[:user][:phone_ext]
     end
     if(!params[:user][:schoold_id].nil?)
       @user.school_id = params[:user][:school_id]
@@ -176,7 +188,7 @@ class ReservationsController < ApplicationController
       @user.class_size = params[:user][:class_size]
     end
     respond_to do |format|
-      if @user.save!
+      if @user.save
           format.html { redirect_to reservation_choose_dates_path }
       else
            format.html { render :edit_user_details }
@@ -187,6 +199,18 @@ class ReservationsController < ApplicationController
   def reservation_error
   end
   
+
+
+
+
+#CRUD ACTIONS
+
+  # GET /reservations
+  # GET /reservations.json
+  def index
+    @reservations = Reservation.all
+    authorize! :index, @reservations
+  end
   
   # GET /reservations/1
   # GET /reservations/1.json
@@ -224,13 +248,15 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.teacher_id = current_user.id
-    
+    authorize! :create, @reservation
+
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
     end
     
    
     reservation_category = ItemCategory.find(session[:rental_category_id])
+    
     #Nasty race condition if multiple ppl grab same kit
     @@semaphore.synchronize {
       kit_pool = Kit.available_for_item_category(reservation_category)
@@ -259,12 +285,37 @@ class ReservationsController < ApplicationController
   # PATCH/PUT /reservations/1
   # PATCH/PUT /reservations/1.json
   def update
-    authorize! :update, @reservations
+    authorize! :update, @reservation
     respond_to do |format|
+       #Shouldn't accept new kit, after being returned
+      if(@reservation.picked_up == true){
+           @reservation.errors.add(:kit_id, "Cannot change kit after kit has been picked up")
+           format.html { render :edit }
+      }
+
+
+      #If the kit has been changed, then we need to un-reserve the old one
+      #Reserve the new one
+      save_kit_id = nil
+
+      if(params[:kit_id] != @reservation.kit_id)
+        save_kit_id = @reservation.kit_id
+        Kit.find(params[:kit_id]).set_reserved
+        @reservation.kit.unset_reserved
+      end
+
+
+
       if @reservation.update(reservation_params)
+        if(save_kit_id != nil)
+          #Kit was changed, and was saved
+          Kit.find(save_kit_id).unset_reserved
+        end
         format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
         format.json { render :show, status: :ok, location: @reservation }
       else
+        #Change not accepted, unreserve kit
+        Kit.find(params[:kit_id]).unset_reserved
         format.html { render :edit }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
@@ -274,6 +325,7 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
+    authorize! :destroy, @reservation
     @reservation.destroy
     respond_to do |format|
       format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }

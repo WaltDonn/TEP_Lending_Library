@@ -43,9 +43,6 @@ class ItemsController < ApplicationController
     authorize! :edit, @item
   end
 
-  def item_components
-
-  end
 
   # POST /items
   # POST /items.json

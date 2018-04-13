@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
-
+    before_action :authenticate_user!
+  
   def dashboard
     @kits_rented = Reservation.kit_history
     @top_kits = Kit.top_kits
@@ -8,6 +9,8 @@ class DashboardController < ApplicationController
     @teacher_rentals = Reservation.teacher_rental_hist
     @employees = User.active.employees
     @damaged_kits = Kit.damaged
+
+    authorize! :dashboard, Dashboard
   end
   
 end

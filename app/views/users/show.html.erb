@@ -29,7 +29,7 @@
             <th>Phone Number</th>
             <td><%=  @user.phone_num %> </td>
           </tr>
-          <% if !@user.phone_ext.nil? %>
+          <% if !@user.phone_ext.nil? && @user.phone_ext != "" %>
             <tr>
                <th>Phone Extension</th>
                 <td> <%= @user.phone_ext%> </td>

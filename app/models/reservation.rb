@@ -19,6 +19,8 @@ class Reservation < ApplicationRecord
     validate :kit_marked_reserved
     validate :kit_rentable, on: :create
     
+
+    before_destroy :destroyable
     
     
     belongs_to :kit
@@ -52,6 +54,16 @@ class Reservation < ApplicationRecord
 
 
     private
+    def destroyable
+        if(self.picked_up == false)
+            return true
+        end
+        errors.add(:kit_id, "Reservations with a kit picked up can't be deleted")
+        return false
+    end
+
+
+
     def kit_rentable
         if(self.kit == nil)
              errors.add(:kit_id, 'Kit should be present')

@@ -39,6 +39,7 @@ namespace :import_incidents_csv do
       CSV.foreach(csv, :headers => true, :col_sep => ',', :force_quotes => true) do |row|
 
         @user = User.new
+        @user.id = row['id']
         @user.email = row['email']
         @user.first_name = row['first_name']
         @user.last_name = row['last_name']
