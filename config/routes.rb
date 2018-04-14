@@ -24,10 +24,8 @@ Rails.application.routes.draw do
   get 'pickup' => 'reservations#pickup', as: :pickup
   post 'picked_up/:id' => 'reservations#picked_up', as: :picked_up
   post 'returned/:id' => 'reservations#returned', as: :returned
-
-  # dashboard routes
   get 'dashboard' => 'dashboard#dashboard', as: :dashboard
-  get 'volunteer_portal' => 'dashboard#volunteer_portal', as: :volunteer_portal
+  get 'volunteer_portal' => 'reservations#volunteer_portal', as: :volunteer_portal
   
   # rental/reservations routes
   get 'rental_calendar' => 'reservations#rental_calendar', as: :rental_calendar
