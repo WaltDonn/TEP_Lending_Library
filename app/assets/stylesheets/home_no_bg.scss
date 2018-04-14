@@ -10,28 +10,3 @@
   background-image: none;
   height: 100%;
 }
-
-#welcome {
-    color: $white;
-    position: absolute;
-    width: 800px;
-    height: 200px;
-    z-index: 15;
-    left: 50%;
-    margin: -200px 0 0 -400px;
-}
-
-.welcome-button{
-    width: 180px;
-    height: 50px;
-    color: $white;
-    display: inline-block;
-    border: none;
-    background-color: $primary-color;
-    font-size: 1.2rem;
-}
-
-.welcome-button:hover,
-.welcome-button:active {
-    background-color: scale-color($primary-color, $lightness: -15%);
-}

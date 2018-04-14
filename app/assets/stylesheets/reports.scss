@@ -5,11 +5,7 @@
 @import 'settings';
 @import 'foundation';
 
-body.home-content {
-  // background-image: none;
-}
-
-div#welcome.report-block {
+div.center.report {
   top: 55%;
   border: $medium-gray solid 1px;
   border-radius: $rounded-radius;
@@ -20,7 +16,7 @@ div#welcome.report-block {
   color: $primary-color;
 }
 
-#welcome #reports {
+#reports {
 
   #user-upload-form th {
     color: $secondary-color;
