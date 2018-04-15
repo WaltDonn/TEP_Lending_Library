@@ -35,7 +35,7 @@ class Ability
         can :rental_history,       User
         
     elsif user.has_role? :volunteer
-        can :volunteer_actions,    Reservation
+        can :volunteer_actions,    :Reservation
         can :show,                 Kit
     
     elsif user.has_role? :teacher
@@ -45,8 +45,8 @@ class Ability
         can :update,               User do |u|  
           u.id == user.id
         end
-        can :rent_kit,             Reservation
-        can :submit_user_details,  Reservation do |u|
+        can :rent_kit,             :Reservation
+        can :submit_user_details,  :Reservation do |u|
           u.id == user.id
         end
         can :edit_user_details,    Reservation do |u|
