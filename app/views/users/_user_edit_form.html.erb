@@ -4,7 +4,7 @@
     <div class="small-1 cell"></div>
     <div class="small-3 cell" id="profile-title-box">
       <br>
-      <h2 class="center"> Edit User Information </h2>
+      <h2 class="title-text"> Edit User <br /> Information </h2>
     </div>
     <div id="user-information" class='cell small-7'>
       <%= simple_form_for @user, :html => { :class => 'form-inline user-info-form' }, defaults: {label: false} do |f| %>
@@ -15,13 +15,14 @@
               <th>Name</th>
               <td>
                 <div class="row">
-                  <%= f.input :first_name, :input_html => { :class => 'avg', :style => "width: 200px;" }%>
-                  <%= f.input :last_name, :input_html => { :class => 'avg', :style => "width: 200px;" }%>
+                  <%= f.input :first_name, :input_html => { :class => 'avg', :style => "width: 190px;" }%>
+                  <div style="width: 20px;"></div>
+                  <%= f.input :last_name, :input_html => { :class => 'avg', :style => "width: 190px;" }%>
                 </div>
               </td>
             </tr>
             <tr>
-              <% if @user.role == "Teacher" %>
+              <% if @user.has_role?("teacher") %>
                 <th>School Email</th>
               <% else %>
                 <th>Email</th>
@@ -43,7 +44,7 @@
               </td>
             </tr>
             
-            <% if @user.role == "Teacher" %>
+            <% if @user.has_role?("teacher") %>
               <tr>
                 <th>School</th>
                 <td>
@@ -57,7 +58,7 @@
                 </td>
               </tr>
             <% end %>
-            <% if @user.role == 'admin' %>
+            <% if @user.has_role?('admin') || @user.has_role?('manager') %>
               <tr>
                 <th>Role</th>
                 <td><%=  f.input :role, :input_html => { :class => 'avg' } %></td>

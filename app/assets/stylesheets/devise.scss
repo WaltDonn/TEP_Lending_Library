@@ -1,6 +1,21 @@
 @import 'settings';
 @import 'foundation';
 
+// all pages
+h2.text-center {
+  color: $white;
+}
+
+// forgot password page
+#password-forgot-button {
+  .button {
+    margin: 0rem;
+    width: auto;
+    font-size: 18px;
+    padding: 0rem 1rem;
+  }
+}
+
 /* login page */
 .devise-content {
   background-image: url("home_bg.jpg");
