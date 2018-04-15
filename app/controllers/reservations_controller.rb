@@ -143,7 +143,7 @@ class ReservationsController < ApplicationController
   end
 
   def confirm_user_details
-    authorize! :confirm_user_details, :Reservation
+    authorize! :confirm_user_details, current_user
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
     end
