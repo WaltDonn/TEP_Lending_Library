@@ -46,13 +46,14 @@ class Ability
           u.id == user.id
         end
         can :rent_kit,             :Reservation
-        can :submit_user_details,  :Reservation do |u|
+        
+        can :submit_user_details,  user do |u|
           u.id == user.id
         end
-        can :edit_user_details,    Reservation do |u|
+        can :edit_user_details,    user do |u|
           u.id == user.id
         end
-        can :confirm_user_details, Reservation do |u|
+        can :confirm_user_details, user do |u|
           u.id == user.id
         end
     end
