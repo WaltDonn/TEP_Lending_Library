@@ -17,6 +17,7 @@ module LendingLibrary
       # Configure single controller layout
       Devise::SessionsController.layout "home"
       Devise::ConfirmationsController.layout "home"
+      Devise::PasswordsController.layout "home"
     end
 
     # Settings in config/environments/* take precedence over those specified here.

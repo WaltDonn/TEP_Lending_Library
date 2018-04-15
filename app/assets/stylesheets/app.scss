@@ -1,0 +1,92 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require simple_form
+ *= require foundation_and_overrides
+ *= require jquery-ui
+ *= require users
+ *= require kits
+ *= require items
+ *= require errors
+ */
+
+ $orange: #f99d31;
+ $blue: #0076c0;
+ $black: #333333;
+ $dark-grey: #707070;
+ $med-grey: #bab9b9;
+ $light-grey: #ebebeb;
+ $white: #f5f5f5;
+ $green: #51c31e;
+ $red: #de7f7f;
+ 
+ $footer-bg: #494949;
+ $primary: $orange;
+ $secondary: $blue;
+ $notice: $green;
+ $alert: $red;
+ $none: transparent;
+ 
+ /* general app stylings */
+ 
+ body {
+   overflow-x: hidden;
+ }
+ 
+ footer {
+   background-color: $footer-bg;
+   color: $med-grey;
+   padding: 2rem 1rem;
+ }
+ 
+ footer a {
+   color: $primary;
+ }
+ 
+ .white.social {
+   color: $white;
+   padding: 0rem 0.4rem;
+ }
+ 
+ .top-bar-left img {
+   transform: scale(0.8, 0.8);
+ }
+ 
+ /* general stylings */
+ 
+ .center {
+   text-align: center;
+   margin: auto;
+ }
+ 
+ .left {
+   text-align: left;
+ }
+ 
+ .right {
+   text-align: right;
+ }
+ 
+ .rounded {
+   border-radius: 20px;
+ }
+ 
+ .clearfix {
+   overflow: auto;
+ }
+ 
+ .red {
+   color: $red;
+ }
+ 
+ .green {
+   color: $green;
+ }
