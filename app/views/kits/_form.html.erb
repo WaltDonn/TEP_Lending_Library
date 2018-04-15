@@ -4,13 +4,41 @@
     <%= simple_form_for @kit, :html => { :class => 'form-horizontal' } do |f| %>
       <div class="grid-x">
         <div class="inner-title cell-block-x small-8 small-offset-1">
-          <span class="uline"><h1><%= controller.action_name.upcase %></h1> Item Category</span>
+          <span class="uline"><h1>Kit <%= @kit.id%></h1></span>
         </div>
       </div>
 
       <div class="grid-x">
         <div class="cell-block-x small-offset-1">
           <%= f.input :location %>
+        </div>
+      </div>
+
+      <div class="grid-x">
+        <div class="cell-block-x small-offset-1">
+          <%= f.input :is_active %>
+        </div>
+      </div>
+
+
+       <div class="grid-x">
+        <div class="cell-block-x small-offset-1">
+          <table class="item-table">
+              <thead>
+                <th>Name</th>
+                <th>Condition</th>
+              </thead>
+              <tbody>
+                <% @kit.items.each do |item| %>
+                  <tr>
+                    <td><%= link_to item.item_category.name, item_path(item)=%></td>
+                    <td style="text-align:center;"><%= item.condition %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <!--Should use code from kit creation? !-->
+          <a href="#"> add an item</a>
         </div>
       </div>
 

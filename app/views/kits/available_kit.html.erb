@@ -28,7 +28,7 @@
           <h3>No kits are currently available, check back next month please</h3>
         <% else %>
           <div class='button radius', id='rent-kit-button'>
-            <%= link_to 'RENT THIS KIT', confirm_user_details_path(), :onclick => session[:rental_category_id] = @rental_category.id %>
+            <%= link_to 'BORROW THIS KIT', confirm_user_details_path(), :onclick => session[:rental_category_id] = @rental_category.id %>
           </div>
         <% end %>
        </div>

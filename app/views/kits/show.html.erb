@@ -9,7 +9,9 @@
     <div class="cell-block-container cell auto">
       <div class="cell-block-y small-6" id="component-block">
         <p> Kit Details</p>
-        
+        <p> Kit Location <%= @kit.location %> </p>
+        <p> Active <%= @kit.is_active ? "Yes" : "No" %> </p> 
+        <p> Blackout <%= @kit.blackout ? "Yes" : "No" %> </p>
       </div>
     </div>
 
@@ -17,11 +19,24 @@
     <div class="grid-x grid-margin-x">
       <div class="cell-block-container cell auto">
         <div class="cell-block-y small-6" id="component-block">
-         <p> items</p>
+         <table class="item-table">
+          <thead>
+            <th>Name</th>
+            <th>Condition</th>
+          </thead>
+          <tbody>
+            <% @kit.items.each do |item| %>
+              <tr>
+                <td><%= link_to item.item_category.name, item_path(item)=%></td>
+                <td style="text-align:center;"><%= item.condition %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
         </div>
       </div>
     </div>
-    <% end %>
+  <% end %>
 
 
   </div>
