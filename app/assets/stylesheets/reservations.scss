@@ -245,6 +245,18 @@ i {
 
 // volunteer portal
 
+#component-block {
+  margin-top: 0rem;
+
+  a.button.radius {
+    width: 100%;
+    height: 4rem;
+    padding-top: 1.5rem;
+  }
+}
+
+// uploads
+
 #upload-users, #upload-schools {
   color: $white;
   position: absolute;
