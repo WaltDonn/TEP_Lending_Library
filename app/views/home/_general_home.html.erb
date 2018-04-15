@@ -8,7 +8,17 @@
 			<br/>
 			<br/>
 			<div class="center">
-				<%= link_to 'Let\'s get started!', new_user_session_path, :class => 'button welcome-button' %>
+				<% unless current_user %>
+					<%= link_to 'Let\'s get started!', new_user_session_path, :class => 'button welcome-button' %>
+				<% else%>
+					<% if current_user.has_role?(:teacher) %>
+						<%= link_to 'Let\'s get started!', shopping_path, :class => 'button welcome-button' %>
+					<% elsif current_user.has_role?(:volunteer)%>
+						<%= link_to 'Let\'s get started!', volunteer_portal_path, :class => 'button welcome-button' %>
+					<% elsif current_user.has_role?(:manager) || current_user.has_role?(:admin) %>
+						<%= link_to 'Let\'s get started!', dashboard_path, :class => 'button welcome-button' %>
+					<% end %>
+				<% end %>
 			</div>
 		</div>
 </div>
