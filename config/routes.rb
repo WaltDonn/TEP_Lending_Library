@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   get 'dashboard' => 'dashboard#dashboard', as: :dashboard
   get 'volunteer_portal' => 'reservations#volunteer_portal', as: :volunteer_portal
   
+  # making new components
+  patch 'add_component_item' => 'items#add_component', as: :add_component_item
+  patch 'add_component' => 'kits#add_component', as: :add_component_kit
+
   # rental/reservations routes
   get 'rental_calendar' => 'reservations#rental_calendar', as: :rental_calendar
   get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
@@ -42,6 +46,8 @@ Rails.application.routes.draw do
   patch 'submit_user_details' => 'reservations#submit_user_details', as: :submit_user_details
   get 'reservation_error' => 'reservations#reservation_error', as: :reservation_error
   
+  # new kit routes
+  post 'create_item_category' => 'kits#create_item_category', as: :create_item_category
   
   # static page routes
   get '/' => 'home#home', as: :home
@@ -49,8 +55,6 @@ Rails.application.routes.draw do
   # uploading users from a csv
   get 'upload_users' => 'home#upload_users', as: :upload_users
   post 'create_users' => 'home#create_users', as: :create_users
-
-  
   
   # get 'home/upload_schools'
   get 'upload_schools' => 'home#upload_schools', as: :upload_schools

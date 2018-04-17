@@ -40,9 +40,15 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @component = Component.new
     authorize! :edit, @item
   end
 
+
+  def add_component
+    # authorize! :new, @component
+    @component.save!
+  end
 
   # POST /items
   # POST /items.json
