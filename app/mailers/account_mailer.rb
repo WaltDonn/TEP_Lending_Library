@@ -29,6 +29,7 @@ class AccountMailer < Devise::Mailer
 
 
     def confirmation_instructions(user, token, somethingElse)
+      AccountMailer.default_url_options[:host] = "tep-lending-library.herokuapp.com"
       @resource = user
       @password = user.password
       @token = token

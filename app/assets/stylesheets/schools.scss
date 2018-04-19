@@ -1,3 +1,24 @@
-// Place all the styles related to the schools controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+//stylings from users used
+#school-user{ 
+  a.button,
+  input.btn.button.radius, 
+  #edit-information {
+    color: white;
+    line-height: 2;
+  }
+}
+
+#edit-information {
+  height: 2rem;
+  padding-top: 0.25rem;
+}
+
+#school-info-buttons {
+  margin-top: 2rem;
+  margin-left: 1rem;
+  
+  .button {
+    display: block;
+    line-height: 2;
+  }
+}
