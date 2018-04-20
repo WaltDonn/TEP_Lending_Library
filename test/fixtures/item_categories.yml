@@ -4,6 +4,3 @@ one:
   id: 1
   name: Buzz Bot
   description: A pretty nice item!
-  inventory_level: 20
-  amount_available: 10
-

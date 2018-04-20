@@ -79,5 +79,48 @@ class KitTest < ActiveSupport::TestCase
 		assert_equal Kit.available_kits.map{|k| k.id}, [2, 3]
 	end
 
+	test 'test damaged kits method' do
+		assert_equal Kit.damaged.map{|k| k.id}, [1]
+	end
+
+	test 'rental categories method' do
+		assert_equal Kit.rental_categories.size, 1
+	end
+
+	test 'available for item category' do
+		assert_equal Kit.available_for_item_category(Kit.rental_categories.first).size, 2
+	end
+
+	test 'top kits' do
+		assert Kit.top_kits
+	end
+
+	test 'get photo' do
+		assert @kit.photo
+	end
+
+	test 'get name' do
+		assert_equal @kit.name, "Buzz Bot"
+	end
+
+	test 'get inventory' do
+		assert_equal @kit.inventory, 3
+	end
+
+	test 'set and unset reserve' do
+		refute @kit.reserved
+		@kit.set_reserved
+		assert @kit.reserved
+		@kit.unset_reserved
+		refute @kit.reserved
+	end
+
+	test 'kits cant be destroyed if they have items' do
+		@kit.destroy
+		assert @kit
+	end
+
+
+
 	
 end

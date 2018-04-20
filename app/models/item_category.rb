@@ -8,13 +8,6 @@ class ItemCategory < ApplicationRecord
     
     has_many :items
     
-    def more_available
-       if(self.amount_available == nil)
-           return false
-       end
-       self.amount_available > 0
-    end
-    
     def one_components_group
         self.items.first.components
     end

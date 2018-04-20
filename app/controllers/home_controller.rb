@@ -114,8 +114,8 @@ class HomeController < ApplicationController
 
 	# alright, below works except for getting past authentication
 
- 	pdf = PDFKit.new('http://localhost:3000/reports', :page_size => 'A3').to_pdf
- 	send_data(pdf, :filename => "reports.pdf", :type => "application/pdf")
+ 	# pdf = PDFKit.new('http://localhost:3000/reports', :page_size => 'A3').to_pdf
+ 	# send_data(pdf, :filename => "reports.pdf", :type => "application/pdf")
 
 	
   end

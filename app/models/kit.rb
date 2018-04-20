@@ -87,7 +87,7 @@ class Kit < ApplicationRecord
     private
     def is_destroyable
         if(self.items.size > 0)
-            errors.add(:items, "Kit still has items can't be destroyed")
+            errors.add(:items, "Kit still has items and can't be destroyed")
             return false
         end
     end
