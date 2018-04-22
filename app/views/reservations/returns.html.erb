@@ -4,7 +4,7 @@
       <span class="uline"><h1>CHECK IN</h1> </span>
     </div>
 
-  <% unless @today_return %>
+  <% unless @today_return == nil || @today_return.empty? %>
     <div class="rounded information-table">
       <table class="information-table">
         <thead>
@@ -20,7 +20,11 @@
         <tbody>
           <% @today_return.each do |returnKit| %>
             <tr>
-              <td><%= returnKit.teacher.school.name %></td>
+              <% unless returnKit.teacher.school == nil %>
+                <td><%= returnKit.teacher.school.name %></td>
+              <% else %>
+                <td></td>
+              <% end %>
               <td style="text-align:center;"><%= returnKit.teacher.name %></td>
               <td style="text-align:center;"><%= returnKit.kit.items.first.item_category.name %></td>
               <%= simple_form_for(:returned_path, url: returned_url(returnKit)) do |f| %>
