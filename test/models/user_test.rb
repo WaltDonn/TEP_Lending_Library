@@ -141,7 +141,6 @@ class UserTest < ActiveSupport::TestCase
 
 # test callback? reformat phone?
 	test 'should not be destroyed when delete is attempted' do
-		byebug
 		@user.destroy
 		refute @user.destroyed?
 	end
