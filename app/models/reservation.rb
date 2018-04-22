@@ -33,7 +33,7 @@ class Reservation < ApplicationRecord
 
     scope :get_month,             ->(month){where("EXTRACT(MONTH FROM pick_up_date) = ?", month)}
     scope :returning_today,       -> { where("picked_up = ? AND returned = ? AND return_date <= ?", true, false, Date.current)}
-    scope :picking_up_today,      -> { where("picked_up = ? AND pick_up_date >= ?", false, Date.current) }
+    scope :picking_up_today,      -> { where("picked_up = ? AND pick_up_date <= ?", false, Date.current) }
 
 
     def past_due?
