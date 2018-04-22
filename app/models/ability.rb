@@ -48,6 +48,7 @@ class Ability
         can :rent_kit,             :Reservation
         can :create,               Reservation
         can :new,                  Reservation
+        can :rental_history,       User
         
         can :submit_user_details,  user do |u|
           u.id == user.id
