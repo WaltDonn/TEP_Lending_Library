@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservation_calendar/1
   def rental_calendar
-    @reservations = Reservation.all
+    @reservations = Reservation.all.paginate(:page => params[:page]).per_page(10)
     authorize! :rental_calendar, @reservations
   end
   
