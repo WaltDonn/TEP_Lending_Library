@@ -91,7 +91,6 @@ class ReservationsController < ApplicationController
 
     # return_dates is the last full week of next month ending on the last weekday
     @return_end_date = @end_date
-    byebug
     @return_end_date -= 1.days until @return_end_date.wday == 1 # wday 1 is monday, etc.
     @return_dates = (@return_end_date)..(@return_end_date + 5.days)
   end
