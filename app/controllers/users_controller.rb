@@ -8,13 +8,13 @@ class UsersController < ApplicationController
     @role = params[:role]
     case params[:role]
       when 'teacher'
-        @users = User.teachers
+        @users = User.teachers.paginate(:page => params[:page]).per_page(10)
         @title = 'TEACHERS'
       when 'employee'
-        @users = User.employees
+        @users = User.employees.paginate(:page => params[:page]).per_page(10)
         @title = 'EMPLOYEES'
       else
-         @users = User.all
+         @users = User.all.paginate(:page => params[:page]).per_page(10)
          @title = 'USERS'
     end
     authorize! :index, @users

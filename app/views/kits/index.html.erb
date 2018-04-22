@@ -57,6 +57,9 @@
             <% end %>
           </tbody>
         </table>
+        <div class="digg_pagination " id="digg_pagination">
+         <%= will_paginate @kits, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+       </div>
       </div>
     </div>
   </div>

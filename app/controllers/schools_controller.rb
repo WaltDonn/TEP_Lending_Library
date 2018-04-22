@@ -5,7 +5,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all
+    @schools = School.all.paginate(:page => params[:page]).per_page(10)
     authorize! :index, @schools
   end
 
