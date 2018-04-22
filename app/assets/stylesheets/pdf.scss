@@ -1,0 +1,54 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require simple_form
+ *= require_tree .
+ *= require foundation_and_overrides
+ *= require jquery-ui
+ *= require simple_calendar
+ */
+
+$orange: #f99d31;
+$blue: #0076c0;
+$black: #333333;
+$dark-grey: #707070;
+$med-grey: #bab9b9;
+$light-grey: #ebebeb;
+$white: #f5f5f5;
+$green: #51c31e;
+$red: #de7f7f;
+
+$footer-bg: #494949;
+$primary: $orange;
+$secondary: $blue;
+$notice: $green;
+$alert: $red;
+$none: transparent;
+
+/* general app stylings */
+
+body {
+  overflow-x: hidden;
+}
+
+
+#pdfTH {
+    background-color: #f99d31;
+    color: white;
+}
+
+
+tr { page-break-inside: avoid }
+
+
+
+
+
