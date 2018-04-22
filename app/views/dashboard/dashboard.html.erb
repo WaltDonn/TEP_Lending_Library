@@ -13,5 +13,11 @@
       <%= render  "reservations/volunteer_portal" %>
 
     <% end %>
+
   </div>
+  <% if (current_user.has_role?(:admin)) %>
+    <div class="grid-x">
+      <%= link_to 'Clean Database', clean_database_path, method: :get, data: { confirm: 'Are you sure? This will delete all Teachers, Reservations, and Schools. This cannot be un done.' }, :class => 'button alert radius small' %>
+    </div>
+  <% end %>
 </div>
