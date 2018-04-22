@@ -110,20 +110,19 @@ class HomeController < ApplicationController
 
   	@schools = School.all.alphabetical
 
-
-#---------------------------------------------------------------------------
-
-	# alright, below works except for getting past authentication
-
- 	# pdf = PDFKit.new('http://localhost:3000/reports', :page_size => 'A3').to_pdf
- 	# send_data(pdf, :filename => "reports.pdf", :type => "application/pdf")
-
+  	respond_to do |format|
+      format.html 
+      format.pdf {
+        html = render_to_string(:layout => false , :action => "gen_reports.html.erb") # your view erb files goes to :action 
+        kit = PDFKit.new(html, :page_size => 'A3')
+        kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/pdf.scss"
+        send_data(kit.to_pdf, :filename=>"reports.pdf",
+          :type => 'application/pdf', :disposition => 'inline')
+    	}
+    end
 	
   end
 
-  def download_reports
-
-  end
 	
 	def resolve_layout
 		case action_name
