@@ -5,7 +5,7 @@ class ComponentsController < ApplicationController
   # GET /components
   # GET /components.json
   def index
-    @components = Component.all
+    @components = Component.all.paginate(:page => params[:page]).per_page(10)
     authorize! :index, @components
   end
 
