@@ -1,6 +1,7 @@
 require 'csv'
 require 'tempfile'
 
+
 class HomeController < ApplicationController
   layout :resolve_layout
   before_action :authenticate_user!, except: [:home]
@@ -35,8 +36,9 @@ class HomeController < ApplicationController
 
       	# Get school id by school name
     
-	    unless row['school'].nil? || School.by_name(row['school']).first.nil?
-	        @school = School.by_name(row['school']).first
+	    unless row['school'].nil? || School.by_name_zip(row['school'], row['zip']).first.nil? || row['zip'].nil?
+	    	
+	        @school = School.by_name_zip(row['school'], row['zip']).first
 	  		@user.school_id = @school.id
 	    end
 
@@ -110,13 +112,17 @@ class HomeController < ApplicationController
 
 
 #---------------------------------------------------------------------------
-#currently not working for turning the page into a pdf
-	# kit = PDFKit.new(<<-HTML)
-	#   <p>Goodbye Envato!</p>
-	# HTML
- #  	#kit = PDFKit.new(File.new('app/views/home/gen_reports.html.erb'))
-	# #probs not where i should be putting it, temp for now, should also make them name the pdf or it be generated
-	# kit.to_file('app/views/reports/hello2.pdf')
+
+	# alright, below works except for getting past authentication
+
+ 	# pdf = PDFKit.new('http://localhost:3000/reports', :page_size => 'A3').to_pdf
+ 	# send_data(pdf, :filename => "reports.pdf", :type => "application/pdf")
+
+	
+  end
+
+  def download_reports
+
   end
 	
 	def resolve_layout

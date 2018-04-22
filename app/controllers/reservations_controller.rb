@@ -12,16 +12,6 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all
     authorize! :rental_calendar, @reservations
   end
-
-  # def month_calendar_td_options
-  #   ->(start_date, current_calendar_date) {
-  #     {class: "calendar-date", data: {day: current_calendar_date}}
-  #   }
-  # end
-
-  # def rental_dates
-  #   @reservation = params[:reservation]
-  # end
   
 
 #VOLUNTEER ACTIONS
@@ -92,7 +82,6 @@ class ReservationsController < ApplicationController
     end
 
     @start_date = Date.today.next_month.beginning_of_month
-    @end_date = Date.today.next_month.end_of_month
 
     # pick_up_dates is the first full week of next month starting from the first weekday
     @pick_up_start_date = @start_date
@@ -100,9 +89,10 @@ class ReservationsController < ApplicationController
     @pick_up_dates = @pick_up_start_date..(@pick_up_start_date + 5.days)
 
     # return_dates is the last full week of next month ending on the last weekday
-    @return_end_date = @end_date
-    @return_end_date -= 1.days until @return_end_date.wday == 5 # wday 1 is monday, etc.
-    @return_dates = (@return_end_date - 5.days)..@return_end_date
+    @return_end_date = Date.today.next_month.end_of_month
+    @return_end_date -= 1.days until @return_end_date.wday == 1 # wday 1 is monday, etc.
+    @return_dates = (@return_end_date)..(@return_end_date + 5.days)
+    @end_date = @return_dates.last
   end
 
   # POST /select_dates
@@ -113,7 +103,12 @@ class ReservationsController < ApplicationController
     end
     
     @start_date = Date.today.beginning_of_month.next_month
-    @end_date = Date.today.end_of_month.next_month
+
+
+    @return_end_date = Date.today.next_month.end_of_month
+    @return_end_date -= 1.days until @return_end_date.wday == 1 # wday 1 is monday, etc.
+    @return_dates = (@return_end_date)..(@return_end_date + 5.days)
+    @end_date = @return_dates.last
 
     @pickup_date = (params[:reservation_select_dates][:pick_up_date]).to_date
     @return_date = (params[:reservation_select_dates][:return_date]).to_date

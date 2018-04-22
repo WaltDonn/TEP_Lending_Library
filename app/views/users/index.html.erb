@@ -29,7 +29,7 @@
             <th>Name</th>
             <th>School</th>
             <th>Email</th>
-            <th>Phone Number</th>
+            <th>Phone Number x Ext</th>
             <th>Active</th>
             <th>Role</th>
           </tr>
@@ -45,7 +45,7 @@
                 <td>None</td>
               <% end %>
               <td><%= user.email %></td>
-              <td><%= user.phone_num %></td>
+              <td><%= number_to_phone(user.phone_num, extension: user.phone_ext) %></td>
               <% if user.is_active %>
                 <td id="active">active</td>
               <% else %>

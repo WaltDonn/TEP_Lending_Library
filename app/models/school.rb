@@ -18,14 +18,13 @@ class School < ApplicationRecord
     has_many :owned_reservations, through: :users
 
     # Callbacks
-    before_destroy :destroyable
     before_save :ensure_inactive
 
 
     scope :alphabetical, -> { order('name') }
     scope :active,       -> { where(is_active: true) }
     scope :inactive,     -> { where.not(is_active: true) }
-    scope :by_name,      ->(name) { where('name LIKE ?', name)}
+    scope :by_name_zip,      ->(name, zip) { where('name LIKE ? AND zip = ?', name, zip)}
     scope :by_teacher,   ->(teacher_name){ joins(:users).where("(users.first_name LIKE ? OR users.last_name LIKE ?) AND users.role = 'Teacher'", teacher_name, teacher_name)}
 
 
@@ -47,6 +46,11 @@ class School < ApplicationRecord
 
     def school_res_for_month(lookup_month, lookup_year)
         self.users.inject(0){|sum, u| sum + u.res_for_month(lookup_month, lookup_year)}
+    end
+
+    def destroy
+        errors.add(:id, "Cannot destroy school")
+        return false
     end
 
     private
@@ -74,11 +78,5 @@ class School < ApplicationRecord
                             u.save!}
         end
     end
-
-    def destroyable
-        errors.add(:id, "Cannot destroy school")
-        return false
-    end
-
 
 end

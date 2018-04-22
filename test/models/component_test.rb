@@ -36,11 +36,6 @@ class ComponentTest < ActiveSupport::TestCase
 		refute @comp.valid?
 	end
 
-	test 'invalid without component_category_id' do
-		@comp.component_category_id = nil
-		refute @comp.valid?
-	end
-
 	test 'max quan, damaged, and missing should be integers >= 0' do
 		@comp.max_quantity = 10
 		@comp.damaged = 0

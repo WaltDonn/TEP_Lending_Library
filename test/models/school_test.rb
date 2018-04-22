@@ -146,4 +146,12 @@ class SchoolTest < ActiveSupport::TestCase
 		refute @school.valid?
 	end
 
+	test 'school res for year method' do
+		assert_equal 3, @school.school_res_for_year(Date.current.year)
+	end
+
+	test 'school res for month method' do
+		assert_equal 2, @school.school_res_for_month(Date.current.month, Date.current.year)
+	end
+
 end
