@@ -25,7 +25,7 @@ class School < ApplicationRecord
     scope :alphabetical, -> { order('name') }
     scope :active,       -> { where(is_active: true) }
     scope :inactive,     -> { where.not(is_active: true) }
-    scope :by_name,      ->(name) { where('name LIKE ?', name)}
+    scope :by_name_zip,      ->(name, zip) { where('name LIKE ? AND zip = ?', name, zip)}
     scope :by_teacher,   ->(teacher_name){ joins(:users).where("(users.first_name LIKE ? OR users.last_name LIKE ?) AND users.role = 'Teacher'", teacher_name, teacher_name)}
 
 

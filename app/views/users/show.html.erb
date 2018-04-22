@@ -24,16 +24,9 @@
           </tr>
           <tr>
             <th>Phone Number</th>
-            <td><%=  @user.phone_num %> </td>
+            <td><%=  number_to_phone(@user.phone_num, extension: @user.phone_ext)  %> </td>
           </tr>
-          <% if !@user.phone_ext.nil? && @user.phone_ext != "" %>
-            <tr>
-               <th>Phone Extension</th>
-                <td> <%= @user.phone_ext%> </td>
-            </tr>
-          <% end %>
           
-          <!-- FIXME: temporary fix for users who are not teachers -->
           <% unless @user.school.nil? %>
             <tr>
               <th>School</th>

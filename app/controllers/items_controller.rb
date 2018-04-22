@@ -64,9 +64,15 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
+
     authorize! :update, @item
     respond_to do |format|
-      if @item.update(item_params)
+
+    @item.item_category.name = params[:item][:item_category_attributes][:name]
+    @item.item_category.description = params[:item][:item_category_attributes][:description]
+    @item.item_category.item_photo = params[:item][:item_category_attributes][:item_photo]
+    
+    if @item.update(item_params) && @item.item_category.save
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
