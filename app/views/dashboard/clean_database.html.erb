@@ -1,0 +1,13 @@
+
+<div class="grid-container" id="dash-container">
+  <div class="grid-x">
+    <div class="inner-title cell-block-x small-12">
+		 <% if (current_user.has_role?(:admin)) %>
+		    <div class="grid-x">
+		    	<h3> This will remove all Teachers, Reservations, and Schools. Are you sure this is what you want? </h3>
+		      <%= link_to 'Really Clean Database', destroy_database_path, method: :post, data: { confirm: 'Are you sure? This will delete all Teachers, Reservations, and Schools. This cannot be un done.' }, :class => 'button alert' %>
+		    </div>
+		  <% end %>
+		</div>
+	</div>
+</div>

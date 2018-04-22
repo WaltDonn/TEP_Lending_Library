@@ -12,5 +12,32 @@ class DashboardController < ApplicationController
 
     authorize! :dashboard, :Dashboard
   end
+
+  def clean_database
+  end
+
+  def destroy_database
+    @Teachers = User.teachers
+    @Schools = School.all
+    @Reservations = Reservation.all
+
+
+    @Teachers.each do |t|
+        t.delete
+    end
+
+    @Schools.each do |t|
+        t.delete
+    end
+
+    @Reservations.each do |t|
+        t.delete
+    end
+
+    respond_to do |format|
+        format.html { redirect_to dashboard_path}
+    end
+
+  end
   
 end

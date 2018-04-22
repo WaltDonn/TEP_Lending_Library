@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   post 'returned/:id' => 'reservations#returned', as: :returned
   get 'dashboard' => 'dashboard#dashboard', as: :dashboard
   get 'volunteer_portal' => 'reservations#volunteer_portal', as: :volunteer_portal
-  
+  get 'clean_database' => 'dashboard#clean_database', as: :clean_database
+  post 'destroy_database' => 'dashboard#destroy_database', as: :destroy_database
+
   # rental/reservations routes
   get 'rental_calendar' => 'reservations#rental_calendar', as: :rental_calendar
   get 'rental_dates' => 'reservations#rental_dates', as: :rental_dates
