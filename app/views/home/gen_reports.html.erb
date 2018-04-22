@@ -15,13 +15,13 @@
 								      	<table class="information-table">
 									        <thead>
 									          <tr>
-									            <th>Kit Item ID</th>
-									            <th style="text-align:center;">Item Category</th>
-									            <th style="text-align:center;">Location</th>
-									            <th style="text-align:center;">Condition</th>
-									            <th style="text-align:center;">Reserved</th>
-									            <th style="text-align:center;">Blacked Out</th>
-									            <th style="text-align:center;">Active</th>
+									            <th id="pdfTH">Kit Item ID</th>
+									            <th id="pdfTH", style="text-align:center;">Item Category</th>
+									            <th id="pdfTH", style="text-align:center;">Location</th>
+									            <th id="pdfTH", style="text-align:center;">Condition</th>
+									            <th id="pdfTH", style="text-align:center;">Reserved</th>
+									            <th id="pdfTH", style="text-align:center;">Blacked Out</th>
+									            <th id="pdfTH", style="text-align:center;">Active</th>
 									          </tr>
 									        </thead>
 									        <tbody>
@@ -57,17 +57,17 @@
 								      	<table class="information-table">
 									        <thead>
 									          <tr>
-									            <th>School</th>
-									            <th style="text-align:center;">Kits Rented</th>
-									            <th style="text-align:center;">Month</th>
-									            <th style="text-align:center;">Year</th>
+									            <th id="pdfTH">School</th>
+									            <th id="pdfTH", style="text-align:center;">Kits Rented</th>
+									            <th id="pdfTH", style="text-align:center;">Month</th>
+									            <th id="pdfTH", style="text-align:center;">Year</th>
 									          </tr>
 									        </thead>
 									        <tbody>
-									        	<% for y in 2015..Date.current.year do %>
+									        	<% for y in 2017..Date.current.year do %>
 									        		<% for m in 1..12 do %>
 											          <% @schools.each do |school| %>
-												        <% if school.school_res_for_month(m, y) > 0 %>
+												        <% if school.school_res_for_month(m, y) >= 0 %>
 												            <tr>
 												              <td><%= school.name %></td>
 												              <td style="text-align:center;"><%= school.school_res_for_month(m, y) %></td> 
@@ -101,15 +101,15 @@
 								      	<table class="information-table">
 									        <thead>
 									          <tr>
-									            <th>School</th>
-									            <th style="text-align:center;">Kits Rented</th>
-									            <th style="text-align:center;">Year</th>
+									            <th id="pdfTH">School</th>
+									            <th id="pdfTH", style="text-align:center;">Kits Rented</th>
+									            <th id="pdfTH", style="text-align:center;">Year</th>
 									          </tr>
 									        </thead>
 									        <tbody>
-									        	<% for y in 2015..Date.current.year do %>
+									        	<% for y in 2017..Date.current.year do %>
 										          <% @schools.each do |school| %>
-											        <% if school.school_res_for_year(y) > 0 %>
+											        <% if school.school_res_for_year(y) >= 0 %>
 											            <tr>
 											              <td><%= school.name %></td>
 											              <td style="text-align:center;"><%= school.school_res_for_year(y) %></td> 
@@ -128,13 +128,7 @@
 						</div>
 					<% end %>
 
-
-
 					<% if @choice_array.include? "3" %>
-						<p>TO ADD: Teacher Reservations Monthly table.</p>
-					<% end %>
-
-					<% if @choice_array.include? "4" %>
 						<div class="cell-block-y">
 							<div class="grid-container">
 								<div class="inner-title cell-block-x small-9" >
@@ -145,15 +139,15 @@
 								      	<table class="information-table">
 									        <thead>
 									          <tr>
-									            <th>Name</th>
-									            <th style="text-align:center;">Kits Rented</th>
-									            <th style="text-align:center;">Year</th>
+									            <th id="pdfTH">Name</th>
+									            <th id="pdfTH", style="text-align:center;">Kits Rented</th>
+									            <th id="pdfTH", style="text-align:center;">Year</th>
 									          </tr>
 									        </thead>
 									        <tbody>
-									        	<% for y in 2015..Date.current.year do %>
+									        	<% for y in 2017..Date.current.year do %>
 										          <% @users.each do |user| %>
-											        <% if user.res_for_year(y) > 0 %>
+											        <% if user.res_for_year(y) >= 0 %>
 											            <tr>
 											              <td><%= user.name %></td>
 											              <td style="text-align:center;"><%= user.res_for_year(y) %></td> 
@@ -172,7 +166,7 @@
 						</div>		
 					<% end %>
 
-					<% if @choice_array.include? "5" %>
+					<% if @choice_array.include? "4" %>
 						<div class="cell-block-y">
 							<div class="grid-container">
 								<div class="inner-title cell-block-x small-9" >
@@ -183,8 +177,8 @@
 								      	<table class="information-table">
 									        <thead>
 									          <tr>
-									            <th>Kit Item ID</th>
-									            <th style="text-align:center;">Number of Times Rented in a Kit</th>
+									            <th id="pdfTH">Kit Item ID</th>
+									            <th id="pdfTH", style="text-align:center;">Number of Times Rented in a Kit</th>
 									          </tr>
 									        </thead>
 									        <tbody>

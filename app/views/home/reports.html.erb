@@ -17,7 +17,10 @@
   					</tbody>
   				</table>
 				<div class="form-actions">
-					<%= f.button :submit, "Generate", :class => 'button radius upload-button' %>
+					<%= f.button :submit, "View Tables", :class => 'button radius upload-button' %>
+				</div>
+				<div class="form-actions">
+					<%= f.button :submit, "Generate PDF", :class => 'button radius upload-button', formaction: gen_reports_path(format: :pdf) %>
 				</div>
 			<% end %>
     </div>
