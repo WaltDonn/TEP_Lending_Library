@@ -36,8 +36,9 @@ class HomeController < ApplicationController
 
       	# Get school id by school name
     
-	    unless row['school'].nil? || School.by_name(row['school']).first.nil?
-	        @school = School.by_name(row['school']).first
+	    unless row['school'].nil? || School.by_name_zip(row['school'], row['zip']).first.nil? || row['zip'].nil?
+	    	
+	        @school = School.by_name_zip(row['school'], row['zip']).first
 	  		@user.school_id = @school.id
 	    end
 

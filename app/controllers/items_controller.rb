@@ -65,8 +65,6 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
 
-    byebug
-
     authorize! :update, @item
     respond_to do |format|
 
