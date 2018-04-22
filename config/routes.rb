@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get 'volunteer_portal' => 'reservations#volunteer_portal', as: :volunteer_portal
   get 'clean_database' => 'dashboard#clean_database', as: :clean_database
   post 'destroy_database' => 'dashboard#destroy_database', as: :destroy_database
+  get 'manager_reservation' => 'reservations#manager_new', as: :manager_new_reservation
+  post 'create_manager_reservation' => 'reservations#manager_create', as: :manager_create_reservation
 
   # rental/reservations routes
   get 'rental_calendar' => 'reservations#rental_calendar', as: :rental_calendar

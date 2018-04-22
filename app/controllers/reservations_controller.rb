@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservation_calendar/1
   def rental_calendar
-    @reservations = Reservation.all.paginate(:page => params[:page]).per_page(10)
+    @reservations = Reservation.all
     authorize! :rental_calendar, @reservations
   end
   
@@ -97,6 +97,7 @@ class ReservationsController < ApplicationController
 
   # POST /select_dates
   def select_dates
+
     authorize! :select_dates, :Reservation
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
@@ -138,6 +139,10 @@ class ReservationsController < ApplicationController
   end
 
   def confirm_user_details
+    unless params[:format].nil?
+      session[:rental_category_id] = params[:format]
+    end
+
     authorize! :confirm_user_details, current_user
     if(session[:rental_category_id].nil?)
       redirect_to shopping_path
@@ -203,7 +208,7 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.all.paginate(:page => params[:page]).per_page(10)
     authorize! :index, @reservations
   end
   
@@ -225,12 +230,33 @@ class ReservationsController < ApplicationController
       session[:return_date].nil? || session[:start_date].nil? || session[:end_date].nil?)
       redirect_to shopping_path
     end
-
+    
     @rental_category = ItemCategory.find(session[:rental_category_id])
     @reservation.start_date = session[:start_date]
     @reservation.end_date = session[:end_date]
     @reservation.pick_up_date = session[:pickup_date]
     @reservation.return_date = session[:return_date]
+  end
+
+
+  def manager_new
+      @reservation = Reservation.new
+      authorize! :manager_new, @reservation
+  end
+
+  def manager_create
+    @reservation = Reservation.new(reservation_params)
+    authorize! :manager_create, @reservation
+
+    respond_to do |format|
+      if @reservation.save
+        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+        format.json { render :show, status: :created, location: @reservation }
+      else
+        format.html { render :new }
+        format.json { render json: @reservation.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /reservations/1/edit
@@ -265,6 +291,12 @@ class ReservationsController < ApplicationController
       
       respond_to do |format|
         if @reservation.save
+          session[:rental_category_id] = nil
+          session[:start_date] = nil
+          session[:end_date] = nil
+          session[:pickup_date] = nil
+          session[:return_date] = nil
+
           format.html { redirect_to rental_history_path(current_user), notice: 'Thank you for supporting the STEAM Kit rental program.' }
         else
           if(!test_kit.nil?)
@@ -323,7 +355,7 @@ class ReservationsController < ApplicationController
     authorize! :destroy, @reservation
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to home_path, notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
