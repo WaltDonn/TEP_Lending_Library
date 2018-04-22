@@ -85,12 +85,6 @@ class User < ApplicationRecord
     self.owned_reservations.select{|r| r.start_date.year == lookup_year and r.start_date.month == lookup_month}.size
   end
 
-  def destroy
-    errors.add(:id, 'Do not delete users')
-    return false
-  end
-
-
  private
  
  def is_destroyable

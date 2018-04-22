@@ -5,7 +5,6 @@
 			<div class="center">
 				<% if @choice_array != nil && @choice_array.size > 1 %>
 					<% if @choice_array.include? "0" %>
-						<!-- currently just the same as KIT ITEM STATUSES -->
 						<div class="cell-block-y">
 							<div class="grid-container">
 								<div class="inner-title cell-block-x small-9" >
@@ -177,48 +176,6 @@
 						<div class="cell-block-y">
 							<div class="grid-container">
 								<div class="inner-title cell-block-x small-9" >
-							      	<span class="uline"><h1>KIT ITEM STATUSES</h1> </span>
-							    </div>
-								<% unless @items.nil? || @items.empty? %>
-									<div class="rounded information-table">
-								      	<table class="information-table">
-									        <thead>
-									          <tr>
-									            <th>Kit Item ID</th>
-									            <th style="text-align:center;">Item Category</th>
-									            <th style="text-align:center;">Location</th>
-									            <th style="text-align:center;">Condition</th>
-									            <th style="text-align:center;">Reserved</th>
-									            <th style="text-align:center;">Blacked Out</th>
-									            <th style="text-align:center;">Active</th>
-									          </tr>
-									        </thead>
-									        <tbody>
-									          <% @items.each do |kitItem| %>
-									            <tr>
-									              <td><%= kitItem.readable_id %></td>
-									              <td style="text-align:center;"><%= kitItem.item_category.name %></td>
-									              <td style="text-align:center;"><%= kitItem.kit.location %></td>
-									              <td style="text-align:center;"><%= kitItem.condition %></td>
-									              <td style="text-align:center;"><%= kitItem.kit.reserved %></td>
-									              <td style="text-align:center;"><%= kitItem.kit.blackout %></td>
-									              <td style="text-align:center;"><%= kitItem.kit.is_active %></td>
-									            </tr>
-									          <% end %>
-									        </tbody>
-								      	</table>
-								    </div>
-								<% else %>
-								    <p><strong>No kit items in the system.</strong></p>
-								<% end %>	
-							</div>
-						</div>					
-					<% end %>
-
-					<% if @choice_array.include? "6" %>
-						<div class="cell-block-y">
-							<div class="grid-container">
-								<div class="inner-title cell-block-x small-9" >
 							      	<span class="uline"><h1>KIT ITEM POPULARITY</h1> </span>
 							    </div>
 								<% unless @items.nil? || @items.empty? %>
@@ -244,9 +201,8 @@
 								    <p><strong>No kit items in the system.</strong></p>
 								<% end %>	
 							</div>
-						</div>	
+						</div>				
 					<% end %>
-
 				<% else %>
 					<p>No report options selected.<p>
 				<% end %>

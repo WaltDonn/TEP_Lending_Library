@@ -1,6 +1,7 @@
 require 'csv'
 require 'tempfile'
 
+
 class HomeController < ApplicationController
   layout :resolve_layout
   before_action :authenticate_user!, except: [:home]
@@ -110,13 +111,17 @@ class HomeController < ApplicationController
 
 
 #---------------------------------------------------------------------------
-#currently not working for turning the page into a pdf
-	# kit = PDFKit.new(<<-HTML)
-	#   <p>Goodbye Envato!</p>
-	# HTML
- #  	#kit = PDFKit.new(File.new('app/views/home/gen_reports.html.erb'))
-	# #probs not where i should be putting it, temp for now, should also make them name the pdf or it be generated
-	# kit.to_file('app/views/reports/hello2.pdf')
+
+	# alright, below works except for getting past authentication
+
+ 	# pdf = PDFKit.new('http://localhost:3000/reports', :page_size => 'A3').to_pdf
+ 	# send_data(pdf, :filename => "reports.pdf", :type => "application/pdf")
+
+	
+  end
+
+  def download_reports
+
   end
 	
 	def resolve_layout

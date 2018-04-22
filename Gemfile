@@ -64,6 +64,8 @@ gem 'groupdate'
 gem 'hirb'
 gem 'byebug'
 gem 'pg'
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
