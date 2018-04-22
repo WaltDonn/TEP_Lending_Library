@@ -1,1 +1,63 @@
-<%= render :partial => 'users/rental_history', locals:{user: @reservation.teacher} %>
+
+<p>
+   <strong>Start date:</strong>
+   <%= @reservation.start_date %>
+ </p>
+ 
+ <p>
+   <strong>End date:</strong>
+   <%= @reservation.end_date %>
+ </p>
+ 
+ <p>
+   <strong>Pick up date:</strong>
+   <%= @reservation.pick_up_date %>
+ </p>
+ 
+ <p>
+   <strong>Return date:</strong>
+   <%= @reservation.return_date %>
+ </p>
+ 
+ <p>
+   <strong>Returned:</strong>
+   <%= @reservation.returned %>
+ </p>
+ 
+ <p>
+   <strong>Picked up:</strong>
+   <%= @reservation.picked_up %>
+ </p>
+ 
+ <p>
+   <strong>Release form:</strong>
+   <%= @reservation.release_form_id %>
+ </p>
+ 
+ <p>
+   <strong>Kit:</strong>
+   <%= link_to @reservation.kit.items.first.item_category.name, kit_path(@reservation.kit) %>
+ </p>
+ 
+ <p>
+   <strong>Teacher:</strong>
+   <%= link_to @reservation.teacher.name, user_path(@reservation.teacher) %>
+ </p>
+ 
+ <% if current_user.has_role?(:admin) || current_user.has_role?(:manager) %>
+	 <% unless @reservation.user_check_out.nil? %>
+	 <p>
+	   <strong>User check out:</strong>
+	   <%= @reservation.user_check_out %>
+	 </p>
+	 <% end %>
+	 <% unless @reservation.user_check_in.nil? %>
+		 <p>
+		   <strong>User check in:</strong>
+		   <%= @reservation.user_check_in %>
+		 </p>
+	 <% end %>
+  <% end %>
+ 
+ <%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+ <%= link_to 'Back', reservations_path %>
