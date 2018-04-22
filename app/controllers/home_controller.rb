@@ -104,11 +104,11 @@ class HomeController < ApplicationController
 
   	@choice_array = params["gen_reports"]["report_choices"]
 
-  	@items = Item.all
+  	@items = Item.all.by_read_id
 
-  	@users = User.all
+  	@users = User.all.alphabetical
 
-  	@schools = School.all
+  	@schools = School.all.alphabetical
 
 
 #---------------------------------------------------------------------------

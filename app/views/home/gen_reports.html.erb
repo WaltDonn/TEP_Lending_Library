@@ -96,7 +96,7 @@
 								<div class="inner-title cell-block-x small-9" >
 							      	<span class="uline"><h1>SCHOOL YEARLY RENTALS</h1> </span>
 							    </div>
-								<% unless @schools.nil? || @schools.empty? %>
+								<% unless @schools.nil? || @schools.empty? || @school.users.nil? || @school.users.empty? || @school.users.reservations.size == 0 %>
 									<div class="rounded information-table">
 								      	<table class="information-table">
 									        <thead>
@@ -127,8 +127,6 @@
 							</div>
 						</div>
 					<% end %>
-
-
 
 					<% if @choice_array.include? "3" %>
 						<p>TO ADD: Teacher Rentals Monthly table.</p>

@@ -13,6 +13,8 @@ class Item < ApplicationRecord
     scope :has_kit, -> { where.not(kit_id: nil) }
     scope :broken, -> { where(condition: "Broken") }
     scope :good, -> { where(condition: "Good") }
+    # scope :popular, -> { order('kit.reservations.size') }
+    scope :by_read_id, -> { order('readable_id') }
 
     #Relationships
     belongs_to :kit, optional: true
