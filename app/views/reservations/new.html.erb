@@ -1,7 +1,7 @@
 <div class="grid-container">
   <div class="grid-x">
     <div class="inner-title cell-block-x small-8 small-offset-1">
-      <span class="uline"><h1>Rental Confirmation</h1> </span>
+      <span class="uline"><h1>Reservation Confirmation</h1> </span>
     </div>
   </div>
 
@@ -59,7 +59,7 @@
   <div class="grid-x center" id="buttons">
     <div class="small-3 small-offset-1 left cell">
       <%= link_to 'Go back', :back, :class => 'button radius info'  %>
-      <%= link_to 'Cancel Rental', shopping_path, :class => 'button radius small' %>
+      <%= link_to 'Cancel Reservation', shopping_path, :class => 'button radius small' %>
     </div>
     <div class="small-3 small-offset-4 cell right">
       <%= simple_form_for @reservation, :url => reservations_path do |f| %>
@@ -68,7 +68,7 @@
         <%= f.input :pick_up_date, :value => @reservation.pick_up_date, as: :hidden, :class => 'hidden-form'  %>
         <%= f.input :return_date, :value => @reservation.return_date, as: :hidden, :class => 'hidden-form' %>
         <%= f.input :teacher_id, :value => current_user, as: :hidden, :class => 'hidden-form' %>
-        <%= f.submit "Confirm rental",  :class => 'button radius success small' %>
+        <%= f.submit "Confirm reservation",  :class => 'button radius success small' %>
       <% end %>
     </div>
   </div>

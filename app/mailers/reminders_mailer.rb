@@ -15,14 +15,14 @@ class RemindersMailer < ApplicationMailer
     def pick_up_reminder(user, reservation)
         @teacher = user
         @reservation = reservation
-        mail(to: @teacher.email, subject: 'Pickup Reminder for STEAM Rental')
+        mail(to: @teacher.email, subject: 'Pickup Reminder for STEAM Reservation')
         mail.delivery_method.settings.merge! @smtp_settings
     end
     
     def drop_off_reminder(user, reservation)
         @teacher = user
         @reservation = reservation
-        mail(to: @teacher.email, subject: 'Pickup Reminder for STEAM Rental')
+        mail(to: @teacher.email, subject: 'Pickup Reminder for STEAM Reservation')
         mail.delivery_method.settings.merge! @@smtp_settings
         mail
     end
