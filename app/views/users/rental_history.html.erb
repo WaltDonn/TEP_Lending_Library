@@ -5,9 +5,6 @@
       <div class="inner-title cell-block-x small-10">
         <span class="uline"><h1>Rental History</h1> </span>
       </div>
-      <div class="cell-block-x small-2 right side-link">
-        <h4><%= link_to 'New Reservation', new_reservation_path %></h4>
-      </div>
     </div>
 
     <% unless @reservations.nil? || @reservations.empty? %>
@@ -15,7 +12,7 @@
         <table>
           <thead>
             <tr>
-              <th colspan="2">Item</th>
+              <th>Item</th>
               <th>Checkout Date</th>
               <th>Return Date</th>
               <th>Current Status</th>
@@ -25,8 +22,7 @@
           <tbody>
             <% @reservations.each do |reservation| %>
               <tr>
-                <td><%= reservation.kit.items.first.item_category.item_photo %></td>
-                <td><%= link_to available_kit_path(), reservation.kit.items.first.item_category.name %></td>
+                <td><%= link_to reservation.kit.items.first.item_category.name, available_kit_path() %></td>
                 <td><%= reservation.pick_up_date.strftime("%D") %></td>
                 <td><%= reservation.return_date.strftime("%D") %></td>
                 <% if reservation.returned %>
