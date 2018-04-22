@@ -18,7 +18,6 @@ class School < ApplicationRecord
     has_many :owned_reservations, through: :users
 
     # Callbacks
-    before_destroy :destroyable
     before_save :ensure_inactive
 
 
@@ -49,6 +48,11 @@ class School < ApplicationRecord
         self.users.inject(0){|sum, u| sum + u.res_for_month(lookup_month, lookup_year)}
     end
 
+    def destroy
+        errors.add(:id, "Cannot destroy school")
+        return false
+    end
+
     private
     def no_outstanding_reservations
         if(self.is_active == false)
@@ -74,11 +78,5 @@ class School < ApplicationRecord
                             u.save!}
         end
     end
-
-    def destroyable
-        errors.add(:id, "Cannot destroy school")
-        return false
-    end
-
 
 end

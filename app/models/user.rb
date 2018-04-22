@@ -22,10 +22,6 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: { case_sensitive: false}, format: { with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, message: "is not a valid format" }
     validates_confirmation_of :password, on: :create, message: "does not match"
     validates_presence_of :encrypted_password, on: :create 
-    
-    before_destroy :is_destroyable
-    
-    
 
 
     #Relationships
@@ -85,13 +81,13 @@ class User < ApplicationRecord
     self.owned_reservations.select{|r| r.start_date.year == lookup_year and r.start_date.month == lookup_month}.size
   end
 
- private
- 
- def is_destroyable
+  def destroy
     errors.add(:id, 'Do not delete users')
-    reutrn false
- end
+    return false
+  end
 
+
+ private
 
   def class_size_present
     if(self.role == "teacher")
