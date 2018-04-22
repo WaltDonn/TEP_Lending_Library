@@ -4,7 +4,7 @@
       <span class="uline"><h1>CHECK OUT</h1> </span>
     </div>
 
-  <% unless @today_pickup %>
+  <% unless @today_pickup == nil || @today_pickup.empty? %>
     <div class="rounded information-table">
       <table class="information-table">
         <thead>
@@ -21,7 +21,11 @@
         <tbody>
           <% @today_pickup.each do |pickupKit| %>
             <tr>
-              <td><%= pickupKit.teacher.school.name %></td>
+              <% unless pickupKit.teacher.school == nil %>
+                <td><%= pickupKit.teacher.school.name %></td>
+              <% else %>
+                <td></td>
+              <% end %>
               <td style="text-align:center;"><%= pickupKit.teacher.name %></td>
               <td style="text-align:center;"><%= pickupKit.kit.items.first.item_category.name %></td>
               <%= simple_form_for(:picked_up_path, url: picked_up_url(pickupKit)) do |f| %>
