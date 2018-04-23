@@ -1,8 +1,10 @@
+<!-- RESPONSIVE NAV BAR BLOCK : ONLY SHOWN ON MEDIUM AND BELOW -->
 <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large">
   <button class="menu-icon" type="button" data-toggle="offCanvasLeft"></button>
   <div class="title-bar-title">The Education Partnership :: STEAM Lending Library</div>
 </div>
 
+<!-- TOP NAV BAR : ONLY SHOWN ON LARGE -->
 <div class="title-bar top-bar" id="responsive-menu">
   <div class="top-bar-left">
       <%= link_to image_tag('logo.png', width:200, height:80), home_path%>
@@ -36,6 +38,7 @@
   </div>
 </div>
 
+<!-- OFF CANVAS NAV BAR : ONLY SHOWN ON MEDIUM AND BELOW -->
 <div class="off-canvas-wrapper">
   <div class="off-canvas position-left is-closed" data-transition="overlap" id="offCanvasLeft" data-off-canvas>
     <!-- left off-canvas markup -->
