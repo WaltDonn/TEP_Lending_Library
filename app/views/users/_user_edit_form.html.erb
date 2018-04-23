@@ -21,6 +21,20 @@
                 </div>
               </td>
             </tr>
+             <tr>
+              <th> Password </th>
+              <td>
+                <%= f.input :password, :input_html => { :class => 'avg', :style => "width: 200px;" }  %>
+              </td>
+            </tr>
+
+            <tr>
+              <th> Password Confirmation </th>
+              <td>
+                <%= f.input :password_confirmation, :input_html => { :class => 'avg', :style => "width: 200px;" }  %>
+              </td>
+            </tr>
+            
             <tr>
               <% if @user.has_role?("teacher") %>
                 <th>School Email</th>
