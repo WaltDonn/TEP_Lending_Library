@@ -14,6 +14,7 @@ class Ability
         can :manage, :all
     elsif user.has_role? :manager
         can :crud,                 Component
+        can :index,                :Components
         can :dashboard,            :Dashboard
         can :upload_users,         :Home
         can :create_users,         :Home
@@ -22,17 +23,26 @@ class Ability
         can :reports,              :Home
         can :gen_reports,          :Home
         can :crud,                 Item
+        can :index,                :Items
         can :crud,                 Kit
+        can :index,                :Kits
         can :crud,                 Reservation
+        can :index,                :Reservations
         can :rental_calendar,      :Reservation
         can :submit_user_details,  :Reservation
         can :edit_user_details,    :Reservation
         can :confirm_user_details, :Reservation
         can :rent_kit,             :Reservation
         can :volunteer_actions,    :Reservation
+        can :manager_create,       Reservation
+        can :manager_new,          Reservation
         can :crud,                 School
+        can :index,                :School
         can :crud,                 User
+        can :index,                :Users
         can :rental_history,       User
+        
+
         
     elsif user.has_role? :volunteer
         can :volunteer_actions,    :Reservation
@@ -48,8 +58,11 @@ class Ability
         can :rent_kit,             :Reservation
         can :create,               Reservation
         can :new,                  Reservation
+        can :delete,               Reservation
+        can :destroy,              Reservation
+
         can :rental_history,       User
-        
+
         can :submit_user_details,  user do |u|
           u.id == user.id
         end
