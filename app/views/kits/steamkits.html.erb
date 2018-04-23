@@ -4,7 +4,7 @@
 
     <div class="grid-x">
       <div class="inner-title cell-block-x small-10">
-        <span class="uline"><h1>Available Rentals</h1> </span>
+        <span class="uline"><h1>Available Reservations</h1> </span>
       </div>
     </div>
 
@@ -28,7 +28,6 @@
                   <%= link_to 'Details', available_kit_path(rental_cat) %>
                 </div>
                 <% if current_user.owned_reservations.open_reservations.size == 0 %>
-                <%= rental_cat.id %>
                 <div class="product-card-button center">	
                  <%= link_to 'Borrow Me', confirm_user_details_path(rental_cat.id), :onclick => session[:rental_category_id] = rental_cat.id %>
                 </div>

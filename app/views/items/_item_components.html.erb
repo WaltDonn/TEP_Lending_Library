@@ -1,21 +1,34 @@
-<h4>Components</h4>
-<table class="component-table">
-  <thead>
-    <th>Name</th>
-    <th>Amt.</th>
-    <th>Damaged</th>
-    <th>Missing</th>
-    <th>Consumable</th>
-  </thead>
-  <tbody>
-    <% components.each do |component| %>
-      <tr>
-        <td><%= component.name %></td>
-        <td style="text-align:center;"><%= component.max_quantity %></td>
-        <td style="text-align:center;"><%= component.damaged %></td>
-        <td style="text-align:center;"><%= component.missing %></td>
-        <td style="text-align:center;"><%= component.consumable %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="component_table">
+  <% if @item.components.empty? || @item.components.nil? %>
+    <h4>No components attached to item.</h4>
+  <% else %>
+    <h4>Components</h4>
+
+    <table class="component-table">
+      <thead>
+        <th>Name</th>
+        <th style="text-align:center;">Amt.</th>
+        <th style="text-align:center;">Damaged</th>
+        <th style="text-align:center;">Missing</th>
+        <th style="text-align:center;">Consumable</th>
+        <th style="text-align:center;">Remove</th>
+      </thead>
+      <tbody>
+        <% @item.components.each do |component| %>
+          <tr>
+            <td><%= best_in_place component, :name %></td>
+            <td style="text-align:center;"><%= best_in_place component, :max_quantity %></td>
+            <td style="text-align:center;"><%= best_in_place component, :damaged %></td>
+            <td style="text-align:center;"><%= best_in_place component, :missing %></td>
+            <td style="text-align:center;"><%= best_in_place component, :consumable, :as => :checkbox, collection: ["false", "true"] %></td>
+            <td style="text-align:center;">
+              <%= link_to component, method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

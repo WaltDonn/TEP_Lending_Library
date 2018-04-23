@@ -6,7 +6,7 @@ class ComponentsController < ApplicationController
   # GET /components.json
   def index
     @components = Component.all.paginate(:page => params[:page]).per_page(10)
-    authorize! :index, @components
+    authorize! :index, :Components
   end
 
   # GET /components/1
@@ -32,10 +32,24 @@ class ComponentsController < ApplicationController
     @component = Component.new(component_params)
     authorize! :create, @component
 
+    unless session[:item_id].nil?
+      @component[:item_id] = session[:item_id]
+    end
+
+    if @component.damaged.nil?
+      @component[:damaged] = 0
+    end
+
+    if @component.missing.nil?
+      @component[:missing] = 0
+    end
+
     respond_to do |format|
       if @component.save
         format.html { redirect_to @component, notice: 'Component was successfully created.' }
-        format.json { render :show, status: :created, location: @component }
+        @item = @component.item
+        @components = @item.components
+        format.js
       else
         format.html { render :new }
         format.json { render json: @component.errors, status: :unprocessable_entity }
@@ -50,10 +64,12 @@ class ComponentsController < ApplicationController
     respond_to do |format|
       if @component.update(component_params)
         format.html { redirect_to @component, notice: 'Component was successfully updated.' }
-        format.json { render :show, status: :ok, location: @component }
+        format.json { respond_with_bip(@component) }
+        format.js
       else
         format.html { render :edit }
-        format.json { render json: @component.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@component) }
+        format.js
       end
     end
   end
@@ -64,6 +80,8 @@ class ComponentsController < ApplicationController
     authorize! :destroy, @component
     @component.destroy
     respond_to do |format|
+      @item = @component.item
+      @components = @item.components
       format.html { redirect_to components_url, notice: 'Component was successfully destroyed.' }
       format.json { head :no_content }
     end

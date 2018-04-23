@@ -1,5 +1,73 @@
-<h1>New Item</h1>
+<div class="grid-container">
+  <div class="grid-x">
+    <div class="inner-title cell-block-x small-8 small-offset-1">
+      <span class="uline"><h1>New Item</h1> </span>
+    </div>
+  </div>
 
-<%= render 'form', item: @item %>
+  <%= simple_form_for @item do |f| %>
+    <div class="grid-x">
+      <div class='cell small-offset-2 small-6'>
+          <table>
+            <thead>
+              <tr>
 
-<%= link_to 'Back', items_path %>
+              <tr>
+                <th class="item-edit-head">
+                  <span data-tooltip tabindex="1" title='What type of item is this?'>
+                    Item Category
+                  </span>
+                </th>
+                <td>
+                  <%= f.association :item_category, label: false, :input_html => { :class => 'avg' } %>
+                </td>
+              </tr>
+
+                <th class="item-edit-head">
+                  <span data-tooltip tabindex="1" title='An identifiable and uniqe name for this item.'>
+                    Readable ID
+                  </span>
+                </th>
+                <td>
+                  <%= f.input :readable_id, label: false, :input_html => { :class => 'avg left', :placeholder => 'BeeBot12' } %>
+                </td>
+              </tr>
+
+              <tr>
+                <th class="item-edit-head">
+                  <span data-tooltip tabindex="1" title='Where is the kit this item belongs to located? If the item is not in a kit, leave blank'>
+                    Kit Location
+                  </span>
+                </th>
+                <td>
+                  <%= f.association :kit, label: false, :input_html => { :class => 'avg' } %>
+                </td>
+              </tr>
+
+              <tr>
+                <th class="item-edit-head"> Condition </th>
+                <td>
+                  <%= f.input :condition, label: false, as: :select, collection: Item::CONDITIONS, :input_html => { :class => 'avg', :value => 'Good' } %>
+                </td>
+              </tr>
+
+              <tr>
+                <th class="item-edit-head"> Active </th>
+                <td>
+                  <%= f.input :is_active, as: :boolean, label: false, :input_html => { :class => 'avg'} %>
+                </td>
+              </tr>
+              
+            </thead>
+          </table>
+      </div>
+    </div>
+
+    <div class="grid-x">
+      <div class="form-actions cell small-4 small-offset-6 right">
+        <%= f.button :submit, "SAVE", :class => 'button radius small' %>
+        <%= link_to 'CANCEL', :back, :class => 'button alert radius small' %>
+      </div>
+    </div>
+  <% end %>
+</div>

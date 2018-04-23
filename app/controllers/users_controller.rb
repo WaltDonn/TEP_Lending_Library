@@ -17,7 +17,7 @@ class UsersController < ApplicationController
          @users = User.all.paginate(:page => params[:page]).per_page(10)
          @title = 'USERS'
     end
-    authorize! :index, @users
+    authorize! :index, :Users
   end
 
   # GET /users/1
@@ -52,6 +52,13 @@ class UsersController < ApplicationController
     end
     if(!params[:user][:email].nil?)
       @user.email = params[:user][:email]
+    end
+
+    if(!params[:user][:password].nil?)
+      @user.password = params[:user][:password]
+    end
+     if(!params[:user][:password_confirmation].nil?)
+      @user.password_confirmation = params[:user][:password_confirmation]
     end
     if(!params[:user][:phone_num].nil?)
       @user.phone_num = params[:user][:phone_num]

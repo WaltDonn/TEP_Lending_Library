@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   
   # main resources routes
   resources :users, :except => [:new, :create, :delete, :destroy]
-  resources :components
+  resources :components, :except => [:index, :show]
   resources :items
+  resources :item_categories, :except => [:index, :show]
   resources :reservations
   resources :schools, :except => [:new, :create, :delete, :destroy]
   resources :kits
@@ -49,6 +50,8 @@ Rails.application.routes.draw do
   patch 'submit_user_details' => 'reservations#submit_user_details', as: :submit_user_details
   get 'reservation_error' => 'reservations#reservation_error', as: :reservation_error
   
+  # new kit routes
+  post 'create_item_category' => 'kits#create_item_category', as: :create_item_category
   
   # static page routes
   get '/' => 'home#home', as: :home
@@ -56,8 +59,6 @@ Rails.application.routes.draw do
   # uploading users from a csv
   get 'upload_users' => 'home#upload_users', as: :upload_users
   post 'create_users' => 'home#create_users', as: :create_users
-
-  
   
   # get 'home/upload_schools'
   get 'upload_schools' => 'home#upload_schools', as: :upload_schools
