@@ -42,7 +42,7 @@
 <div class="off-canvas-wrapper">
   <div class="off-canvas position-left is-closed" data-transition="overlap" id="offCanvasLeft" data-off-canvas>
     <!-- left off-canvas markup -->
-    <ul class=" vertical dropdown menu" data-dropdown-menu style="max-width: 250px;">
+    <ul class="vertical dropdown menu" data-responsive-menu="drilldown" style="max-width: 250px;">
       <% if current_user %>
         <!-- only volunteers, managers, and admins  -->
         <% if (current_user.has_role?(:admin) || current_user.has_role?(:manager) || current_user.has_role?(:volunteer)) %>
