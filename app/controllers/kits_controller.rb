@@ -6,7 +6,7 @@ class KitsController < ApplicationController
   # GET /kits.json
   def index
     @kits = Kit.all.paginate(:page => params[:page]).per_page(10)
-    authorize! :index, @kits
+    authorize! :index, :Kits
   end
   
   def steamkits
