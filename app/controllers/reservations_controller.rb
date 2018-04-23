@@ -209,7 +209,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.all.paginate(:page => params[:page]).per_page(10)
-    authorize! :index, @reservations
+    authorize! :index, :Reservations
   end
   
   # GET /reservations/1
