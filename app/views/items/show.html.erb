@@ -3,6 +3,9 @@
     <div class="inner-title cell-block-x small-12">
       <span class="uline"><h1>Item: <%= @item.readable_id %></h1> </span>
     </div>
+    <div class="subtitle">
+      <p>Click on an item to edit it.</p>
+    </div>
   </div>
     
   <div class="grid-x grid-margin-x">
@@ -10,11 +13,11 @@
         <%= render  "item_category", item: @item %>
       </div>
 
-      <% if @item.components.size > 0 %>
-        <div class="cell-block-y medium-4 small-12" id="component-block">
-          <%= render  "item_components", components: @item.components %>
-        </div>
-      <% end %>
+      <div class="cell-block-y medium-5 small-12" id="component-block">
+        <%= render  "item_components", components: @item.components %>
+        <%= render  "components/new_component_form" %>
+        <%= link_to "ADD NEW COMPONENT", new_component_path, class: 'right', id: "new_component_link", :onclick => session[:item_id] = @item.id, remote: true %>
+      </div>
 
       <div class="cell medium-4 small-12" id="item-block">
         <%= render  "item_information" %>
