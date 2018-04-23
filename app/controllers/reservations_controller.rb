@@ -72,10 +72,13 @@ class ReservationsController < ApplicationController
 
   def edit_check_in
     #authorize! :edit_check_in
-    # byebug
     
     @kit = @reservation.kit
     @items = @kit.items
+  end
+
+  def check_in_finish
+    byebug
   end
 
 

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'edit_check_in/:id' => 'reservations#edit_check_in', as: :edit_check_in
   post 'picked_up/:id' => 'reservations#picked_up', as: :picked_up
   post 'returned/:id' => 'reservations#returned', as: :returned
+  post 'check_in_finish/:id' => 'reservations#check_in_finish', as: :check_in_finish
 
   get 'dashboard' => 'dashboard#dashboard', as: :dashboard
   get 'volunteer_portal' => 'reservations#volunteer_portal', as: :volunteer_portal
