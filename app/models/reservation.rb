@@ -91,8 +91,12 @@ class Reservation < ApplicationRecord
             end
         end
         
-        
-        other_res = self.kit.reservations.get_month(self.start_date.month)
+        unless self.start_date == nil
+            other_res = self.kit.reservations.get_month(self.start_date.month)
+        else
+           errors.add(:kit, 'Start Date is nil')
+           return false 
+        end
         
         if(other_res.select{|r| r.id != self.id}.size > 0)
              errors.add(:kit, 'Kit should only be in 1 reservation a month')
