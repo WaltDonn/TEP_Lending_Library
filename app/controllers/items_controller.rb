@@ -8,10 +8,10 @@ class ItemsController < ApplicationController
     @status = params[:status]
     case params[:status]
       when 'Good'
-        @items = Item.good
+        @items = Item.good.paginate(:page => params[:page]).per_page(10)
         @title = 'GOOD ITEMS'
       when 'Broken'
-        @items = Item.broken
+        @items = Item.broken.paginate(:page => params[:page]).per_page(10)
         @title = 'BROKEN ITEMS'
       when 'Available'
         @items = Item.available_for_kits.paginate(:page => params[:page]).per_page(10)
