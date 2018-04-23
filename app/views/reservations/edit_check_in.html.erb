@@ -1,12 +1,10 @@
 <%= simple_form_for(:check_in_finish_path, url: check_in_finish_url(@reservation), :html => { :class => 'form-inline' }, defaults: {label: false}) do |k| %>
   <% @items.each do |i| %>
-    <h4> Item Check-Off</h4>
-    Item Type: <%= i.item_category.name %><br>
-    Item Readable ID: <%= i.readable_id %>
+    <h4> Item Check-Off: <%= i.item_category.name %> (<%= i.readable_id %>)</h4>
     <% i.components.each do |c| %>
       Component Name: <%= c.name %><br>
       Expected Amount: <%= c.max_quantity %><br>
-      <%= k.simple_fields_for :components, :html => { :class => 'form-inline' }, defaults: {label: false} do |c2| %>
+      <%= k.simple_fields_for "#{c.id}", :html => { :class => 'form-inline' }, defaults: {label: false} do |c2| %>
         <table>
           <thead>
             <tr>

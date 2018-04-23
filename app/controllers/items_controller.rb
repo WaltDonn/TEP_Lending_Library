@@ -9,10 +9,10 @@ class ItemsController < ApplicationController
     case params[:status]
       when 'Good'
         @items = Item.good.paginate(:page => params[:page]).per_page(10)
-        @title = 'TEACHERS'
+        @title = 'GOOD'
       when 'Broken'
         @items = Item.broken.paginate(:page => params[:page]).per_page(10)
-        @title = 'EMPLOYEES'
+        @title = 'BROKEN'
       when 'Available'
         @items = Item.available_for_kits.paginate(:page => params[:page]).per_page(10)
         @title = 'AVAILABLE FOR KITS'
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
         @items = Item.has_kit.paginate(:page => params[:page]).per_page(10)
         @title = 'CURRENTLY USED'
       else 
-         @items = Item.all.paginate(:page => params[:page]).per_page(10)
+         @items = Item.all.by_read_id.paginate(:page => params[:page]).per_page(10)
          @title = 'ALL ITEMS'
     end
      authorize! :index, @items
