@@ -19,8 +19,6 @@ class Reservation < ApplicationRecord
     validate :kit_marked_reserved
     validate :kit_rentable, on: :create
     
-
-    before_destroy :destroyable
     
     
     belongs_to :kit
@@ -52,17 +50,17 @@ class Reservation < ApplicationRecord
         joins(:teacher).group_by_month(:start_date, format: "%b", last: 12, current: true).count("school_id")
     end
 
-
-    private
-    def destroyable
-        if(self.picked_up == false)
-            return true
+    def destroy
+        if(self.picked_up)
+            errors.add(:kit_id, "Reservations with a kit picked up can't be deleted")
+            return false
+        else
+            self.delete
         end
-        errors.add(:kit_id, "Reservations with a kit picked up can't be deleted")
-        return false
     end
 
 
+    private
 
     def kit_rentable
         if(self.kit == nil)

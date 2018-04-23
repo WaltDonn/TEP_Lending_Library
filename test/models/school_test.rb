@@ -126,7 +126,7 @@ class SchoolTest < ActiveSupport::TestCase
 
 	test 'should return proper number of owned reservations' do
 		assert_equal 2, @school.total_number_reservations
-		assert_equal 1, @school4.total_number_reservations
+		assert_equal 0, @school4.total_number_reservations
 		assert_equal 0, @school2.total_number_reservations
 	end
 

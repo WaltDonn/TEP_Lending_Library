@@ -33,7 +33,7 @@ class KitTest < ActiveSupport::TestCase
 # test scopes
 	
 	test 'visible kits scope' do
-		assert_equal Kit.visible_kits.map{|c| c.id}, [1, 2, 3]
+		assert_equal Kit.visible_kits.map{|c| c.id}, [1, 3]
 	end
 
 
@@ -76,7 +76,7 @@ class KitTest < ActiveSupport::TestCase
 	end
 
 	test 'test available kits method' do
-		assert_equal Kit.available_kits.map{|k| k.id}, [2, 3]
+		assert_equal Kit.available_kits.map{|k| k.id}, [3]
 	end
 
 	test 'test damaged kits method' do
@@ -88,7 +88,7 @@ class KitTest < ActiveSupport::TestCase
 	end
 
 	test 'available for item category' do
-		assert_equal Kit.available_for_item_category(Kit.rental_categories.first).size, 2
+		assert_equal Kit.available_for_item_category(Kit.rental_categories.first).size, 1
 	end
 
 	test 'top kits' do
@@ -104,7 +104,7 @@ class KitTest < ActiveSupport::TestCase
 	end
 
 	test 'get inventory' do
-		assert_equal @kit.inventory, 3
+		assert_equal @kit.inventory, 2
 	end
 
 	test 'set and unset reserve' do
@@ -117,7 +117,13 @@ class KitTest < ActiveSupport::TestCase
 
 	test 'kits cant be destroyed if they have items' do
 		@kit.destroy
-		assert @kit
+		refute @kit.destroyed?
+
+		@extra_kit = Kit.new(location: "some_place") 
+		assert @extra_kit.valid?
+		@extra_kit.save!
+		@extra_kit.destroy
+		assert @extra_kit.destroyed?
 	end
 
 
