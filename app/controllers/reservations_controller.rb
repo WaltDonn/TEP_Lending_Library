@@ -1,6 +1,6 @@
 require 'thread'
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :picked_up, :returned]
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :picked_up, :returned, :edit_check_in]
   before_action :authenticate_user!
   @@semaphore = Mutex.new
 
@@ -68,6 +68,14 @@ class ReservationsController < ApplicationController
         format.html { redirect_to returns_path, notice: 'Issue checking in item.' }
       end
     end
+  end
+
+  def edit_check_in
+    #authorize! :edit_check_in
+    # byebug
+    
+    @kit = @reservation.kit
+    @items = @kit.items
   end
 
 
