@@ -7,20 +7,29 @@
 
 // show page
 
+a#kit-location {
+  color: $primary-color;
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
 #item-show-blocks {
   margin-bottom: 2rem;
 }
 
-#component-block, #item-block, #category-block  {
+#component-block, 
+#item-block, 
+#category-block  {
   border: 2px solid $medium-gray;
   border-radius: $rounded-radius;
   padding: 1rem;
-  margin: 1rem;
+  margin: 0.5rem;
   h4 {
     color: $darker-gray;
     margin: 0.5rem 0rem;
   }
-  a{
+  .button a {
     color: $white;
   }
 }
@@ -56,10 +65,22 @@ a.button.radius {
 
 #category-block {
   color: $dark-gray;
-
+  
   h5#item-title {
     font-size: 18px;
     margin: 0.5rem 0rem;
+  }
+  
+  input#item_category_item_photo {
+    margin-bottom: 0rem;
+    // width: 14rem;
+  }
+
+  input.btn.button.radius.tiny.right {
+    margin: 0rem;
+    margin-top: 0.25rem;
+    font-size: 0.6rem;
+    // float: right;
   }
 }
 
@@ -72,7 +93,6 @@ a.button.radius {
 }
 
 .item-edit-head {
-  width: 4rem;
   padding-left: 0rem;
   padding-right: 0rem;
 }
@@ -81,3 +101,37 @@ input.btn.button {
   border: 0px;
   margin-left: 1rem;
 }
+
+a#add-a-component-button {
+  color: $secondary-color;
+  float: right;
+}
+
+#item-edit  {
+  th.item-edit-head {
+    width: 4rem;
+  }
+  textarea{
+    height: 6rem;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  input {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  #description {
+    padding-top: 0rem;
+  }
+  margin-bottom: 4rem;
+}
+
+.best_in_place:hover {
+  color: $secondary-color;
+}
+
+.subtitle {
+  font-style: italic;
+  color: $medium-gray;
+}
+

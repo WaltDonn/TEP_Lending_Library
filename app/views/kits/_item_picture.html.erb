@@ -1,7 +1,7 @@
 <div id="item-pic">
-  <% if rental_category.nil? || rental_category.item_photo_url.nil? %>
+  <% if rental_category.nil? || rental_category.item_photo.nil? %>
       <%= image_tag("not_found.jpg") %>
   <% else %>
-      <%= link_to image_tag(rental_category.item_photo_url) %>
+      <%= link_to image_tag(rental_category.item_photo) %>
   <% end %>
 </div>

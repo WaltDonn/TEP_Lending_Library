@@ -1,9 +1,16 @@
 <h4> Item Category Details</h4>
+
+<% @item_category = ItemCategory.find(@item.item_category.id) %>
 <% if @item.item_category.item_photo_url.nil? %>
-    <%= image_tag("not_found.jpg", width: "50%", height: "40%") %>
+    <%= image_tag("not_found.jpg", width: "100px", height: "90px") %>
 <% else %>
   <%= link_to image_tag(@item.item_category.item_photo_url) %>
 <% end %>
+<%= simple_form_for @item.item_category, :html => { :class => 'form-inline' }, defaults: {label: false} do |f| %>
+  <%= f.file_field :item_photo %>
+  <%= f.button :submit, "UPDATE PHOTO", :class => "button radius tiny right" %>
+<% end %>
 
-<h5 id="item-title"><%= @item.item_category.name %></h5>
-<p><%= @item.item_category.description %> </p>
+
+<h5 id="item-title"><%= best_in_place @item.item_category, :name %></h5>
+<p><%= best_in_place @item.item_category, :description, :as => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %> </p>

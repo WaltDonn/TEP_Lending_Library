@@ -9,10 +9,10 @@ class ItemsController < ApplicationController
     case params[:status]
       when 'Good'
         @items = Item.good.paginate(:page => params[:page]).per_page(10)
-        @title = 'TEACHERS'
+        @title = 'GOOD ITEMS'
       when 'Broken'
         @items = Item.broken.paginate(:page => params[:page]).per_page(10)
-        @title = 'EMPLOYEES'
+        @title = 'BROKEN ITEMS'
       when 'Available'
         @items = Item.available_for_kits.paginate(:page => params[:page]).per_page(10)
         @title = 'AVAILABLE FOR KITS'
@@ -40,16 +40,22 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @component = Component.new
     authorize! :edit, @item
   end
-
-
+  
+  
+  def add_component
+    # authorize! :new, @component
+    @component.save!
+  end
+  
   # POST /items
   # POST /items.json
   def create
     @item = Item.new(item_params)
     authorize! :create, @item
-
+    
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -60,7 +66,7 @@ class ItemsController < ApplicationController
       end
     end
   end
-
+  
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
@@ -74,10 +80,10 @@ class ItemsController < ApplicationController
     
     if @item.update(item_params) && @item.item_category.save
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
+        format.json { respond_with_bip(@item) }
       else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.html { render :show }
+        format.json { respond_with_bip(@item) }
       end
     end
   end
@@ -101,6 +107,15 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:readable_id, :condition, :kit_id, :item_category_id, :is_active)
+      if params[:item][:condition] == "false"
+        params[:item][:condition] = "Broken"
+      elsif params[:item][:condition] == "true"
+        params[:item][:condition] = "Good"
+      end
+        
+      params.require(:item).permit(
+        :readable_id, :condition, :kit_id, :item_category_id, :is_active,
+        item_categoty_attributes: [:name, :description, :item_photo]
+        )
     end
 end
