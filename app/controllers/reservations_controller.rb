@@ -1,6 +1,6 @@
 require 'thread'
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :picked_up, :returned]
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy, :picked_up, :returned, :edit_check_in]
   before_action :authenticate_user!
   @@semaphore = Mutex.new
 
@@ -63,14 +63,58 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save! && kit.save!
-        format.html { redirect_to returns_path, notice: 'Reservation was successfully checked in.' }
+        format.html { redirect_to edit_check_in_path, notice: 'Reservation was successfully checked in.' }
       else
         format.html { redirect_to returns_path, notice: 'Issue checking in item.' }
       end
     end
   end
 
+  def edit_check_in
+    authorize! :edit_check_in, :Reservation
 
+    @kit = @reservation.kit
+    @items = @kit.items
+  end
+
+  def check_in_finish
+    authorize! :check_in_finish, :Reservation
+    # first check if all component changes are valid
+    all_valid = true
+
+    params["check_in_finish_path"].each do |comp|
+      @curr_component = Component.find(comp.to_i)
+      @curr_component.damaged = params["check_in_finish_path"][comp]["damaged"]
+      @curr_component.missing = params["check_in_finish_path"][comp]["missing"]
+      unless @curr_component.valid? 
+        all_valid = false
+      end
+    end
+
+    respond_to do |format|
+      # if all component changes are valid, save all
+      if all_valid
+
+        all_save = true
+
+        params["check_in_finish_path"].each do |comp|
+          @curr_component = Component.find(comp.to_i)
+          @curr_component.damaged = params["check_in_finish_path"][comp]["damaged"]
+          @curr_component.missing = params["check_in_finish_path"][comp]["missing"]
+          unless @curr_component.save!
+            all_save = false
+          end
+        end
+        if all_save
+          format.html { redirect_to returns_path, notice: 'Kit checked in.' }
+        else
+          format.html { redirect_to edit_check_in_path, notice: 'Issue checking in kit.' }
+        end
+      else
+        format.html { redirect_to edit_check_in_path, notice: 'Invalid input.' }
+      end
+    end 
+  end
 
 #RENT A KIT ACTIONS
 

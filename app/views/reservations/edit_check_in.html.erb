@@ -1,0 +1,26 @@
+<%= simple_form_for(:check_in_finish_path, url: check_in_finish_url(@reservation), :html => { :class => 'form-inline' }, defaults: {label: false}) do |k| %>
+  <% @items.each do |i| %>
+    <h4> Item Check-Off: <%= i.item_category.name %> (<%= i.readable_id %>)</h4>
+    <% i.components.each do |c| %>
+      Component Name: <%= c.name %><br>
+      Expected Amount: <%= c.max_quantity %><br>
+      <%= k.simple_fields_for "#{c.id}", :html => { :class => 'form-inline' }, defaults: {label: false} do |c2| %>
+        <table>
+          <thead>
+            <tr>
+              <th class="item-edit-head"> Amount Damaged </th>
+              <td><%= c2.input :damaged, as: :integer, input_html: { min: '0', step: '1', value: '0' } %></td>
+            </tr>
+            <tr>
+              <th class="item-edit-head"> Amount Missing </th>
+              <td><%= c2.input :missing, as: :integer, input_html: { min: '0', step: '1', value: '0' } %></td>
+            </tr> 
+            <tr>
+          </thead>
+        </table>
+        
+      <% end %>
+    <% end %>
+  <% end %> 
+  <%= k.button :submit, "Complete", :class => 'button' %>
+<% end %>

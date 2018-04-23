@@ -26,7 +26,7 @@ class Reservation < ApplicationRecord
     belongs_to :kit
     belongs_to :teacher,   :class_name => 'User'
     has_one :school,    :through => :teacher
-
+    accepts_nested_attributes_for :kit
 
 
     scope :open_reservations,     -> { where(returned: false) }
