@@ -9,8 +9,9 @@
       <table class="information-table">
         <thead>
           <tr>
-            <th>School</th>
+            <th style="text-align:center;">School</th>
             <th style="text-align:center;">Teacher Renting</th>
+            <th style="text-align:center;">Return Date</th>
             <th style="text-align:center;">Kit being Rented</th>
             <th style="text-align:center;">Volunteer Name</th>
             <th></th>
@@ -26,6 +27,7 @@
                 <td></td>
               <% end %>
               <td style="text-align:center;"><%= returnKit.teacher.name %></td>
+              <td style="text-align:center;"><%= returnKit.return_date %></td>
               <td style="text-align:center;"><%= returnKit.kit.items.first.item_category.name %></td>
               <%= simple_form_for(:returned_path, url: returned_url(returnKit)) do |f| %>
               <td>

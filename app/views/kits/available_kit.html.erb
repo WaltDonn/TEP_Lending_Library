@@ -24,7 +24,7 @@
      <div class="cell small-6">
        <%= render :partial => "item_details" %>
        <div class="form-actions">
-        <% if @kits_count <= 0 %>
+        <% if @kits_count <= 0 || current_user.owned_reservations.open_reservations.size != 0 %>
           <h3>No kits are currently available, check back next month please</h3>
         <% else %>
           <div class='button radius', id='rent-kit-button'>
