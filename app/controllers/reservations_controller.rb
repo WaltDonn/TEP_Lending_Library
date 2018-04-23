@@ -71,13 +71,14 @@ class ReservationsController < ApplicationController
   end
 
   def edit_check_in
-    #authorize! :edit_check_in
-    
+    authorize! :edit_check_in, :Reservation
+
     @kit = @reservation.kit
     @items = @kit.items
   end
 
   def check_in_finish
+    authorize! :check_in_finish, :Reservation
     # first check if all component changes are valid
     all_valid = true
 
