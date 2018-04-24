@@ -8,6 +8,7 @@
 <% end %>
 <%= simple_form_for @item.item_category, :html => { :class => 'form-inline' }, defaults: {label: false} do |f| %>
   <%= f.file_field :item_photo %>
+  <%= f.input :item_id, :as => :hidden, :input_html => { :value => @item.id} %>
   <%= f.button :submit, "UPDATE PHOTO", :class => "button radius tiny right" %>
 <% end %>
 
