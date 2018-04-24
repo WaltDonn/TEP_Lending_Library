@@ -13,7 +13,6 @@ Rails.application.configure do
   config.exceptions_app = self.routes
   
   config.filter_parameters << :password
-  require “smtp_tls”
   
   config.action_controller.default_url_options = {host: "tep-lending-library.herokuapp.com"}
   config.action_mailer.default_url_options = {host: "tep-lending-library.herokuapp.com" }

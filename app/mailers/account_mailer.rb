@@ -3,7 +3,7 @@ class AccountMailer < Devise::Mailer
   include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
   default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
   default from: ENV["account_email_username"]
-  require “smtp_tls”
+
   
    @@smtp_settings = {
       :address              => ENV["email_addr"],
