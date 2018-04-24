@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     authorize! :update, @user
+    @email_flag = false
     
     if(!params[:user][:first_name].nil?)
       @user.first_name = params[:user][:first_name]
@@ -52,12 +53,13 @@ class UsersController < ApplicationController
     end
     if(!params[:user][:email].nil?)
       @user.email = params[:user][:email]
+      @email_flag = true
     end
 
-    if(!params[:user][:password].nil?)
+    if(!params[:user][:password].nil? && params[:user][:password] != "")
       @user.password = params[:user][:password]
     end
-     if(!params[:user][:password_confirmation].nil?)
+     if(!params[:user][:password_confirmation].nil? && params[:user][:password_confirmation] != "")
       @user.password_confirmation = params[:user][:password_confirmation]
     end
     if(!params[:user][:phone_num].nil?)
@@ -74,7 +76,11 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       if @user.save
+        if @email_flag
+          format.html { redirect_to user_path(@user), alert: "You will need to confirm your new email address before changes take place"}
+        else
           format.html { redirect_to user_path(@user)}
+        end
       else
            format.html { render :edit}
       end
