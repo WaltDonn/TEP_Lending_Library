@@ -1,6 +1,6 @@
 id,name,street_1,street_2,city,state,zip,is_active
 1,"Carnegie Mellon University","5000 Forbes Avenue","","Pittsburgh","PA",15289,true
-2,"Allegheny K-5","1046 Losh Lane","","Pittsburgh","PA",15203,true
+2,"Aliquippa Junior-Senior High","1046 Losh Lane","","Pittsburgh","PA",15203,true
 3,"Concord Elementary School","4403 Yorkie Lane","","Pittsburgh","PA",15106,true
 4,"Dilworth Traditional Academy","1403 Maryland Avenue",,"Pittsburgh","PA",15240,true
 5,"Murray Accelerated Learning Academy","3871 Rhapsody Street","","Pittsburgh","PA",15289,true
