@@ -3,8 +3,6 @@ class Kit < ApplicationRecord
     validates :reserved, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     validates :is_active, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     
-    before_destroy :is_destroyable
-    
     has_many :items
     has_many :reservations
     has_one :item_category, :through => :items
@@ -84,12 +82,14 @@ class Kit < ApplicationRecord
         self.save!
     end
     
-    private
-    def is_destroyable
+    def destroy
         if(self.items.size > 0)
             errors.add(:items, "Kit still has items and can't be destroyed")
             return false
+        else
+            self.delete
         end
     end
+    
     
 end

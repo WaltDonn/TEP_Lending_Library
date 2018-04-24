@@ -37,16 +37,16 @@ three:
   teacher_id: 3
   user_check_in: John Smith
   user_check_out: Henry Ham
-four: 
-  start_date: <%= 10.day.ago %>
-  end_date: <%= 1.day.ago %>
-  pick_up_date: <%= 9.day.ago %>
-  return_date: <%= 2.day.ago %>
-  returned: true
-  picked_up: true
-  release_form_id: 126
-  kit_id: 3
-  teacher_id: 7
-  user_check_in: John Smith
-  user_check_out: Henry Ham
+# four: 
+#   start_date: <%= 10.day.ago %>
+#   end_date: <%= 1.day.ago %>
+#   pick_up_date: <%= 9.day.ago %>
+#   return_date: <%= 2.day.ago %>
+#   returned: true
+#   picked_up: true
+#   release_form_id: 126
+#   kit_id: 3
+#   teacher_id: 7
+#   user_check_in: John Smith
+#   user_check_out: Henry Ham
 
