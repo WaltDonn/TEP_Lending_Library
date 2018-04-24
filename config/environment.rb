@@ -1,6 +1,6 @@
 # Load the Rails application.
 require_relative 'application'
-require “smtp_tls”
+require "./lib/smtp_tls.rb"
 
 # Initialize the Rails application.
 Rails.application.initialize!
