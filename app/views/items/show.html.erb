@@ -14,9 +14,7 @@
       </div>
 
       <div class="cell-block-y medium-5 small-12" id="component-block">
-        <%= render  "item_components", components: @item.components %>
-        <%= render  "components/new_component_form" %>
-        <%= link_to "ADD NEW COMPONENT", new_component_path, class: 'right', id: "new_component_link", :onclick => session[:item_id] = @item.id, remote: true %>
+        <%= render  "item_components" %>
       </div>
 
       <div class="cell medium-4 small-12" id="item-block">

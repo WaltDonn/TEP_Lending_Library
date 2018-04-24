@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   
   # main resources routes
   resources :users, :except => [:new, :create, :delete, :destroy]
-  resources :components, :except => [:index, :show]
-  resources :items
+  resources :components, :except => [:show]
+  resources :items do
+    resources :components
+  end
   resources :item_categories, :except => [:index, :show]
   resources :reservations
   resources :schools, :except => [:new, :create, :delete, :destroy]

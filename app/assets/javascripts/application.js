@@ -17,6 +17,7 @@
 //= require foundation
 //= require highcharts
 //= require chartkick
+//= require vue
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
@@ -63,6 +64,15 @@ function FooterPosition() {
       });
   }
 };
+
+
+function ToggleOpen(toClose, toOpen) {
+  var close = toClose;
+  var open = toOpen;
+  $('ul.accordion').foundation('toggle', close);
+  $('ul.accordion').foundation('toggle', open);
+}
+
 
 // Flash fade
 $(function() {
