@@ -39,15 +39,15 @@ class Reservation < ApplicationRecord
     end
 
     def self.kit_history
-        group_by_month(:start_date, format: "%b", last: 12, current: true).sum("kit_id")
+        group_by_month(:start_date, format: "%b", last: 3, current: true).sum("kit_id")
     end
 
     def self.teacher_rental_hist
-        group_by_month(:start_date, format: "%b", last: 12, current: true).sum("teacher_id")
+        group_by_month(:start_date, format: "%b", last: 3, current: true).sum("teacher_id")
     end
     
     def self.school_rental_hist
-        joins(:teacher).group_by_month(:start_date, format: "%b", last: 12, current: true).count("school_id")
+        joins(:teacher).group_by_month(:start_date, format: "%b", last: 3, current: true).count("school_id")
     end
 
     def destroy
