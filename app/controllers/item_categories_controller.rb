@@ -25,7 +25,7 @@ class ItemCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @item_category.update(item_category_params)
-        format.html { redirect_to @item_category, notice: 'Category was successfully updated.' }
+        format.html { redirect_to item_path(params[:item_category][:item_id]), notice: 'Category was successfully updated.' }
         format.json { respond_with_bip(@item_category) }
         format.js
       else

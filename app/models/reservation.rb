@@ -19,14 +19,12 @@ class Reservation < ApplicationRecord
     validate :kit_marked_reserved
     validate :kit_rentable, on: :create
     
-
-    before_destroy :destroyable
     
     
     belongs_to :kit
     belongs_to :teacher,   :class_name => 'User'
     has_one :school,    :through => :teacher
-
+    accepts_nested_attributes_for :kit
 
 
     scope :open_reservations,     -> { where(returned: false) }
@@ -41,28 +39,28 @@ class Reservation < ApplicationRecord
     end
 
     def self.kit_history
-        group_by_month(:start_date, format: "%b", last: 12, current: true).count("kit_id")
+        group_by_month(:start_date, format: "%b", last: 3, current: true).sum("kit_id")
     end
 
     def self.teacher_rental_hist
-        group_by_month(:start_date, format: "%b", last: 12, current: true).count("teacher_id").uniq
+        group_by_month(:start_date, format: "%b", last: 3, current: true).sum("teacher_id")
     end
     
     def self.school_rental_hist
-        joins(:teacher).group_by_month(:start_date, format: "%b", last: 12, current: true).count("school_id").uniq
+        joins(:teacher).group_by_month(:start_date, format: "%b", last: 3, current: true).count("school_id")
+    end
+
+    def destroy
+        if(self.picked_up)
+            errors.add(:kit_id, "Reservations with a kit picked up can't be deleted")
+            return false
+        else
+            self.delete
+        end
     end
 
 
     private
-    def destroyable
-        if(self.picked_up == false)
-            return true
-        end
-        errors.add(:kit_id, "Reservations with a kit picked up can't be deleted")
-        return false
-    end
-
-
 
     def kit_rentable
         if(self.kit == nil)
@@ -91,8 +89,12 @@ class Reservation < ApplicationRecord
             end
         end
         
-        
-        other_res = self.kit.reservations.get_month(self.start_date.month)
+        unless self.start_date == nil
+            other_res = self.kit.reservations.get_month(self.start_date.month)
+        else
+           errors.add(:kit, 'Start Date is nil')
+           return false 
+        end
         
         if(other_res.select{|r| r.id != self.id}.size > 0)
              errors.add(:kit, 'Kit should only be in 1 reservation a month')

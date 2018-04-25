@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
         @items = Item.has_kit.paginate(:page => params[:page]).per_page(10)
         @title = 'CURRENTLY USED'
       else 
-         @items = Item.all.paginate(:page => params[:page]).per_page(10)
+         @items = Item.all.by_read_id.paginate(:page => params[:page]).per_page(10)
          @title = 'ALL ITEMS'
     end
      authorize! :index, :Items
