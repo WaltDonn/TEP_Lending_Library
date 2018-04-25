@@ -1,0 +1,43 @@
+/**
+ * Foundation for Sites by ZURB
+ * Version 6.4.3
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */
+/* line 9, /Users/Alex/Desktop/Carnegie/67-373/TEP_Lending_Library/app/assets/stylesheets/home.scss */
+.home-content {
+  height: 100%;
+  background-image: url(/assets/home_bg-99ae8b3bc3e199fa67d734ee868ab01ca42e3018d5cb8add3d56a6cb4c191b21.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* line 17, /Users/Alex/Desktop/Carnegie/67-373/TEP_Lending_Library/app/assets/stylesheets/home.scss */
+#welcome {
+  color: #fefefe;
+  position: absolute;
+  width: 800px;
+  height: 200px;
+  z-index: 15;
+  top: 60%;
+  left: 50%;
+  margin: -200px 0 0 -400px;
+}
+
+/* line 28, /Users/Alex/Desktop/Carnegie/67-373/TEP_Lending_Library/app/assets/stylesheets/home.scss */
+.welcome-button {
+  width: 180px;
+  height: 50px;
+  color: #fefefe;
+  display: inline-block;
+  border: none;
+  background-color: #F99D31;
+  font-size: 1.2rem;
+}
+
+/* line 38, /Users/Alex/Desktop/Carnegie/67-373/TEP_Lending_Library/app/assets/stylesheets/home.scss */
+.welcome-button:hover,
+.welcome-button:active {
+  background-color: #f68807;
+}

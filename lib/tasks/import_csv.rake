@@ -47,8 +47,8 @@ namespace :import_incidents_csv do
         @user.password_confirmation = row['password_confirmation']
         @user.phone_num = row['phone_num']
         @user.class_size = row['class_size']
-        unless School.by_name(row['school']).first.nil?
-          @user.school_id = School.by_name(row['school']).first.id
+        unless School.by_name_zip(row['school'], row['zip']).first.nil?
+          @user.school_id = School.by_name_zip(row['school'], row['zip']).first.id
         end
         @user.is_active = true
         @user.role = row['role']
