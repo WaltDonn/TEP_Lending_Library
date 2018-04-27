@@ -8,24 +8,25 @@
       <% if @item.kit.nil? %>
         <td>Item not in a kit</td>
       <% else %>
-        <td><%= link_to @item.kit.location, @item.kit, :id => "kit-location" %></td>
+        <td><%= link_to @item.kit.location, @item.kit %></td>
       <% end %>
     </tr> 
     <tr>
       <td>Condition:</td>
-      <td><%= best_in_place @item, :condition, :as => :checkbox, collection: {'Broken' => "Broken", 'Good' => "Good"} %></td>
+      <td><%= @item.condition %> </td>
     </tr>
     <tr>
       <td>Category:</td>
-      <td><%= best_in_place @item, :item_category, :as => :select, :collection => ItemCategory.all.map{ |c| c.name }, :place_holder => @item.item_category.name%></td>
+      <td><%= @item.item_category.name %></td>
     </tr>
     <tr>
       <td>Active:</td>
-      <td><%= best_in_place @item, :is_active, :as => :checkbox, collection: {'false' => "Inactive", 'true' => "Active"} %></td>
+      <td><%= @item.is_active %></td>
     </tr>
   </tbody>
 </table>
 <br/>
 <div class="right">
+  <%= link_to 'EDIT ITEM', edit_item_path(@item), :class => 'button radius small' %>
   <%= link_to 'DESTROY ITEM', item_path(@item), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button alert radius small' %>
 </div>
