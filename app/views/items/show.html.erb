@@ -3,9 +3,6 @@
     <div class="inner-title cell-block-x small-12">
       <span class="uline"><h1>Item: <%= @item.readable_id %></h1> </span>
     </div>
-    <div class="subtitle">
-      <p>Click on an item to edit it.</p>
-    </div>
   </div>
     
   <div class="grid-x grid-margin-x">
@@ -13,9 +10,11 @@
         <%= render  "item_category", item: @item %>
       </div>
 
-      <div class="cell-block-y medium-5 small-12" id="component-block">
-        <%= render  "item_components" %>
-      </div>
+      <% if @item.components.size > 0 %>
+        <div class="cell-block-y medium-4 small-12" id="component-block">
+          <%= render  "item_components", components: @item.components %>
+        </div>
+      <% end %>
 
       <div class="cell medium-4 small-12" id="item-block">
         <%= render  "item_information" %>
