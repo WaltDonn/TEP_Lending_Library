@@ -18,6 +18,7 @@ class KitsController < ApplicationController
     @kits_count = Kit.available_for_item_category(@rental_category).count
   end
 
+
   # GET /kits/1
   # GET /kits/1.json
   def show
