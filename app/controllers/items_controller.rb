@@ -23,6 +23,8 @@ class ItemsController < ApplicationController
          @items = Item.all.by_read_id.paginate(:page => params[:page]).per_page(10)
          @title = 'ALL ITEMS'
     end
+
+    
      authorize! :index, :Items
   end
 
