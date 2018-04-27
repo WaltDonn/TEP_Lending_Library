@@ -1,0 +1,68 @@
+<div class="cell-block-y">
+  <div class="grid-container">
+
+    <%= simple_form_for @kit, :html => { :class => 'form-horizontal' } do |f| %>
+      <div class="grid-x">
+        <div class="inner-title cell-block-x small-8 small-offset-1">
+          <span class="uline"><h1>Kit <%= @kit.id%></h1></span>
+        </div>
+      </div>
+
+      <div class="grid-x">
+        <div class="cell-block-x small-offset-1">
+          <%= f.input :location %>
+        </div>
+      </div>
+
+      <div class="grid-x">
+        <div class="cell-block-x small-offset-1">
+          <%= f.input :is_active %>
+        </div>
+      </div>
+
+
+       <div class="grid-x">
+        <div class="cell-block-x small-offset-1">
+          <table class="item-table">
+              <thead>
+                <th>Name</th>
+                <th>Condition</th>
+              </thead>
+              <tbody>
+                <div class="items">
+                </div>
+              </tbody>
+            </table>
+         <a href="#" onclick="add_item()"> add an item</a>
+        </div>
+      </div>
+
+      <div class="grid-x">
+        <div class="cell-block-x small-11 small-offset-1">
+          <div class="form-actions">
+            <%= f.submit nil, :class => 'button radius' %>
+            <%= link_to 'Cancel', shopping_path, :class => 'button alert radius' %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  function add_item() {
+    var items = $('form .items')
+    var num_items = items.children().length / 2;
+    var input = document.createElement("input");
+    input.type = "text";
+    input.name = "member" + num_items;
+    items.append('<div><br> <p> Readable ID: </p>');
+    items.append(input);
+    items.append('</div>');
+  }
+</script>
+
+
+
