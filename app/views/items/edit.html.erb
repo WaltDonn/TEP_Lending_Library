@@ -1,0 +1,78 @@
+<div class="grid-container" id="item-edit">
+  <div class="grid-x">
+    <div class="inner-title cell-block-x small-12">
+      <span class="uline"><h1>Editing <%= @item.readable_id %></h1> </span>
+    </div>
+  </div>
+
+  <div class="grid-x grid-margin-x">
+    <div class="cell-block-y medium-4 small-12" id="component-block">
+      <%= simple_form_for @item, :html => { :class => 'form-inline' }, defaults: {label: false} do |f| %>
+        <h4> Item Category Information</h4>
+        <%= f.simple_fields_for :item_category, :html => { :class => 'form-inline' }, defaults: {label: false} do |g| %>
+            <% if !@item.item_category.item_photo.nil? %>
+                <%= image_tag(@item.item_category.item_photo, width: "50px", height: "50px") %>
+            <% end %>
+              <table>
+            <thead>
+              <tr>
+                <th class="item-edit-head"> Change Picture </th>
+                  <td><%= g.file_field :item_photo %></td>
+              </tr>
+              <tr>
+                <th class="item-edit-head"> Category Name </th>
+                <td><%= g.input :name %></td>
+              </tr>
+              <tr>
+                  <th class="item-edit-head"> Category Description </th>
+                  <td><%= g.input :description %></td>
+              </tr>
+            </thead>
+          </table>
+        <% end %>
+      </div>
+
+
+      <div class="cell-block-y medium-4 small-12" id="category-block">
+        <%= @item.item_category.item_photo %>
+        <%= render  "item_components", components: @item.components %>
+        <a href="#"> add a component</a>
+      </div>
+
+      <div class="cell-block-y medium-4 small-12" id="item-block">
+        <h4> Item Information </h4>
+        <table>
+          <thead>
+            <tr>
+              <th class="item-edit-head"> Location </th>
+              <td>
+                <% if @item.kit.nil? || @item.kit.location.nil? %>
+                  <p>Item needs to be assigned to a kit</p>
+                <% else %>
+                  <%= f.simple_fields_for @item.kit do |g| %>
+                    <%= g.input :location, disabled: true, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th class="item-edit-head"> Item Condtion </th>
+              <td>
+                <%= f.input :condition, collection: Item::CONDITIONS, include_blank: false, selected: @item.condition, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+              </td>
+            </tr>
+            <tr>
+              <th class="item-edit-head"> Item Active </th>
+              <td><%= f.input :is_active, as: :boolean, :input_html => { :class => 'avg'} %></td>
+            </tr>
+          </thead>
+        </table>
+        <br>
+        <div class="right">
+          <%= f.button :submit, "SAVE CHANGES", :class => 'button radius small' %>
+          <%= link_to 'CANCEL EDITS', items_path, :class => 'button alert radius small' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
