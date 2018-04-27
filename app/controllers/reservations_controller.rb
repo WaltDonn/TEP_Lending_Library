@@ -290,7 +290,6 @@ class ReservationsController < ApplicationController
 
   def manager_create
     @reservation = Reservation.new(reservation_params)
-    byebug
     authorize! :manager_create, @reservation
 
     respond_to do |format|
