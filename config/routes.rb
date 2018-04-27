@@ -52,9 +52,6 @@ Rails.application.routes.draw do
   patch 'submit_user_details' => 'reservations#submit_user_details', as: :submit_user_details
   get 'reservation_error' => 'reservations#reservation_error', as: :reservation_error
   
-  # new kit routes
-  post 'create_item_category' => 'kits#create_item_category', as: :create_item_category
-  
   # static page routes
   get '/' => 'home#home', as: :home
   
