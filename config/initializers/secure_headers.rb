@@ -22,7 +22,7 @@ SecureHeaders::Configuration.default do |config|
         media_src: %w('self'),
         object_src: %w('self'),
         sandbox: false,
-        plugin_types: %w(application/x-shockwave-flash),
+        plugin_types: %w(application/x-shockwave-flash application/pdf),
         script_src: %w('self' 'unsafe-inline' https://ajax.googleapis.com/ajax/libs/),
         style_src: %w('unsafe-inline' 'self' https://ajax.googleapis.com/ajax/libs/jqueryui/ https://maxcdn.bootstrapcdn.com/font-awesome/),
         worker_src: %w('self'),
