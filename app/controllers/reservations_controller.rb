@@ -292,8 +292,11 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     authorize! :manager_create, @reservation
 
+    kit = @reservation.kit
+    kit.reserved = true
+
     respond_to do |format|
-      if @reservation.save
+      if @reservation.save && kit.save!
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
