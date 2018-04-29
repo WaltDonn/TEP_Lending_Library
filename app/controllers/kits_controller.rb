@@ -18,6 +18,7 @@ class KitsController < ApplicationController
     @kits_count = Kit.available_for_item_category(@rental_category).count
   end
 
+
   # GET /kits/1
   # GET /kits/1.json
   def show
@@ -29,35 +30,6 @@ class KitsController < ApplicationController
     @kit = Kit.new
     authorize! :new, @kit
     @item_category = ItemCategory.new
-  end
-  
-  def create_item_category
-    @item_category = ItemCategory.new
-    authorize! :new, @item_category
-
-    if(!params[:item_category][:item_photo].nil?)
-      @user.item_photo = params[:user][:item_photo]
-    end
-    if(!params[:item_category][:name].nil?)
-      @item_category.name = params[:item_category][:name]
-    end
-    if(!params[:item_category][:email].nil?)
-      @item_category.email = params[:item_category][:email]
-    end
-
-    respond_to do |format|
-      if @item_category.save
-        if(!params[:item_category][:item_count].nil?)
-          num = params[:item_category][:item_count]
-          for i in 0..num
-            @item = Item.new
-            @item.item_category
-          end
-        end
-      else
-           format.html { render :new }
-      end
-    end
   end
 
   # GET /kits/1/edit

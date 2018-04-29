@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   
   # main resources routes
   resources :users, :except => [:new, :create, :delete, :destroy]
-  resources :components, :except => [:index, :show]
-  resources :items
+  resources :components, :except => [:show]
+  resources :items do
+    resources :components
+  end
   resources :item_categories, :except => [:index, :show]
   resources :reservations
   resources :schools, :except => [:new, :create, :delete, :destroy]
@@ -49,9 +51,6 @@ Rails.application.routes.draw do
   get 'edit_user_details' => 'reservations#edit_user_details', as: :edit_user_details
   patch 'submit_user_details' => 'reservations#submit_user_details', as: :submit_user_details
   get 'reservation_error' => 'reservations#reservation_error', as: :reservation_error
-  
-  # new kit routes
-  post 'create_item_category' => 'kits#create_item_category', as: :create_item_category
   
   # static page routes
   get '/' => 'home#home', as: :home
