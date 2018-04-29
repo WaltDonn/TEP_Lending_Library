@@ -11,11 +11,13 @@
         <div class="card-divider" id="kit-info">
           <h4> Kit Info </h4>
         </div>
-        <% if @rental_category.nil? || @rental_category.item_photo_url.nil? %>
-            <%= image_tag("not_found.jpg") %>
-        <% else %>
-            <%= image_tag(@rental_category.item_photo_url) %>
-        <% end %>
+        <div class="center">
+          <% if @rental_category.nil? || @rental_category.item_photo_url.nil? %>
+              <%= image_tag("not_found.jpg") %>
+          <% else %>
+              <%= image_tag(@rental_category.item_photo_url) %>
+          <% end %>
+        </div>
         <div class="card-section">
           <h2 class="product-card-title"><%= @rental_category.name %></h2>
         </div>

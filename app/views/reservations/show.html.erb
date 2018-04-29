@@ -1,63 +1,107 @@
+<% @rental_category = @reservation.kit.items.first.item_category %>
 
-<p>
-   <strong>Start date:</strong>
-   <%= @reservation.start_date %>
- </p>
- 
- <p>
-   <strong>End date:</strong>
-   <%= @reservation.end_date %>
- </p>
- 
- <p>
-   <strong>Pick up date:</strong>
-   <%= @reservation.pick_up_date %>
- </p>
- 
- <p>
-   <strong>Return date:</strong>
-   <%= @reservation.return_date %>
- </p>
- 
- <p>
-   <strong>Returned:</strong>
-   <%= @reservation.returned %>
- </p>
- 
- <p>
-   <strong>Picked up:</strong>
-   <%= @reservation.picked_up %>
- </p>
- 
- <p>
-   <strong>Release form:</strong>
-   <%= @reservation.release_form_id %>
- </p>
- 
- <p>
-   <strong>Kit:</strong>
-   <%= link_to @reservation.kit.items.first.item_category.name, kit_path(@reservation.kit) %>
- </p>
- 
- <p>
-   <strong>Teacher:</strong>
-   <%= link_to @reservation.teacher.name, user_path(@reservation.teacher) %>
- </p>
- 
- <% if current_user.has_role?(:admin) || current_user.has_role?(:manager) %>
-	 <% unless @reservation.user_check_out.nil? %>
-	 <p>
-	   <strong>User check out:</strong>
-	   <%= @reservation.user_check_out %>
-	 </p>
-	 <% end %>
-	 <% unless @reservation.user_check_in.nil? %>
-		 <p>
-		   <strong>User check in:</strong>
-		   <%= @reservation.user_check_in %>
-		 </p>
-	 <% end %>
-  <% end %>
- 
- <%= link_to 'Edit', edit_reservation_path(@reservation) %> |
- <%= link_to 'Back', reservations_path %>
+<div class="grid-container">
+  <div class="grid-x">
+    <div class="inner-title cell-block-x small-8 small-offset-1">
+      <span class="uline"><h1>Reservation</h1> </span>
+    </div>
+  </div>
+
+  <div class="grid-x">
+    <div class="small-offset-1 medium-3 small-12">
+      <div class="product-card confirmation" id="first">
+        <div class="card-divider" id="kit-info">
+          <h4> Kit Info </h4>
+        </div>
+        <div class="center">
+          <% if @rental_category.nil? || @rental_category.item_photo_url.nil? %>
+              <%= image_tag("not_found.jpg") %>
+          <% else %>
+              <%= image_tag(@rental_category.item_photo_url) %>
+          <% end %>
+        </div>
+        <div class="card-section">
+          <h2 class="product-card-title"><%= @rental_category.name %></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="medium-4 small-12">
+      <div class="product-card confirmation">
+        <div class="card-divider">
+          <h4> Borrower Info </h4>
+        </div>
+        <div class="card-section">
+          <p><b>Name</b></p>
+          <p class="body-text"><%=  current_user.name %></p>
+          <p><b>Email</b></p>
+          <p class="body-text"><%=  current_user.email %></p>
+          <% unless current_user.school.nil? %>
+            <p><b>School:</b></p>
+            <p class="body-text"><%=  current_user.school.name %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="medium-3 small-12">
+      <div class="product-card confirmation">
+        <div class="card-divider">
+          <h4> Dates </h4>
+        </div>
+        <div class="card-section">
+          <p><b>Pick up date:</b></p>
+          <p class="body-text"><%=  @reservation.pick_up_date %></p>
+          <p><b>Return date:</b></p>
+          <p class="body-text"><%=  @reservation.return_date %></p>
+        </div>
+        <br/><br/>
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td class="center">
+                  <b>Picked Up</b>
+                </td>
+                <td class="center">
+                  <b>Returned</b>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                <% if @reservation.picked_up %>
+                    <div class="center"><i class="fas fa-check green"></i></div>
+                  <% else %>
+                    <div class="center"><i class="fas fa-times red"></div></i>
+                  <% end %>
+                </td>
+                <td>
+                  <% if @reservation.returned %>
+                    <div class="center"><i class="fas fa-check green"></i></div>
+                  <% else %>
+                    <div class="center"><i class="fas fa-times red"></i></div>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-x center" id="buttons">
+    <div class="small-3 small-offset-1 left cell">
+      <%= link_to 'Go back', :back, :class => 'button radius info'  %>
+    </div>
+    <div class="small-3 small-offset-4 cell right">
+      <%= simple_form_for @reservation, :url => reservations_path do |f| %>
+        <%= f.input :start_date, :value => @reservation.start_date, as: :hidden, :class => 'hidden-form'  %>
+        <%= f.input :end_date, :value => @reservation.end_date, as: :hidden, :class => 'hidden-form'  %>
+        <%= f.input :pick_up_date, :value => @reservation.pick_up_date, as: :hidden, :class => 'hidden-form'  %>
+        <%= f.input :return_date, :value => @reservation.return_date, as: :hidden, :class => 'hidden-form' %>
+        <%= f.input :teacher_id, :value => current_user, as: :hidden, :class => 'hidden-form' %>
+      <% end %>
+    </div>
+  </div>
+</div>
