@@ -289,7 +289,6 @@ class ReservationsController < ApplicationController
   end
 
   def manager_create
-    byebug
     @reservation = Reservation.new(reservation_params)
     @reservation.start_date = @reservation.pick_up_date
     @reservation.end_date = @reservation.return_date
