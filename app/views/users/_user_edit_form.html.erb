@@ -36,7 +36,7 @@
             </tr>
             
             <tr>
-              <% if @user.has_role?("teacher") %>
+              <% if @user.has_role?(:teacher) %>
                 <th>School Email</th>
               <% else %>
                 <th>Email</th>
@@ -58,7 +58,7 @@
               </td>
             </tr>
             
-            <% if @user.has_role?("teacher") %>
+            <% if @user.has_role?(:teacher) %>
               <tr>
                 <th>School</th>
                 <td>
@@ -72,7 +72,7 @@
                 </td>
               </tr>
             <% end %>
-            <% if @user.has_role?('admin') || @user.has_role?('manager') %>
+            <% if @current_user.has_role?(:admin) || @current_user.has_role?(:manager) %>
               <tr>
                 <th>Role</th>
                 <td><%=  f.input :role, :input_html => { :class => 'avg' } %></td>

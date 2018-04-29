@@ -135,3 +135,17 @@ a#add-a-component-button {
   color: $medium-gray;
 }
 
+// NEW COMPONENT FORM
+
+.button {
+  border: 0px;
+  padding: 0.65rem;
+}
+
+a.button.tiny.radius.alert {
+  color: $white;
+}
+
+#component_submit {
+  font-size: 0.6rem;
+}
