@@ -141,3 +141,11 @@ $topbar-hover-lines-transition: all 0.35s ease;
     width: 100%;
   }
 }
+
+#trash-button {
+  width: 8rem;
+  i {
+    color: $white;
+    margin-left: 0.5rem;
+  }
+}

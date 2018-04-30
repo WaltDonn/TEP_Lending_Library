@@ -93,14 +93,18 @@
   <div class="grid-x center" id="buttons">
     <div class="small-3 small-offset-1 left cell">
       <%= link_to 'Go back', :back, :class => 'button radius info'  %>
-    </div>
-    <div class="small-3 small-offset-4 cell right">
+
       <%= simple_form_for @reservation, :url => reservations_path do |f| %>
         <%= f.input :start_date, :value => @reservation.start_date, as: :hidden, :class => 'hidden-form'  %>
         <%= f.input :end_date, :value => @reservation.end_date, as: :hidden, :class => 'hidden-form'  %>
         <%= f.input :pick_up_date, :value => @reservation.pick_up_date, as: :hidden, :class => 'hidden-form'  %>
         <%= f.input :return_date, :value => @reservation.return_date, as: :hidden, :class => 'hidden-form' %>
         <%= f.input :teacher_id, :value => current_user, as: :hidden, :class => 'hidden-form' %>
+      <% end %>
+    </div>
+    <div class="small-2 small-offset-5">
+      <%= link_to @reservation, method: :delete, class: "button", id: "trash-button", data: { confirm: 'Are you sure you want to delete this reservation?' } do %>
+        Delete <i class="fas fa-trash-alt"></i>
       <% end %>
     </div>
   </div>
