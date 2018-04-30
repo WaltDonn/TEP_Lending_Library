@@ -23,7 +23,7 @@ SecureHeaders::Configuration.default do |config|
         object_src: %w('self'),
         sandbox: false,
         plugin_types: %w(application/x-shockwave-flash application/pdf),
-        script_src: %w('self' 'unsafe-inline' https://ajax.googleapis.com/ajax/libs/),
+        script_src: %w('self' 'unsafe-inline' 'unsafe-eval' https://ajax.googleapis.com/ajax/libs/),
         style_src: %w('unsafe-inline' 'self' https://ajax.googleapis.com/ajax/libs/jqueryui/ https://maxcdn.bootstrapcdn.com/font-awesome/),
         worker_src: %w('self'),
         upgrade_insecure_requests: true, # see https://www.w3.org/TR/upgrade-insecure-requests/

@@ -1,5 +1,5 @@
 $(document).on('ready', function() {
-  var element = document.getElementById("component-form")
+  var element = document.getElementById("component-list")
 
   if (element != null) {
     function run_ajax(method, data, link, callback=function(res){components.get_components()}){
