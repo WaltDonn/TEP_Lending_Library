@@ -290,6 +290,8 @@ class ReservationsController < ApplicationController
 
   def manager_create
     @reservation = Reservation.new(reservation_params)
+    @reservation.start_date = @reservation.pick_up_date
+    @reservation.end_date = @reservation.return_date
     authorize! :manager_create, @reservation
 
     kit = @reservation.kit
