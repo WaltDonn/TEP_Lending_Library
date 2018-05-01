@@ -3,6 +3,15 @@
 <div id="component_table">
   <% if @components.nil? || @components.empty? %>
     <h4>No components attached to item.</h4>
+    <div id="component-list">
+      <a v-if="!modal_open" v-on:click="switch_modal()">NEW COMPONENT</a>
+
+      <div v-if="modal_open" >
+        <h4>New Component</h4>
+        <new-component-form></new-component-form>
+      </div>
+    </div>
+
   <% else %>
     <h4>Components</h4>
     <div id="component-list">
@@ -46,6 +55,7 @@
               </td>
             </tr>
           <% end %>
+
         </tbody>
       </table>
 
