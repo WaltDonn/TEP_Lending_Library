@@ -30,6 +30,8 @@ class ComponentsController < ApplicationController
   # POST /components.json
   def create
     @component = Component.new(component_params)
+    @component.missing = 0
+    @component.damaged = 0
     authorize! :create, @component
 
     unless session[:item_id].nil?
@@ -46,7 +48,7 @@ class ComponentsController < ApplicationController
 
     respond_to do |format|
       if @component.save
-        format.html { redirect_to @component, notice: 'Component was successfully created.' }
+        format.html { redirect_to @component.item, notice: 'Component was successfully created.' }
         format.json { render action: 'show', status: :created, location: @component }
         format.js
       else
@@ -62,7 +64,7 @@ class ComponentsController < ApplicationController
     authorize! :update, @component
     respond_to do |format|
       if @component.update(component_params)
-        format.html { redirect_to @component, notice: 'Component was successfully updated.' }
+        format.html { redirect_to @component.item, notice: 'Component was successfully updated.' }
         # format.json { respond_with_bip(@component) }
         format.json { head :no_content }
         format.js

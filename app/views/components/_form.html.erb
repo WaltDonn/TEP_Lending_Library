@@ -4,12 +4,14 @@
 
     <%= f.input :name %>
 		<%= f.input :max_quantity %>
-		<%= f.input :damaged %>
-    <%= f.input :missing %>
-    <%= f.input :consumable %>
+    <% if controller.action_name == "edit" %>
+		  <%= f.input :damaged %>
+      <%= f.input :missing %>
+    <% end %>
+      <%= f.input :consumable %>
 
 
-    <%= f.input :item_id, :collection => Item.all, input_html: {class: "avg"} %>
+    <%= f.input :item_id, :collection => Item.all, :label_method => :readable_id, input_html: {class: "avg"} %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>
