@@ -274,3 +274,37 @@ i {
 #upload-schools {
   height: 170px;
 }
+
+// check in edit page
+
+#no-components {
+  font-style: italic;
+  color: $dark-gray;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+#comp-table {
+  margin-left: 2rem;
+  thead {
+    margin-bottom: 0.5rem;
+  }
+}
+
+#comp-inputs {
+  td {
+    padding: 0rem;
+    div{
+      margin: 0.25rem 0rem;
+    }
+  }
+  select {
+    padding: 0rem;
+    margin: 0rem;
+    width: 10rem;
+  }
+}
+
+#bottom-button {
+  margin-bottom: 3rem;
+}

@@ -3,6 +3,15 @@
 <div id="component_table">
   <% if @components.empty? || @components.nil? %>
     <h4>No components attached to item.</h4>
+    <div id="component-list">
+      <a v-if="!modal_open" v-on:click="switch_modal()">NEW COMPONENT</a>
+
+      <div v-if="modal_open" >
+        <h4>New Component</h4>
+        <new-component-form></new-component-form>
+      </div>
+    </div>
+
   <% else %>
     <h4>Components</h4>
     <div id="component-list">
@@ -31,21 +40,6 @@
             v-for='component in components' 
             v-bind:component='component'>  
           </tr>
-          
-          <!--<%# @item.components.each do |component| %>
-            <tr>
-              <td><%#= best_in_place component, :name %></td>
-              <td style="text-align:center;"><%#= best_in_place component, :max_quantity %></td>
-              <td style="text-align:center;"><%#= best_in_place component, :damaged %></td>
-              <td style="text-align:center;"><%#= best_in_place component, :missing %></td>
-              <td style="text-align:center;"><%#= best_in_place component, :consumable, :as => :checkbox, collection: ["false", "true"] %></td>
-              <td style="text-align:center;">
-                <%#= link_to component, method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
-                  <i class="fas fa-trash-alt"></i>
-                <%# end %>
-              </td>
-            </tr>
-          <%# end %>-->
         </tbody>
       </table>
 

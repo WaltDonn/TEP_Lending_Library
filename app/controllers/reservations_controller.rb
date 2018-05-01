@@ -82,12 +82,14 @@ class ReservationsController < ApplicationController
     # first check if all component changes are valid
     all_valid = true
 
-    params["check_in_finish_path"].each do |comp|
-      @curr_component = Component.find(comp.to_i)
-      @curr_component.damaged = params["check_in_finish_path"][comp]["damaged"]
-      @curr_component.missing = params["check_in_finish_path"][comp]["missing"]
-      unless @curr_component.valid? 
-        all_valid = false
+    unless params["check_in_finish_path"].nil? || params["check_in_finish_path"].empty?
+      params["check_in_finish_path"].each do |comp|
+        @curr_component = Component.find(comp.to_i)
+        @curr_component.damaged = params["check_in_finish_path"][comp]["damaged"]
+        @curr_component.missing = params["check_in_finish_path"][comp]["missing"]
+        unless @curr_component.valid? 
+          all_valid = false
+        end
       end
     end
 
@@ -97,14 +99,17 @@ class ReservationsController < ApplicationController
 
         all_save = true
 
-        params["check_in_finish_path"].each do |comp|
-          @curr_component = Component.find(comp.to_i)
-          @curr_component.damaged = params["check_in_finish_path"][comp]["damaged"]
-          @curr_component.missing = params["check_in_finish_path"][comp]["missing"]
-          unless @curr_component.save!
-            all_save = false
+        unless params["check_in_finish_path"].nil? || params["check_in_finish_path"].empty?
+          params["check_in_finish_path"].each do |comp|
+            @curr_component = Component.find(comp.to_i)
+            @curr_component.damaged = params["check_in_finish_path"][comp]["damaged"]
+            @curr_component.missing = params["check_in_finish_path"][comp]["missing"]
+            unless @curr_component.save!
+              all_save = false
+            end
           end
         end
+
         if all_save
           format.html { redirect_to returns_path, notice: 'Kit checked in.' }
         else
@@ -302,7 +307,7 @@ class ReservationsController < ApplicationController
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
-        format.html { render :new }
+        format.html { render :manager_new }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end
@@ -401,10 +406,10 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
-    authorize! :destroy, @reservation
+    # authorize! :destroy, @reservation
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to home_path, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

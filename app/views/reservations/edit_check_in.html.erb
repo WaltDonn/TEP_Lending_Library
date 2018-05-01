@@ -1,26 +1,45 @@
-<%= simple_form_for(:check_in_finish_path, url: check_in_finish_url(@reservation), :html => { :class => 'form-inline' }, defaults: {label: false}) do |k| %>
-  <% @items.each do |i| %>
-    <h4> Item Check-Off: <%= i.item_category.name %> (<%= i.readable_id %>)</h4>
-    <% i.components.each do |c| %>
-      Component Name: <%= c.name %><br>
-      Expected Amount: <%= c.max_quantity %><br>
-      <%= k.simple_fields_for "#{c.id}", :html => { :class => 'form-inline' }, defaults: {label: false} do |c2| %>
-        <table>
-          <thead>
-            <tr>
-              <th class="item-edit-head"> Amount Damaged </th>
-              <td><%= c2.input :damaged, as: :integer, input_html: { min: '0', step: '1', value: '0' } %></td>
-            </tr>
-            <tr>
-              <th class="item-edit-head"> Amount Missing </th>
-              <td><%= c2.input :missing, as: :integer, input_html: { min: '0', step: '1', value: '0' } %></td>
-            </tr> 
-            <tr>
-          </thead>
-        </table>
-        
-      <% end %>
-    <% end %>
-  <% end %> 
-  <%= k.button :submit, "Complete", :class => 'button' %>
+<div class="cell-block-y">
+  <div class="grid-container">
+    <%= simple_form_for(:check_in_finish_path, url: check_in_finish_url(@reservation), :html => { :class => 'cell small-12' }, defaults: {label: false}) do |k| %>
+      <% @items.each do |i| %>
+        <div class="grid-x">
+          <div class="inner-title cell-block-x small-11">
+            <h4> Item Check-Off: <%= i.item_category.name %> (<%= i.readable_id %>)</h4>
+          </div>
+        </div>
+        <div class="grid-x">
+          <% if i.components.empty? %>
+            <div class="small-10">
+              <h5 id="no-components">No Components Listed</h5>
+            </div>
+          <% else %>
+            <div class="rounded information-table cell small-11" id="comp-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th style="text-align:center;">Amount</th>
+                    <th style="text-align:center;">Amount Damaged</th>
+                    <th style="text-align:center;">Amount Missing</th>
+                  </tr>
+                </thead>
+                <tbody id="comp-inputs">
+                  <% i.components.each do |c| %>
+                    <tr>
+                      <td><%= c.name %></td>
+                      <td style="text-align:center;"><%= c.max_quantity %></td>
+                      <%= k.simple_fields_for "#{c.id}", defaults: {label: false} do |c2| %>
+                        <td style="text-align:center;"><%= c2.input :damaged, as: :select, collection: 0..c.max_quantity, selected: '0' %></p>
+                        <td style="text-align:center;"><%= c2.input :missing, as: :select, collection: 0..c.max_quantity, selected: '0' %></p>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% end %>
+        </div>
+      <% end %> 
+    <%= k.button :submit, "Complete", :class => 'button', :id => 'bottom-button' %>
+  </div>
 <% end %>
