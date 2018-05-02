@@ -23,7 +23,6 @@ class ItemCategoriesController < ApplicationController
             @item.item_category = @item_category
             @item.condition = "Good"
             @item.readable_id = "#{@item_category.name}" + i.to_s
-            byebug
             @item.save
         end
 
