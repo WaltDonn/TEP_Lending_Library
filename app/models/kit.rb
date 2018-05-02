@@ -1,5 +1,5 @@
 class Kit < ApplicationRecord
-    validates_presence_of :location
+    validates_presence_of :location, uniqueness: { case_sensitive: false}
     validates :reserved, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     validates :is_active, inclusion: { in: [ true, false ] , message: "Must be true or false" }
     
