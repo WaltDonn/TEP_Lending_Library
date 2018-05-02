@@ -8,6 +8,22 @@ class KitsController < ApplicationController
     @kits = Kit.all.paginate(:page => params[:page]).per_page(10)
     authorize! :index, :Kits
   end
+
+  def blackout_kits
+    authorize! :blackout_kits, nil
+    Kit.blackout_all
+    respond_to do |format|
+      format.html { redirect_to kits_url, notice: 'Kits blacked out.' }
+    end
+  end
+
+  def lightup_kits
+    authorize! :lightup_kits, nil
+    Kit.lightup_all
+    respond_to do |format|
+      format.html { redirect_to kits_url, notice: 'Kits lit up.' }
+    end
+  end
   
   def steamkits
     @rental_categories = Kit.rental_categories

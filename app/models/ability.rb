@@ -26,6 +26,8 @@ class Ability
         can :index,                :Items
         can :crud,                 Kit
         can :index,                :Kits
+        can :blackout_kits,        :Kits
+        can :lightup_kits,         :Kits
         can :crud,                 Reservation
         can :index,                :Reservations
         can :rental_calendar,      :Reservation
