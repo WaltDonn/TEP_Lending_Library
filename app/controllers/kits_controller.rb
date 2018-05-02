@@ -10,7 +10,7 @@ class KitsController < ApplicationController
   end
 
   def blackout_kits
-    authorize! :blackout_kits, nil
+    authorize! :blackout_kits, :Kits
     Kit.blackout_all
     respond_to do |format|
       format.html { redirect_to kits_url, notice: 'Kits blacked out.' }
@@ -18,7 +18,7 @@ class KitsController < ApplicationController
   end
 
   def lightup_kits
-    authorize! :lightup_kits, nil
+    authorize! :lightup_kits, :Kits
     Kit.lightup_all
     respond_to do |format|
       format.html { redirect_to kits_url, notice: 'Kits lit up.' }

@@ -29,7 +29,7 @@
               <% end %>
               <td style="text-align:center;"><%= pickupKit.teacher.name %></td>
               <td style="text-align:center;"><%= pickupKit.pick_up_date %></td>
-              <td style="text-align:center;"><%= pickupKit.kit.items.first.item_category.name %></td>
+              <td style="text-align:center;"><%= pickupKit.kit.location %></td>
               <%= simple_form_for(:picked_up_path, url: picked_up_url(pickupKit)) do |f| %>
               <td>
                 <%= f.input :form_id, required: true, label: false %>
