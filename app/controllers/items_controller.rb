@@ -43,6 +43,13 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
     @component = Component.new
+    
+    if @item.kit.nil?
+      @kit = Kit.new()
+    else
+      @kit = @item.kit
+    end
+
     authorize! :edit, @item
   end
   
@@ -79,6 +86,8 @@ class ItemsController < ApplicationController
     @item.item_category.name = params[:item][:item_category_attributes][:name]
     @item.item_category.description = params[:item][:item_category_attributes][:description]
     @item.item_category.item_photo = params[:item][:item_category_attributes][:item_photo]
+    @kit = Kit.by_location(params[:item][:kit][:location]).first
+    @item.kit = @kit
     
     if @item.update(item_params) && @item.item_category.save
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }

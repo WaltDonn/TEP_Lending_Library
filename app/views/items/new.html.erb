@@ -39,9 +39,9 @@
                     Kit Location
                   </span>
                 </th>
-                <td>
-                  <%= f.association :kit, label: false, :input_html => { :class => 'avg' } %>
-                </td>
+                
+                  <td><%= f.association :kit, label: false, :collection => Kit.all.map{|k| k.location}, input_html: {class: "avg"} %></td>
+              
               </tr>
 
               <tr>

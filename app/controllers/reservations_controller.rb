@@ -406,10 +406,11 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
-    # authorize! :destroy, @reservation
+    authorize! :destroy, @reservation
+    @user = @reservation.teacher
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to user_path(@user), notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

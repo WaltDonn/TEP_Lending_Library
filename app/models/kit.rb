@@ -10,6 +10,7 @@ class Kit < ApplicationRecord
     accepts_nested_attributes_for :item_category
     
     scope :visible_kits,     -> { where(blackout: false, is_active: true, reserved: false) }
+    scope :by_location,      ->(location) { where('location = ?', location)}
     
     
     def self.available_kits
