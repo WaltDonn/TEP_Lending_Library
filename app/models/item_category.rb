@@ -3,6 +3,8 @@ class ItemCategory < ApplicationRecord
     validates_presence_of :description
     validates :name, uniqueness: true
 
+
+    attr_accessor :item_count
    
     mount_uploader :item_photo, ItemPhotoUploader
     
