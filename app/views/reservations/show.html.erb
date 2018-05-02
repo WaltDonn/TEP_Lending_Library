@@ -29,7 +29,7 @@
     <div class="medium-4 small-12">
       <div class="product-card confirmation">
         <div class="card-divider">
-          <h4> Borrower Info </h4>
+          <h4> Reservation Info </h4>
         </div>
         <div class="card-section">
           <p><b>Name</b></p>
@@ -40,6 +40,12 @@
             <p><b>School:</b></p>
             <p class="body-text"><%=  current_user.school.name %></p>
           <% end %>
+        </div>
+         <div class="card-section">
+          <p><b>Pickup Person</b></p>
+          <p class="body-text"><%=  @reservation.user_check_out %></p>
+          <p><b>Return Person</b></p>
+          <p class="body-text"><%=  @reservation.user_check_in %></p>
         </div>
       </div>
     </div>
