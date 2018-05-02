@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-    validates_presence_of :readable_id
+    validates_presence_of :readable_id, uniqueness: { case_sensitive: false}
     validates_presence_of :item_category_id
     validates :condition, inclusion: { in: %w[Broken Good], message: "is not a recognized condition in system" }
     validate :item_component_condition
