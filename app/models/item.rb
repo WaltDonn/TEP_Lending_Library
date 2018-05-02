@@ -13,6 +13,9 @@ class Item < ApplicationRecord
     scope :has_kit, -> { where.not(kit_id: nil) }
     scope :broken, -> { where(condition: "Broken") }
     scope :good, -> { where(condition: "Good") }
+    scope :by_readable_id,      ->(readableid) { where('readable_id LIKE ?', readableid)}
+
+
     # scope :popular, -> { order('kit.reservations.size') }
     scope :by_read_id, -> { order('readable_id') }
 
@@ -21,6 +24,12 @@ class Item < ApplicationRecord
     belongs_to :item_category
     accepts_nested_attributes_for :item_category
     accepts_nested_attributes_for :components
+
+
+    def destroy
+        errors.add(:id, "Cannot destroy item")
+        return false
+    end
 
     def item_component_condition
         if(self.condition == "Good")

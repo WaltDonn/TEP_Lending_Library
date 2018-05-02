@@ -43,8 +43,29 @@ class KitsController < ApplicationController
     @kit = Kit.new(kit_params)
     authorize! :create, @kit
 
+   
+
     respond_to do |format|
       if @kit.save
+        i = 0
+        loop do
+          check = "member" + i.to_s
+          break if params[check].nil?
+
+          new_id = params[check]
+          if Item.by_readable_id(new_id).size() > 0
+            @item = Item.by_readable_id(new_id).first
+            if(@item.kit.nil?)
+              @item.kit = @kit
+              @item.save
+            end
+            i = i +1
+          end
+
+
+        end
+
+
         format.html { redirect_to @kit, notice: 'Kit was successfully created.' }
         format.json { render :show, status: :created, location: @kit }
       else

@@ -13,7 +13,20 @@ class ItemCategoriesController < ApplicationController
 
     respond_to do |format|
       if @item_category.save
-        format.html #{ notice: 'Category was successfully created.' }
+
+        x = params[:item_category][:item_count].to_i
+        if x < 0
+          x = 0
+        end
+        x.times do |i|
+            @item = Item.new()
+            @item.item_category = @item_category
+            @item.condition = "Good"
+            @item.readable_id = "#{@item_category.name}" + i.to_s
+            @item.save
+        end
+
+        format.html { redirect_to items_path, notice: 'Item Category was successfully created.' }
         format.js
       else
         format.html { render :new }

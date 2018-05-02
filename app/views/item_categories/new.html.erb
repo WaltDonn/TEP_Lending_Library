@@ -1,0 +1,60 @@
+<div class="grid-container">
+  <div class="grid-x">
+    <div class="inner-title cell-block-x small-8 small-offset-1">
+      <span class="uline"><h1>New Item Category</h1> </span>
+    </div>
+  </div>
+
+  <%= simple_form_for @item_category do |f| %>
+    <div class="grid-x">
+      <div class='cell small-offset-2 small-6'>
+          <table>
+            <thead>
+
+              <tr>
+                <th class="item-edit-head"> Name </th>
+                <td>
+                  <%= f.input :name, label: false, :input_html => { :class => 'avg'} %>
+                </td>
+              </tr>
+
+
+              <tr>
+                <th class="item-edit-head"> Description </th>
+                <td>
+                  <%= f.input :description, label: false, :input_html => { :class => 'avg'} %>
+                </td>
+              </tr>
+
+              <tr>
+                <th class="item-edit-head"> How many Items should we make </th>
+                <td>
+                  <%= f.input :item_count, label: false, as: :integer, :input_html => { min: '0', :class => 'avg'} %>
+                </td>
+              </tr>
+
+
+
+              <tr>
+                <th class="item-edit-head"> Item Photo </th>
+                <td>
+                  <%= f.file_field :item_photo, label: false, :input_html => { :class => 'avg'} %>
+                </td>
+              </tr>
+
+
+
+              
+            </thead>
+          </table>
+      </div>
+    </div>
+
+    <div class="grid-x">
+      <div class="form-actions cell small-4 small-offset-6 right">
+        <%= f.button :submit, "SAVE", :class => 'button radius small' %>
+        <%= link_to 'CANCEL', :back, :class => 'button alert radius small' %>
+      </div>
+    </div>
+  <% end %>
+</div>
