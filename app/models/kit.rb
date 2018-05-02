@@ -61,11 +61,19 @@ class Kit < ApplicationRecord
     end
 
     def photo
-        self.items.first.item_category.item_photo
+        if self.items.size > 0 && !self.items.first.item_category.nil?
+            self.items.first.item_category.item_photo
+        else
+            nil
+        end
     end
 
     def name
-        self.items.first.item_category.name
+        if self.items.size > 0 && !self.items.first.item_category.nil?
+            self.items.first.item_category.name
+        else
+            nil
+        end
     end
 
     def inventory
