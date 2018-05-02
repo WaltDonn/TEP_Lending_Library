@@ -18,9 +18,8 @@
         <table>
           <thead>
             <tr id="table-head">
-              <th>Kit Number</th>
-              <th>Kit Item</th>
               <th>Location</th>
+              <th>Kit Item</th>
               <th>Active</th>
               <th class="center">Shown</th>
               <th colspan="2"></th>
@@ -30,9 +29,8 @@
           <tbody>
             <% @kits.each do |kit| %>
               <tr>
-                <td><%= kit.id %> </td>
-                <td><%= kit.name %></td>
                 <td><%= kit.location %></td>
+                <td><%= kit.name %></td>
                 <% if kit.is_active %>
                   <td id="active">Active</td>
                 <% else %>

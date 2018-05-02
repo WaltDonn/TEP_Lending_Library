@@ -28,7 +28,7 @@
               <% end %>
               <td style="text-align:center;"><%= returnKit.teacher.name %></td>
               <td style="text-align:center;"><%= returnKit.return_date %></td>
-              <td style="text-align:center;"><%= returnKit.kit.items.first.item_category.name %></td>
+              <td style="text-align:center;"><%= returnKit.kit.location %></td>
               <%= simple_form_for(:returned_path, url: returned_url(returnKit)) do |f| %>
               <td>
                 <%= f.input :name, required: true, label: false %>
