@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     alias_action :create, :read, :update, :destroy, to: :crud
     alias_action :select_dates, :choose_dates, :select_dates, to: :rent_kit
-    alias_action :volunter_portal, :returns, :pickup, :picked_up, :returned, to: :volunteer_actions
+    alias_action :edit_check_in, :check_in_finish, :volunteer_portal, :returns, :pickup, :picked_up, :returned, to: :volunteer_actions
 
     if(user.nil?)
       user = User.new

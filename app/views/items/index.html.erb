@@ -2,7 +2,7 @@
   <div class="grid-container">
 
     <div class="grid-x">
-      <div class="inner-title cell-block-x small-8 small-offset-1">
+      <div class="inner-title cell-block-x small-4 small-offset-1">
         <ul class="dropdown menu" data-dropdown-menu>
              <li>
               <h5><li><span class="uline"><%= link_to @title, items_path(:status => @status)  %></span></li></h5>
@@ -19,6 +19,9 @@
   
   
 
+      <div class="cell-block-x small-4 right side-link">
+        <h4><%= link_to 'New Item Category', new_item_category_path %></h4>
+      </div>
       <div class="cell-block-x small-2 right side-link">
         <h4><%= link_to 'New Item', new_item_path %></h4>
       </div>

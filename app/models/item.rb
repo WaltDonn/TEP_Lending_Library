@@ -22,6 +22,12 @@ class Item < ApplicationRecord
     accepts_nested_attributes_for :item_category
     accepts_nested_attributes_for :components
 
+
+    def destroy
+        errors.add(:id, "Cannot destroy item")
+        return false
+    end
+
     def item_component_condition
         if(self.condition == "Good")
             check = self.components.map{|comp| comp.good_condition}.inject{|comp1, comp2| comp1 && comp2}

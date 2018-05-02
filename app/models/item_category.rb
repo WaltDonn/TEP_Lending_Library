@@ -3,6 +3,8 @@ class ItemCategory < ApplicationRecord
     validates_presence_of :description
     validates :name, uniqueness: true
 
+
+    attr_accessor :item_count
    
     mount_uploader :item_photo, ItemPhotoUploader
     
@@ -10,6 +12,11 @@ class ItemCategory < ApplicationRecord
     
     def one_components_group
         self.items.first.components
+    end
+    
+    def destroy
+        errors.add(:id, "Cannot destroy item category")
+        return false
     end
     
     

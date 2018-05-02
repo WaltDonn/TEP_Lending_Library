@@ -1,0 +1,35 @@
+
+<!-- Form template using Vue for adding and editing chores -->
+<%= form_for(@component) do |f| %>
+
+  <% if @component.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@component.errors.count, "error") %> prohibited this component from being saved:</h2>
+      <ul>
+      <% @component.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" style="width: 12rem; 
+                            display: inline-block;
+                            margin-right: 0.5rem;">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, "v-model" => "name" %>
+  </div>
+  <div class="field" style="width: 6rem; 
+                            display: inline-block;
+                            margin-right: 0.5rem;">
+    <%= f.label :max_quantity %><br />
+    <%= f.number_field :max_quantity, "v-model" => "max_quantity" %>
+  </div>
+  <div class="field" style="display: inline-block;">
+    <%= f.label :consumable, style: "margin-top: -1rem;"%><br />
+    <%= f.check_box :consumable, "v-model" => "consumable" %>
+  </div>
+
+<% end %>
+
+    <button v-on:click="submitForm()" class="button radius expanded">SUBMIT</button>

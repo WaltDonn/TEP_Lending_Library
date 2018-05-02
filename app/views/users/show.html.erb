@@ -6,7 +6,7 @@
       <br>
       <h2 class="center"> User Information </h2>
       <div class="show-for-medium left" id="user-info-buttons">
-          <%#= link_to 'View Reservations', reservation_history_path(@user), :class => 'button small radius', :id => 'edit-information' %>
+          <%= link_to 'View Reservations', rental_history_path(@user), :class => 'button small radius', :id => 'edit-information' %>
         <%= link_to 'Edit Profile Information', edit_user_path(@user), :class => 'button small radius' , :id => 'edit-information' %>
       </div>
     </div>
@@ -19,7 +19,11 @@
             <td><%=  @user.name  %></td>
           </tr>
           <tr>
-            <th>School Email</th>
+            <% if @user.has_role?(:teacher) %>
+              <th>School Email</th>
+            <% else %>
+              <th>Email</th>
+            <% end %>
             <td><%=  @user.email %></td>
           </tr>
           <tr>
@@ -41,7 +45,7 @@
             </tr>
           <% end %>
 
-          <% if @user.role == 'admin' %>
+          <% if @current_user.has_role?(:admin) || @current_user.has_role?(:manager) %>
             <tr>
               <th>Role</th>
               <td><%=  @user.role %></td>

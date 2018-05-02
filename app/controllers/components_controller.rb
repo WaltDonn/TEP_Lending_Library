@@ -5,7 +5,7 @@ class ComponentsController < ApplicationController
   # GET /components
   # GET /components.json
   def index
-    @components = Component.all.paginate(:page => params[:page]).per_page(10)
+    @components = Component.all.paginate(:page => params[:page]).per_page(4)
     authorize! :index, :Components
   end
 
@@ -30,6 +30,8 @@ class ComponentsController < ApplicationController
   # POST /components.json
   def create
     @component = Component.new(component_params)
+    @component.missing = 0
+    @component.damaged = 0
     authorize! :create, @component
 
     unless session[:item_id].nil?
@@ -46,9 +48,8 @@ class ComponentsController < ApplicationController
 
     respond_to do |format|
       if @component.save
-        format.html { redirect_to @component, notice: 'Component was successfully created.' }
-        @item = @component.item
-        @components = @item.components
+        format.html { redirect_to @component.item, notice: 'Component was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @component }
         format.js
       else
         format.html { render :new }
@@ -63,13 +64,13 @@ class ComponentsController < ApplicationController
     authorize! :update, @component
     respond_to do |format|
       if @component.update(component_params)
-        format.html { redirect_to @component, notice: 'Component was successfully updated.' }
-        format.json { respond_with_bip(@component) }
+        format.html { redirect_to @component.item, notice: 'Component was successfully updated.' }
+        # format.json { respond_with_bip(@component) }
+        format.json { head :no_content }
         format.js
       else
         format.html { render :edit }
         format.json { respond_with_bip(@component) }
-        format.js
       end
     end
   end
@@ -84,6 +85,7 @@ class ComponentsController < ApplicationController
       @components = @item.components
       format.html { redirect_to components_url, notice: 'Component was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
