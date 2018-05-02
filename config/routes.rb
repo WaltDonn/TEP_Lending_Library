@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   get 'choose_dates' => 'reservations#choose_dates', as: :reservation_choose_dates
   post 'select_dates' => 'reservations#select_dates', as: :reservation_select_dates
   get 'available_kit/:id' => 'kits#available_kit', as: :available_kit
-  get 'confirm_user_details' => 'reservations#confirm_user_details', as: :confirm_user_details
+  get 'confirm_user_details/:id' => 'reservations#confirm_user_details', as: :confirm_user_details
   get 'edit_user_details' => 'reservations#edit_user_details', as: :edit_user_details
   patch 'submit_user_details' => 'reservations#submit_user_details', as: :submit_user_details
   get 'reservation_error' => 'reservations#reservation_error', as: :reservation_error

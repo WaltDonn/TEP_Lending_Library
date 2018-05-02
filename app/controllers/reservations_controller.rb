@@ -10,7 +10,7 @@ class ReservationsController < ApplicationController
   # GET /reservation_calendar/1
   def rental_calendar
     @reservations = Reservation.all
-    authorize! :rental_calendar, @reservations
+    authorize! :rental_calendar, :Reservation
   end
   
 
@@ -188,8 +188,8 @@ class ReservationsController < ApplicationController
   end
 
   def confirm_user_details
-    unless params[:format].nil?
-      session[:rental_category_id] = params[:format]
+    unless params[:id].nil?
+      session[:rental_category_id] = params[:id]
     end
 
     authorize! :confirm_user_details, current_user

@@ -26,7 +26,11 @@
           <tbody>
             <% @reservations.each do |reservation| %>
               <tr>
-                <td><%= link_to reservation.kit.items.first.item_category.name, available_kit_path() %></td>
+                <% unless reservation.kit.items.first.nil?%>
+                  <td><%= link_to reservation.kit.items.first.item_category.name, available_kit_path() %></td>
+                <% else %>
+                 <td><%= reservation.kit.location %></td>
+                <% end %>
                 <td><%= reservation.pick_up_date.strftime("%D") %></td>
                 <td><%= reservation.return_date.strftime("%D") %></td>
                 <% if reservation.returned %>

@@ -28,8 +28,13 @@ class Kit < ApplicationRecord
     
     def self.rental_categories
         kits = Kit.available_kits
-        full_list = kits.map{|k| k.items.first.item_category}
-        return full_list.uniq
+        full_list = kits.map{|k| unless k.items.nil? || k.items.first.nil?
+                                    k.items.first.item_category
+                                else
+                                    nil
+                                end}
+
+        return full_list.compact.uniq
     end
     
     def self.available_for_item_category(rental_category)
