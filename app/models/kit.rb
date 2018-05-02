@@ -83,13 +83,8 @@ class Kit < ApplicationRecord
     end
     
     def destroy
-        if(self.items.size > 0)
-            errors.add(:items, "Kit still has items and can't be destroyed")
-            return false
-        else
-            self.delete
-        end
+        errors.add(:id, "Cannot destroy kit")
+        return false
     end
-    
     
 end

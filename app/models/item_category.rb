@@ -12,5 +12,10 @@ class ItemCategory < ApplicationRecord
         self.items.first.components
     end
     
+    def destroy
+        errors.add(:id, "Cannot destroy item category")
+        return false
+    end
+    
     
 end
