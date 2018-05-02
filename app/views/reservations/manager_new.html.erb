@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                   <td><%= f.label :kit, required: false %></td>
-                  <td><%= f.association :kit, label: false, :collection => Kit.all.map{|k| k.id}, input_html: {class: "avg"} %></td>
+                  <td><%= f.association :kit, label: false, :collection => Kit.all.map{|k| k.location}, input_html: {class: "avg"} %></td>
                 </tr>
               </tbody>
             </table>
