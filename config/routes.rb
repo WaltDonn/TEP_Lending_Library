@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   post 'picked_up/:id' => 'reservations#picked_up', as: :picked_up
   post 'returned/:id' => 'reservations#returned', as: :returned
   post 'check_in_finish/:id' => 'reservations#check_in_finish', as: :check_in_finish
+  get 'blackout_kits' => 'kits#blackout_kits', as: :blackout_kits
+  get 'lightup_kits' => 'kits#lightup_kits', as: :lightup_kits
 
   get 'dashboard' => 'dashboard#dashboard', as: :dashboard
   get 'volunteer_portal' => 'reservations#volunteer_portal', as: :volunteer_portal

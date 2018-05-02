@@ -8,6 +8,8 @@
 
       <div class="cell-block-x small-2 right side-link">
         <h4><%= link_to 'New Kit', new_kit_path %></h4>
+        <h4><%= link_to 'Blackout All', blackout_kits_path %></h4>
+        <h4><%= link_to 'Lightup All', lightup_kits_path %></h4>
       </div>
     </div>
 
@@ -37,7 +39,7 @@
                   <td id="inactive">Inactive</td>
                 <% end %>
                 <td>
-                  <% if kit.blackout %>
+                  <% if !kit.blackout && kit.is_active %>
                     <div class="center"><i class="fas fa-check green"></i></div>
                   <% else %>
                     <div class="center"><i class="fas fa-times red"></i></div>
