@@ -10,6 +10,7 @@ class Kit < ApplicationRecord
     accepts_nested_attributes_for :item_category
     
     scope :visible_kits,     -> { where(blackout: false, is_active: true, reserved: false) }
+    scope :by_location,      ->(location) { where('location = ?', location)}
     
     
     def self.available_kits
@@ -61,11 +62,19 @@ class Kit < ApplicationRecord
     end
 
     def photo
-        self.items.first.item_category.item_photo
+        if self.items.size > 0 && !self.items.first.item_category.nil?
+            self.items.first.item_category.item_photo
+        else
+            nil
+        end
     end
 
     def name
-        self.items.first.item_category.name
+        if self.items.size > 0 && !self.items.first.item_category.nil?
+            self.items.first.item_category.name
+        else
+            nil
+        end
     end
 
     def inventory

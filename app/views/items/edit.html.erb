@@ -46,13 +46,12 @@
             <tr>
               <th class="item-edit-head"> Location </th>
               <td>
-                <% if @item.kit.nil? || @item.kit.location.nil? %>
-                  <p>Item needs to be assigned to a kit</p>
-                <% else %>
-                  <%= f.simple_fields_for @item.kit do |g| %>
-                    <%= g.input :location, disabled: true, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
+               
+
+                  <%= f.simple_fields_for @kit do |g| %>
+                    <%= g.input :location, required: false, :include_blank => "(select if none)", :collection => Kit.all.map{|k| k.location}, :input_html => { :class => 'avg', :style => "width: 200px;"} %>
                   <% end %>
-                <% end %>
+                
               </td>
             </tr>
             <tr>
