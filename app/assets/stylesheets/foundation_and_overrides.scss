@@ -61,15 +61,8 @@ body{
 }
 
 .top-bar-right ul li ul li{
-  // visibility: hidden;
   float:none;
   position:relative;
-  // a:hover{
-  //   visibility: visible;
-  // }
-  // :hover{
-  //   visibility: visible;
-  // }
 }
 
 .top-bar-right ul li ul{
@@ -148,4 +141,8 @@ $topbar-hover-lines-transition: all 0.35s ease;
     color: $white;
     margin-left: 0.5rem;
   }
+}
+
+.button {
+  border: 0px;
 }

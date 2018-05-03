@@ -37,10 +37,6 @@ form.simple_form {
 
 #buttons {
   margin: 2rem 0rem 2rem 0rem;
-  
-  .button {
-    color: $white;
-  }
 
   form {
     padding: 0rem;
@@ -52,7 +48,6 @@ form.simple_form {
 
   .button.success {
     margin: 0rem;
-    color: $white;
   }
 }
 
@@ -127,10 +122,6 @@ form.simple_form {
 
 input.button.radius.small {
   font-size: 0.75rem;
-}
-
-a.button.alert.radius.small {
-  color: $white;
 }
 
 //reservation calendar view

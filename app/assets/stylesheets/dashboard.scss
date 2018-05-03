@@ -12,7 +12,10 @@ h5#dash, h6#dash {
   color: $darker-gray;
 }
 
-.cell .radius {
+#quick-details-damaged,
+#quicklist,
+#top-kits,
+#quick-links {
   border: $dark-gray solid 1px;
   border-radius: $rounded-radius;
   margin: 0.5rem;
@@ -97,9 +100,7 @@ h5#dash, h6#dash {
 
   #quick-links {
     a.button {
-      border: 0px;
       display: block;
-      color: $white;
       width: 75%;
       height: 2rem;
       margin: 0.3rem auto;

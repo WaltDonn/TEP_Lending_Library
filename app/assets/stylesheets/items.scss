@@ -29,9 +29,6 @@ a#kit-location {
     color: $darker-gray;
     margin: 0.5rem 0rem;
   }
-  .button a {
-    color: $white;
-  }
 }
 
 .item-pic {
@@ -57,10 +54,6 @@ table{
   td {
     font-size: 12px;
   }
-}
-
-a.button.radius {
-  border: 0px;
 }
 
 #category-block {
@@ -98,7 +91,6 @@ a.button.radius {
 }
 
 input.btn.button {
-  border: 0px;
   margin-left: 1rem;
 }
 
@@ -133,19 +125,4 @@ a#add-a-component-button {
 .subtitle {
   font-style: italic;
   color: $medium-gray;
-}
-
-// NEW COMPONENT FORM
-
-.button {
-  border: 0px;
-  padding: 0.65rem;
-}
-
-a.button.tiny.radius.alert {
-  color: $white;
-}
-
-#component_submit {
-  font-size: 0.6rem;
 }

@@ -9,10 +9,9 @@ h2.text-center {
 // forgot password page
 #password-forgot-button {
   .button {
-    margin: 0rem;
-    width: auto;
-    font-size: 18px;
-    padding: 0rem 1rem;
+    // margin: 0rem;
+    // width: auto;
+    // padding: 0rem 1rem;
   }
 }
 
@@ -42,15 +41,7 @@ h2.text-center {
 }
 
 #login-buttons {
-  list-style: none;
-  list-style-position:inside;
   margin: 0rem 0rem -1rem 0rem;
-
-  .button {
-    width: 200px;
-    height: 40px;
-    padding: 0rem;
-  }
 }
 
 #login-form {
@@ -90,13 +81,6 @@ div.error_notification {
   width: 900px;
   height: 200px;
   margin: -200px 0 0 -450px;
-
-  .form-actions {
-    .button {
-      width: 10rem;
-      font-size: 15px;
-    }
-  }
   
   .form-inputs {
     margin-bottom: 1.5rem;
@@ -109,7 +93,7 @@ div.error_notification {
   }
 }
 
-/* signup page */
+/* user uplaod page */
 #user-upload-form {
   fieldset, table, tbody, tr, td {
     border: 0rem;
@@ -141,13 +125,14 @@ div.error_notification {
   }
 }
 
-.form-actions {
+#upload-users, #upload-schools {
+  .form-actions {
   .upload-button, .button {
-    width: 8rem;
-    height: 2rem;
-    padding: 0rem;
+      width: 8rem;
+    }
   }
 }
+
 
 #signup h1{
   color: $secondary-color;
