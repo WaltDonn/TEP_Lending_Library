@@ -48,13 +48,8 @@
             <tr>
               <th>Phone Number</th>
               <td>
-                <%= f.input :phone_num,  :input_html => { :class => 'avg' }%>
-              </td>
-            </tr>
-            <tr>
-              <th>Phone Extension</th>
-              <td>
-                <%= f.input :phone_ext,  :input_html => { :class => 'avg' }%>
+                <%= f.input :phone_num,  :input_html => { :class => 'avg', :style => "width: 200px; margin-right:20px;" }%>
+                <%= f.input :phone_ext, :input_html => { :placeholder => "Ext.", :class => 'avg', :style => "width: 50px;" }%>
               </td>
             </tr>
             
@@ -62,7 +57,7 @@
               <tr>
                 <th>School</th>
                 <td>
-                    <%= f.input :school_id, collection: School.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
+                    <%= f.association :school, collection: School.active.alphabetical.all, include_blank: true, input_html: { class: 'chosen-select' } %>
                 </td>
               </tr>
               <tr>

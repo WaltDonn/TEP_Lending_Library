@@ -9,14 +9,11 @@
     </div>
 
     <div class="cell-block-y">
-      <div class="grid-x grid-margin-x large-4 medium-2 small-1" id="card-grid">
+      <div class="grid-x grid-margin-x large-4 medium-2 small-1 small-offset-1" id="card-grid">
         <% if @rental_categories.size == 0 %>
-          <p> Unfortunately all of our kits are currently out.</p>
-          </br>
-          <p> Check back next week!.</p>
-      
+          <h3> Unfortunately all of our kits are currently out. <br> Check back next week!</h3>
         <% else %> 
-        
+
           <% @rental_categories.each do |rental_cat| %>
             <div class="product-card-container cell-block-x">
               <div class="product-card">

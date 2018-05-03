@@ -40,9 +40,9 @@
 
 
   </div>
-  <div>
-        <%= link_to 'EDIT', edit_kit_path(@kit), :class => 'button radius small' %>
-        <%= link_to 'DESTROY', kit_path(@kit), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button alert radius small' %>
-
+  <div class="side-link">
+    <%= link_to edit_kit_path(@kit), :class => 'button radius small' do %>
+      EDIT   <i class="fas fa-pencil-alt"></i>
+    <% end %>
   </div>
 </div>

@@ -18,6 +18,8 @@
 //= require highcharts
 //= require chartkick
 //= require vue
+//= require chosen-jquery
+//= require scaffold
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

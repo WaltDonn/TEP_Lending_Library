@@ -43,6 +43,7 @@ $card-info-button-radius: 18px;
   box-shadow: $card-info-shadow;
   border-radius: $card-info-border-radius;
   transition: 0.3s;
+  overflow: hidden;
 }
 
 .product-card:hover{
@@ -95,13 +96,18 @@ $card-info-button-radius: 18px;
   padding: 1rem 0rem;
 }
 
-#item-pic{
+#item-pic, #item-pic-show{
   max-width:100%;
   max-height:100%;
   img {
     height: 260px;
     width: auto;
   }
+}
+
+#item-pic-show {
+  border: 2px solid $light-gray;
+  border-radius: $rounded-radius;
 }
 
 // avaiable_kit show page
@@ -125,9 +131,15 @@ div #kit-components.button.radius, #rent-kit-button.button.radius {
   width: 100%;
 }
 
-// new kit form
+// new kit form + edit kit form
 
 .form-actions.button.radius {
   color: $white;
   border: 0px;
+}
+
+.kit-inputs, .table-of-items {
+  border: 1px solid $medium-gray;
+  border-radius: $card-info-border-radius;
+  padding: 2rem;
 }

@@ -24,18 +24,3 @@
     left: 50%;
     margin: -200px 0 0 -400px;
 }
-
-.welcome-button{
-    width: 180px;
-    height: 50px;
-    color: $white;
-    display: inline-block;
-    border: none;
-    background-color: $primary-color;
-    font-size: 1.2rem;
-}
-
-.welcome-button:hover,
-.welcome-button:active {
-    background-color: scale-color($primary-color, $lightness: -15%);
-}
