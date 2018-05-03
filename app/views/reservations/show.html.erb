@@ -1,4 +1,6 @@
-<% @rental_category = @reservation.kit.items.first.item_category %>
+<% unless @reservation.kit.nil? %>
+  <% @rental_category = @reservation.kit.items.first.item_category %>
+<% end %>
 
 <div class="grid-container">
   <div class="grid-x">
@@ -13,16 +15,20 @@
         <div class="card-divider" id="kit-info">
           <h4> Kit Info </h4>
         </div>
-        <div class="center">
-          <% if @rental_category.nil? || @rental_category.item_photo_url.nil? %>
-              <%= image_tag("not_found.jpg") %>
-          <% else %>
-              <%= image_tag(@rental_category.item_photo_url) %>
-          <% end %>
-        </div>
-        <div class="card-section">
-          <h2 class="product-card-title"> <p> Kit Location</p><%= link_to @reservation.kit.location, kit_path(@reservation.kit) %></h2>
-        </div>
+        <% if @reservation.kit.nil? %>
+          <h6>Kit information no longer available, sorry!</h6>
+        <% else %>
+          <div class="center">
+            <% if @rental_category.nil? || @rental_category.item_photo_url.nil? %>
+                <%= image_tag("not_found.jpg") %>
+            <% else %>
+                <%= image_tag(@rental_category.item_photo_url) %>
+            <% end %>
+          </div>
+          <div class="card-section">
+            <h2 class="product-card-title"> <p> Kit Location</p><%= link_to @reservation.kit.location, kit_path(@reservation.kit) %></h2>
+          </div>
+        <% end %>
       </div>
     </div>
 
