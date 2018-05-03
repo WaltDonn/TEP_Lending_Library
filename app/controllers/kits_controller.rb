@@ -31,12 +31,6 @@ class KitsController < ApplicationController
   
   def available_kit
     @rental_category = ItemCategory.find(params[:id])
-    puts "-- -- -- -- -- ---"
-    puts @rental_category.name
-    puts @rental_category.item_photo
-    puts @rental_category.item_photo == ""
-    puts @rental_category.item_photo.nil?
-    puts "-- -- -- -- -- ---"
     @kits_count = Kit.available_for_item_category(@rental_category).count
   end
 
