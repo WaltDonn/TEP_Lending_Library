@@ -43,6 +43,7 @@ $card-info-button-radius: 18px;
   box-shadow: $card-info-shadow;
   border-radius: $card-info-border-radius;
   transition: 0.3s;
+  overflow: hidden;
 }
 
 .product-card:hover{
@@ -95,13 +96,18 @@ $card-info-button-radius: 18px;
   padding: 1rem 0rem;
 }
 
-#item-pic{
+#item-pic, #item-pic-show{
   max-width:100%;
   max-height:100%;
   img {
     height: 260px;
     width: auto;
   }
+}
+
+#item-pic-show {
+  border: 2px solid $light-gray;
+  border-radius: $rounded-radius;
 }
 
 // avaiable_kit show page
