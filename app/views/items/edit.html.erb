@@ -36,7 +36,7 @@
 
 
       <div class="cell-block-y medium-5 small-12" id="category-block">
-        <a id="add-a-component-button" href="../components/new"> Add A Component  <i class="fa fa-plus"></i></a>
+        <a id="add-a-component-button" data-open="exampleModal1"> Add A Component  <i class="fa fa-plus"></i></a>
         <hr>
         <% if @item.components.size > 0 %>
           <%= render  "item_components", components: @item.components %>
@@ -80,4 +80,12 @@
       </div>
     <% end %>
   </div>
+</div>
+
+<div class="reveal" id="exampleModal1" data-reveal>
+  <% @component = Component.new %>
+  <%= render  "new_component_form" %>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
