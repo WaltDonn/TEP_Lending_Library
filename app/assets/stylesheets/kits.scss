@@ -131,9 +131,15 @@ div #kit-components.button.radius, #rent-kit-button.button.radius {
   width: 100%;
 }
 
-// new kit form
+// new kit form + edit kit form
 
 .form-actions.button.radius {
   color: $white;
   border: 0px;
+}
+
+.kit-inputs, .table-of-items {
+  border: 1px solid $medium-gray;
+  border-radius: $card-info-border-radius;
+  padding: 2rem;
 }
