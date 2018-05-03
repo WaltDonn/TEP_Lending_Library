@@ -53,9 +53,25 @@
   function add_item() {
     var items = $('form .items')
     var num_items = items.children().length / 2;
-    var input = document.createElement("input");
-    input.type = "text";
+    var input = document.createElement("select");
+    input.type = "select";
     input.name = "member" + num_items;
+
+    $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: "/items",
+      success: function(data) {
+        for (var i = 0; i < data.length; i++) {
+          var option = document.createElement("option");
+          console.log(data[i].readable_id)
+          option.value = data[i].readable_id;
+          option.text = data[i].readable_id;
+          input.appendChild(option);
+        }
+      }
+    })
+    
     items.append('<div><br> <p> Readable ID: </p>');
     items.append(input);
     items.append('</div>');
