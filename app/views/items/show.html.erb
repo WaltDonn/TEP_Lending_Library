@@ -28,11 +28,6 @@
     <div class="cell-block-y medium-4 small-12" id="item-block">
       <%= render  "item_information" %>
     </div>
-    <div class="small-offset-10 small-3 side-link right">
-      <%= link_to item_path(@item), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button alert radius small' do %>
-        DESTROY ITEM  <i class="fas fa-trash-alt"></i>
-      <% end %>
-    </div>
   </div>
 </div>
 
