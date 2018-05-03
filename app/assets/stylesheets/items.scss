@@ -66,14 +66,12 @@ table{
   
   input#item_category_item_photo {
     margin-bottom: 0rem;
-    // width: 14rem;
   }
 
   input.btn.button.radius.tiny.right {
     margin: 0rem;
     margin-top: 0.25rem;
     font-size: 0.6rem;
-    // float: right;
   }
 }
 
@@ -97,6 +95,7 @@ input.btn.button {
 a#add-a-component-button {
   color: $secondary-color;
   float: right;
+  margin-bottom: 1rem;
 }
 
 #item-edit  {

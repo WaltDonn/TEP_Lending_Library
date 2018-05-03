@@ -1,104 +1,43 @@
-<% @components = @item.components %>
+<!-- THE VUE CODE ON THIS PAGE IS CURRENTLY NOT IN USE. 
+IT REMAINS IN PLACE FOR WHOEVER AIMS TO COMPELTE ITS FUNCTIONALITY  -->
 
 <div id="component_table">
-  <% if @components.nil? || @components.empty? %>
-    <h4>No components attached to item.</h4>
-    <div id="component-list">
-      <a v-if="!modal_open" v-on:click="switch_modal()">NEW COMPONENT</a>
+  <h4>Components</h4>
+  <div id="component-list">
 
-      <div v-if="modal_open" >
-        <h4>New Component</h4>
-        <new-component-form></new-component-form>
-      </div>
-    </div>
-
-  <% else %>
-    <h4>Components</h4>
-    <div id="component-list">
-      <!-- <div v-if="Object.keys(errors).length > 0">
-        <h1>Errors</h1>
-        <table>
-          <tr is='error-row' 
-              v-for="(msg, error) in errors"
-              v-bind:error="error" 
-              v-bind:msg="msg">  
-            </tr>
-        </table> -->
-      </div>
-
-      <table class="component-table">
-        <thead>
-          <th style="width:10rem;">Name</th>
-          <th style="text-align:center;">Max Amt.</th>
-          <th style="text-align:center;">Broken</th>
-          <th style="text-align:center;">Missing</th>
-          <th style="text-align:center;">Consumable</th>
-          <th style="text-align:right;" colspan="2">Manage</th>
-        </thead>
-        <tbody>
-          <tr is='component-row' 
-            v-for='component in components' 
-            v-bind:component='component'>  
+    <table class="component-table">
+      <thead>
+        <th style="width:10rem;">Name</th>
+        <th style="text-align:center;">Max Amt.</th>
+        <th style="text-align:center;">Broken</th>
+        <th style="text-align:center;">Missing</th>
+        <th style="text-align:center;">Consumable</th>
+        <th style="text-align:right;" colspan="2">Manage</th>
+      </thead>
+      <tbody>
+        
+        <% components.each do |component| %>
+          <tr>
+            <td><%= component.name %></td>
+            <td style="text-align:center;"><%= component.max_quantity %></td>
+            <td style="text-align:center;"><%= best_in_place component, :damaged %></td>
+            <td style="text-align:center;"><%= best_in_place component, :missing %></td>
+            <td style="text-align:center;"><%= component.consumable %></td>
+            <td style="text-align:center;">
+              <%= link_to edit_component_path(component) do %>
+                <i class="fas fa-edit"></i>
+              <% end %>
+            </td>
+            <td style="text-align:center;">
+              <%= link_to component, method: :delete, data: { confirm: 'Are you sure you want to delete this component?' }, remote: true do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </td>
           </tr>
-          
-          <% @item.components.each do |component| %>
-            <tr>
-              <td><%= component.name %></td>
-              <td style="text-align:center;"><%= component.max_quantity %></td>
-              <td style="text-align:center;"><%= best_in_place component, :damaged %></td>
-              <td style="text-align:center;"><%= best_in_place component, :missing %></td>
-              <td style="text-align:center;"><%= component.consumable %></td>
-              <td style="text-align:center;">
-                <%= link_to edit_component_path(component) do %>
-                  <i class="fas fa-edit"></i>
-                <% end %>
-              </td>
-              <td style="text-align:center;">
-                <%= link_to component, method: :delete, data: { confirm: 'Are you sure you want to delete this component?' }, remote: true do %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
+        <% end %>
 
-        </tbody>
-      </table>
+      </tbody>
+    </table>
 
-      <br>
-
-      <!-- <div v-if="modal_open" >
-        <h4>New Component</h4>
-        <new-component-form></new-component-form>
-      </div> -->
-    </div>
-  <% end %>
-</div>
-
-<!-- Component to add a row to the table -->
-<script type="text/x-template" id="component-row">
-    <tr>
-      <td>{{ component.name }}</td>
-      <td style="text-align:center;">{{ component.max_quantity }}</td>
-      <td style="text-align:center;">{{ component.damaged }}</td>
-      <td style="text-align:center;">{{ component.missing }}</td>
-      <td style="text-align:center;">{{ component.consumable }}</td>
-      <td v-on:click="refill(component)"><a>Fix</a></td>
-      <td v-on:click="remove_record(component)"><a><i class="fas fa-trash-alt"></i></a></td>
-    </tr>
-</script>
-
-<!-- Component to add a new form -->
-<script type="text/x-template" id="new-component-form">
-  <div>
-    <% @component = Component.new() %>
-    <%= render 'new_component_form' %>
   </div>
-</script>
-
-<!-- Component to add an error -->
-<script type="text/x-template" id="error-row">
-  <tr>
-    <td>{{ error }}</td>
-    <td>{{ msg }}</td>
-  </tr>
-</script>
+</div>

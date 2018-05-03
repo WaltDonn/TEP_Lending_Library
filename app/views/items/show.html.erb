@@ -1,24 +1,37 @@
 <div class="grid-container" id="item-show-blocks">
   <div class="grid-x">
-    <div class="inner-title cell-block-x small-12">
+    <div class="inner-title cell-block-x small-9">
       <span class="uline"><h1>Item: <%= @item.readable_id %></h1> </span>
+    </div>
+    <div class="small-3 right side-link">
+      <%= link_to edit_item_path(@item), :class => 'button radius small' do %>
+        EDIT ITEM   <i class="fas fa-pencil-alt"></i>
+      <% end %>
     </div>
   </div>
     
   <div class="grid-x grid-margin-x">
-      <div class="cell-block-y medium-4 small-12 medium-offset-1" id="category-block">
-        <%= render  "item_category", item: @item %>
-      </div>
+    <div class="cell-block-y medium-4 small-12 medium-offset-1" id="category-block">
+      <%= render  "item_category", item: @item %>
+    </div>
 
-      <% if @item.components.size > 0 %>
-        <div class="cell-block-y medium-4 small-12" id="component-block">
-          <%= render  "item_components", components: @item.components %>
-          <a href="../../components/new"> add a component</a>
-        </div>
+    <% if @item.components.size > 0 %>
+      <div class="cell-block-y medium-5 small-12" id="component-block">
+        <a id="add-a-component-button" href="../components/new"> Add A Component  <i class="fa fa-plus"></i></a>
+        <hr>
+        <%= render  "item_components", components: @item.components %>
+      </div>
+    <% else %>
+      <h4>No components attached to item.</h4>
+    <% end %>
+
+    <div class="cell-block-y medium-4 small-12" id="item-block">
+      <%= render  "item_information" %>
+    </div>
+    <div class="small-offset-10 small-3 side-link right">
+      <%= link_to item_path(@item), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button alert radius small' do %>
+        DESTROY ITEM  <i class="fas fa-trash-alt"></i>
       <% end %>
-
-      <div class="cell medium-4 small-12" id="item-block">
-        <%= render  "item_information" %>
-      </div>
+    </div>
   </div>
 </div>
