@@ -410,17 +410,21 @@ class ReservationsController < ApplicationController
     authorize! :destroy, @reservation
     @user = @reservation.teacher
     kit = @reservation.kit
-    if @reservation.destroy
-      kit.reserved = false
-      respond_to do |format|
+    
+    respond_to do |format|
+      if @reservation.destroy
+        kit.reserved = false
         if kit.save!
           format.html { redirect_to user_path(@user), notice: 'Reservation was successfully destroyed.' }
           format.json { head :no_content }
-        else 
+        else
           format.html { redirect_to  reservation_error_path }
         end
+      else 
+        format.html { redirect_to  reservation_error_path }
       end
     end
+
   end
 
   private
