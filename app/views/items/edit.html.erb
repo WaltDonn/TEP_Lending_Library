@@ -10,10 +10,12 @@
       <%= simple_form_for @item, :html => { :class => 'form-inline' }, defaults: {label: false} do |f| %>
         <h4> Item Category Information</h4>
         <%= f.simple_fields_for :item_category, :html => { :class => 'form-inline' }, defaults: {label: false} do |g| %>
-            <% if !@item.item_category.item_photo.nil? %>
-                <%= image_tag(@item.item_category.item_photo, width: "50px", height: "50px") %>
-            <% end %>
-              <table>
+          <% if @item.item_category.item_photo_url.nil? %>
+              <%= image_tag("not_found.jpg", width: "100px", height: "90px") %>
+          <% else %>
+            <%= link_to image_tag(@item.item_category.item_photo_url) %>
+          <% end %>
+          <table>
             <thead>
               <tr>
                 <th class="item-edit-head"> Change Picture </th>
@@ -25,7 +27,7 @@
               </tr>
               <tr>
                   <th class="item-edit-head"> Category Description </th>
-                  <td><%= g.input :description %></td>
+                  <td><%= g.text_area :description %></td>
               </tr>
             </thead>
           </table>
@@ -33,10 +35,14 @@
       </div>
 
 
-      <div class="cell-block-y medium-4 small-12" id="category-block">
-        <%= @item.item_category.item_photo %>
-        <%= render  "item_components", components: @item.components %>
-        <a href="../../components/new"> add a component</a>
+      <div class="cell-block-y medium-5 small-12" id="category-block">
+        <a id="add-a-component-button" href="../components/new"> Add A Component  <i class="fa fa-plus"></i></a>
+        <hr>
+        <% if @item.components.size > 0 %>
+          <%= render  "item_components", components: @item.components %>
+        <% else %>
+          <h4>No components attached to item.</h4>
+        <% end %>
       </div>
 
       <div class="cell-block-y medium-4 small-12" id="item-block">

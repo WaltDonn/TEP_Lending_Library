@@ -15,15 +15,15 @@
       <%= render  "item_category", item: @item %>
     </div>
 
-    <% if @item.components.size > 0 %>
-      <div class="cell-block-y medium-5 small-12" id="component-block">
-        <a id="add-a-component-button" href="../components/new"> Add A Component  <i class="fa fa-plus"></i></a>
-        <hr>
-        <%= render  "item_components", components: @item.components %>
-      </div>
-    <% else %>
-      <h4>No components attached to item.</h4>
-    <% end %>
+    <div class="cell-block-y medium-5 small-12" id="component-block">
+      <% if @item.components.size > 0 %>
+          <a id="add-a-component-button" href="../components/new"> Add A Component  <i class="fa fa-plus"></i></a>
+          <hr>
+          <%= render  "item_components", components: @item.components %>
+      <% else %>
+        <h4>No components attached to item.</h4>
+      <% end %>
+    </div>
 
     <div class="cell-block-y medium-4 small-12" id="item-block">
       <%= render  "item_information" %>
