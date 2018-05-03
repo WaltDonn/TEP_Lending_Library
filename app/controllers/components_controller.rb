@@ -82,12 +82,11 @@ class ComponentsController < ApplicationController
   # DELETE /components/1.json
   def destroy
     authorize! :destroy, @component
+    @item = @component.item
     @component.destroy
     respond_to do |format|
-      @item = @component.item
-      @components = @item.components
-      format.html { redirect_to components_url, notice: 'Component was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to @item, notice: 'Component was successfully destroyed.' }
+      format.json { render action: 'show', status: :created, location: @item }
       format.js
     end
   end
