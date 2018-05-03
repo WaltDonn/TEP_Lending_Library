@@ -1,6 +1,6 @@
 
 <!-- Form template using Vue for adding and editing chores -->
-<%= form_for(@component) do |f| %>
+<%= form_for @component do |f| %>
 
   <% if @component.errors.any? %>
     <div id="error_explanation">
@@ -13,23 +13,23 @@
     </div>
   <% end %>
 
-  <div class="field" style="width: 12rem; 
-                            display: inline-block;
-                            margin-right: 0.5rem;">
+  <div class="field" style="width: 12rem; display: inline-block; margin-right: 0.5rem;">
     <%= f.label :name %><br />
-    <%= f.text_field :name, "v-model" => "name" %>
+    <%= f.text_field :name %>
   </div>
-  <div class="field" style="width: 6rem; 
-                            display: inline-block;
-                            margin-right: 0.5rem;">
+  <div class="field" style="width: 6rem; display: inline-block; margin-right: 0.5rem;">
     <%= f.label :max_quantity %><br />
-    <%= f.number_field :max_quantity, "v-model" => "max_quantity" %>
+    <%= f.number_field :max_quantity %>
   </div>
   <div class="field" style="display: inline-block;">
     <%= f.label :consumable, style: "margin-top: -1rem;"%><br />
-    <%= f.check_box :consumable, "v-model" => "consumable" %>
+    <%= f.check_box :consumable %>
+    <%= f.hidden_field :item_id, :value => @item.id %>
+  </div>
+
+
+  <div>
+    <%= f.submit nil, :class => 'button tiny expanded' %>
   </div>
 
 <% end %>
-
-    <button v-on:click="submitForm()" class="button radius expanded">SUBMIT</button>
