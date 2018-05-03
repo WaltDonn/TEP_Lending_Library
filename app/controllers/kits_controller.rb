@@ -75,9 +75,8 @@ class KitsController < ApplicationController
               @item.kit = @kit
               @item.save
             end
-            i = i +1
           end
-
+          i = i +1
 
         end
 
