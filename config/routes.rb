@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   
   # main resources routes
   resources :users, :except => [:new, :create, :delete, :destroy]
-  resources :components, :except => [:show]
+  resources :components, :except => [:show, :index]
   resources :items do
     resources :components
   end
