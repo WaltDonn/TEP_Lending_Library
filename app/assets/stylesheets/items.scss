@@ -29,9 +29,6 @@ a#kit-location {
     color: $darker-gray;
     margin: 0.5rem 0rem;
   }
-  .button a {
-    color: $white;
-  }
 }
 
 .item-pic {
@@ -59,10 +56,6 @@ table{
   }
 }
 
-a.button.radius {
-  border: 0px;
-}
-
 #category-block {
   color: $dark-gray;
   
@@ -73,14 +66,12 @@ a.button.radius {
   
   input#item_category_item_photo {
     margin-bottom: 0rem;
-    // width: 14rem;
   }
 
   input.btn.button.radius.tiny.right {
     margin: 0rem;
     margin-top: 0.25rem;
     font-size: 0.6rem;
-    // float: right;
   }
 }
 
@@ -98,13 +89,13 @@ a.button.radius {
 }
 
 input.btn.button {
-  border: 0px;
   margin-left: 1rem;
 }
 
 a#add-a-component-button {
   color: $secondary-color;
   float: right;
+  margin-bottom: 1rem;
 }
 
 #item-edit  {
@@ -133,19 +124,4 @@ a#add-a-component-button {
 .subtitle {
   font-style: italic;
   color: $medium-gray;
-}
-
-// NEW COMPONENT FORM
-
-.button {
-  border: 0px;
-  padding: 0.65rem;
-}
-
-a.button.tiny.radius.alert {
-  color: $white;
-}
-
-#component_submit {
-  font-size: 0.6rem;
 }

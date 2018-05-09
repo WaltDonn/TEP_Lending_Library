@@ -1,4 +1,6 @@
-<% @rental_category = @reservation.kit.items.first.item_category %>
+<% unless @reservation.kit.nil? %>
+  <% @rental_category = @reservation.kit.items.first.item_category %>
+<% end %>
 
 <div class="grid-container">
   <div class="grid-x">
@@ -13,16 +15,20 @@
         <div class="card-divider" id="kit-info">
           <h4> Kit Info </h4>
         </div>
-        <div class="center">
-          <% if @rental_category.nil? || @rental_category.item_photo_url.nil? %>
-              <%= image_tag("not_found.jpg") %>
-          <% else %>
-              <%= image_tag(@rental_category.item_photo_url) %>
-          <% end %>
-        </div>
-        <div class="card-section">
-          <h2 class="product-card-title"> <p> Kit Location</p><%= link_to @reservation.kit.location, kit_path(@reservation.kit) %></h2>
-        </div>
+        <% if @reservation.kit.nil? %>
+          <h6>Kit information no longer available, sorry!</h6>
+        <% else %>
+          <div class="center">
+            <% if @rental_category.nil? || @rental_category.item_photo_url.nil? %>
+                <%= image_tag("not_found.jpg") %>
+            <% else %>
+                <%= image_tag(@rental_category.item_photo_url) %>
+            <% end %>
+          </div>
+          <div class="card-section">
+            <h2 class="product-card-title"> <p> Kit Location</p><%= link_to @reservation.kit.location, kit_path(@reservation.kit) %></h2>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -108,10 +114,12 @@
         <%= f.input :teacher_id, :value => current_user, as: :hidden, :class => 'hidden-form' %>
       <% end %>
     </div>
-    <div class="small-2 small-offset-5">
-      <%= link_to @reservation, method: :delete, class: "button", id: "trash-button", data: { confirm: 'Are you sure you want to delete this reservation?' } do %>
-        Delete <i class="fas fa-trash-alt"></i>
-      <% end %>
-    </div>
+    <% if @current_user.has_role?(:manager) || @current_user.has_role?(:admin) %>
+      <div class="small-2 small-offset-5">
+        <%= link_to @reservation, method: :delete, class: "button", id: "trash-button", data: { confirm: 'Are you sure you want to delete this reservation?' } do %>
+          Delete <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

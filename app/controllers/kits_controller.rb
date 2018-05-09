@@ -77,8 +77,6 @@ class KitsController < ApplicationController
             end
           end
           i = i +1
-
-
         end
 
 

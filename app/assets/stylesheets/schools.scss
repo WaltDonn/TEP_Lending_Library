@@ -3,7 +3,6 @@
   a.button,
   input.btn.button.radius, 
   #edit-information {
-    color: white;
     line-height: 2;
   }
 }
@@ -20,5 +19,9 @@
   .button {
     display: block;
     line-height: 2;
+  }
+
+  i {
+    color: white;
   }
 }

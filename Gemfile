@@ -69,6 +69,7 @@ gem 'wkhtmltopdf-binary'
 
 gem 'best_in_place', '~> 3.0.1'
 gem 'vuejs-rails'
+gem 'chosen-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

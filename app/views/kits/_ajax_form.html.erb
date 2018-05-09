@@ -7,33 +7,31 @@
           <span class="uline"><h1>Kit <%= @kit.id%></h1></span>
         </div>
       </div>
+        
+      <div class="grid-x small-offset-1">
+        <div class="small-5 kit-inputs">
+          <div class="cell-block-x">
+            <%= f.input :location %>
+          </div>
 
-      <div class="grid-x">
-        <div class="cell-block-x small-offset-1">
-          <%= f.input :location %>
+          <div class="cell-block-x">
+            <%= f.input :is_active %>
+          </div>
         </div>
-      </div>
-
-      <div class="grid-x">
-        <div class="cell-block-x small-offset-1">
-          <%= f.input :is_active %>
-        </div>
-      </div>
 
 
-       <div class="grid-x">
-        <div class="cell-block-x small-offset-1">
+        <div class="cell-block-x small-5 small-offset-1 table-of-items">
           <table class="item-table">
-              <thead>
-                <th>Name</th>
-                <th>Condition</th>
-              </thead>
-              <tbody>
-                <div class="items">
-                </div>
-              </tbody>
-            </table>
-         <a href="#" onclick="add_item()"> add an item</a>
+            <thead>
+              <th>Name</th>
+              <th>Condition</th>
+            </thead>
+            <tbody>
+              <div class="items">
+              </div>
+            </tbody>
+          </table>
+         <a href="#" class="button small" onclick="add_item()"> Add An Item  <i class="fas fa-plus white"></i></a>
         </div>
       </div>
 
@@ -41,7 +39,7 @@
         <div class="cell-block-x small-11 small-offset-1">
           <div class="form-actions">
             <%= f.submit nil, :class => 'button radius' %>
-            <%= link_to 'Cancel', shopping_path, :class => 'button alert radius' %>
+            <%= link_to 'Cancel', kits_path, :class => 'button alert radius' %>
           </div>
         </div>
       </div>
@@ -55,9 +53,25 @@
   function add_item() {
     var items = $('form .items')
     var num_items = items.children().length / 2;
-    var input = document.createElement("input");
-    input.type = "text";
+    var input = document.createElement("select");
+    input.type = "select";
     input.name = "member" + num_items;
+
+    $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: "/items",
+      success: function(data) {
+        for (var i = 0; i < data.length; i++) {
+          var option = document.createElement("option");
+          console.log(data[i].readable_id)
+          option.value = data[i].readable_id;
+          option.text = data[i].readable_id;
+          input.appendChild(option);
+        }
+      }
+    })
+    
     items.append('<div><br> <p> Readable ID: </p>');
     items.append(input);
     items.append('</div>');

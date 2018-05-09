@@ -19,7 +19,6 @@
               <th>Checkout Date</th>
               <th>Return Date</th>
               <th>Current Status</th>
-              <th>Cancel Reservation </th>
             </tr>
           </thead>
 
@@ -38,12 +37,6 @@
                 <% else %>
                   <td> <%= reservation.picked_up ? "Picked Up" : "Not Yet Picked Up" %></td>
                 <% end %>
-                <td> 
-                  <%= link_to reservation, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
-
-                </td>
               </tr>
             <% end %>
           </tbody>
