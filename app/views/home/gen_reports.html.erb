@@ -29,11 +29,21 @@
 									            <tr>
 									              <td><%= kitItem.readable_id %></td>
 									              <td style="text-align:center;"><%= kitItem.item_category.name %></td>
-									              <td style="text-align:center;"><%= kitItem.kit.location %></td>
+									              <% if kitItem.kit.nil? %>
+								                  	<td>Not currently assigned</td>
+								                  <% else %>
+								                  	<td style="text-align:center;"><%= kitItem.kit.location %></td>
+								                  <% end %>
 									              <td style="text-align:center;"><%= kitItem.condition %></td>
-									              <td style="text-align:center;"><%= kitItem.kit.reserved %></td>
-									              <td style="text-align:center;"><%= kitItem.kit.blackout %></td>
-									              <td style="text-align:center;"><%= kitItem.kit.is_active %></td>
+									              <% if kitItem.kit.nil? %>
+									              	<td>Not currently assigned</td>
+									              	<td>Not currently assigned</td>
+									              	<td>Not currently assigned</td>
+									              <% else %>
+									              	<td style="text-align:center;"><%= kitItem.kit.reserved %></td>
+									              	<td style="text-align:center;"><%= kitItem.kit.blackout %></td>
+									              	<td style="text-align:center;"><%= kitItem.kit.is_active %></td>
+									              <% end %>
 									            </tr>
 									          <% end %>
 									        </tbody>
@@ -185,7 +195,11 @@
 									          <% @items.each do |kitItem| %>
 									            <tr>
 									              <td><%= kitItem.readable_id %></td>
-									              <td style="text-align:center;"><%= kitItem.kit.reservations.size %></td>
+									              <% if kitItem.kit.nil? %>
+									              	<td>Not in a kit%>
+									              <% else %>
+									              	<td style="text-align:center;"><%= kitItem.kit.reservations.size %></td>
+									              <% end %>
 									            </tr>
 									          <% end %>
 									        </tbody>
