@@ -14,7 +14,7 @@ class Kit < ApplicationRecord
     
     
     def self.available_kits
-        return Kit.all.select{|k| k.rentable && k.reserved == false}
+        return Kit.all.select{|k| k.rentable && k.reserved == false && k.items.size > 0}
     end
 
     def self.damaged
